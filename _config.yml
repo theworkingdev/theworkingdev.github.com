@@ -23,8 +23,9 @@ twitter_username: theworkingdev
 github_username:  tedhagos
 
 google_analytics: UA-123410395-1
-disqus:
-  shortname: workingdev-net
+
+#disqus:
+#  shortname: workingdev-net
 
 # Build settings
 markdown: kramdown
