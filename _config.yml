@@ -13,12 +13,15 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
+
 title: workingdev
+
 email: tedhagos@gmail.com
+
 description: >- # this means to ignore newlines until "baseurl:"
   Easy to understand programming examples.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+# url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: theworkingdev
 github_username:  tedhagos
 
@@ -32,9 +35,6 @@ markdown: kramdown
 theme: minima
 highlighter: rouge
 # highlighter: pygments
-
-plugins:
-  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -51,9 +51,6 @@ plugins:
 defaults:
   layout: post
   author: "Ted Hagos"
-
-plugins:
-  - jekyll-seo-tag
   
 twitter:
   username: theworkingdev
@@ -61,5 +58,11 @@ twitter:
 default_image: /images/gandalf-programmer.jpg
 
 url: "https://workingdev.com" # the base hostname & protocol for your site
+
 plugins:
   - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+feed:
+  path: atom.xml
