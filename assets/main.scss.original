@@ -1,0 +1,74 @@
+---
+---
+
+@import "{{ site.theme }}";
+@import url('https://fonts.googleapis.com/css?family=Roboto|Ubuntu+Mono');
+// @import url(syntax.css);
+// @import url(gruvbox.css);
+
+img {
+  display:block;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  color: black;
+  font-size: 1.1em;
+  background: white;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;  
+}
+
+// blockquote {
+//   font-family: 'Cambria','Georgia', 'Times New Roman', sans-serif;
+//   font-style: normal;
+//   letter-spacing: 0px;
+//   font-size: 1em;
+//   padding-top: 10px;
+//   padding-bottom: 10px;
+// }
+
+code, pre, .highlight pre {
+  font-family: 'Ubuntu Mono','Menlo', 'Consolas',monospace;
+}
+
+// em {
+//   font-family: 'Cambria', 'Georgia', sans-serif;
+//   color: #949494;
+//   font-weight: normal;
+// }
+
+// code, pre {
+//   background: #f1f1f1;
+//   border: 0px;
+//   padding: 5px;
+// }
+
+// .highlight {
+//   background-color: #f1f1f1 !important;
+// }
+
+h1, h2, h3, h4 {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans Japanese", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+  font-weight: bold;
+}
+
+.post-title {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.aside {
+  background: #fdfdf7;
+  border: 3px solid #dedede;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+pre  {
+  padding: 1em;
+}
+
+
