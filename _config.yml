@@ -54,7 +54,7 @@ defaults:
   
 twitter:
   username: theworkingdev
-  card: summary_large_image
+  # card: summary_large_image
 
 default_image: /images/gandalf-programmer.jpg
 
