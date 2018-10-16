@@ -59,3 +59,7 @@ twitter:
   username: theworkingdev
 
 default_image: /images/gandalf-programmer.jpg
+
+url: "http://workingdev.com" # the base hostname & protocol for your site
+plugins:
+  - jekyll-sitemap

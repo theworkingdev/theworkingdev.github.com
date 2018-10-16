@@ -166,7 +166,7 @@ p, .post-meta, h1, h2, h3, h4, ul, ol, table {
 main.page-content .wrapper {
   background: white;
   border: 1px solid #cacaca;
-  box-shadow: 3px 4px #cacaca
+  /* box-shadow: 3px 4px #cacaca  */
 }
 
 
