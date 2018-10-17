@@ -52,8 +52,8 @@ defaults:
   layout: post
   author: "Ted Hagos"
   
-twitter:
-  username: theworkingdev
+# twitter:
+#   username: theworkingdev
   # card: summary_large_image
 
 default_image: /images/gandalf-programmer.jpg
