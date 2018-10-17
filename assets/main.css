@@ -520,3 +520,9 @@ blockquote {
   padding: 2px;
   border-radius: 5px;
 }
+
+#disqus_thread {
+  padding: 1em;
+  margin-top: 2em;
+  border-top: 1px solid rgba(0,0,0,0.33);
+}
