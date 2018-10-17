@@ -6,6 +6,7 @@ permalink: /2018/09/reified-generics-in-kotlin.html
 date:   2018-09-29 
 description: learn how to deal with type erasures during runtime. Kotlin has ways to make the runtime remember the type parameters for generics
 image: /images/reified-generics.jpg 
+comments: true
 ---
 
 Let’s deal with the meaning of *reify* first. It means to make something real, and the reason we’re using reify and generics on the same statement is because of Java’s type erasure.

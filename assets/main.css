@@ -169,6 +169,11 @@ main.page-content .wrapper {
   /* box-shadow: 3px 4px #cacaca  */
 }
 
+listpage.page-content .wrapper {
+
+  /* box-shadow: 3px 4px #cacaca  */
+}
+
 
 /**
  * Wrapper
@@ -238,8 +243,8 @@ table {
  * Site header
  */
 .site-header {
-  border-top: 5px solid #424242;
-  border-bottom: 1px solid #e8e8e8;
+  /* border-top: 5px solid #424242; */
+  /* border-bottom: 1px solid #e8e8e8; */
   min-height: 55.95px;
   position: relative; }
 
@@ -308,7 +313,7 @@ table {
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid #e8e8e8;
+  /* border-top: 1px solid #e8e8e8; */
   padding: 30px 0; 
   margin-bottom:1em;
 }
@@ -446,6 +451,12 @@ h1, h2, h3, h4 {
   border: 0px;
 }
 
+.site-header {
+  background: #fdf9f3;
+  border-bottom: 1px solid rgba(0,0,0,0.33);
+  box-shadow: 0 2x 4x 0 rgba(0,0,0,0.13);
+}
+
 .post-title {
   /* font-size: 3em; */
   font-weight: bold; 
@@ -501,3 +512,11 @@ blockquote {
 	background-position: center;
 	background-size: cover;
 } */
+
+.search {
+  font-size: 1.5em;
+  border: 1px solid #e8e7e7;
+  background: #e8e7e7;
+  padding: 2px;
+  border-radius: 5px;
+}
