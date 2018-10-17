@@ -526,3 +526,8 @@ blockquote {
   margin-top: 2em;
   border-top: 1px solid rgba(0,0,0,0.33);
 }
+
+.blog-list {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans Japanese", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+}
+

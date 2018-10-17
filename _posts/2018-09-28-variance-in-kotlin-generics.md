@@ -4,6 +4,8 @@ layout: post
 categories: kotlin
 permalink: /2018/09/variance-in-kotlin-generics.html
 date:   2018-09-28 
+description: Learn how to use the in and out keyword in Kotlin Generics. Read along if you're curious about invariant, covariant and contravariant in Kotlin Generics
+comments: true
 ---
 
 We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming. 

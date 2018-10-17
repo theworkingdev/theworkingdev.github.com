@@ -5,6 +5,7 @@ categories: kotlin
 permalink: /2018/10/kotlin-variable-arguments-in-functions.html
 date:   2018-09-29 
 description: You can pass variable number of arguments in a Kotlin function. See how it's done
+comments: true
 ---
 
 Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type `...` , we use the `vararg` keyword instead. 
