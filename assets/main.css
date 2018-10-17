@@ -424,7 +424,7 @@ img {
 body {
   font-family: 'Merriweather','Georgia', serif;
   color: black;
-  font-size: 1.1em;
+  font-size: 1em;
   background: #f1f1f1;
   /* width: 800px;
   margin-left: auto;
@@ -433,7 +433,9 @@ body {
 }
 
 code, pre, .highlight pre {
-  font-family: 'Ubuntu Mono','Menlo', 'Consolas',monospace; }
+  font-family: 'Ubuntu Mono','Menlo', 'Consolas',monospace; 
+  font-size: 1.03em;
+}
 
 h1, h2, h3, h4 {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans Japanese", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
