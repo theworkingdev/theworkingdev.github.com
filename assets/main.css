@@ -527,9 +527,9 @@ blockquote {
   border-top: 1px solid rgba(0,0,0,0.33);
 }
 
-.blog-list {
+/* .blog-list {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans Japanese", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
-}
+} */
 
 .post-card {
   border: 2px solid #cacaca;
@@ -537,3 +537,19 @@ blockquote {
 }
 
 ul.post-list {padding-left: 0px;}
+
+ul.blog-list {
+  list-style: none;
+  position: inside;
+  padding-left: 0px;
+}
+
+li.blog-post-item {
+  padding: 1em;
+  border: 2px solid #cacaca;
+  margin-bottom: 1em; 
+}
+
+listpage.page-content h1, listpage.page-content h2 {
+  color: gray;
+}

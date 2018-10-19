@@ -6,6 +6,9 @@ permalink: /2012/02/on-studying-and-practicing-android.html
 date:   2012-02-01 
 ---
 
+These tips might be useful for you if you want to get into Android programming.
+
+
 1. Pick up a book. Ask a friend, your teacher, a developer whose opinion you trust. You can also take a look at the [BIBLIOGRAPHY](https://www.workingdev.net/2012/06/my-books-on-android-programming.html) section of this mini site. There are some ideas there that can get you started in choosing reference materials
 2. Take notes for your android learning. Get notebook, I don't mean a computer. Get a real notebook, with paper on them. I like this approach because there is something about the tactile feel of note taking that helps me retain the knowledge. You will need this notebook when jotting down unfamiliar terms, or maybe even writing your first android application by hand. Note taking forces your brain to work harder, and hopefully remember the steps (and concepts, more importantly). Intellisense and autocomplete are swell, but I would rather that you do it the hard way first, while you are still learning this new technology. Favor retention over speed of coverage. Don't skim the headlines
 3. Flash Cards. This is old fashioned, but they work.

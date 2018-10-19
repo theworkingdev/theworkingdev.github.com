@@ -6,6 +6,9 @@ permalink: /2013/05/javascripts-keywords.html
 date:   2013-05-28 
 ---
 
+JavaScript keywords are special words that you can't use in your program as variable name, name of a function or name of a class.
+
+
 * `break`: to get out of loops. Use it (sparingly) inside for or while loops. Used also inside switch statements to prevent cascading of flow. see also switch, for, while, continue
 * `case`: used from within a switch statement. It works as an expression matcher. When an it matches, program flow is routed on that specific case label see also switch
 * `catch`: part of a try-catch-finally exception handling mechanism. When an exception is thrown, the actual exception can be matched to a number of catch blocks. If the exception matches, the program flow is transferred to that catch block see also try, finally

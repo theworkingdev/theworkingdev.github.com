@@ -3,14 +3,21 @@ layout: list
 ---
 
 
-<h2>blog archive</h2>
+<h1>Blog Archive</h1>
 {% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y %b'"  %}
 {% for yearMonth in postsByYearMonth %}
-  <h3>{{ yearMonth.name }}</h3>
-    <ul>
+  <h2>{{ yearMonth.name }}</h2>
+    <ul class="blog-list">
       {% for post in yearMonth.items %}
-        <li><a href="{{ post.url }}" class="blog-list">{{ post.title }}</a></li>
-      {% endfor %}
+        <li class="blog-post-item">
+          <h3>
+           <a href="{{ post.url }}" class="blog-list">{{ post.title }}</a>
+          </h3>
+          {%- if site.show_excerpts -%}
+            {{ post.excerpt }}
+        {%- endif -%}
+        {% endfor %}
+        </li>
     </ul>
 {% endfor %}
 
