@@ -4,6 +4,8 @@ layout: post
 categories: kotlin, android
 permalink: /2018/07/kotlin-okhttp-and-threads.html
 date:   2018-07-03 
+image: /images/android-many.jpg
+description: Android has various ways to run your code in the background. From what I can recall, we can use Threads, Handers, Messages, AsyncTask and many others
 ---
 
 Android has various ways to run your code in the background. From what I can recall, we can use any of the following;

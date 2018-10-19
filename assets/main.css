@@ -451,11 +451,11 @@ h1, h2, h3, h4 {
   border: 0px;
 }
 
-.site-header {
+/* .site-header {
   background: #fdf9f3;
   border-bottom: 1px solid rgba(0,0,0,0.33);
   box-shadow: 0 2x 4x 0 rgba(0,0,0,0.13);
-}
+} */
 
 .post-title {
   /* font-size: 3em; */
@@ -531,3 +531,9 @@ blockquote {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans Japanese", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
 }
 
+.post-card {
+  border: 2px solid #cacaca;
+  background: #f1f1f1;
+}
+
+ul.post-list {padding-left: 0px;}

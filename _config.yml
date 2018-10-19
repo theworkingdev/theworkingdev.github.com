@@ -27,6 +27,8 @@ github_username:  tedhagos
 
 google_analytics: UA-123410395-1
 
+show_excerpts: true
+
 disqus:
   shortname: workingdev-net.
 
