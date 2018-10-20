@@ -6,7 +6,6 @@ permalink: /2018/08/how-to-create-and-loop-through-kotlin.html
 date:   2018-08-01 
 ---
 
-## How to Create and Loop through Kotlin Arays
 
 You can create an Array like using the **emptyArray** function, like this
 
@@ -57,9 +56,7 @@ var fruits = arrayOf("Apple","Banana","Orange")
 
 This is probably the most natural way to create an Array, so, just use it whenever you can. You don't have to say what type is it, it can be inferred from the constructor arguments; plus, you can declare and define the array in one line.
 
-### How to loop through Arrays
-
-To use the for loop, you can simply write
+Looping through arrays can be simply managed by the following code
 
 ```kotlin
 for (i in fruits) {

@@ -163,7 +163,7 @@ p, .post-meta, h1, h2, h3, h4, ul, ol, table {
 .post-title, h2.post-list-heading {padding-top: 35px;}
 
 /* for listpage */
-listpage h1, listpage h2, listpage ul, listpage ol {
+listpage h1, listpage h2, .site-footer p {
   padding-left: 0px;
   padding-right: 0px;
   margin-left: 0px;
@@ -573,3 +573,9 @@ li.blog-post-item {
 listpage.page-content h1, listpage.page-content h2 {
   color: gray;
 }
+
+.footer-link, .footer-link:visited, .site-footer {
+  color: gray;
+}
+.footer-link:hover {color: black;}
+.footer-link {padding-right:1em;}
