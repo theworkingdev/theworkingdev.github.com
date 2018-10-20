@@ -15,7 +15,7 @@
 
 main {
   border: 4px solid orange;
-} */
+}  */
 
 
 body, h1, h2, h3, h4, h5, h6,
@@ -155,13 +155,23 @@ pre {
   border: 4px solid red;
 } */
 
-
-
 p, .post-meta, h1, h2, h3, h4, ul, ol, table {
   padding-left: 35px;
   padding-right: 35px;
+  
 }
 .post-title, h2.post-list-heading {padding-top: 35px;}
+
+/* for listpage */
+listpage h1, listpage h2, listpage ul, listpage ol {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+}
+listpage h2.post-list-heading {padding-top: 0px;}
+
+/* end listpage*/
+
 
 main.page-content .wrapper {
   background: white;
@@ -248,15 +258,23 @@ table {
   min-height: 55.95px;
   position: relative; }
 
+/* .site-title {color: #b6b6b6;} */
 .site-title {
-  font-size: 26px;
-  font-weight: 300;
+  font-size: 36px;
+  font-weight: bold;
   line-height: 54px;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
   margin-bottom: 0;
-  float: left; }
+  float: left; 
+  letter-spacing: -1px; }
+  
   .site-title, .site-title:visited {
-    color: #424242; }
+    color: #b6b6b6; 
+  }
+  .site-title:hover {
+    text-decoration: none;
+    color: gray;
+  }
 
 .site-nav {
   float: right;
@@ -533,7 +551,7 @@ blockquote {
 
 .post-card {
   border: 2px solid #cacaca;
-  background: #f1f1f1;
+  /* background: #fbfbfb; */
 }
 
 ul.post-list {padding-left: 0px;}
@@ -545,9 +563,11 @@ ul.blog-list {
 }
 
 li.blog-post-item {
-  padding: 1em;
+  padding-top:1em;
+  padding-bottom:1em;
   border: 2px solid #cacaca;
-  margin-bottom: 1em; 
+  margin-bottom: 1em;
+  /* background: #fbfbfb;  */
 }
 
 listpage.page-content h1, listpage.page-content h2 {
