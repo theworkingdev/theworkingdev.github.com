@@ -1,7 +1,7 @@
 ---
 title: An introduction to Kotlin functions
 layout: post
-categories: 
+categories: kotlin
 permalink: /2018/09/kotlin-functions.html
 date:   2018-09-06
 description: Kotlin functions are much richer than Java's. You have the flexibility to define default values for parameters and even name the parameters at the call site. This why you don't need to do much overloading in Kotlin

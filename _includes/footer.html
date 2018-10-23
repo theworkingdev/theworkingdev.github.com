@@ -7,7 +7,10 @@
       <a href="/blog" class="footer-link">Blog archives</a>
       <a href="https://twitter.com/@theworkingdev" class="footer-link" target="_blank">@workingdev</a>
     </p>
-    copyright Ted Hagos &copy;  <a href="{{ "/atom.xml" | relative_url }}"><img src="/images/rss24.png" style="display:inline" class="footer-link"></a>
+    copyright Ted Hagos &copy; {{ 'now' | date: '%Y'}} 
+      <a href="{{ "/atom.xml" | relative_url }}">
+        <img src="/images/rss24.png" style="display:inline" class="footer-link">
+      </a>
   </div>
 </footer>
 
