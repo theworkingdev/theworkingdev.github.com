@@ -35,13 +35,11 @@ fun foo(arg:Number) { // (4)
 (3) _Double_ literal
 (4) function *Foo* expects a _Number_, it can take _Ints, Floats_ and _Doubles_. No Problem
 
-The codes are possible because of the _Liskov Substitution Principle_ (LSP). It’s one of the more important parts of OOP — where a parent type is expected, you can use a subtype in its place. The reason we use a more generalized type (like Number, in Listing 7-9), is so that in the future, if we need to, we can write an implementation of a subtype and insert into an existing and working code. This is the essence of the Open Closed Principle (which states that a class must be open to extension but closed to modification).
+The codes are possible because of the _Liskov Substitution Principle_ (LSP). It’s one of the more important parts of OOP — where a parent type is expected, you can use a subtype in its place. The reason we use a more generalized type (like *Number*, in our code example), is so that in the future, if we need to, we can write an implementation of a subtype and insert into an existing and working code. This is the essence of the Open Closed Principle (which states that a class must be open to extension but closed to modification).
 
 <aside><strong>NOTE</strong>
 The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> are part of the SOLID design principles. It’s one of the more popular sets of design principles in OOP. SOLID stands for (S) Single Responsibility (O) Open Closed (L) Liskov Substitution (I) Interface Segregation and (D) Dependency Inversion
 </aside>
-
-
 Let’s take another example, see Listing 1
 
 _Listing 1.  Employee, Programmer and Tester_
