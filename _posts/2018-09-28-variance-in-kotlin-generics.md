@@ -232,4 +232,4 @@ public interface List<out E> : Collection<E> {  // (1)
 
 The reason why it’s okay to assign `List<Programmer>` to `List<Employee>` is because the type parameter on `List<E>` is covariant.  Hence, if type *Employee* is a supertype of *Programmer*, and `List<E>` is covariant, then `List<Programmer>` is a subtype of `List<Employee>`.
 
-So, now that we understand types and subtypes a bit better, like in a Quentin Tarantino movie, I’d like you to go back some 20 minutes ago and go back to the beginning of the article
+So, now that we understand types and subtypes a bit better, like in a Quentin Tarantino movie, I’d like you go back to the beginning of the article and give it another read. I hope it'll make better sense by then.
