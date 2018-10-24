@@ -134,7 +134,7 @@ fun main(args: Array<String>) {
 Alright. I suspect that what you’ve read in the last 10 minutes left a bitter taste in your mouth. How can it happen that Programmer is a subtype of Employee, List<Programmer> is a subtype of List<Employee> but Group<Programmer> is not a subtype of `Group<Employee>?`  Let’s try to answer that by going back to the concept of class, types, subclass and subtypes.
 
 We think of a class as somewhat synonymous to a type, and generally that’s true — for non-generic classes at least, and for most of the time. We know that a class has at least one type, it’s the same type as that of the class itself. Go back to that time when you were first studying Java classes, your teacher, mentor or probably a favorite author must have defined a type of an object like this — “it’s the sum total of all its public behavior, otherwise known as the object’s methods or contract” — or something like that; let’s just say it’s the set of behavior that the object has.
- 
+
 Going back to “a class has at least one type”, well, it can have more. Just look at Figure 1.
 
 
@@ -179,7 +179,7 @@ Now we come to generics.  Figure 3 should help us illustrate the next set of con
 ![](/images/kotlin-variance-3.png)
 _Figure 3_
 
-We know the first relationship, Employee is the supertype of Programmer. We also know *List<Employee>* will accept *List<Programmer>*,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes. 
+We know the first relationship, Employee is the supertype of Programmer. We also know `List<Employee>` will accept `List<Programmer>`,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes. 
 
 Now, given the codes
 
@@ -188,16 +188,16 @@ class Group<T>
 val a:Group<Employee> = Group<Programmer>() // not sure
 ```
 
-Why is it that we can’t reliably answer the question “is *Group<Employee>* a supertype of *Group<Programmer>*”.
+Why is it that we can’t reliably answer the question “is `Group<Employee>` a supertype of `Group<Programmer>`”.
 
-It’s because, while Group is a class, Group<Employee> is not, and by extension, *Group<Programmer>* is not a subclass of  *Group<Employee>* — if you’re thinking of *List<Employee>* and *List<Programmer>* right now, stop. I did say I’ll circle back to that. Stick with Group<Employee> and Group<Programmer> first. Table 1 should help us summarize some of these things.
+It’s because, while `Group`  is a class, `Group<Employee>` is not, and by extension,`Group<Programmer>` is not a subclass of  `Group<Employee>` — if you’re thinking of `List<Employee>` and `List<Programmer>` right now, stop. I did say I’ll circle back to that. Stick with `Group<Employee>` and `Group<Programmer>` first. Table 1 should help us summarize some of these things.
 
 
 ![](/images/kotlin-variance-4.png)
 
 Now we can establish that `Group<Employee>` has no type relationship with `Group<Programmer>` even if class Employee has a type relationship with Programmer. The type parameter in `Group<T>` is by default, invariant (no type relationship).  In order to change the variance of <T> you need to use either out (to make it covariant) or in (to make contravariant) keyword.
 
-So, if we want  Group<Programmer> to be a subtype of Group<Employee> we need to write the *Group* class like this
+So, if we want  `Group<Programmer>` to be a subtype of `Group<Employee>` we need to write the *Group* class like this
 
 ```kotlin
 class Group<out T>
