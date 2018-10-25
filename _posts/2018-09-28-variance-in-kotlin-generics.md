@@ -231,3 +231,14 @@ public interface List<out E> : Collection<E> {  // (1)
 The reason why it’s okay to assign `List<Programmer>` to `List<Employee>` is because the type parameter on `List<E>` is covariant.  Hence, if type *Employee* is a supertype of *Programmer*, and `List<E>` is covariant, then `List<Programmer>` is a subtype of `List<Employee>`.
 
 So, now that we understand types and subtypes a bit better, like in a Quentin Tarantino movie, I’d like you go back to the beginning of the article and give it another read. I hope it'll make better sense by then.
+
+
+
+This article is in Chapter 7 of [Learn Android Studio 3 with Kotlin](https://www.apress.com/gp/book/9781484239063)
+
+<a href="https://www.amazon.com/Learn-Android-Studio-Kotlin-Development/dp/1484239067" target="_blank"><img src="/images/las3kotlin.jpg" style="display:block;margin-left:auto;margin-right:auto"/></a>
+
+It's available from the [Apress website](https://www.apress.com/gp/book/9781484239063) and [Amazon](https://www.amazon.com/Learn-Android-Studio-Kotlin-Development/dp/1484239067)
+
+
+
