@@ -2,9 +2,28 @@
 layout: list
 ---
 
+<div class="archive">
+  <h1 class="list-heading">Blog Archive</h1>
 
-<h1>Blog Archive</h1>
-{% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y %b'"  %}
+  <ul>
+    {% for post in site.posts %}
+
+      {% unless post.next %}
+        <h3>{{ post.date | date: '%Y' }}</h3>
+      {% else %}
+        {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+        {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+        {% if year != nyear %}
+          <h3>{{ post.date | date: '%Y' }}</h3>
+        {% endif %}
+      {% endunless %}
+
+      <li>{{ post.date | date:"%b" }} <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- {% assign postsByYearMonth = site.posts | group_by_exp:"post", "post.date | date: '%Y %b'"  %}
 {% for yearMonth in postsByYearMonth %}
   <h2>{{ yearMonth.name }}</h2>
     <ul class="blog-list">
@@ -19,7 +38,7 @@ layout: list
         {% endfor %}
         </li>
     </ul>
-{% endfor %}
+{% endfor %} -->
 
 <!-- <div class="home">
   {%- if page.title -%}
