@@ -1,5 +1,5 @@
 ---
-title:
+title: Connect to database via mysqli procedural 
 permalink: /2009/02/php-mysqli-procedural.html
 categories: php
 layout: post

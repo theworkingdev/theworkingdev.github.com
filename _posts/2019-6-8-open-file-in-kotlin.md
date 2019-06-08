@@ -2,6 +2,7 @@
 title: How to open a file in Kotlin
 layout: post
 categories: kotlin
+comments: true
 date:   2019-6-8  
 ---
 

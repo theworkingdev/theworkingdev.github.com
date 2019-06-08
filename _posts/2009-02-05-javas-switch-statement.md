@@ -1,7 +1,8 @@
 ---
 title: Java's switch statement
 layout: post
-categories: php
+categories: java
+comments: true
 permalink: /2009/02/javas-switch-statement.html
 date:   2009-02-12 21:14:28 +0800
 ---

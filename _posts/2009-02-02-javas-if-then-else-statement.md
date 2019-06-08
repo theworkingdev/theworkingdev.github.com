@@ -2,6 +2,7 @@
 title: Java's if then else statement
 permalink: /2009/02/javas-if-then-else-statement.html
 categories: java
+comments: true
 layout: post 
 date: 2009-02-02
 ---

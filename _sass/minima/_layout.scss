@@ -200,6 +200,7 @@
 .post-meta {
   font-size: $small-font-size;
   color: $grey-color;
+  text-align: center;
 }
 
 .post-link {
@@ -224,6 +225,7 @@
   @include media-query($on-laptop) {
     @include relative-font-size(2.25);
   }
+  text-align: center;
 }
 
 .post-content {

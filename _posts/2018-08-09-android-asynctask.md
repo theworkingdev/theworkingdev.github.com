@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/08/android-asynctask.html 
 date:   2018-08-09 
+comments: true
 ---
 
 In previous posts ([Android Jank]({% post_url 2018-07-29-android-jank_31 %}) and [Android Threads, Handlers and Messages]({% post_url 2018-07-28-android-threads-handlers-and-messages %})) we explored ways on how to run code in the background. Why would we want to do that? So that UI Thread is freed up to do UI stuff like creating and updating views. Coz if we burden the UI Thread with other stuff that doesn’t concern the UI, like doing I/O work or doing complex calculations, the Android runtime will reduce the framerate of our app which will cause it behave sluggishly — in short, jank.
