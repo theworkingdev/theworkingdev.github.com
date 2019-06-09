@@ -1,7 +1,9 @@
 ---
 title: Using the file API to read a file in Android
 layout: post
-categories: android, kotlin
+categories: 
+ - android
+ - kotlin
 permalink: /2018/08/how-to-read-from-file-in-android.html
 date:   2018-08-08 
 ---

@@ -1,7 +1,9 @@
 ---
 title: Android SharedPreferences in Kotlin
 layout: post
-categories: android, kotlin
+categories: 
+ - android
+ - kotlin
 permalink: /2018/08/how-to-use-androids-sharedpreferences.html
 date:   2018-08-07 
 ---
