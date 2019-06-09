@@ -17,6 +17,9 @@ mrandomnumber = random.nextInt(100); // (2)
 
 **(2)** Creates a new random integers not greater than 100
 
+> Java's Random class generates not only integers, it can also handle double, float, boolean etc., so,  make sure you check out the docs at  <a href='https://bit.ly/javautilrandom'>java.util.Random docs page</a> 
+
+
 ```java
 import android.util.Log;
 import java.util.Random;
