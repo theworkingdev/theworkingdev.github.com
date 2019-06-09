@@ -1,8 +1,9 @@
 ---
 title: How to create a simple Random number generator in Java 
 layout: post
-categories: java, android
-permalink: 
+categories: 
+  - java
+  - android
 comments: true
 date:   2019-6-8  
 ---
