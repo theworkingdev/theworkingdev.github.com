@@ -20,6 +20,7 @@ mrandomnumber = random.nextInt(100); // (2)
 
 > Java's Random class generates not only integers, it can also handle double, float, boolean etc., so,  make sure you check out the docs at  <a href='https://bit.ly/javautilrandom'>java.util.Random docs page</a> 
 
+Here's a small sample on how to use the Random class in Java. The **RandomNumber** class has two methods named `getNumber()` and `createRandomNumber()`, it's supposed to behave like a _Singleton_ so, it's designed to create a random number only once. 
 
 ```java
 import android.util.Log;
