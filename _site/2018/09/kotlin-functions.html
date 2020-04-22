@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>An introduction to Kotlin functions | workingdev</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="An introduction to Kotlin functions" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kotlin functions are much richer than Java’s. You have the flexibility to define default values for parameters and even name the parameters at the call site. This why you don’t need to do much overloading in Kotlin" />
+<meta property="og:description" content="Kotlin functions are much richer than Java’s. You have the flexibility to define default values for parameters and even name the parameters at the call site. This why you don’t need to do much overloading in Kotlin" />
+<link rel="canonical" href="http://localhost:4000/2018/09/kotlin-functions.html" />
+<meta property="og:url" content="http://localhost:4000/2018/09/kotlin-functions.html" />
+<meta property="og:site_name" content="workingdev" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-06T00:00:00+08:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2018/09/kotlin-functions.html","headline":"An introduction to Kotlin functions","dateModified":"2018-09-06T00:00:00+08:00","datePublished":"2018-09-06T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/09/kotlin-functions.html"},"description":"Kotlin functions are much richer than Java’s. You have the flexibility to define default values for parameters and even name the parameters at the call site. This why you don’t need to do much overloading in Kotlin","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/atom.xml" title="workingdev" /><!-- Twitter cards -->
+  <meta name= "twitter:site"    content = "@theworkingdev" />
+  <meta name= "twitter:creator" content = "@theworkingdev" />
+  <meta name= "twitter:title"   content = "An introduction to Kotlin functions" />
+
+  
+  <meta name= "twitter:description" content = "Kotlin functions are much richer than Java's. You have the flexibility to define default values for parameters and even name the parameters at the call site. This why you don't need to do much overloading in Kotlin" />
+  
+
+  
+  <meta name= "twitter:card"  content = "summary_large_image" />
+  <meta name= "twitter:image" content = "https://workingdev.net/images/gandalf-programmer.jpg" />
+  
+  <!-- end of Twitter cards -->
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><!-- <a class="site-title" rel="author" href="/">workingdev</a> -->
+
+    <!-- <nav class="site-nav">
+      <input type="text " placeholder=" ... search" class="search">
+    </nav> -->
+  </div>
+
+  <!-- <div class="wrapper"><a class="site-title" rel="author" href="/">workingdev</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/p/about-ted.html">About</a><a class="page-link" href="/about/">About</a><a class="page-link" href="/p/kotlin-quick-bites.html">Kotlin Quick Bites</a><a class="page-link" href="/p/learn-android-studio-3-with-kotlin.html">Learn Android Studio 3 with Kotlin</a><a class="page-link" href="/privacy/">Privacy Policy</a></div>
+      </nav></div> -->
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">An introduction to Kotlin functions</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-09-06T00:00:00+08:00" itemprop="datePublished">Sep 6, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Kotlin functions are defined using <code class="highlighter-rouge">fun</code> keyword, followed by the name of the function, a pair of parentheses, optional parameters, the return type of function and then the body of the function, which is pair of curly braces. It’s pretty much like a Java function, except that in Java,  we have no <code class="highlighter-rouge">fun</code> (pun intended) and the type of the function  is written to the left of the function (in Java), while in Kotlin, the return type of the function is to the right of function name.</p>
+
+<p>When a function declares a return type, the type and the function’s name must be separated by a colon.  Like this function that takes in a Float argument and returns a Float value</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">inchesToCm</span><span class="p">(</span><span class="n">inches</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">:</span> <span class="nc">Float</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">inches</span> <span class="p">*</span> <span class="m">2.54</span>
+<span class="p">}</span> 
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">println</span><span class="p">(</span><span class="n">inchesToCm</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If a function has a single statement in it’s body (like the previous code sample), you can write it as an expression. Like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">inchesToCm</span><span class="p">(</span><span class="n">inches</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">=</span> <span class="n">inches</span> <span class="p">*</span> <span class="m">2.54</span>
+</code></pre></div></div>
+
+<p>In a function expression, you don’t have to write the return type because Kotlin can infer it from the RHS (right hand side of the assignment operator).</p>
+
+<p>When a function (that isn’t written as an expression) doesn’t specify it’s return type, the compiler will assume that it returns the Unit type. Think of Unit as the equivalent of Java’s void, like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">talk</span><span class="p">()</span> <span class="p">{</span>       <span class="c1">// (1)</span>
+  <span class="n">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span> <span class="c1">// (2)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>(1) Our function doesn’t have a declared return type. Hence, it’s automatically Unit</p>
+
+<p>(2) The body of a function whose return type is Unit cannot have any return statement in it; just like void methods in Java</p>
+
+<p>Functions can be written in 3 places; as a top-level (which you’ve seen already) inside classes (which you’ve also seen) and inside another function.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>                 <span class="c1">// (1)</span>
+  <span class="k">fun</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">:</span> <span class="nc">String</span><span class="p">{</span>       <span class="c1">// (2)</span>
+    <span class="k">return</span> <span class="s">"Bar"</span>
+  <span class="p">}</span>
+  <span class="n">println</span><span class="p">(</span><span class="s">"Foo ${baz()}"</span><span class="p">)</span> 	<span class="c1">// (3)</span>
+<span class="p">}</span>
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;)</span> <span class="p">{</span>
+  <span class="n">foo</span><span class="p">()</span>
+  <span class="n">baz</span><span class="p">()</span>	<span class="c1">// (4)</span>
+  <span class="n">println</span><span class="p">(</span><span class="s">"${Person(lastname="</span><span class="n">Doe</span><span class="s">", firstname = "</span><span class="n">John</span><span class="s">").fullname()}"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Person</span><span class="p">(</span><span class="kd">val</span> <span class="py">firstname</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="kd">val</span> <span class="py">lastname</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">fun</span> <span class="nf">fullname</span><span class="p">()</span> <span class="p">=</span> <span class="s">"$firstname $lastname"</span>  <span class="c1">// (5)</span>
+</code></pre></div></div>
+
+<p>(1) <code class="highlighter-rouge">foo()</code> is a top level function. It isn’t nested in a class or another function</p>
+
+<p>(2) <code class="highlighter-rouge">bazz()</code> is nested inside function <code class="highlighter-rouge">foo()</code>. Which means, baz is scoped with foo; which means, it can only be called within the body of <code class="highlighter-rouge">foo()</code></p>
+
+<p>(3) This call is ok, <code class="highlighter-rouge">baz()</code> is callable within <code class="highlighter-rouge">foo()</code></p>
+
+<p>(4) Not OK. This call will fail,  <code class="highlighter-rouge">baz()</code> is not callable from <code class="highlighter-rouge">main()</code> , you can only call <code class="highlighter-rouge">baz()</code> from within <code class="highlighter-rouge">foo()</code></p>
+
+<p>(5) Like Java, you can put functions inside a class</p>
+
+<h2 id="default-function-arguments">Default function arguments</h2>
+
+<p>You can assign default values to function parameters, like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">connectToDb</span><span class="p">(</span><span class="nv">hostname</span><span class="p">:</span> <span class="nc">String</span> <span class="p">=</span> <span class="s">"localhost"</span><span class="p">,</span>
+                <span class="nv">username</span><span class="p">:</span> <span class="nc">String</span> <span class="p">=</span> <span class="s">"mysql"</span><span class="p">,</span>
+                <span class="n">password</span><span class="p">:</span><span class="n">String</span> <span class="p">=</span> <span class="s">"secret"</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And because there are default parameters, you can call this function without passing any arguments. Like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connectToDb</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Or you can pass only two arguments, like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">connectToDb</span><span class="p">(</span><span class="s">"mycomputer"</span><span class="p">,</span> <span class="s">"ted"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>“mycomputer” is the hostname, “ted” is the username. The two arguments that we passed corresponds to the first two parameters that were defined in the function.</p>
+
+<h2 id="named-params">Named params</h2>
+
+<p>In addition to default function arguments, we can also call the function by naming the arguments at the callsite.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;)</span> <span class="p">{</span>
+  <span class="n">connectToDb</span><span class="p">(</span><span class="n">hostname</span><span class="p">=</span><span class="s">"neptune"</span><span class="p">,</span>
+              <span class="n">username</span><span class="p">=</span><span class="s">"saturn"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the example above, we only passed two arguments, but since our function has default parameters, that’s okay.</p>
+
+
+  </div>
+
+  <div class="newsletter-box">
+    I hope the article was helpful, if you'd like to get these things piped into your email, you can <a href="https://buttondown.email/workingdev" target="_blank">subscribe to the newsletter</a>.
+  </div><a class="u-url" href="/2018/09/kotlin-functions.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  <data class="u-url" href="/"></data>
+  <div class="wrapper">
+    <p>
+      <a href="/" class="footer-link">Home</a>
+      <a href="/about" class="footer-link">About</a>
+      <a href="/blog" class="footer-link">Blog archives</a>
+      <a href="https://twitter.com/@theworkingdev" class="footer-link" target="_blank">@workingdev</a>
+    </p>
+    copyright Ted Hagos &copy; 2020 
+      <a href="/atom.xml">
+        <img src="/images/rss24.png" style="display:inline" class="footer-link">
+      </a>
+  </div>
+</footer>
+
+
+
+<!-- <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">workingdev</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">workingdev</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tedhagos"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tedhagos</span></a></li><li><a href="https://www.twitter.com/theworkingdev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">theworkingdev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Code samples/tutorials for the mobile and web programmer.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer> -->
+</body>
+
+</html>
