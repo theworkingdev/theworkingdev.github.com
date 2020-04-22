@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Connect to database via mysqli procedural | workingdev</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="Connect to database via mysqli procedural" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Start by connecting to the database. PHP is a server side scripting language and heavily dependent on the http protocol. The request/response nature of http means that whatever data or information you created on previous requests, will not matter in future request. Everytime you need to do something that involves a database operation (insert, delete, update or select), you need to make a connection to the database before you can do anything else." />
+<meta property="og:description" content="Start by connecting to the database. PHP is a server side scripting language and heavily dependent on the http protocol. The request/response nature of http means that whatever data or information you created on previous requests, will not matter in future request. Everytime you need to do something that involves a database operation (insert, delete, update or select), you need to make a connection to the database before you can do anything else." />
+<link rel="canonical" href="http://localhost:4000/2009/02/php-mysqli-procedural.html" />
+<meta property="og:url" content="http://localhost:4000/2009/02/php-mysqli-procedural.html" />
+<meta property="og:site_name" content="workingdev" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2009-02-03T00:00:00+08:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2009/02/php-mysqli-procedural.html","headline":"Connect to database via mysqli procedural","dateModified":"2009-02-03T00:00:00+08:00","datePublished":"2009-02-03T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2009/02/php-mysqli-procedural.html"},"description":"Start by connecting to the database. PHP is a server side scripting language and heavily dependent on the http protocol. The request/response nature of http means that whatever data or information you created on previous requests, will not matter in future request. Everytime you need to do something that involves a database operation (insert, delete, update or select), you need to make a connection to the database before you can do anything else.","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/atom.xml" title="workingdev" /><!-- Twitter cards -->
+  <meta name= "twitter:site"    content = "@theworkingdev" />
+  <meta name= "twitter:creator" content = "@theworkingdev" />
+  <meta name= "twitter:title"   content = "Connect to database via mysqli procedural" />
+
+  
+  <meta name= "twitter:description" content = "Code samples/tutorials for the mobile and web programmer." />
+  
+
+  
+  <meta name= "twitter:card"  content = "summary_large_image" />
+  <meta name= "twitter:image" content = "https://workingdev.net/images/gandalf-programmer.jpg" />
+  
+  <!-- end of Twitter cards -->
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><!-- <a class="site-title" rel="author" href="/">workingdev</a> -->
+
+    <!-- <nav class="site-nav">
+      <input type="text " placeholder=" ... search" class="search">
+    </nav> -->
+  </div>
+
+  <!-- <div class="wrapper"><a class="site-title" rel="author" href="/">workingdev</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/p/about-ted.html">About</a><a class="page-link" href="/about/">About</a><a class="page-link" href="/p/kotlin-quick-bites.html">Kotlin Quick Bites</a><a class="page-link" href="/p/learn-android-studio-3-with-kotlin.html">Learn Android Studio 3 with Kotlin</a><a class="page-link" href="/privacy/">Privacy Policy</a></div>
+      </nav></div> -->
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Connect to database via mysqli procedural</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2009-02-03T00:00:00+08:00" itemprop="datePublished">Feb 3, 2009
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Start by connecting to the database. PHP is a server side scripting language and heavily dependent on the http protocol. The  request/response nature of http means that whatever data or information you created on previous requests, will not matter in future request. Everytime you need to do something that involves a database operation (insert, delete, update or select), you need to make a connection to the database before you can do anything else.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// filename db.php
+<span class="cp">&lt;?php</span>
+<span class="nb">define</span><span class="p">(</span><span class="s2">"DBSERVER"</span> <span class="p">,</span> <span class="s2">"localhost"</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s2">"DBUSER"</span> <span class="p">,</span> <span class="s2">"theuser"</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s2">"DBPASS"</span> <span class="p">,</span> <span class="s2">"thepassword"</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s2">"DBNAME"</span> <span class="p">,</span> <span class="s2">"thedb"</span><span class="p">);</span>
+
+<span class="k">global</span> <span class="nv">$cn</span><span class="p">;</span>
+<span class="nv">$cn</span> <span class="o">=</span> <span class="nb">mysqli_connect</span><span class="p">(</span><span class="nx">DBSERVER</span><span class="p">,</span><span class="nx">DBUSER</span><span class="p">,</span><span class="nx">DBPASS</span><span class="p">,</span><span class="nx">DBNAME</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nx">mysqli_connect_errno</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">die</span><span class="p">(</span><span class="s2">"DBCONNECT | database connection failed"</span> <span class="o">.</span> <span class="nx">mysqli_connect_error</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>The code above is boilerplate, the usual practice is to write this code on a separate file e.g. an include file and “include” or “require” it before doing some other database handling codes like inserts or updates etc.</p>
+
+<p><strong>How to fetch just one record</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users;"</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+
+<span class="nx">row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>Notice the <strong>require_once</strong> statement on the first line. We need to connect to the database first before we can proceed with fetching a record.</p>
+
+<p><strong>How to fetch more than one record</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users"</span><span class="p">;</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+
+<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nx">fname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">];</span>
+  <span class="nx">lname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="s1">'lname'</span><span class="p">];</span>
+  <span class="k">echo</span> <span class="s2">"</span><span class="si">{</span><span class="nv">fname</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nv">lname</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>The <strong>mysqli_fetch_assoc</strong> will return an associative array rather than a basic array. You may find, in the course of writing CRUD applications, that associative arrays are more useful than basic arrays. It is more intuitive to read a code like <strong>$fname = $row[“firstname”]</strong> rather than a code like <strong>$fname = $row[0]</strong></p>
+
+<p>There maybe times when you need to work with numeric arrays, for example, if you need to write a pretty generic code that can traverse any given result from <strong>mysqli_fetch</strong>. To work with numeric arrays, you can use the following code</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users"</span><span class="p">;</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+
+<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nb">mysqli_fetch</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">MYSQL_NUM</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nx">fname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="nx">lname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="k">echo</span> <span class="s2">"</span><span class="si">{</span><span class="nv">fname</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nv">lname</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>How to update a record</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nx">idno</span>  <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'idno'</span><span class="p">];</span>
+<span class="nx">fname</span> <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">];</span>
+<span class="nx">lname</span> <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'lastname'</span><span class="p">];</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"UPDATE users SET firstname=</span><span class="si">{</span><span class="nv">$fname</span><span class="si">}</span><span class="s2">,
+          lastname=</span><span class="si">{</span><span class="nv">$lname</span><span class="si">}</span><span class="s2">
+          WHERE idno=</span><span class="si">{</span><span class="nv">$idno</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+ 
+</code></pre></div></div>
+
+<p>The code above is a typical program that handles a form submission. the <strong>fname</strong>, <strong>lname</strong> and <strong>idno</strong> variables were extracted from the <strong>$_POST</strong> superglobal. The code is not very robust though because it will break if the html form sends data like O’Connel or  any other data that needs to be properly escaped first before saving to the database. Most of the time, when you allow the user to type the data which will be saved to a database, you must always ensure that the data is properly escaped. You can do that by using the <strong>mysqli_real_escape_string</strong> function.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nx">idno</span>   <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'idno'</span><span class="p">]);</span>
+<span class="nx">fname</span>  <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">]);</span>
+<span class="nx">lname</span>  <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'lastname'</span><span class="p">]);</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"UPDATE users SET firstname=</span><span class="si">{</span><span class="nv">$fname</span><span class="si">}</span><span class="s2">,
+          lastname=</span><span class="si">{</span><span class="nv">$lname</span><span class="si">}</span><span class="s2">
+          WHERE idno=</span><span class="si">{</span><span class="nv">$idno</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>The <strong>mysqli_real_escape_string</strong> function takes two parameters. The first one is <strong>connection</strong> variable and the second parameter, obviously, is the actual string data that you would like to escape.</p>
+
+
+  </div>
+
+  <div class="newsletter-box">
+    I hope the article was helpful, if you'd like to get these things piped into your email, you can <a href="https://buttondown.email/workingdev" target="_blank">subscribe to the newsletter</a>.
+  </div><a class="u-url" href="/2009/02/php-mysqli-procedural.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  <data class="u-url" href="/"></data>
+  <div class="wrapper">
+    <p>
+      <a href="/" class="footer-link">Home</a>
+      <a href="/about" class="footer-link">About</a>
+      <a href="/blog" class="footer-link">Blog archives</a>
+      <a href="https://twitter.com/@theworkingdev" class="footer-link" target="_blank">@workingdev</a>
+    </p>
+    copyright Ted Hagos &copy; 2020 
+      <a href="/atom.xml">
+        <img src="/images/rss24.png" style="display:inline" class="footer-link">
+      </a>
+  </div>
+</footer>
+
+
+
+<!-- <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">workingdev</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">workingdev</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tedhagos"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tedhagos</span></a></li><li><a href="https://www.twitter.com/theworkingdev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">theworkingdev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Code samples/tutorials for the mobile and web programmer.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer> -->
+</body>
+
+</html>

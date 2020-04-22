@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Kotlin Exception Handling | workingdev</title>
+<meta name="generator" content="Jekyll v3.8.4" />
+<meta property="og:title" content="Kotlin Exception Handling" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Like Java, Kotlin uses the same try-catch construct. But unlike Java, Kotlin treat all exceptions as unchecked. Hence, try-catch is optional" />
+<meta property="og:description" content="Like Java, Kotlin uses the same try-catch construct. But unlike Java, Kotlin treat all exceptions as unchecked. Hence, try-catch is optional" />
+<link rel="canonical" href="http://localhost:4000/2018/09/kotlin-exception-handling.html" />
+<meta property="og:url" content="http://localhost:4000/2018/09/kotlin-exception-handling.html" />
+<meta property="og:site_name" content="workingdev" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-08T00:00:00+08:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2018/09/kotlin-exception-handling.html","headline":"Kotlin Exception Handling","dateModified":"2018-09-08T00:00:00+08:00","datePublished":"2018-09-08T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/09/kotlin-exception-handling.html"},"description":"Like Java, Kotlin uses the same try-catch construct. But unlike Java, Kotlin treat all exceptions as unchecked. Hence, try-catch is optional","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/atom.xml" title="workingdev" /><!-- Twitter cards -->
+  <meta name= "twitter:site"    content = "@theworkingdev" />
+  <meta name= "twitter:creator" content = "@theworkingdev" />
+  <meta name= "twitter:title"   content = "Kotlin Exception Handling" />
+
+  
+  <meta name= "twitter:description" content = "Like Java, Kotlin uses the same try-catch construct. But unlike Java, Kotlin treat all exceptions as unchecked. Hence, try-catch is optional" />
+  
+
+  
+  <meta name= "twitter:card"  content = "summary_large_image" />
+  <meta name= "twitter:image" content = "https://workingdev.net/images/gandalf-programmer.jpg" />
+  
+  <!-- end of Twitter cards -->
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><!-- <a class="site-title" rel="author" href="/">workingdev</a> -->
+
+    <!-- <nav class="site-nav">
+      <input type="text " placeholder=" ... search" class="search">
+    </nav> -->
+  </div>
+
+  <!-- <div class="wrapper"><a class="site-title" rel="author" href="/">workingdev</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/p/about-ted.html">About</a><a class="page-link" href="/about/">About</a><a class="page-link" href="/p/kotlin-quick-bites.html">Kotlin Quick Bites</a><a class="page-link" href="/p/learn-android-studio-3-with-kotlin.html">Learn Android Studio 3 with Kotlin</a><a class="page-link" href="/privacy/">Privacy Policy</a></div>
+      </nav></div> -->
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Kotlin Exception Handling</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-09-08T00:00:00+08:00" itemprop="datePublished">Sep 8, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Kotlin’s approach to exception is similar to Java. Somewhat. It uses the <em>try-catch-finally</em>, just like in Java. So, your knowledge about how <em>try-catch</em> works commutes nicely to Kotlin. The code below should be very familiar. It shows a typical code on how to open a file</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">java.io.FileNotFoundException</span>
+<span class="k">import</span> <span class="nn">java.io.FileReader</span>
+<span class="k">import</span> <span class="nn">java.io.IOException</span>
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="py">fileReader</span><span class="p">:</span> <span class="n">FileReader</span>
+    <span class="k">try</span> <span class="p">{</span>
+    <span class="n">fileReader</span> <span class="p">=</span> <span class="n">FileReader</span><span class="p">(</span><span class="s">"README.txt"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">content</span> <span class="p">=</span> <span class="n">fileReader</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+ <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="nv">ffe</span><span class="p">:</span> <span class="nc">FileNotFoundException</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">ffe</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="nv">ioe</span><span class="p">:</span> <span class="nc">IOException</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">ioe</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>So, what’s different? Well, in Kotlin, everything is an <em>unchecked exception</em>. Which means, the try-catch block is optional. It’s up to the programmer if you want to use it. So, the code above, can be written like this (in Kotlin).</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">java.io.FileReader</span>  
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="nv">args</span><span class="p">:</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="py">fileReader</span> <span class="p">=</span> <span class="n">FileReader</span><span class="p">(</span><span class="s">"README.txt"</span><span class="p">)</span>  
+  <span class="kd">var</span> <span class="py">content</span> <span class="p">=</span> <span class="n">fileReader</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>  
+  <span class="n">println</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>So how do you know if you need to use try-catch. You might not like the answers now, but in the long run, these are good advice to follow ;</p>
+
+<ol>
+  <li>You have to know the API’s you’re using. I know that this is not great news for beginners, but look at it this way, you won’t be a beginner for long. And you really should know the API’s you’re using. TL;DR won’t serve you well in this area</li>
+  <li>You have to get into the habit of unit-testing your code. This is a good habit to develop anyway</li>
+</ol>
+
+  </div>
+
+  <div class="newsletter-box">
+    I hope the article was helpful, if you'd like to get these things piped into your email, you can <a href="https://buttondown.email/workingdev" target="_blank">subscribe to the newsletter</a>.
+  </div><a class="u-url" href="/2018/09/kotlin-exception-handling.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer">
+  <data class="u-url" href="/"></data>
+  <div class="wrapper">
+    <p>
+      <a href="/" class="footer-link">Home</a>
+      <a href="/about" class="footer-link">About</a>
+      <a href="/blog" class="footer-link">Blog archives</a>
+      <a href="https://twitter.com/@theworkingdev" class="footer-link" target="_blank">@workingdev</a>
+    </p>
+    copyright Ted Hagos &copy; 2020 
+      <a href="/atom.xml">
+        <img src="/images/rss24.png" style="display:inline" class="footer-link">
+      </a>
+  </div>
+</footer>
+
+
+
+<!-- <footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">workingdev</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">workingdev</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tedhagos"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tedhagos</span></a></li><li><a href="https://www.twitter.com/theworkingdev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">theworkingdev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Code samples/tutorials for the mobile and web programmer.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer> -->
+</body>
+
+</html>
