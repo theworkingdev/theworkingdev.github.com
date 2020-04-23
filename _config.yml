@@ -57,9 +57,15 @@ plugins:
 show_excerpts: true
 
 google_analytics: UA-123410395-1
+
 disqus:
   shortname: workingdev-net.
 
 defaults:
   layout: post
   author: "Ted Hagos"
+
+# plugins:
+#   - jekyll-sitemap
+#   - jekyll-feed
+#   - jekyll-seo-tag
