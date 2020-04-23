@@ -55,7 +55,7 @@ main {
  * Images
  */
 img {
-  max-width: 90%;
+  max-width: 100%;
   vertical-align: middle;
 }
 
@@ -70,6 +70,9 @@ figure > img {
 
 figcaption {
   font-size: $small-font-size;
+  font-weight:bold;
+  margin-bottom: 1.5em;
+  margin-left: 1.5em;
 }
 
 
@@ -237,18 +240,23 @@ table {
   border: 1px solid $grey-color-light;
   tr {
     &:nth-child(even) {
-      background-color: lighten($grey-color-light, 6%);
+      // background-color: lighten($grey-color-light, 6%);
     }
   }
   th, td {
-    padding: ($spacing-unit / 3) ($spacing-unit / 2);
+    // padding: ($spacing-unit / 3) ($spacing-unit / 2);
   }
   th {
     background-color: lighten($grey-color-light, 3%);
     border: 1px solid darken($grey-color-light, 4%);
     border-bottom-color: darken($grey-color-light, 12%);
+    font-family: 'serif';
   }
   td {
     border: 1px solid $grey-color-light;
   }
+}
+
+#disqus_thread {
+  margin-top: 2em;
 }

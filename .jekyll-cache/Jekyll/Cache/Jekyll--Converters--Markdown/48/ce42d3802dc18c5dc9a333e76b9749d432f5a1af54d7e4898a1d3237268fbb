@@ -1,0 +1,61 @@
+I"‰<p>The user interacts with an app by touching, clicking, swiping or typing something.  The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions</p>
+
+<p><img src="/images/android-event-handling.png" alt="" /></p>
+<figcaption>Figure 1. Android Event Handling Overview</figcaption>
+
+<p>You can make the app respond these to events by doing the following;</p>
+
+<ol>
+  <li>Create a listener object thatâ€™s appropriate for the event you want the app to react to; if you want to respond to a click event, then use an the <strong>OnClickListener</strong> object. If you want to react to long clicks, you can use <strong>OnLongClickListener</strong></li>
+  <li>Override the abstract methods of the listener. In case of the <strong>OnClickListener</strong>, the abstract method you need to override is the <strong>onClick()</strong> method</li>
+  <li>Bind the listener object to a View object, like a Button; Figure 2</li>
+</ol>
+
+<p><img src="/images/android-event-model.png" alt="" /></p>
+<figcaption>Figure 2. Android Event Model</figcaption>
+
+<p>The table below shows some of the more common listener interfaces.</p>
+
+<p><strong>Table 1. Common listener interfaces</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Interface</strong></th>
+      <th><strong>Method</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>View.OnClickListener</strong></td>
+      <td><code class="highlighter-rouge">onClick() </code></td>
+      <td>This gets called when the user either  touches and holds the control (when in touch mode), or focuses upon the item  with the navigation keys then presses the ENTER key</td>
+    </tr>
+    <tr>
+      <td><strong>View.OnLongClickListener</strong></td>
+      <td><code class="highlighter-rouge">onLongClick()</code></td>
+      <td>Almost the same as a click, but only  longer</td>
+    </tr>
+    <tr>
+      <td><strong>View.OnFocusChangeListener</strong></td>
+      <td><code class="highlighter-rouge">onFocusChange()</code></td>
+      <td>when the user navigates onto or away from  the control</td>
+    </tr>
+    <tr>
+      <td><strong>View.OnTouchListener</strong></td>
+      <td><code class="highlighter-rouge">onTouch()</code></td>
+      <td>Almost the same as click action but this  handler lets you find out if the user swiped up or down. You can use this to  respond to gestures</td>
+    </tr>
+    <tr>
+      <td><strong>View.OnCreateContextMenuListener</strong></td>
+      <td><code class="highlighter-rouge">onCreateContextMenu()</code></td>
+      <td>Android calls this when a ContextMenu is  being built, as a result of a sustained long click</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This article is excerpted from the book <strong>Learn Android Studio 4</strong></p>
+<p></p>
+<p><img src="/images/las4_amazon.png" alt="Learn Android Studio 4" /></p>
+:ET
