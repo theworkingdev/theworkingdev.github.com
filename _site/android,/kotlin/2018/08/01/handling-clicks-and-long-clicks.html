@@ -2,47 +2,25 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>How to handle clicks and long-clicks in Kotlin | workingdev</title>
-<meta name="generator" content="Jekyll v3.8.4" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to handle clicks and long-clicks in Kotlin | The Working Dev</title>
+<meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="How to handle clicks and long-clicks in Kotlin" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="An onClickListener for a Button View object can be coded like this" />
 <meta property="og:description" content="An onClickListener for a Button View object can be coded like this" />
 <link rel="canonical" href="http://localhost:4000/android,/kotlin/2018/08/01/handling-clicks-and-long-clicks.html" />
 <meta property="og:url" content="http://localhost:4000/android,/kotlin/2018/08/01/handling-clicks-and-long-clicks.html" />
-<meta property="og:site_name" content="workingdev" />
+<meta property="og:site_name" content="The Working Dev" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-08-01T00:00:00+08:00" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/android,/kotlin/2018/08/01/handling-clicks-and-long-clicks.html","headline":"How to handle clicks and long-clicks in Kotlin","dateModified":"2018-08-01T00:00:00+08:00","datePublished":"2018-08-01T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/android,/kotlin/2018/08/01/handling-clicks-and-long-clicks.html"},"description":"An onClickListener for a Button View object can be coded like this","@type":"BlogPosting","@context":"http://schema.org"}</script>
+{"headline":"How to handle clicks and long-clicks in Kotlin","dateModified":"2018-08-01T00:00:00+08:00","url":"http://localhost:4000/android,/kotlin/2018/08/01/handling-clicks-and-long-clicks.html","datePublished":"2018-08-01T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/android,/kotlin/2018/08/01/handling-clicks-and-long-clicks.html"},"description":"An onClickListener for a Button View object can be coded like this","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/atom.xml" title="workingdev" /><!-- Twitter cards -->
-  <meta name= "twitter:site"    content = "@theworkingdev" />
-  <meta name= "twitter:creator" content = "@theworkingdev" />
-  <meta name= "twitter:title"   content = "How to handle clicks and long-clicks in Kotlin" />
-
-  
-  <meta name= "twitter:description" content = "Code samples/tutorials for the mobile and web programmer." />
-  
-
-  
-  <meta name= "twitter:card"  content = "summary_large_image" />
-  <meta name= "twitter:image" content = "https://workingdev.net/images/gandalf-programmer.jpg" />
-  
-  <!-- end of Twitter cards -->
-
-</head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /></head>
 <body><header class="site-header" role="banner">
 
-  <div class="wrapper"><!-- <a class="site-title" rel="author" href="/">workingdev</a> -->
-
-    <!-- <nav class="site-nav">
-      <input type="text " placeholder=" ... search" class="search">
-    </nav> -->
-  </div>
-
-  <!-- <div class="wrapper"><a class="site-title" rel="author" href="/">workingdev</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">The Working Dev</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -52,15 +30,12 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/p/about-ted.html">About</a><a class="page-link" href="/about/">About</a><a class="page-link" href="/p/kotlin-quick-bites.html">Kotlin Quick Bites</a><a class="page-link" href="/p/learn-android-studio-3-with-kotlin.html">Learn Android Studio 3 with Kotlin</a><a class="page-link" href="/privacy/">Privacy Policy</a></div>
-      </nav></div> -->
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        
-
-
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">How to handle clicks and long-clicks in Kotlin</h1>
@@ -72,26 +47,26 @@
   <div class="post-content e-content" itemprop="articleBody">
     <p>An onClickListener for a Button View object can be coded like this</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="n">setOnClickListener</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="nc">View</span><span class="p">.</span><span class="n">OnClickListener</span> <span class="p">{</span>
-  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onClick</span><span class="p">(</span><span class="nv">v</span><span class="p">:</span> <span class="nc">View</span><span class="p">?)</span> <span class="p">{</span>
-  <span class="n">println</span><span class="p">(</span><span class="s">"Hello click"</span><span class="p">)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span><span class="p">(</span><span class="k">object</span><span class="p">:</span> <span class="nc">View</span><span class="p">.</span><span class="nc">OnClickListener</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onClick</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nc">View</span><span class="p">?)</span> <span class="p">{</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"Hello click"</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div></div>
 
 <p>It can be made more concise with Kotlin lambdas, like this</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="n">setOnClickListener</span> <span class="p">{</span>
-  <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">"Hello World"</span><span class="p">,</span>   <span class="n">Toast</span><span class="p">.</span><span class="n">LENGTH_LONG</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
-  <span class="n">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+  <span class="nc">Toast</span><span class="p">.</span><span class="nf">makeText</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">"Hello World"</span><span class="p">,</span>   <span class="nc">Toast</span><span class="p">.</span><span class="nc">LENGTH_LONG</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Longclicks can be handled like this</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="n">setOnLongClickListener</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="nc">View</span><span class="p">.</span><span class="n">OnLongClickListener</span> <span class="p">{</span>
-  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onLongClick</span><span class="p">(</span><span class="nv">v</span><span class="p">:</span> <span class="nc">View</span><span class="p">?):</span> <span class="nc">Boolean</span> <span class="p">{</span>
-    <span class="n">Snackbar</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"long click"</span><span class="p">,</span> <span class="n">Snackbar</span><span class="p">.</span><span class="n">LENGTH_LONG</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnLongClickListener</span><span class="p">(</span><span class="k">object</span><span class="p">:</span> <span class="nc">View</span><span class="p">.</span><span class="nc">OnLongClickListener</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onLongClick</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nc">View</span><span class="p">?):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+    <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"long click"</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_LONG</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
     <span class="k">return</span> <span class="k">true</span>  <span class="p">}</span>
 <span class="p">})</span>
 </code></pre></div></div>
@@ -100,8 +75,8 @@
 
 <p>We can make it shorter with lambdas, like this</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="n">setOnLongClickListener</span> <span class="p">{</span>
-   <span class="n">Snackbar</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"Long click"</span><span class="p">,</span> <span class="n">Snackbar</span><span class="p">.</span><span class="n">LENGTH_INDEFINITE</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnLongClickListener</span> <span class="p">{</span>
+   <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"Long click"</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_INDEFINITE</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
    <span class="k">true</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -118,18 +93,18 @@
 <span class="k">import</span> <span class="nn">android.widget.Toast</span>
 <span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
 
-<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="nv">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
-    <span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
+<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="nc">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="nf">setContentView</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
 
-    <span class="n">button</span><span class="p">.</span><span class="n">setOnClickListener</span> <span class="p">{</span>
-      <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">"Hello World"</span><span class="p">,</span> <span class="n">Toast</span><span class="p">.</span><span class="n">LENGTH_LONG</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
-      <span class="n">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+      <span class="nc">Toast</span><span class="p">.</span><span class="nf">makeText</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">"Hello World"</span><span class="p">,</span> <span class="nc">Toast</span><span class="p">.</span><span class="nc">LENGTH_LONG</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
+      <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
     <span class="p">}</span>
 
-    <span class="n">button</span><span class="p">.</span><span class="n">setOnLongClickListener</span> <span class="p">{</span>
-      <span class="n">Snackbar</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"Long click"</span><span class="p">,</span> <span class="n">Snackbar</span><span class="p">.</span><span class="n">LENGTH_INDEFINITE</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnLongClickListener</span> <span class="p">{</span>
+      <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"Long click"</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_INDEFINITE</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
        <span class="k">true</span>
      <span class="p">}</span>
   <span class="p">}</span>
@@ -157,56 +132,34 @@
 </code></pre></div></div>
 
 
-  </div>
-
-  <div class="newsletter-box">
-    I hope the article was helpful, if you'd like to get these things piped into your email, you can <a href="https://buttondown.email/workingdev" target="_blank">subscribe to the newsletter</a>.
   </div><a class="u-url" href="/android,/kotlin/2018/08/01/handling-clicks-and-long-clicks.html" hidden></a>
 </article>
 
       </div>
-    </main><footer class="site-footer">
-  <data class="u-url" href="/"></data>
-  <div class="wrapper">
-    <p>
-      <a href="/" class="footer-link">Home</a>
-      <a href="/about" class="footer-link">About</a>
-      <a href="/blog" class="footer-link">Blog archives</a>
-      <a href="https://twitter.com/@theworkingdev" class="footer-link" target="_blank">@workingdev</a>
-    </p>
-    copyright Ted Hagos &copy; 2020 
-      <a href="/atom.xml">
-        <img src="/images/rss24.png" style="display:inline" class="footer-link">
-      </a>
-  </div>
-</footer>
-
-
-
-<!-- <footer class="site-footer h-card">
+    </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">workingdev</h2>
+    <h2 class="footer-heading">The Working Dev</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">workingdev</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
+          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:workingdevmedia@gmail.com">workingdevmedia@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tedhagos"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tedhagos</span></a></li><li><a href="https://www.twitter.com/theworkingdev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">theworkingdev</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://www.twitter.com/lovescaffeine"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">lovescaffeine</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Code samples/tutorials for the mobile and web programmer.</p>
+        <p>Code samples, snippets and tutorials for the working programmer</p>
       </div>
     </div>
 
   </div>
 
-</footer> -->
+</footer>
 </body>
 
 </html>

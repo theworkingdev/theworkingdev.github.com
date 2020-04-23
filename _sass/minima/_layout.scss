@@ -2,8 +2,8 @@
  * Site header
  */
 .site-header {
-  // border-top: 5px solid $grey-color-dark;
-  // border-bottom: 1px solid $grey-color-light;
+  border-top: 5px solid $grey-color-dark;
+  border-bottom: 1px solid $grey-color-light;
   min-height: $spacing-unit * 1.865;
 
   // Positioning context for the mobile navigation icon
@@ -106,7 +106,7 @@
  * Site footer
  */
 .site-footer {
-  // border-top: 1px solid $grey-color-light;
+  border-top: 1px solid $grey-color-light;
   padding: $spacing-unit 0;
 }
 
@@ -188,7 +188,7 @@
   @include relative-font-size(1.75);
 }
 
-.post-list  {
+.post-list {
   margin-left: 0;
   list-style: none;
 
@@ -200,7 +200,6 @@
 .post-meta {
   font-size: $small-font-size;
   color: $grey-color;
-  text-align: center;
 }
 
 .post-link {
@@ -218,14 +217,13 @@
 }
 
 .post-title {
-  @include relative-font-size(2.425);
+  @include relative-font-size(2.625);
   letter-spacing: -1px;
   line-height: 1;
 
   @include media-query($on-laptop) {
     @include relative-font-size(2.25);
   }
-  text-align: center;
 }
 
 .post-content {
@@ -255,39 +253,3 @@
     }
   }
 }
-
-h1, h2, h3, h4 {font-weight: 600;}
-
-.post-card {border: 2px solid $grey-color-light; padding: 1em;}
-.cover-image {width: 100%; margin-bottom: 1em;}
-
-.footer-link, .footer-link:visited, .site-footer {color: $grey-color;}
-.footer-link:hover {color: black;}
-
-.listpage h1, .listpage h2 {color: red;}
-
-.post-title, .site-title, h1, h2, h3, h4,
- .site-footer {font-family: $sans-font;}
-
-.site-title {font-weight: bold; letter-spacing: -1px;}
-.site-title, .site-title:visited {color: $grey-color;}
-.site-title:hover {color: $grey-color-dark; text-decoration: none;}
-
-listpage ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-listpage ul li {margin-bottom: .5em;}
-listpage h1, listpage h2 {color: $grey-color;}
-
-.newsletter-box {
-  border-top: 3px solid $grey-color-light;
-  border-bottom: 3px solid $grey-color-light;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding: 1em;
-  font-family: $sans-font;
-}
-
-.page-content img {display:block;}

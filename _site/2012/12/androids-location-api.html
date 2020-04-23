@@ -2,47 +2,25 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Android’s Location API | workingdev</title>
-<meta name="generator" content="Jekyll v3.8.4" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Android’s Location API | The Working Dev</title>
+<meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Android’s Location API" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="GeoLocation is a major fuctionality of a mobile device. There are plenty of practical uses for this nifty feature, apart from stamping where you were when you took that photo." />
 <meta property="og:description" content="GeoLocation is a major fuctionality of a mobile device. There are plenty of practical uses for this nifty feature, apart from stamping where you were when you took that photo." />
 <link rel="canonical" href="http://localhost:4000/2012/12/androids-location-api.html" />
 <meta property="og:url" content="http://localhost:4000/2012/12/androids-location-api.html" />
-<meta property="og:site_name" content="workingdev" />
+<meta property="og:site_name" content="The Working Dev" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2012-12-15T00:00:00+08:00" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/2012/12/androids-location-api.html","headline":"Android’s Location API","dateModified":"2012-12-15T00:00:00+08:00","datePublished":"2012-12-15T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2012/12/androids-location-api.html"},"description":"GeoLocation is a major fuctionality of a mobile device. There are plenty of practical uses for this nifty feature, apart from stamping where you were when you took that photo.","@type":"BlogPosting","@context":"http://schema.org"}</script>
+{"headline":"Android’s Location API","dateModified":"2012-12-15T00:00:00+08:00","url":"http://localhost:4000/2012/12/androids-location-api.html","datePublished":"2012-12-15T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2012/12/androids-location-api.html"},"description":"GeoLocation is a major fuctionality of a mobile device. There are plenty of practical uses for this nifty feature, apart from stamping where you were when you took that photo.","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/atom.xml" title="workingdev" /><!-- Twitter cards -->
-  <meta name= "twitter:site"    content = "@theworkingdev" />
-  <meta name= "twitter:creator" content = "@theworkingdev" />
-  <meta name= "twitter:title"   content = "Android's Location API" />
-
-  
-  <meta name= "twitter:description" content = "Code samples/tutorials for the mobile and web programmer." />
-  
-
-  
-  <meta name= "twitter:card"  content = "summary_large_image" />
-  <meta name= "twitter:image" content = "https://workingdev.net/images/gandalf-programmer.jpg" />
-  
-  <!-- end of Twitter cards -->
-
-</head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /></head>
 <body><header class="site-header" role="banner">
 
-  <div class="wrapper"><!-- <a class="site-title" rel="author" href="/">workingdev</a> -->
-
-    <!-- <nav class="site-nav">
-      <input type="text " placeholder=" ... search" class="search">
-    </nav> -->
-  </div>
-
-  <!-- <div class="wrapper"><a class="site-title" rel="author" href="/">workingdev</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">The Working Dev</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -52,15 +30,12 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/p/about-ted.html">About</a><a class="page-link" href="/about/">About</a><a class="page-link" href="/p/kotlin-quick-bites.html">Kotlin Quick Bites</a><a class="page-link" href="/p/learn-android-studio-3-with-kotlin.html">Learn Android Studio 3 with Kotlin</a><a class="page-link" href="/privacy/">Privacy Policy</a></div>
-      </nav></div> -->
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        
-
-
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Android&#39;s Location API</h1>
@@ -97,7 +72,7 @@
 
 <p>A basic use of location-based service in an app</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">workingdev</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.workingdev</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">android.app.Activity</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">android.widget.LinearLayout</span><span class="o">;</span>
@@ -114,33 +89,33 @@
 <span class="kn">import</span> <span class="nn">android.location.Address</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
 
-<span class="kd">class</span> <span class="nc">GPSView</span> <span class="kd">extends</span> <span class="n">LinearLayout</span> 
-              <span class="kd">implements</span> <span class="n">OnClickListener</span><span class="o">,</span> <span class="n">LocationListener</span> <span class="o">{</span>
+<span class="kd">class</span> <span class="nc">GPSView</span> <span class="kd">extends</span> <span class="nc">LinearLayout</span> 
+              <span class="kd">implements</span> <span class="nc">OnClickListener</span><span class="o">,</span> <span class="nc">LocationListener</span> <span class="o">{</span>
 
-  <span class="n">Context</span> <span class="n">ctx</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="n">TextView</span> <span class="n">tv</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="n">LocationManager</span> <span class="n">locm</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="n">Location</span> <span class="n">loc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="n">Geocoder</span> <span class="n">geo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="n">List</span> <span class="n">address</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="n">Address</span> <span class="n">addr</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="kd">public</span> <span class="nf">GPSView</span><span class="o">(</span><span class="n">Context</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Context</span> <span class="n">ctx</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="nc">TextView</span> <span class="n">tv</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="no">TAG</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="nc">LocationManager</span> <span class="n">locm</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="nc">Location</span> <span class="n">loc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="nc">Geocoder</span> <span class="n">geo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="nc">List</span> <span class="n">address</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="nc">Address</span> <span class="n">addr</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="nf">GPSView</span><span class="o">(</span><span class="nc">Context</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
     <span class="kd">super</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
-    <span class="n">tv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TextView</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+    <span class="n">tv</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TextView</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
     <span class="k">this</span><span class="o">.</span><span class="na">ctx</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">;</span>
-    <span class="n">TAG</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+    <span class="no">TAG</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
     <span class="n">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span> 
     <span class="n">addView</span><span class="o">(</span><span class="n">tv</span><span class="o">);</span>
   <span class="o">}</span>
 
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">locm</span> <span class="o">=</span> <span class="o">(</span><span class="n">LocationManager</span><span class="o">)</span> <span class="n">ctx</span><span class="o">.</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">LOCATION_SERVICE</span><span class="o">);</span>
-    <span class="n">loc</span> <span class="o">=</span> <span class="n">locm</span><span class="o">.</span><span class="na">getLastKnownLocation</span><span class="o">(</span><span class="n">locm</span><span class="o">.</span><span class="na">getBestProvider</span><span class="o">(</span><span class="k">new</span> <span class="n">Criteria</span><span class="o">(),</span><span class="kc">false</span><span class="o">));</span>
-    <span class="n">geo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Geocoder</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">locm</span> <span class="o">=</span> <span class="o">(</span><span class="nc">LocationManager</span><span class="o">)</span> <span class="n">ctx</span><span class="o">.</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">LOCATION_SERVICE</span><span class="o">);</span>
+    <span class="n">loc</span> <span class="o">=</span> <span class="n">locm</span><span class="o">.</span><span class="na">getLastKnownLocation</span><span class="o">(</span><span class="n">locm</span><span class="o">.</span><span class="na">getBestProvider</span><span class="o">(</span><span class="k">new</span> <span class="nc">Criteria</span><span class="o">(),</span><span class="kc">false</span><span class="o">));</span>
+    <span class="n">geo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Geocoder</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
     
-    <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Got Location"</span><span class="o">);</span>
-    <span class="n">String</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"Got Location"</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
     
     <span class="k">if</span> <span class="o">(</span><span class="n">loc</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     
@@ -149,18 +124,18 @@
       <span class="k">try</span> <span class="o">{</span>
         <span class="n">address</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="na">getFromLocation</span><span class="o">(</span><span class="n">lat</span><span class="o">,</span> <span class="n">lon</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
       <span class="o">}</span>
-      <span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-        <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+      <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){</span>
+        <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
       <span class="o">}</span>
       <span class="n">addr</span> <span class="o">=</span> <span class="n">address</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
     
-      <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"got Lat and Lon and geocode"</span><span class="o">);</span>
+      <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"got Lat and Lon and geocode"</span><span class="o">);</span>
     
       <span class="n">msg</span> <span class="o">+=</span> <span class="s">"\n"</span><span class="o">;</span>
       <span class="n">msg</span> <span class="o">+=</span> <span class="s">"LAT: "</span><span class="o">;</span>
-      <span class="n">msg</span> <span class="o">+=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">lat</span><span class="o">);</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">lat</span><span class="o">);</span>
       <span class="n">msg</span> <span class="o">+=</span> <span class="s">" | LON: "</span><span class="o">;</span>
-      <span class="n">msg</span> <span class="o">+=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">lon</span><span class="o">);</span>
+      <span class="n">msg</span> <span class="o">+=</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">lon</span><span class="o">);</span>
       <span class="n">msg</span> <span class="o">+=</span> <span class="s">" | Country:  "</span><span class="o">;</span>
       <span class="n">msg</span> <span class="o">+=</span> <span class="n">addr</span><span class="o">.</span><span class="na">getCountryName</span><span class="o">();</span>
       <span class="n">msg</span> <span class="o">+=</span> <span class="s">", "</span><span class="o">;</span>
@@ -175,33 +150,33 @@
       <span class="n">tv</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
     <span class="o">}</span>
     <span class="k">else</span> <span class="o">{</span>
-      <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"No location"</span><span class="o">);</span>
+      <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"No location"</span><span class="o">);</span>
       <span class="n">tv</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"No Location"</span><span class="o">);</span>
     <span class="o">}</span>
   <span class="o">}</span>
 
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onLocationChanged</span><span class="o">(</span><span class="n">Location</span> <span class="n">location</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"location changed"</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onLocationChanged</span><span class="o">(</span><span class="nc">Location</span> <span class="n">location</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"location changed"</span><span class="o">);</span>
   <span class="o">}</span>
 
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onStatusChanged</span><span class="o">(</span><span class="n">String</span> <span class="n">provider</span><span class="o">,</span> <span class="kt">int</span> <span class="n">status</span><span class="o">,</span> <span class="n">Bundle</span> <span class="n">bundle</span><span class="o">){</span>
-    <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"status changed"</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onStatusChanged</span><span class="o">(</span><span class="nc">String</span> <span class="n">provider</span><span class="o">,</span> <span class="kt">int</span> <span class="n">status</span><span class="o">,</span> <span class="nc">Bundle</span> <span class="n">bundle</span><span class="o">){</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"status changed"</span><span class="o">);</span>
   <span class="o">}</span>
 
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onProviderEnabled</span><span class="o">(</span><span class="n">String</span> <span class="n">provider</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">provider</span> <span class="o">+</span> <span class="s">" is enabled"</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onProviderEnabled</span><span class="o">(</span><span class="nc">String</span> <span class="n">provider</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="n">provider</span> <span class="o">+</span> <span class="s">" is enabled"</span><span class="o">);</span>
   <span class="o">}</span>
 
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onProviderDisabled</span><span class="o">(</span><span class="n">String</span> <span class="n">provider</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">provider</span> <span class="o">+</span> <span class="s">"is disabled"</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onProviderDisabled</span><span class="o">(</span><span class="nc">String</span> <span class="n">provider</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="n">provider</span> <span class="o">+</span> <span class="s">"is disabled"</span><span class="o">);</span>
   <span class="o">}</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleGPS</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleGPS</span> <span class="kd">extends</span> <span class="nc">Activity</span> <span class="o">{</span>
    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
         <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-        <span class="n">setContentView</span><span class="o">(</span><span class="k">new</span> <span class="n">GPSView</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="k">new</span> <span class="nc">GPSView</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
@@ -228,56 +203,34 @@
 </ul>
 
 
-  </div>
-
-  <div class="newsletter-box">
-    I hope the article was helpful, if you'd like to get these things piped into your email, you can <a href="https://buttondown.email/workingdev" target="_blank">subscribe to the newsletter</a>.
   </div><a class="u-url" href="/2012/12/androids-location-api.html" hidden></a>
 </article>
 
       </div>
-    </main><footer class="site-footer">
-  <data class="u-url" href="/"></data>
-  <div class="wrapper">
-    <p>
-      <a href="/" class="footer-link">Home</a>
-      <a href="/about" class="footer-link">About</a>
-      <a href="/blog" class="footer-link">Blog archives</a>
-      <a href="https://twitter.com/@theworkingdev" class="footer-link" target="_blank">@workingdev</a>
-    </p>
-    copyright Ted Hagos &copy; 2020 
-      <a href="/atom.xml">
-        <img src="/images/rss24.png" style="display:inline" class="footer-link">
-      </a>
-  </div>
-</footer>
-
-
-
-<!-- <footer class="site-footer h-card">
+    </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">workingdev</h2>
+    <h2 class="footer-heading">The Working Dev</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">workingdev</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
+          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:workingdevmedia@gmail.com">workingdevmedia@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tedhagos"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tedhagos</span></a></li><li><a href="https://www.twitter.com/theworkingdev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">theworkingdev</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://www.twitter.com/lovescaffeine"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">lovescaffeine</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Code samples/tutorials for the mobile and web programmer.</p>
+        <p>Code samples, snippets and tutorials for the working programmer</p>
       </div>
     </div>
 
   </div>
 
-</footer> -->
+</footer>
 </body>
 
 </html>

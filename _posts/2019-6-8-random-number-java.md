@@ -14,6 +14,8 @@ If you need to generate Random numbers in your Android app (assuming you're usin
 Random random = new Random();        // (1)
 mrandomnumber = random.nextInt(100); // (2)
 ````
+
+
 **(1)** Creates a new Random object
 
 **(2)** Creates a new random integers not greater than 100

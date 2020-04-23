@@ -13,20 +13,20 @@ dl, dd, ol, ul, figure {
 /**
  * Basic styling
  */
-body {
-  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-  color: $text-color;
-  background-color: $background-color;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-feature-settings: "kern" 1;
-     -moz-font-feature-settings: "kern" 1;
-       -o-font-feature-settings: "kern" 1;
-          font-feature-settings: "kern" 1;
-  font-kerning: normal;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
+// body {
+//   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+//   color: $text-color;
+//   background-color: $background-color;
+//   -webkit-text-size-adjust: 100%;
+//   -webkit-font-feature-settings: "kern" 1;
+//      -moz-font-feature-settings: "kern" 1;
+//        -o-font-feature-settings: "kern" 1;
+//           font-feature-settings: "kern" 1;
+//   font-kerning: normal;
+//   display: flex;
+//   min-height: 100vh;
+//   flex-direction: column;
+// }
 
 
 
@@ -55,7 +55,7 @@ main {
  * Images
  */
 img {
-  max-width: 100%;
+  max-width: 90%;
   vertical-align: middle;
 }
 
@@ -128,28 +128,13 @@ a {
 /**
  * Blockquotes
  */
-// blockquote {
-//   color: $grey-color;
-//   border-left: 4px solid $grey-color-light;
-//   padding-left: $spacing-unit / 2;
-//   @include relative-font-size(1.125);
-//   letter-spacing: -1px;
-//   font-style: italic;
-
-//   > :last-child {
-//     margin-bottom: 0;
-//   }
-// }
-
 blockquote {
-  // color: $grey-color;
-  font-family: $serif-font;
-  background-color: #fffeea;
-  border: 2px solid $grey-color-light;
-  
+  color: $grey-color;
+  border-left: 4px solid $grey-color-light;
   padding-left: $spacing-unit / 2;
   @include relative-font-size(1.125);
   letter-spacing: -1px;
+  font-style: italic;
 
   > :last-child {
     margin-bottom: 0;
@@ -163,10 +148,8 @@ blockquote {
  */
 pre,
 code {
-  // font: $code-font-family $code-font-size;
   // @include relative-font-size(0.9375);
-  font-family: $code-font-family;
-  font-size: $code-font-size;
+  // border: 1px solid $grey-color-light;
   // border-radius: 3px;
   // background-color: #eef;
 }
@@ -178,7 +161,6 @@ code {
 pre {
   padding: 8px 12px;
   overflow-x: auto;
-  line-height: 1.2;
 
   > code {
     border: 0;
@@ -186,12 +168,6 @@ pre {
     padding-left: 0;
   }
 }
-
-pre {
-  border: 3px solid $grey-color-light;
-  // background: #f1f1f1;
-}
-
 
 
 

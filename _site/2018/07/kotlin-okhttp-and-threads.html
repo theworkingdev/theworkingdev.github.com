@@ -2,48 +2,26 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>OkHTTP and Threads | workingdev</title>
-<meta name="generator" content="Jekyll v3.8.4" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>OkHTTP and Threads | The Working Dev</title>
+<meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="OkHTTP and Threads" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Android has various ways to run your code in the background. From what I can recall, we can use Threads, Handers, Messages, AsyncTask and many others" />
 <meta property="og:description" content="Android has various ways to run your code in the background. From what I can recall, we can use Threads, Handers, Messages, AsyncTask and many others" />
 <link rel="canonical" href="http://localhost:4000/2018/07/kotlin-okhttp-and-threads.html" />
 <meta property="og:url" content="http://localhost:4000/2018/07/kotlin-okhttp-and-threads.html" />
-<meta property="og:site_name" content="workingdev" />
+<meta property="og:site_name" content="The Working Dev" />
 <meta property="og:image" content="http://localhost:4000/images/android-many.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-07-03T00:00:00+08:00" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/2018/07/kotlin-okhttp-and-threads.html","headline":"OkHTTP and Threads","dateModified":"2018-07-03T00:00:00+08:00","datePublished":"2018-07-03T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/07/kotlin-okhttp-and-threads.html"},"image":"http://localhost:4000/images/android-many.jpg","description":"Android has various ways to run your code in the background. From what I can recall, we can use Threads, Handers, Messages, AsyncTask and many others","@type":"BlogPosting","@context":"http://schema.org"}</script>
+{"headline":"OkHTTP and Threads","dateModified":"2018-07-03T00:00:00+08:00","url":"http://localhost:4000/2018/07/kotlin-okhttp-and-threads.html","datePublished":"2018-07-03T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/07/kotlin-okhttp-and-threads.html"},"description":"Android has various ways to run your code in the background. From what I can recall, we can use Threads, Handers, Messages, AsyncTask and many others","image":"http://localhost:4000/images/android-many.jpg","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/atom.xml" title="workingdev" /><!-- Twitter cards -->
-  <meta name= "twitter:site"    content = "@theworkingdev" />
-  <meta name= "twitter:creator" content = "@theworkingdev" />
-  <meta name= "twitter:title"   content = "OkHTTP and Threads" />
-
-  
-  <meta name= "twitter:description" content = "Android has various ways to run your code in the background. From what I can recall, we can use Threads, Handers, Messages, AsyncTask and many others" />
-  
-
-  
-  <meta name= "twitter:card"  content = "summary_large_image" />
-  <meta name= "twitter:image" content = "http://localhost:4000/images/android-many.jpg" />
-  
-  <!-- end of Twitter cards -->
-
-</head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /></head>
 <body><header class="site-header" role="banner">
 
-  <div class="wrapper"><!-- <a class="site-title" rel="author" href="/">workingdev</a> -->
-
-    <!-- <nav class="site-nav">
-      <input type="text " placeholder=" ... search" class="search">
-    </nav> -->
-  </div>
-
-  <!-- <div class="wrapper"><a class="site-title" rel="author" href="/">workingdev</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">The Working Dev</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -53,17 +31,12 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/p/about-ted.html">About</a><a class="page-link" href="/about/">About</a><a class="page-link" href="/p/kotlin-quick-bites.html">Kotlin Quick Bites</a><a class="page-link" href="/p/learn-android-studio-3-with-kotlin.html">Learn Android Studio 3 with Kotlin</a><a class="page-link" href="/privacy/">Privacy Policy</a></div>
-      </nav></div> -->
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        
-  <img src="/images/android-many.jpg" class="cover-image">
-
-
-
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">OkHTTP and Threads</h1>
@@ -118,25 +91,25 @@ Now we’re ready to start. We will use the following code snippet to pull the G
 
 <p>_Listing 1. OkHttp sample usage. _</p>
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="s">"https://api.github.com/users/tedhagos"</span>
-<span class="n">println</span><span class="p">(</span><span class="s">"inside doGetHttp"</span><span class="p">)</span>
-<span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="n">OkHttpClient</span><span class="p">()</span>
-<span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">Builder</span><span class="p">().</span><span class="n">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="n">build</span><span class="p">()</span>
-<span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="n">execute</span><span class="p">()</span>
+<span class="nf">println</span><span class="p">(</span><span class="s">"inside doGetHttp"</span><span class="p">)</span>
+<span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="nc">OkHttpClient</span><span class="p">()</span>
+<span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="nc">Request</span><span class="p">.</span><span class="nc">Builder</span><span class="p">().</span><span class="nf">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span>
+<span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="nf">execute</span><span class="p">()</span>
 
-<span class="kd">val</span> <span class="py">bodystr</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">body</span><span class="p">().</span><span class="n">string</span><span class="p">()</span>
+<span class="kd">val</span> <span class="py">bodystr</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">().</span><span class="nf">string</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>If you run this code on the UI thread, say, inside an OnClickListener, like this</p>
 
 <p><em>Listing 2. OkHttp code inside a click listener.</em></p>
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="n">setOnClickListener</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
   <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="s">"https://api.github.com/users/tedhagos"</span>
-  <span class="n">println</span><span class="p">(</span><span class="s">"inside doGetHttp"</span><span class="p">)</span>
-  <span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="n">OkHttpClient</span><span class="p">()</span>
-  <span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">Builder</span><span class="p">().</span><span class="n">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="n">build</span><span class="p">()</span>
-  <span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="n">execute</span><span class="p">()</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"inside doGetHttp"</span><span class="p">)</span>
+  <span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="nc">OkHttpClient</span><span class="p">()</span>
+  <span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="nc">Request</span><span class="p">.</span><span class="nc">Builder</span><span class="p">().</span><span class="nf">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span>
+  <span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="nf">execute</span><span class="p">()</span>
 
-  <span class="kd">val</span> <span class="py">bodystr</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">body</span><span class="p">().</span><span class="n">string</span><span class="p">()</span>
+  <span class="kd">val</span> <span class="py">bodystr</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">().</span><span class="nf">string</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -152,32 +125,32 @@ Using Threads and Runnables</p>
 <span class="k">import</span> <span class="nn">com.squareup.okhttp.Request</span>
 <span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
 
-<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="nc">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
 
-  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="nv">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
-    <span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="nf">setContentView</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
 
-    <span class="n">button</span><span class="p">.</span><span class="n">setOnClickListener</span> <span class="p">{</span>
-      <span class="n">Thread</span><span class="p">(</span><span class="n">BackgroundFetcher</span><span class="p">()).</span><span class="n">start</span><span class="p">()</span> <span class="c1">// (1)</span>
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+      <span class="nc">Thread</span><span class="p">(</span><span class="nc">BackgroundFetcher</span><span class="p">()).</span><span class="nf">start</span><span class="p">()</span> <span class="c1">// (1)</span>
     <span class="p">}</span>
   <span class="p">}</span>
 
   <span class="k">private</span> <span class="k">fun</span> <span class="nf">fetchGithubInfo</span><span class="p">()</span> <span class="p">:</span> <span class="nc">String</span>  <span class="p">{</span>  <span class="c1">// (2)</span>
     <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="s">"https://api.github.com/users/tedhagos"</span>
 
-    <span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="n">OkHttpClient</span><span class="p">()</span>
-    <span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">Builder</span><span class="p">().</span><span class="n">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="n">build</span><span class="p">()</span>
-    <span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="n">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="n">execute</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">body</span><span class="p">().</span><span class="n">string</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="nc">OkHttpClient</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="nc">Request</span><span class="p">.</span><span class="nc">Builder</span><span class="p">().</span><span class="nf">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="nf">execute</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">().</span><span class="nf">string</span><span class="p">()</span>
   <span class="p">}</span>
 
   <span class="c1">// INNER CLASS DEFINITIONS</span>
 
-  <span class="k">inner</span> <span class="kd">class</span> <span class="nc">BackgroundFetcher</span> <span class="p">:</span> <span class="n">Runnable</span> <span class="p">{</span>
+  <span class="k">inner</span> <span class="kd">class</span> <span class="nc">BackgroundFetcher</span> <span class="p">:</span> <span class="nc">Runnable</span> <span class="p">{</span>
     <span class="k">override</span> <span class="k">public</span> <span class="k">fun</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>  <span class="c1">// (3)</span>
-      <span class="kd">val</span> <span class="py">github_info</span> <span class="p">=</span> <span class="n">fetchGithubInfo</span><span class="p">()</span>
-      <span class="n">println</span><span class="p">(</span><span class="n">github_info</span><span class="p">)</span>
+      <span class="kd">val</span> <span class="py">github_info</span> <span class="p">=</span> <span class="nf">fetchGithubInfo</span><span class="p">()</span>
+      <span class="nf">println</span><span class="p">(</span><span class="n">github_info</span><span class="p">)</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -191,19 +164,19 @@ Using Threads and Runnables</p>
 
 <p>This code is fine if all need to do is send the output to println. You will run into problems if you try set the text attribute of a TextView while you’re inside the run method of BackgroundFetcher. While your code is running on a background thread, you cannot make changes to the UI. All UI changes needs to happen on the UI thread alone. As an exercise, try to replace println(github_info) with something like textView.text = github_info. You might encounter an exception that says</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">android</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">ViewRootImpl</span><span class="err">$</span><span class="nv">CalledFromWrongThreadException</span><span class="p">:</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">android</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="nc">ViewRootImpl</span><span class="err">$</span><span class="nc">CalledFromWrongThreadException</span><span class="p">:</span>
 <span class="nc">Only</span> <span class="n">the</span> <span class="n">original</span> <span class="n">thread</span> <span class="n">that</span> <span class="n">created</span> <span class="n">a</span> <span class="n">view</span> <span class="n">hierarchy</span> <span class="n">can</span> <span class="n">touch</span> <span class="n">its</span> <span class="n">views</span>
 </code></pre></div></div>
 
 <p>To solve the problem, we need to set the TextView while we are running on the UI thread. There are a couple of ways to do this but we’ll use the simplest. We’ll invoke the runOnUiThread method of MainActivity and change the TextView in there.</p>
 
 <p>Listing 4. BackgroundFetcher calling the UI Thread.</p>
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">inner</span> <span class="kd">class</span> <span class="nc">BackgroundFetcher</span> <span class="p">:</span> <span class="n">Runnable</span> <span class="p">{</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">inner</span> <span class="kd">class</span> <span class="nc">BackgroundFetcher</span> <span class="p">:</span> <span class="nc">Runnable</span> <span class="p">{</span>
   <span class="k">override</span> <span class="k">public</span> <span class="k">fun</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">val</span> <span class="py">github_info</span> <span class="p">=</span> <span class="n">fetchGithubInfo</span><span class="p">()</span>
-    <span class="n">runOnUiThread</span><span class="p">(</span><span class="n">Runnable</span> <span class="p">{</span> <span class="c1">// (1)</span>
-      <span class="kd">val</span> <span class="py">jsonrdr</span> <span class="p">=</span> <span class="n">JSONObject</span><span class="p">(</span><span class="n">github_info</span><span class="p">)</span>  <span class="p">(</span><span class="m">2</span><span class="p">)</span>
-      <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">jsonrdr</span><span class="p">.</span><span class="n">getString</span><span class="p">(</span><span class="s">"login"</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">github_info</span> <span class="p">=</span> <span class="nf">fetchGithubInfo</span><span class="p">()</span>
+    <span class="nf">runOnUiThread</span><span class="p">(</span><span class="nc">Runnable</span> <span class="p">{</span> <span class="c1">// (1)</span>
+      <span class="kd">val</span> <span class="py">jsonrdr</span> <span class="p">=</span> <span class="nc">JSONObject</span><span class="p">(</span><span class="n">github_info</span><span class="p">)</span>  <span class="p">(</span><span class="m">2</span><span class="p">)</span>
+      <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">jsonrdr</span><span class="p">.</span><span class="nf">getString</span><span class="p">(</span><span class="s">"login"</span><span class="p">)</span>
     <span class="p">})</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -215,56 +188,34 @@ This method will first check if the current thread is already the UI thread. If 
 <p><strong>(2)</strong> The github_info variable contains the whole response from GitHub, we only want to display the “login” field. So, that’s what we did here with the help of the built-in JSON reader</p>
 
 
-  </div>
-
-  <div class="newsletter-box">
-    I hope the article was helpful, if you'd like to get these things piped into your email, you can <a href="https://buttondown.email/workingdev" target="_blank">subscribe to the newsletter</a>.
   </div><a class="u-url" href="/2018/07/kotlin-okhttp-and-threads.html" hidden></a>
 </article>
 
       </div>
-    </main><footer class="site-footer">
-  <data class="u-url" href="/"></data>
-  <div class="wrapper">
-    <p>
-      <a href="/" class="footer-link">Home</a>
-      <a href="/about" class="footer-link">About</a>
-      <a href="/blog" class="footer-link">Blog archives</a>
-      <a href="https://twitter.com/@theworkingdev" class="footer-link" target="_blank">@workingdev</a>
-    </p>
-    copyright Ted Hagos &copy; 2020 
-      <a href="/atom.xml">
-        <img src="/images/rss24.png" style="display:inline" class="footer-link">
-      </a>
-  </div>
-</footer>
-
-
-
-<!-- <footer class="site-footer h-card">
+    </main><footer class="site-footer h-card">
   <data class="u-url" href="/"></data>
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">workingdev</h2>
+    <h2 class="footer-heading">The Working Dev</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">workingdev</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
+          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:workingdevmedia@gmail.com">workingdevmedia@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tedhagos"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tedhagos</span></a></li><li><a href="https://www.twitter.com/theworkingdev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">theworkingdev</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://www.twitter.com/lovescaffeine"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">lovescaffeine</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3">
-        <p>Code samples/tutorials for the mobile and web programmer.</p>
+        <p>Code samples, snippets and tutorials for the working programmer</p>
       </div>
     </div>
 
   </div>
 
-</footer> -->
+</footer>
 </body>
 
 </html>
