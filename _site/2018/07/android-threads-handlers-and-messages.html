@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Android Threads, Handlers and Messages | The Working Dev</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Android Threads, Handlers and Messages" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="If your app suffers from slow UI rendering, then the system is forced to skip frames and the user will perceive stuttering in your app. We call this jank. – developer.android.com" />
+<meta property="og:description" content="If your app suffers from slow UI rendering, then the system is forced to skip frames and the user will perceive stuttering in your app. We call this jank. – developer.android.com" />
+<link rel="canonical" href="http://localhost:4000/2018/07/android-threads-handlers-and-messages.html" />
+<meta property="og:url" content="http://localhost:4000/2018/07/android-threads-handlers-and-messages.html" />
+<meta property="og:site_name" content="The Working Dev" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-07-28T00:00:00+08:00" />
+<script type="application/ld+json">
+{"headline":"Android Threads, Handlers and Messages","dateModified":"2018-07-28T00:00:00+08:00","url":"http://localhost:4000/2018/07/android-threads-handlers-and-messages.html","datePublished":"2018-07-28T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/07/android-threads-handlers-and-messages.html"},"description":"If your app suffers from slow UI rendering, then the system is forced to skip frames and the user will perceive stuttering in your app. We call this jank. – developer.android.com","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">The Working Dev</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Android Threads, Handlers and Messages</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-07-28T00:00:00+08:00" itemprop="datePublished">Jul 28, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <blockquote>
+  <p>If your app suffers from slow UI rendering, then the system is forced to skip frames and the user will perceive stuttering in your app. We call this jank.	
+– developer.android.com</p>
+</blockquote>
+
+<p>In a previous post, we started looking for ways to avoid jank. In that post, we used the trusty ole Threads from Java. In this post, we’ll look at another way to run codes in a background thread.
+The main reason for using a background thread is to avoid tying up the UI thread. The UI thread is where all UI related actions happen e.g. creating views and updating their values/appearances. If you do anything time-consuming while on the UI thread, like, reading from network I/O, reading from a file or doing a complex calculation, the time that the Android runtime spends on those codes, is time not spent on updating the UI. Anytime that the runtime senses you’re “doing too much things on the UI thread”, it will drop the framerates. You may not get the ANR error but the app will run sluggishly because the frames per second will drop.</p>
+
+<p>The main limitation when using a background thread is that you cannot make any changes to the UI. When you need to update the UI, you need to find a way how to get back to the UI Thread. In the previous post, we used the runOnUiThread method of the Activity class to get back to the UI thread. In this post, we will use Handlers and Messages</p>
+
+<p>A Handler is part of the Android Framework that is used for managing threads. Each thread has an associated MessageQueue and a Handler. Each instruction you write in your app ends up in a MessageQueue. So, if you thought that when you wrote textView.setText(), that the runtime immediately carried out your instruction, you would be wrong. That instruction would have been sent to a MessageQueue where it awaits until a Handler gets to it and executes it.</p>
+
+<p>To use a Handler object in your app, you generally need to do the following;</p>
+
+<p>Get the Handler object that’s associated with the UI Thread
+Somewhere in your code, when you’re about to do something that may cause jank, run that instead on a background thread
+While you’re inside the background thread, when you need to change something in the UI, do the following;
+Create a Message object, best way to do this is to call Message.obtain()
+Send a message to the Handler object by calling the sendMessage method. Message objects can carry data. The data attribute of the Message object is a Bundle object, so you can use the various putXXX() methods on it e.g. putString, putInt, putBundle, putFloat etc.
+In the handleMessage callback of the Handler object, do your UI changes</p>
+
+<p>Listing 1 shows how you can do this in code.</p>
+
+<p><em>Listing 1.Background task using Handlers and Messages.</em></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span>
+<span class="k">import</span> <span class="nn">android.os.Bundle</span>
+<span class="k">import</span> <span class="nn">android.os.Handler</span>
+<span class="k">import</span> <span class="nn">android.os.Message</span>
+<span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
+
+<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="nc">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">mhandler</span><span class="p">:</span> <span class="nc">Handler</span>                        <span class="c1">// (1)</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="nf">setContentView</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
+
+    <span class="n">mhandler</span> <span class="p">=</span> <span class="kd">object</span> <span class="err">: </span><span class="nc">Handler</span><span class="p">()</span> <span class="p">{</span>                     <span class="c1">// (2)</span>
+      <span class="k">override</span> <span class="k">fun</span> <span class="nf">handleMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nc">Message</span><span class="p">?)</span> <span class="p">{</span>
+        <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">msg</span><span class="o">?.</span><span class="n">data</span><span class="o">?.</span><span class="nf">getString</span><span class="p">(</span><span class="s">"counter"</span><span class="p">)</span> <span class="c1">// (3)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+      <span class="nc">Thread</span><span class="p">(</span><span class="nc">Runnable</span> <span class="p">{</span>
+        <span class="nf">killSomeTime</span><span class="p">()</span>                                  <span class="c1">// (4)</span>
+      <span class="p">}).</span><span class="nf">start</span><span class="p">()</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="k">fun</span> <span class="nf">killSomeTime</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1</span><span class="o">..</span><span class="m">20</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="py">msg</span> <span class="p">=</span> <span class="nc">Message</span><span class="p">.</span><span class="nf">obtain</span><span class="p">()</span>                        <span class="c1">// (5)</span>
+      <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">putString</span><span class="p">(</span><span class="s">"counter"</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="nf">toString</span><span class="p">())</span>       <span class="c1">// (6)</span>
+      <span class="n">mhandler</span><span class="p">.</span><span class="nf">sendMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>                         <span class="c1">// (7)</span>
+      <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> Declare a Handler object as a property of the class. We need access to this from two of our top level functions. We’re using lateinit here because were not yet ready to define the object</p>
+
+<p><strong>(2)</strong> We’re defining the Handler object now. Were getting the Handler object that’s associated with the UI Thread — we’re not creating a new Handler</p>
+
+<p><strong>(3)</strong> It’s safe to make UI changes in here. This is the Handler that’s associated with the UI Thread. The handleMessage callback will be called by the runtime when we invoke the sendMessage. The Message parameter of this method carries the data</p>
+
+<p><strong>(4)</strong> killSomeTime is representative of any I/O or time-consuming task. Always run it in a background thread to avoid jank</p>
+
+<p><strong>(5)</strong> Create a Message object. This is what we will send to the Handler object later</p>
+
+<p><strong>(6)</strong> The data property of the Message object is like a Bundle you can put things in it. It’s like a dictionary, each item is a pair — a key and a value. We passed two things to the putString() method, these are;</p>
+<ul>
+  <li>“counter”, the key</li>
+  <li><code class="highlighter-rouge">i.toString()</code>, the value</li>
+</ul>
+
+<p><strong>(7)</strong> Send the Message to the Handler object</p>
+
+
+  </div><a class="u-url" href="/2018/07/android-threads-handlers-and-messages.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">The Working Dev</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:workingdevmedia@gmail.com">workingdevmedia@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://www.twitter.com/lovescaffeine"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">lovescaffeine</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Code samples, snippets and tutorials for the working programmer</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
