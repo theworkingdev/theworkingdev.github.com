@@ -1,4 +1,4 @@
-I"<p>If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the <code class="highlighter-rouge">java.util.Random</code> class.</p>
+I"�<p>If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the <code class="highlighter-rouge">java.util.Random</code> class.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>        <span class="c1">// (1)</span>
 <span class="n">mrandomnumber</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span> <span class="c1">// (2)</span>
@@ -8,9 +8,7 @@
 
 <p><strong>(2)</strong> Creates a new random integers not greater than 100</p>
 
-<blockquote>
-  <p>Java’s Random class generates not only integers, it can also handle double, float, boolean etc., so,  make sure you check out the docs at  <a href="https://bit.ly/javautilrandom">java.util.Random docs page</a></p>
-</blockquote>
+<p>Java’s Random class generates not only integers, it can also handle double, float, boolean etc., so,  make sure you check out the docs at  <a href="https://bit.ly/javautilrandom">java.util.Random docs page</a></p>
 
 <p>Here’s a small sample on how to use the Random class in Java. The <strong>RandomNumber</strong> class has two methods named <code class="highlighter-rouge">getNumber()</code> and <code class="highlighter-rouge">createRandomNumber()</code>, it’s supposed to behave like a <em>Singleton</em> so, it’s designed to create a random number only once.</p>
 
