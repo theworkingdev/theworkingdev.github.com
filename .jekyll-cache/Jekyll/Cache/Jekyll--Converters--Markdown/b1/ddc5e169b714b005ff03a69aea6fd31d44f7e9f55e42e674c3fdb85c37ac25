@@ -1,0 +1,60 @@
+I"�<p>You need to do 3 things. 1) Install Virtual Box and Vagrant 2) Add a Vagrant Box image and 3) Define a VM</p>
+
+<h2 id="install-vagrant-and-virtualbox">Install Vagrant and VirtualBox</h2>
+
+<p>You can install vagrant using precompiled binaries. Go to vagrantup.com website and download the installer appropriate for your platform. These are wizard type installers, so you will install them in a familiar way. Download, then double click, then follow the prompts.</p>
+
+<p>Alternatively, you can use the package manager of your platform. OSX has either MacPorts or Homebrew. Windows has got chocolatey and Debian derived Linuxes has got the aptitude package manager.</p>
+
+<h3 id="macos-with-brew">macOS with brew</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew update
+brew tap caskroom/cask
+brew <span class="nb">install </span>brew-cask
+brew cask <span class="nb">install </span>vagrant virtualbox
+</code></pre></div></div>
+
+<h3 id="windows">Windows</h3>
+
+<p>You need to install chocolatey first, <a href="http://bit.ly/installchoco">go here for instructions</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cinst <span class="nt">--y</span> virtualbox vagrant
+</code></pre></div></div>
+
+<h3 id="linux-apt-get">Linux, apt-get</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get upgrade
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>vagrant virtualbox-dkms
+</code></pre></div></div>
+
+<p>Make sure everything has been installed properly. On terminal window, run the following commands</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant <span class="nt">--v</span>
+vboxmanage - v
+</code></pre></div></div>
+
+<p>If you saw the actual version numbers of vagrant and virtualbox instead of getting a “command not found” or “bad command or filename” error, that means virtualbox and vagrant are good to go.</p>
+
+<h2 id="add-a-box">Add a Box</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vagrant box add ubuntu-precise http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-i386-disk1.box
+</code></pre></div></div>
+
+<p>Most of these boxes are 350 - 500mb in size. Grab a coffee if you have slow internet connection</p>
+
+<h2 id="add-a-vm">Add a VM</h2>
+
+<p>Choose where you will locate your VM</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/vms/myprojectname <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/vms/myprojectname
+vagrant init ubuntu-precise
+vagrant init will create a vagrant config file. This is what you can 
+</code></pre></div></div>
+
+<p>configure and eventually commit to source control. Now, launch the VM</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vagrant up
+vagrant ssh <span class="c"># this will connect to your VM</span>
+</code></pre></div></div>
+:ET

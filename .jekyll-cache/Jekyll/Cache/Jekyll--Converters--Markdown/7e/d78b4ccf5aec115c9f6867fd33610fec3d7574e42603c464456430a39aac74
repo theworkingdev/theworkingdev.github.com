@@ -1,0 +1,96 @@
+I"{$<p>The <strong>if-then</strong> statement is one Java’s branching construct. You use a branching construct when you want to execute some of your statements only when some conditions are true.</p>
+
+<p>The snippet below shows the basic use of <strong>ifs</strong> first form;</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">condition</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// do this if condition is true</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This construct let’s you side-step some of your codes. You can choose which ones of them to do depending on the conditions you setup. The condition inside the <strong>if</strong> parentheses must be an boolean expression; it needs to evaluate into a boolean type. In languages like C, integers are used in if statements; in C, -1 is true and 0 is false. That’s not the case in Java, so you don’t have to worry about codes like this</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The coder probably wanted to see if the value of the variable is equal to 1, but made the mistake of using the assignment operator. If this was in C, it would have been allowed because an assignment operation will return -1 if the operation succeeds and 0 if it fails. Since C allows integers to be used in statements like if, this would have compiled.  This won’t happen to you in Java because the compiler would have caught it. It won’t let us disgrace ourselves like this.</p>
+
+<p>The second form is <strong>if-then-else</strong>, this provides a second path for your code. The basic use is as as follows;</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">condition</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// do this if condition is true</span>
+<span class="o">}</span>
+<span class="k">else</span> <span class="o">{</span>
+  <span class="c1">// do this if condition is false</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You can also put an <strong>if</strong> inside an another <strong>if</strong>, like this</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">condition1</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// statements</span>
+  <span class="o">...</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">condition2</span><span class="o">)</span> <span class="o">{</span>
+     <span class="c1">// statements</span>
+     <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This kind of construct lets you build complex program logic. There is no limit for how deep you can nest the structure, but be careful with nested conditions, they can be tricky to follow and debug.</p>
+
+<p>Sometimes you may need to provide more than just two pathways, you can use the third form for that.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="o">(</span><span class="n">condition1</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// statement</span>
+<span class="o">}</span>
+<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">condition2</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// statement</span>
+<span class="o">}</span>
+<span class="k">else</span> <span class="o">{</span>
+  <span class="c1">// statement</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The sample code below uses the third form to display the friendly name for the day, given a specific date.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">PrintTheDay</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    
+    <span class="nc">Calendar</span> <span class="n">c</span> <span class="o">=</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+    <span class="nc">Date</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span>
+    <span class="n">c</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">dayOfWeek</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">DAY_OF_WEEK</span><span class="o">);</span>
+
+    <span class="c1">// Next, print out the friendly name for the</span>
+    <span class="c1">// current day of week</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sunday"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Monday"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Tuesday"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="mi">4</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Wednesday"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="mi">5</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Thursday"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="mi">6</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Friday"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">dayOfWeek</span> <span class="o">==</span> <span class="mi">7</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saturday"</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+:ET

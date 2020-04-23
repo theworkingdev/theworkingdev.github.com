@@ -1,0 +1,61 @@
+I"<p>If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the <code class="highlighter-rouge">java.util.Random</code> class.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>        <span class="c1">// (1)</span>
+<span class="n">mrandomnumber</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span> <span class="c1">// (2)</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> Creates a new Random object</p>
+
+<p><strong>(2)</strong> Creates a new random integers not greater than 100</p>
+
+<blockquote>
+  <p>Java’s Random class generates not only integers, it can also handle double, float, boolean etc., so,  make sure you check out the docs at  <a href="https://bit.ly/javautilrandom">java.util.Random docs page</a></p>
+</blockquote>
+
+<p>Here’s a small sample on how to use the Random class in Java. The <strong>RandomNumber</strong> class has two methods named <code class="highlighter-rouge">getNumber()</code> and <code class="highlighter-rouge">createRandomNumber()</code>, it’s supposed to behave like a <em>Singleton</em> so, it’s designed to create a random number only once.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RandomNumber</span>  <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="nc">String</span> <span class="no">TAG</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">();</span>
+
+  <span class="kt">int</span> <span class="n">mrandomnumber</span><span class="o">;</span>
+  <span class="kt">boolean</span> <span class="n">minitialized</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+  <span class="nc">String</span> <span class="nf">getNumber</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(!</span><span class="n">minitialized</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">createRandomNumber</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"RETURN Random number"</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">mrandomnumber</span> <span class="o">+</span> <span class="s">""</span><span class="o">;</span>
+  <span class="o">}</span>
+
+   <span class="kt">void</span> <span class="nf">createRandomNumber</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"CREATE NEW Random number"</span><span class="o">);</span>
+    <span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+    <span class="n">mrandomnumber</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+    <span class="n">minitialized</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Then, you can use it like this from MainActivity</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">AppCompatActivity</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+    <span class="nc">RandomNumber</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RandomNumber</span><span class="o">();</span>
+
+    <span class="o">((</span><span class="nc">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">txtrandom</span><span class="o">)).</span><span class="na">setText</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getNumber</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+:ET

@@ -1,0 +1,87 @@
+I"#<p>An onClickListener for a Button View object can be coded like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span><span class="p">(</span><span class="k">object</span><span class="p">:</span> <span class="nc">View</span><span class="p">.</span><span class="nc">OnClickListener</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onClick</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nc">View</span><span class="p">?)</span> <span class="p">{</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"Hello click"</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>It can be made more concise with Kotlin lambdas, like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+  <span class="nc">Toast</span><span class="p">.</span><span class="nf">makeText</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">"Hello World"</span><span class="p">,</span>   <span class="nc">Toast</span><span class="p">.</span><span class="nc">LENGTH_LONG</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Longclicks can be handled like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnLongClickListener</span><span class="p">(</span><span class="k">object</span><span class="p">:</span> <span class="nc">View</span><span class="p">.</span><span class="nc">OnLongClickListener</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onLongClick</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nc">View</span><span class="p">?):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+    <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"long click"</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_LONG</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="k">true</span>  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The onLongClick callback function returns either true or false. Return true if you don’t want other listeners, such as onClick, to further consume the event. If you return false, both your codes in onLongClick and onClick will run.</p>
+
+<p>We can make it shorter with lambdas, like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnLongClickListener</span> <span class="p">{</span>
+   <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"Long click"</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_INDEFINITE</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
+   <span class="k">true</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The button referred to in examples above is a View ID that’s defined in <strong>activity_main.xml</strong> (see Listing 2). You can refer to it using just the View ID if you imported the Kotlin Android Extension (KAE). Listing 1 shows the full program code for MainActivity.Kt</p>
+
+<p><strong>Listing 1. Complete Listing for MainActivity.Kt</strong></p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span>
+<span class="k">import</span> <span class="nn">android.os.Bundle</span>
+<span class="k">import</span> <span class="nn">android.support.design.widget.Snackbar</span>
+<span class="k">import</span> <span class="nn">android.test.ViewAsserts</span>
+<span class="k">import</span> <span class="nn">android.view.View</span>
+<span class="k">import</span> <span class="nn">android.widget.Toast</span>
+<span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
+
+<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="nc">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="nf">setContentView</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
+
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+      <span class="nc">Toast</span><span class="p">.</span><span class="nf">makeText</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">"Hello World"</span><span class="p">,</span> <span class="nc">Toast</span><span class="p">.</span><span class="nc">LENGTH_LONG</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
+      <span class="nf">println</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnLongClickListener</span> <span class="p">{</span>
+      <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="s">"Long click"</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_INDEFINITE</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
+       <span class="k">true</span>
+     <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Listing 6 show a snippet of the layout file. Significant portions of it have been omitted (for presentations purposes). You should not use this code directly in your app. You should always let the IDE generate the XML files for the layout.</p>
+
+<p>One thing of note in Listing 2 is that all the View elements have an android:id attribute. The KAE synthesizes these IDs and makes them available to MainActivity as extension properties. That’s the reason why you can refer to elements like the button, using just its ID — you won’t have to use findViewById() anymore.</p>
+
+<p><strong>Listing 2. snippet of app/res/layout/activity_main.xml</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;TextView</span>
+  <span class="na">android:id=</span><span class="s">"@+id/textView"</span>
+  <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+  <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+  <span class="na">android:text=</span><span class="s">"Hello World!"</span>
+  <span class="na">app:layout_constraintVertical_bias=</span><span class="s">"0.353"</span> <span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;Button</span>
+    <span class="na">android:id=</span><span class="s">"@+id/button"</span>
+    <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+    <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+    <span class="na">app:layout_constraintTop_toBottomOf=</span><span class="s">"@+id/textView"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+:ET

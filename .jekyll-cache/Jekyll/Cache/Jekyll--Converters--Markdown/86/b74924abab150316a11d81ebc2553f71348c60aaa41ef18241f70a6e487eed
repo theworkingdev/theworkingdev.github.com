@@ -1,0 +1,286 @@
+I"�y<h2 id="the-use-case">The use case</h2>
+
+<p>When the page loads up, a picture will be shown. The user will guess who or what the picture is by typing his answer on the provided text field and clicking the submit button.</p>
+
+<p>If the user guesses correctly, proceed to the next picture and let the user guess again. If the guess is incorrect, display a “Try again message”, clear the text field and await for the response.</p>
+
+<h2 id="solution">Solution</h2>
+
+<p>Will make the html portion quite spartan. We won’t use any fancy divs or nested tables so that we won’t get distracted by styling clutter. We will handle the image using the img tag. We will use the old school input element for the text field and we will use the button element for, well, the button.</p>
+
+<p>The JavaScript part of our solution will be in an external file named script.js, so our JS and HTML codes don’t mingle up. We will use JQuery for DOM manipulation, surely by now you must be tired of typing document.getElementById. We can do this by embedding two script elements in the head region of the html code.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">charset=</span><span class="s">"utf-8"</span> <span class="na">src=</span><span class="s">"jquery-1.11.0.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">charset=</span><span class="s">"utf-8"</span> <span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>The script tag above assumes that you have downloaded the JQuery library into your work area. It also assumes that the JQuery file and script.js is located on the same directory where the html file is.</p>
+
+<p>The full code listing for the html part is below.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="c">&lt;!--  index.html --&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">charset=</span><span class="s">"utf-8"</span> <span class="na">src=</span><span class="s">"jquery-1.11.0.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">charset=</span><span class="s">"utf-8"</span> <span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">"text/css"</span> <span class="na">media=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nf">#status</span> <span class="p">{</span>
+      <span class="nl">color</span><span class="p">:</span> <span class="m">#CACACA</span><span class="p">;</span>
+      <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">normal</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">*</span> <span class="p">{</span>
+      <span class="nl">font-family</span><span class="p">:</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">serif</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">img</span> <span class="p">{</span>
+      <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+      <span class="nl">margin-top</span><span class="p">:</span> <span class="m">30px</span><span class="p">;</span>
+      <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">30px</span><span class="p">;</span>
+      <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">body</span> <span class="p">{</span>
+      <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+      <span class="nl">width</span><span class="p">:</span> <span class="m">80%</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h4</span> <span class="na">id=</span><span class="s">"status"</span><span class="nt">&gt;</span>The Status<span class="nt">&lt;/h4&gt;</span>
+  <span class="nt">&lt;img</span> <span class="na">id=</span><span class="s">"a"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">text</span> <span class="na">id=</span><span class="s">"answer"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"clickme"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="the-javascript-part">The JavaScript Part</h2>
+
+<p>Create a file named script.js on the same folder where you created index.html. It is not necessary, neither it is always desirable to put the JS files on same folder as other files such as html or images, but we chose to do it that way to keep the codes and directory structure simple.</p>
+
+<p>First thing we need to write is the block of code where we will put all of our subsequent JavaScript codes. Many other programs require such an entry point. If you have experience coding in other languages, you might remember that there is a function main which serves as the program entry point. In JavaScript however, you cannot simply write a function called main and proceed from there. Well, actually you can write a function and name it main, but that won’t do anything. It will simply be a regular function. It won’t have magical powers that makes it a program entry point.</p>
+
+<p>JavaScript is event aware. You can listen for events and then write code when that event is raised. There are two sources of events in our use case. The user will raise an event when he types his answer on the text field and when he clicks the button to submit his answer. The browser also raises events. When a page is pulled from a web server, it goes through some stages</p>
+
+<ol>
+  <li>It scans all the html tags and renders them</li>
+  <li>If you have some directives to pull files, e.g. a CDN hosted JQuery library, it will pull that from the server. When it is done processing the directives on the head region, it goes to the body region. At this point, it raises an event that the body part of the html document is being loaded.</li>
+  <li>When it encounters a script tag, it momentarily stops rendering any html element. It needs to stop because JavaScript is capable of writing and changing the DOM (Document Object Model), the browser will wait for all the script tag to be processed before it can continue rendering html elements. When all the DOM elements have been processed, the browser raises an event saying that the “document is ready”.</li>
+  <li>If you have image tags, the browser will make another request to the server to download the image files</li>
+  <li>Once all the resources have been completely downloaded and rendered, the browser raises an event that says it the “window is ready”. Ideally, this is the point where it is safe to do anything with JavaScript because all the DOM resources that your code anticipates, are already available. In some occasions, you might want to start doing things before the document is ready, say during body onLoad but for this example, we will wait for the document to finish loading.</li>
+</ol>
+
+<p>In order to write our program entry point, we will choose an event that the browser will raise, and use it as the entry point.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="c1">// this is our entry point</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>The above snippet is a JQuery code. It binds our code into document.onload event of the browser. When the browser has finished processing all the DOM elements in the html, it will raise the document.onload event. We are simply latching on to that event. Think of this code block as some sort of initialization routine. If you need to define arrays, variables or bind buttons to events, this is the place to do it.</p>
+
+<h2 id="make-sure-the-simplest-scenario-is-working">Make sure the simplest scenario is working</h2>
+
+<p>The best advice I have ever given to beginning programmers is to make sure the simplest scenario is working— next only to “don’t forget the semicolon”. A complex system does not start out to be complex, they start out as simple systems. They get complex in time. Make sure that the building blocks of your code are sound and that they are working.</p>
+
+<p>We need to make sure that our program entry point actually does something. A small noticeable change in the UI will do. Let’s change the text of the heading element.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#status</span><span class="dl">"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello there</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Open index.html using the browser. You should see the “Hello there” message when it loads. It will confirm that our code is actually running when the page loads. If you don’t see the message, you need to check your code for spelling and other typing errors. If you know how to use the debugging tools in the browser such as FireBug in FireFox and the developer tools of Chrome or Safari, they will help you find the errors faster.</p>
+
+<p>Next step is to display just a single image when the page loads. That can be managed using the following code</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#status</span><span class="dl">"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello there</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#a</span><span class="dl">"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">src</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bugsbunny.jpg</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>The code above assumes the file bugsbunny.jpg is on the same folder where index.html and script.js are. Right after we get the IMG element using the #a selector, we changed the SRC attribute programmatically using the JQuery attr function. That code should display the contents of the image.</p>
+
+<p>Next thing to manage is accept user input via the text element and do something with when he clicks the button. For that, we need to bind the click event of the button to our code.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#status</span><span class="dl">"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello there</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#a</span><span class="dl">"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">src</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bugsbunny.jpg</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#clickme</span><span class="dl">"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">useranswer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#answer</span><span class="dl">"</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#status</span><span class="dl">"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">useranswer</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>To bind the button to our code, we selected it via JQuery and invoked the the click function. The JQuery click function takes a single argument. You can put a named function inside it or an anonymous function. Either way, JQuery will call whatever you put inside the click function when the user clicks the button.</p>
+
+<p>Our click handler is quite simple. It extracts the value of the text field and changes the message of the heading element to whatever the user has typed in the text field.</p>
+
+<p>We will add some more codes so we can check the user’s input against the correct answer.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#status</span><span class="dl">"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello there</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#a</span><span class="dl">"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">src</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bugsbunny.jpg</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#clickme</span><span class="dl">"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">useranswer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#answer</span><span class="dl">"</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#status</span><span class="dl">"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">useranswer</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">useranswer</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">Bugs Bunny</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">correct</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">try again</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>An <strong>if-else</strong> statement provides a simple validation for our code. Note that the if branch is inside the click handler block. We will perform this check only when the button is clicked. If you place it outside the click handler block, it will be evaluated during page load—which does not make sense.</p>
+
+<p>The answer key in our example code is hard coded, in a real life application this should be pulled from a data structure like a database or a file.</p>
+
+<p>At this point, we know we can display a picture, wait for a user’s input and validate whether it is correct or otherwise. We can now use this as a building block for the more complex portion of the solution.</p>
+
+<h2 id="complexity">Complexity</h2>
+
+<p>The complexity of the use case, clearly, does not lie in mechanics of input, validation and graphics display. Those are easy enough tasks to manage. The slight difficulty in the use case is in the workflow. We need a simplistic game engine to satisfy the use case requirement.</p>
+
+<ol>
+  <li>Display the graphics</li>
+  <li>Accept input from the user</li>
+  <li>If the user got it right, clear the text field, update the heading status, then move on to the next round</li>
+  <li>If the user got it wrong, clear the text field, update the heading status and keep him in the current round until he gets it</li>
+</ol>
+
+<p>This is the basic workflow that we need.</p>
+
+<p><img src="/images/guessing-game.png" alt="" /></p>
+
+<p>If you look at it closely, you might see that it resembles the basic engine for a flash card application. A flash card is a set of cards that one uses as a study aide. On one face of the card are either words, numbers, pictures or any combination of the three. The front side of the card usually is a question. And on the other side of the card is the answer. The idea is to go through a set of cards, show the front side to the user and let him guess.</p>
+
+<p>In the previous section, we explored how to display just one card and let the user guess. That much we can do. The challenge is how to make more cards and let the user go through all of them. Using the flash card analogy, let’s rewrite our game engine workflow.</p>
+
+<ol>
+  <li>Take out one card from the deck</li>
+  <li>Display the front side of the card</li>
+  <li>Let the user guess</li>
+  <li>If the user guesses right, clear the text field, update the heading status and proceed to the next card—which means go back to step no. 1</li>
+  <li>If the user guesses wrong, clear the text field, update the heading status and let the user guess again
+Now that we have clarified our solution approach, the next task is to figure out how to translate them into codes.</li>
+</ol>
+
+<p>There are two data structures that we need to figure out. The card and the deck. The card data structure cannot be held by simple scalar variables. It needs a more capable and complex data structure. We want it to hold the picture and the answer key. The deck is really just a collection of cards,</p>
+
+<p>There are lots of options for us. At first glance it looks like a relational database is good tool to represent our data structure. A record in the database will represent a card and a deck of cards is a table. We can also use an XML file. Or we can use JavaScript objects. For the purpose of our practice, we will use JavaScript objects to represent the card and we will store all these cards inside an Array. The Array data structure is our deck.</p>
+
+<p>The card data structure can be represented in code like this</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">card1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">card</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">picture</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">bugsbunny.jpg</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">answertext</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">Bart</span><span class="dl">"</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The above code shows how to declare an object in JavaScript Object Notation (JSON).</p>
+
+<p>We need to somehow define each card and populate the deck with it. We will use the built-in JS Array to represent the deck.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var deck = new Array();
+
+// OTHER STATEMENTS
+
+var card1 = {
+  card: 1,
+  picture : "bugsbunny.jpg",
+  answertext : "Bugs Bunny"
+};
+
+var card2 = {
+  card: 2,
+  picture : "bart.jpg",
+  answertext : "Bart"
+};
+
+deck.push(card1);
+deck.push(card2);
+</code></pre></div></div>
+
+<p>Next task is how to pop a card from the deck and display the picture. What we want is to take the top card from the Array, make it available for data retrieval and display the picture.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">currcard</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Draw</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">currcard</span>  <span class="o">=</span>  <span class="nx">deck</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#a</span><span class="dl">"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">src</span><span class="dl">"</span><span class="p">,</span> <span class="nx">currcard</span><span class="p">.</span><span class="nx">picture</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The variable <code class="highlighter-rouge">currcard</code> is initially defined as null. It was defined outside the Draw function so that it other functions will have access to it. We will need the data stored on the current card when we check the user’s answer against the answer key (which is stored on the current card).</p>
+
+<p>The shift method of the JS Array provides the mechanism to take the top card from the deck. When you call shift, it removes whatever is on the top element of the array and returns its value—it allows us to store the return value to a variable, that was why it was assigned to currcard.</p>
+
+<h2 id="full-code">Full code</h2>
+
+<p>We now have the essential technical details and workflow to put it all together. The program entry point is when the DOM has finished loading. There are two data structures that we will use, the card data structure which is an object literal (JSON format) and the dec which will hold the collection of cards, the deck will just be a standard JS Array.</p>
+
+<p>First thing to do is to initialize our cards and deck. We will give them some values. These codes are encapsulated in the function named Init.</p>
+
+<p>When the cards and the deck has been initialized, we call the Draw function. It pops the top card and displays the picture associated with that card. It also stores the value of the top card to the variable currcard because we will need the value of current top card when we compare the user’s answer to our answer key.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// script.js</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">currcard</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="nx">Init</span><span class="p">();</span>
+  <span class="nx">Draw</span><span class="p">();</span>
+  
+  <span class="c1">// EVENT HANDLER</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#clickme</span><span class="dl">"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">useranswer</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#answer</span><span class="dl">"</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#status</span><span class="dl">"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">useranswer</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">currcard</span><span class="p">.</span><span class="nx">answertext</span> <span class="o">==</span> <span class="nx">useranswer</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">correct</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nx">ClearText</span><span class="p">();</span>
+      <span class="nx">Draw</span><span class="p">();</span> <span class="c1">// GET the next card</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">try again</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nx">ClearText</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="kd">function</span> <span class="nx">ClearText</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#answer</span><span class="dl">"</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#status</span><span class="dl">"</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">Init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">card1</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">card</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">picture</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">bugsbunny.jpg</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">answertext</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">Bugs Bunny</span><span class="dl">"</span>
+    <span class="p">};</span>
+    
+    <span class="kd">var</span> <span class="nx">card2</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">card</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="na">picture</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">bart.jpg</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">answertext</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">Bart</span><span class="dl">"</span>
+    <span class="p">};</span>
+    <span class="nx">deck</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">card1</span><span class="p">);</span>
+    <span class="nx">deck</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">card2</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">function</span> <span class="nx">Draw</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">currcard</span>  <span class="o">=</span>  <span class="nx">deck</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#a</span><span class="dl">"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">src</span><span class="dl">"</span><span class="p">,</span> <span class="nx">currcard</span><span class="p">.</span><span class="nx">picture</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>When the user types his answer and clicks the button, we simply compare the value of currcard.answertext which is our answer key to whatever the user has typed on the text field.</p>
+
+:ET

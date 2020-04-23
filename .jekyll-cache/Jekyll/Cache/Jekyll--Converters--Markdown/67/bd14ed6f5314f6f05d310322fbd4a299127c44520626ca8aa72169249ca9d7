@@ -1,0 +1,60 @@
+I"å<p>Photo Viewer in Android using Implicit Intents
+This is small exercise on how to create a photo viewer app that responds to implicit Intents.</p>
+
+<p>What we want to do is to create an app that can;</p>
+
+<ul>
+  <li>Respond to an implicit Intent</li>
+  <li>The implicit Intent has some data in it;</li>
+  <li>Specifically, this data is image data, and we want our app to be one of the choices for the user when he opens a photo</li>
+</ul>
+
+<p>When the user browses the picture gallery and picks a photo, our app will appear as one the apps that can be used for opening the photo.</p>
+
+<p>We will use an Android emulator for this exercise, so we need to put some pictures on the emulator.</p>
+
+<p>Start an emulator, then push some images to the sdcard. You can do this using the android device monitor. Navigate to the file browser, select /mnt/sdcard by pointing and clicking to it using your mouse. You can drag and drop images onto that folder</p>
+
+<p><img src="/images/android-device-monitor.png" alt="" /></p>
+
+<p>On some situations, some emulators may have a read-only filesystem. You wonâ€™t be be able to push files to it until you have reconfigured the permissions of the <code class="highlighter-rouge">/mnt/sdcard</code> folder. You can change permissions to the sdcard folder using the adb shell, remember that Android is essentially running in Linux, so you can use the following Linux commands</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell                     <span class="c"># opens the adb shell</span>
+su
+mount <span class="nt">-o</span> rw,remount rootfs /
+<span class="nb">chmod </span>777 /mnt/sdcard         <span class="c"># standard chmod command</span>
+<span class="nb">exit</span>
+</code></pre></div></div>
+
+<p>Launch the picture gallery application on the emulator. The pictures you just uploaded may not be visible immediately on the gallery. You can shutdown the emulator and restart it or alternatively, you can send a broadcast message to the emulator in order to rescan the sdcard for new content. You can use the adb shell to do that as well.</p>
+
+<p>adb shell am broadcast -a android.intent.action.MEDIA_MOUNTED -d file:///sdcard
+Create a new project with an empty activity. On the View pallette, get an ImageView control and place it on the main activity screen.</p>
+
+<p>Handle the incoming intent inside the onCreate callback method.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+  <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+  <span class="nc">ImageView</span> <span class="n">imageView</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ImageView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">imageView</span><span class="o">);</span>
+
+  <span class="nc">Bundle</span> <span class="n">b</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getExtras</span><span class="o">();</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">b</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Uri</span> <span class="n">uri</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Uri</span><span class="o">)</span> <span class="n">b</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Intent</span><span class="o">.</span><span class="na">EXTRA_STREAM</span><span class="o">);</span>
+    <span class="n">imageView</span><span class="o">.</span><span class="na">setImageURI</span><span class="o">(</span><span class="n">uri</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Declare the intent in the android manifest file.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;intent-filter&gt;</span>
+  <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.SEND"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.DEFAULT"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;data</span> <span class="na">android:mimeType=</span><span class="s">"image/*"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/intent-filter&gt;</span>
+</code></pre></div></div>
+
+:ET

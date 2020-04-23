@@ -1,0 +1,32 @@
+I"×	<p>When you pass arguments to Node program in a command line, they are kept in an array inside the process object. The name of the array is argv. The contents of process.argv is as follows</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>process.argv[0] = The node executable itself
+process.argv[1] = Name of the JS file 
+process.argv[2] = 1st command line parameter 
+process.argv[3] = 2nd command line parameter 
+process.argv[n] = nth command line parameter 
+</code></pre></div></div>
+
+<p>Listing 1 shows a code that loops through all the elements of process.argv. It checks first if there are any parameters that were passed via the cmd line. If there are more than 2 elements in process.argv, then some params were passed.</p>
+
+<p><em>Listing 1. cmdlinetest.js</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><em>Example 1. using cmdlinetest.js</em></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node cmdlinetest.js The Quick Brown Fox
+</code></pre></div></div>
+<p>This prints out</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
+/Users/ted/temp/cmdlineparams.js              | process.argv[1]
+The                                           | process.argv[2]
+Quick                                         | process.argv[3]
+Brown                                         | process.argv[4]
+Fox                                           | process.argv[5]
+</code></pre></div></div>
+
+:ET

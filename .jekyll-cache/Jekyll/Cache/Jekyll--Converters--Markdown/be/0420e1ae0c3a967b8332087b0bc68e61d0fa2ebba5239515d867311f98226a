@@ -1,0 +1,2 @@
+I"5<p>Kotlin functions are defined using <code class="highlighter-rouge">fun</code> keyword, followed by the name of the function, a pair of parentheses, optional parameters, the return type of function and then the body of the function, which is pair of curly braces. It’s pretty much like a Java function, except that in Java,  we have no <code class="highlighter-rouge">fun</code> (pun intended) and the type of the function  is written to the left of the function (in Java), while in Kotlin, the return type of the function is to the right of function name.</p>
+:ET

@@ -1,0 +1,2 @@
+I"<p>You can create a menu for an app in 3 steps. First is to create a menu resource file which will contain all the menu items, Next steps is to inflate the menu file and attach it to a <strong>Menu</strong> object and lastly, handle the events for each menu item.</p>
+:ET

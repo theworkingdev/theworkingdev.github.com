@@ -1,0 +1,2 @@
+I"M<p>I wrote a series of post on how to handle background processing in an Android app. You don’t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following.</p>
+:ET

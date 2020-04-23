@@ -1,0 +1,37 @@
+I"a<p>Using Google Fonts in Blogger.com</p>
+
+<p>Get some fonts from fonts.google.com. Copy the code for the embedded font from the “standard” tab. Next, login to blogger.com, go to Theme &gt; Customize &gt; Edit HTML, then paste the embedded font somewhere inside the head tag</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">'https://fonts.googleapis.com/css?family=Arimo:400,700|Ubuntu+Mono'</span> <span class="na">rel=</span><span class="s">'stylesheet'</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+</code></pre></div></div>
+
+<p>Now, you can use these fonts in your custom stylesheet</p>
+
+<p>Styling the <code class="highlighter-rouge">&lt;pre&gt;</code> and <code class="highlighter-rouge">&lt;code&gt;</code></p>
+
+<p>Login to blogger.com, go Theme &gt; Customize &gt; Advanced, scroll down until you get to Add CSS. A sample style is as follows</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">pre</span><span class="o">,</span> <span class="nt">code</span> <span class="p">{</span>
+  <span class="nl">font</span><span class="p">:</span> <span class="m">1em</span> <span class="s2">'Ubuntu Mono'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">pre</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#000</span><span class="p">;</span>
+  <span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">-.3px</span><span class="p">;</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1.2em</span><span class="p">;</span>
+  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#dedede</span><span class="p">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="m">#fdfdf7</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">word-wrap</span><span class="p">:</span> <span class="nb">normal</span><span class="p">;</span>
+  <span class="nl">white-space</span><span class="p">:</span> <span class="n">pre</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>You have to get Ubuntu mono from Google Fonts before you can use it.</p>
+
+:ET

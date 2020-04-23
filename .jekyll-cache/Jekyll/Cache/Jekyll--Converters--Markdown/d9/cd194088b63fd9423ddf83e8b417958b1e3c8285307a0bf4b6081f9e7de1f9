@@ -1,0 +1,22 @@
+I" <p>Things you need to have or completed before you proceed.</p>
+
+<ol>
+  <li>You already have an account at Google/webmasters</li>
+  <li>You’ve already verified your website. Google is already convinced that you own it</li>
+</ol>
+
+<p>Steps to add a sitemap for your website at Blogger.com</p>
+
+<ol>
+  <li>Login to Google/webmasters</li>
+  <li>Select the website (your site at Blogger.com) from the dashboard</li>
+  <li>Click the “Add/Test Sitemap” button</li>
+  <li>On “Add/Test Sitemap” text field,  add the line <code class="highlighter-rouge">atom.xml?redirect=false&amp;start-index=1&amp;max-results=500</code></li>
+  <li>It should look something like this</li>
+</ol>
+
+<p><img src="/images/google-webmaster-sitemap.png" alt="" /></p>
+
+<p><strong>Note</strong>: This method will work ONLY if you have less 500 entries or less in your blog. If you have more than 500 (but less than a thousand), just add another sitemap using this line <code class="highlighter-rouge">atom.xml?redirect=false&amp;start-index=501&amp;max-results=1000</code></p>
+
+:ET

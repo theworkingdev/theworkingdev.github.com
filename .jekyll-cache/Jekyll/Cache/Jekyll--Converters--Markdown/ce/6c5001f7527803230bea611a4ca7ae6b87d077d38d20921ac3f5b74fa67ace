@@ -1,0 +1,91 @@
+I"V<p>The switch statement has a slightly different structure from the if-then statement which makes it, in some cases, more readable than an if-then construct that needs to handle multiple pathways. The basic form of the switch statement is as follows</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">switch</span><span class="o">(</span><span class="n">expr</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">case</span> <span class="nl">value:</span>
+     <span class="c1">// statement;</span>
+     <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span> <span class="nl">value:</span>
+     <span class="c1">// statement;</span>
+     <span class="k">break</span><span class="o">;</span>
+   <span class="k">default</span><span class="o">:</span>
+     <span class="c1">// statement;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Where <strong>expr</strong> is either of type byte, short, char and int.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Calendar</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Switch</span>  <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+  
+    <span class="nc">Calendar</span> <span class="n">c</span> <span class="o">=</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+    <span class="nc">Date</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span>
+    <span class="n">c</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">dayOfWeek</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">DAY_OF_WEEK</span><span class="o">);</span>
+  
+  <span class="nc">String</span> <span class="n">day</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+    
+    <span class="k">switch</span><span class="o">(</span><span class="n">dayOfWeek</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="s">"Sunday"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span> 
+      <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="s">"Monday"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>         
+      <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="s">"Tuesday"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span> 
+      <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="s">"Wednesday"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span> 
+      <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="s">"Thursday"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span> 
+      <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="s">"Friday"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span> 
+      <span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="s">"Saturday"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">default</span><span class="o">:</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="s">"Dunno"</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Today is %s"</span><span class="o">,</span> <span class="n">day</span><span class="o">);</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Starting with JDK 1.7,  you can also use Strings in switch statement. Like this.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTypeOfDay</span><span class="o">(</span><span class="nc">String</span> <span class="n">dayOfWeekArg</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="nc">String</span> <span class="n">typeOfDay</span><span class="o">;</span>
+  <span class="k">switch</span> <span class="o">(</span><span class="n">dayOfWeekArg</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="s">"Monday"</span><span class="o">:</span>
+        <span class="n">typeOfDay</span> <span class="o">=</span> <span class="s">"Start of work week"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="s">"Tuesday"</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s">"Wednesday"</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s">"Thursday"</span><span class="o">:</span>
+        <span class="n">typeOfDay</span> <span class="o">=</span> <span class="s">"Midweek"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="s">"Friday"</span><span class="o">:</span>
+        <span class="n">typeOfDay</span> <span class="o">=</span> <span class="s">"End of work week"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="s">"Saturday"</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s">"Sunday"</span><span class="o">:</span>
+    <span class="n">typeOfDay</span> <span class="o">=</span> <span class="s">"Weekend"</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="n">typeOfDay</span> <span class="o">=</span> <span class="s">"Dunno"</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">typeOfDay</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The switch statement compares the String expression with each of the cases as if it was using String.equals method. It’s best to remember that the comparisson is case-sensitive.</p>
+
+:ET

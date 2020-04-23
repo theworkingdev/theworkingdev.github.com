@@ -1,0 +1,2 @@
+I"�<p>Let’s deal with the meaning of <em>reify</em> first. It means to make something real, and the reason we’re using reify and generics on the same statement is because of Java’s type erasure.</p>
+:ET

@@ -1,0 +1,67 @@
+I"¨<p>Source files at the <a href="https://www.workingdev.net/2012/10/git@github.com:tedhagos/BroadcastReceiverManifest.git">github page</a></p>
+
+<p>What we want to do;</p>
+
+<ul>
+  <li>Know the basic step needed to display an array into a listview</li>
+  <li>Create a new layout to be used by the listview</li>
+  <li>Use an Adapter to connect an array of values to the listview</li>
+</ul>
+
+<p>First, <strong>Create a project with an empty activity</strong>. Name the project ListViewSample. Add a ListView to the main activity layout.</p>
+
+<p><img src="/images/listview-lab.png" alt="" /></p>
+
+<p>Next, Create a new layout.</p>
+
+<p>You can do this in Android Studio via File &gt; New &gt; XML&gt; Layout XML File. You will be asked for the layout file name and the root tag. Use the following values</p>
+
+<p>Layout File Name : myitem
+Root Tag: TextView
+We created this new layout because this will effectively be a single row in our listview. We are displaying only one item of data per row, hence, a simple textview</p>
+
+<p>Next, Implement the onCreate method of the main activity.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+  <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+  <span class="n">populateList</span><span class="o">();</span> <span class="c1">// we'll create this later</span>
+  <span class="n">handleEvents</span><span class="o">();</span> <span class="c1">// we'll create this later</span>
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<p>After that, we should create the populateList method</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">populateList</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// The Array</span>
+  <span class="nc">String</span><span class="o">[]</span> <span class="n">numbers</span> <span class="o">=</span> <span class="o">{</span><span class="s">"One"</span><span class="o">,</span> <span class="s">"Two"</span><span class="o">,</span> <span class="s">"Three"</span><span class="o">,</span> <span class="s">"Four"</span><span class="o">};</span>
+  
+    <span class="c1">// The Adapter</span>
+  <span class="nc">ArrayAdapter</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayAdapter</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;(</span><span class="k">this</span><span class="o">,</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">myitem</span><span class="o">,</span> <span class="n">numbers</span><span class="o">);</span>
+
+  <span class="c1">// The ListView</span>
+  <span class="nc">ListView</span> <span class="n">listview</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ListView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">listView</span><span class="o">);</span>
+  <span class="n">listview</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">adapter</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Then, letâ€™s implement the handleEvents method</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleEvents</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">ListView</span> <span class="n">listview</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ListView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">listView</span><span class="o">);</span>
+  <span class="k">assert</span> <span class="n">listview</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span>
+
+  <span class="n">listview</span><span class="o">.</span><span class="na">setOnItemClickListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">AdapterView</span><span class="o">.</span><span class="na">OnItemClickListener</span><span class="o">()</span> <span class="o">{</span>
+      
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemClick</span><span class="o">(</span><span class="nc">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">parent</span><span class="o">,</span> <span class="nc">View</span> <span class="n">view</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">String</span> <span class="n">item_name</span> <span class="o">=</span> <span class="o">((</span><span class="nc">TextView</span><span class="o">)</span> <span class="n">view</span><span class="o">).</span><span class="na">getText</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+      <span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"You clicked %s : %s"</span><span class="o">,</span> <span class="n">position</span><span class="o">,</span> <span class="n">item_name</span><span class="o">);</span>
+      <span class="nc">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">getBaseContext</span><span class="o">(),</span> <span class="n">message</span><span class="o">,</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+:ET

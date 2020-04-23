@@ -1,0 +1,2 @@
+I"(<p>Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type <code class="highlighter-rouge">...</code> , we use the <code class="highlighter-rouge">vararg</code> keyword instead.</p>
+:ET

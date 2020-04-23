@@ -1,0 +1,29 @@
+I"�<p>To create a backup of a mysql db, the command we need is the following;</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mysqldump <span class="nt">-u</span> UserName <span class="nt">-p</span> <span class="nt">--all-databases</span> <span class="o">&gt;</span> /path/to/file.backup
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">--all-databases</code> flag will back up everything inside of the MySQL instance. If you don’t want to backup everything, specify the database name(s) instead of backing up everything.</p>
+
+<p>The result of mysqldump is a series of SQL commands that contains both the structure and contents of the database.</p>
+
+<p><strong>How to Restore</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql <span class="nt">-u</span> UserName <span class="nt">-p</span> 
+
+mysql <span class="o">&gt;</span> create database name_of_name_database
+mysql <span class="o">&gt;</span> use name_of_new_database
+mysql <span class="o">&gt;</span> .<span class="se">\f</span>ile.backup
+</code></pre></div></div>
+
+<p>Some extra things you can do to make this a bit more robust.</p>
+
+<ol>
+  <li>Put this command in a cron job</li>
+  <li>Refine by gzipping redirected text-output</li>
+  <li>Refine further by adding time stamp to the backup files</li>
+  <li>Refine by setting up Rsync to work with this backup approach</li>
+  <li>I could actually put backup file inside DropBox, then I won’t need rsync. However, mostly likely, if the installation is enterprise grade, chances are the Dropbox code won’t be an option</li>
+</ol>
+
+:ET

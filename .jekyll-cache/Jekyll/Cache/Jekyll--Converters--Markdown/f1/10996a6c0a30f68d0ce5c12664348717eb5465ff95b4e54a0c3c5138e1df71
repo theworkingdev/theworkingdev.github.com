@@ -1,0 +1,21 @@
+I"�<p>This project will let you control a music player daemon running on a Linux box. The Linux box (headphone jack) will be connected into a stereo receiver (input. It’s an over engineered music player. But if you don’t have anything better to do with an old notebook, this might save it from the junk yard.</p>
+
+<p>For this project, I used the following;</p>
+
+<ul>
+  <li>an old notebook with WiFi still working</li>
+  <li>an old stereo receiver with 3.5mm stereo jack input</li>
+</ul>
+
+<p>Installation and Configuration</p>
+
+<ol>
+  <li>Get the MPD (music player daemon)  – sudo apt-get install mpd mpc</li>
+  <li>Edit the configuration file located at /etc/mpd.conf</li>
+  <li>Find the entry on the configuration file where you are supposed to point to where you music files are</li>
+  <li>Save the config file</li>
+  <li>Restart the Music Player Daemon – sudo /etc/init.d/mpd restart</li>
+  <li>Create the database for the first time to add all songs to the playlist – sudo mpd –create-db then sudo mpd add l</li>
+  <li>Install MPD clients on your other computers. At the time I wrote this, I used ncmpc. Lots of things has changed since then, Wikia.com has a list of MPD clients</li>
+</ol>
+:ET

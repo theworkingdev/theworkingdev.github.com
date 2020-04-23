@@ -1,0 +1,2 @@
+I"Ë<p>Start by connecting to the database. PHP is a server side scripting language and heavily dependent on the http protocol. The  request/response nature of http means that whatever data or information you created on previous requests, will not matter in future request. Everytime you need to do something that involves a database operation (insert, delete, update or select), you need to make a connection to the database before you can do anything else.</p>
+:ET

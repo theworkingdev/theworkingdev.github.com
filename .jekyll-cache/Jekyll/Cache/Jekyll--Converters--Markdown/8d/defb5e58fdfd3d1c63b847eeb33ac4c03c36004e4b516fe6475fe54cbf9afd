@@ -1,0 +1,31 @@
+I"g<p>BroadcastReceivers are one of the four Android components (the other three are Activities, Services and ContentProviders). A BroadcastReceiver is something that waits for a specific Intent to be broadcasted, and then it acts on it.</p>
+
+<p>To create a simple broadcast receiver, you need to create a class that extends android.content.BroadcastReceiver; like this</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyReceiver</span> <span class="kd">extends</span> <span class="nc">BroadcastReceiver</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onReceive</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">,</span> <span class="nc">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MyReceiver"</span><span class="o">,</span> <span class="s">"I got it"</span><span class="o">);</span>
+    <span class="nc">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="s">"I got it"</span><span class="o">,</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<p>This class, by itself, won’t do much unless we make it listen to a specific Intent. One of the ways to do that is to tell the Android runtime that want to listen to a specific Intent. We can do that by adding an intent-filter to the project’s manifest file.; like this</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;receiver</span> <span class="na">android:name=</span><span class="s">".MyReceiver"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;intent-filter&gt;</span>
+    <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.workingdev.DOSOMETHING"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/receiver&gt;</span>
+</code></pre></div></div>
+
+<p>This intent-filter says that if an Intent like “com.workingdev.DOSOMETHING” is broadcasted, we’d like to respond to it.</p>
+
+<p>Run the application. The application does not need to be visible for it to receive the broadcast</p>
+
+<p>Send a broadcast message. There are two ways to send a broadcast, programmatically and via the adb shell. To send the message using adb, use the command from a terminal window</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell am broadcast <span class="nt">-a</span> com.workingdev.DOSOMETHING
+</code></pre></div></div>
+:ET

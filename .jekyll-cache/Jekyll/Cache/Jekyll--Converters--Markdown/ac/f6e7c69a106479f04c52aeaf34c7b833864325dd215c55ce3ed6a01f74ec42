@@ -1,0 +1,15 @@
+I"�<p>Click the Apple logo at upper-left most corner of your desktop, click Print and Fax</p>
+
+<p>On Printers column, click the plus sign to add a printer, there is a + sign at the lower left portion of the dialog window</p>
+
+<p>Look for the Protocol settings. Click the dropdown and set it to “Internet Printing”</p>
+
+<p>On the address field, type the IP address or the hostname of the CUPS server, just write the hostname, don’t include the protocol. Hence you would write CupsIpAddress, not <code class="highlighter-rouge">ipp://CupsIpAddress</code></p>
+
+<p>On the queue input field, type the Queue name of the target printer attached to the CUPS server, the queue name of printers in a CUPS server is always prefixed by the word printers/. You need to ask your administrator what is the name of the printer as defined on the CUPS server. If you are the administrator, the name of the queue name is the same as what you typed on the name field of a printer when you were installing your printer to the CUPS server. What you need to type on the queue input field is <code class="highlighter-rouge">printers/nameofprinteroncups</code></p>
+
+<p>On the name field, type something that you can easily recognize, when you have several printers installed on your MAC, it helps if the printer names are easily recognizable.</p>
+
+<p>On the “print using” field, choose “select a driver to use”, and just choose your appropriate driver .</p>
+
+:ET

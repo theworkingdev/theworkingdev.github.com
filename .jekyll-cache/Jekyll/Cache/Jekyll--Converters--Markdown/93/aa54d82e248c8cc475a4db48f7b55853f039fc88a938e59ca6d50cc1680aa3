@@ -1,0 +1,20 @@
+I"9<p>You can rip YouTube videos from the command line in Linux and OSX. There could be ways to do this in Windows via Cygwin, but I did not try that.</p>
+
+<p>In Debian Linux, or any other distribution that uses the apt or aptitude package manager, you can get the youtube-dl program by pulling them from the repositories. Run the following command on a terminal window</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get <span class="nb">install </span>youtube-dl
+youtube-dl &lt;youtube vid URL&gt;
+
+</code></pre></div></div>
+
+<p>It’s also available on macOS. If you use brew, you can get it with this</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew update
+brew <span class="nb">install </span>youtube-dl
+
+youtube-dl &lt;youtube vid URL&gt;
+</code></pre></div></div>
+
+<p>I think you can also do this in Windows with Cygwin, but I haven’t tried that.</p>
+
+:ET

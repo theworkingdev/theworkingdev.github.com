@@ -1,0 +1,62 @@
+I"�<p>Docco is a quick-and-dirty, hundred-line-long, literate-programming-style documentation generator. It produces HTML that displays your comments alongside your code. It can be used to generate documentation for JavaScript, CoffeeScript, Python and Ruby. But it won’t work for Java source files. There are ports of this script so that it can work with other languages, including Java, some prominent projects are Jocco and Marginalia (for Clojure).</p>
+
+<p>The solution on this page is a hack. It is not a port of Docco for Java the way Jocco or Marginalia is. There, you’ve been warned.</p>
+
+<p>Get nodejs and the node package manager.</p>
+
+<p>Docco depends those two. We can install these tools either by using Homebrew or by downloading the installation package of nodejs from http://nodejs.org</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install</span> <span class="nt">-g</span> node
+brew <span class="nb">install</span> <span class="nt">-g</span> npm
+</code></pre></div></div>
+
+<p>Then, get Docco using the node package manager
+sudo npm -g install docco</p>
+
+<p>Next, install pygments</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>easy_install pygments
+</code></pre></div></div>
+
+<p>Next, edit the docco script</p>
+
+<p>The script file of docco can be usually found at <code class="highlighter-rouge">/usr/local/lib/node_modules/docco/lib/docco.js</code> folder.</p>
+
+<p>Edit the script and add the .java entry to the languages object literal.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">languages</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">.coffee</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">coffee-script</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">symbol</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">.js</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">javascript</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">symbol</span><span class="p">:</span> <span class="dl">'</span><span class="s1">//</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">.rb</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ruby</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">symbol</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">.py</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">python</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">symbol</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="dl">'</span><span class="s1">.java</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">java</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">symbol</span><span class="p">:</span> <span class="dl">'</span><span class="s1">//</span><span class="dl">'</span>
+ <span class="p">}</span>
+  <span class="p">};</span>
+</code></pre></div></div>
+
+<p>The code snippet above can be found somewhere between line 90 to line 120 of docco.js. The java entry was added so docco can generate nice docs for Java source files.</p>
+
+<p>Remember to write your comments using the C++ style (//). Docco will not parse the comments using JavaDoc style or C style comment block.</p>
+
+<p>Using docco is very simple, run it against any supported file, for example</p>
+
+<p>Now, you can test it.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docco MyProgram.java<span class="sb">`</span>
+</code></pre></div></div>
+
+:ET

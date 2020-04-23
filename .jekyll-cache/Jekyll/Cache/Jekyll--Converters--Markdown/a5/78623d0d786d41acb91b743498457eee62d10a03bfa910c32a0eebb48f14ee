@@ -1,0 +1,2 @@
+I"ï<p>BroadcastReceivers are one of the four Android components (the other three are Activities, Services and ContentProviders). A BroadcastReceiver is something that waits for a specific Intent to be broadcasted, and then it acts on it.</p>
+:ET

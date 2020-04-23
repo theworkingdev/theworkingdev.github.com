@@ -1,0 +1,123 @@
+I"94<p>Start by connecting to the database. PHP is a server side scripting language and heavily dependent on the http protocol. The  request/response nature of http means that whatever data or information you created on previous requests, will not matter in future request. Everytime you need to do something that involves a database operation (insert, delete, update or select), you need to make a connection to the database before you can do anything else.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// filename db.php
+<span class="cp">&lt;?php</span>
+<span class="nb">define</span><span class="p">(</span><span class="s2">"DBSERVER"</span> <span class="p">,</span> <span class="s2">"localhost"</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s2">"DBUSER"</span> <span class="p">,</span> <span class="s2">"theuser"</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s2">"DBPASS"</span> <span class="p">,</span> <span class="s2">"thepassword"</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s2">"DBNAME"</span> <span class="p">,</span> <span class="s2">"thedb"</span><span class="p">);</span>
+
+<span class="k">global</span> <span class="nv">$cn</span><span class="p">;</span>
+<span class="nv">$cn</span> <span class="o">=</span> <span class="nb">mysqli_connect</span><span class="p">(</span><span class="nx">DBSERVER</span><span class="p">,</span><span class="nx">DBUSER</span><span class="p">,</span><span class="nx">DBPASS</span><span class="p">,</span><span class="nx">DBNAME</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nx">mysqli_connect_errno</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">die</span><span class="p">(</span><span class="s2">"DBCONNECT | database connection failed"</span> <span class="o">.</span> <span class="nx">mysqli_connect_error</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>The code above is boilerplate, the usual practice is to write this code on a separate file e.g. an include file and “include” or “require” it before doing some other database handling codes like inserts or updates etc.</p>
+
+<p><strong>How to fetch just one record</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users;"</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+
+<span class="nx">row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>Notice the <strong>require_once</strong> statement on the first line. We need to connect to the database first before we can proceed with fetching a record.</p>
+
+<p><strong>How to fetch more than one record</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users"</span><span class="p">;</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+
+<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nx">fname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">];</span>
+  <span class="nx">lname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="s1">'lname'</span><span class="p">];</span>
+  <span class="k">echo</span> <span class="s2">"</span><span class="si">{</span><span class="nv">fname</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nv">lname</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>The <strong>mysqli_fetch_assoc</strong> will return an associative array rather than a basic array. You may find, in the course of writing CRUD applications, that associative arrays are more useful than basic arrays. It is more intuitive to read a code like <strong>$fname = $row[“firstname”]</strong> rather than a code like <strong>$fname = $row[0]</strong></p>
+
+<p>There maybe times when you need to work with numeric arrays, for example, if you need to write a pretty generic code that can traverse any given result from <strong>mysqli_fetch</strong>. To work with numeric arrays, you can use the following code</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users"</span><span class="p">;</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+
+<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nb">mysqli_fetch</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">MYSQL_NUM</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nx">fname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="nx">lname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="k">echo</span> <span class="s2">"</span><span class="si">{</span><span class="nv">fname</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nv">lname</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>How to update a record</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nx">idno</span>  <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'idno'</span><span class="p">];</span>
+<span class="nx">fname</span> <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">];</span>
+<span class="nx">lname</span> <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'lastname'</span><span class="p">];</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"UPDATE users SET firstname=</span><span class="si">{</span><span class="nv">$fname</span><span class="si">}</span><span class="s2">,
+          lastname=</span><span class="si">{</span><span class="nv">$lname</span><span class="si">}</span><span class="s2">
+          WHERE idno=</span><span class="si">{</span><span class="nv">$idno</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+ 
+</code></pre></div></div>
+
+<p>The code above is a typical program that handles a form submission. the <strong>fname</strong>, <strong>lname</strong> and <strong>idno</strong> variables were extracted from the <strong>$_POST</strong> superglobal. The code is not very robust though because it will break if the html form sends data like O’Connel or  any other data that needs to be properly escaped first before saving to the database. Most of the time, when you allow the user to type the data which will be saved to a database, you must always ensure that the data is properly escaped. You can do that by using the <strong>mysqli_real_escape_string</strong> function.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
+
+<span class="nx">idno</span>   <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'idno'</span><span class="p">]);</span>
+<span class="nx">fname</span>  <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">]);</span>
+<span class="nx">lname</span>  <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'lastname'</span><span class="p">]);</span>
+
+<span class="nv">$query</span> <span class="o">=</span> <span class="s2">"UPDATE users SET firstname=</span><span class="si">{</span><span class="nv">$fname</span><span class="si">}</span><span class="s2">,
+          lastname=</span><span class="si">{</span><span class="nv">$lname</span><span class="si">}</span><span class="s2">
+          WHERE idno=</span><span class="si">{</span><span class="nv">$idno</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+
+</code></pre></div></div>
+
+<p>The <strong>mysqli_real_escape_string</strong> function takes two parameters. The first one is <strong>connection</strong> variable and the second parameter, obviously, is the actual string data that you would like to escape.</p>
+
+:ET

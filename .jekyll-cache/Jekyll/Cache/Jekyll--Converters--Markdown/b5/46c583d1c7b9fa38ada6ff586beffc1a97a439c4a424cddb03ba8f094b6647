@@ -1,0 +1,108 @@
+I"Y&<p>This section is not about some spiffy tool that lets put breakpoints in your IDE or something that allows you to step through your code line-by-line. Nothing like that. This is about how to use a crude and old technique of debugging. Outputting something into your screen at specific points in the code.</p>
+
+<p>In Core Java, you can simply use the System.outprintln(), it works a little differently in Android.</p>
+
+<p>You can still write System.out.println in your code but it won’t show up on the Android screen. The target of println is the stdout, hence it will show up on your android debugger session (adb) and not the Android device or emulator. Also, instead of using println, use the Log class instead if you need to insert some debugging info on your app.</p>
+
+<p>A basic use of the Log class is as shown below.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAndroidApp</span> <span class="kd">extends</span> <span class="nc">Activity</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">TAG</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+    <span class="o">....</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">someCallBack</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"string to log"</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">someMethod</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"string to log"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>On a terminal window, run <code class="highlighter-rouge">adb logcat</code>. The logcat utility supports a couple of flags. Here’s how you might use them</p>
+
+<ul>
+  <li><code class="highlighter-rouge">adb logcat</code> — Prints everything that happens to the device, on the screen. You probably don’t want this</li>
+  <li><code class="highlighter-rouge">adb logcat * -S</code> — Direct opposite of adb logcat, this is very silent, you won’t see anything (meaningful)</li>
+  <li><code class="highlighter-rouge">adb logcat -s </code>— filters the output messages that matches the TAG name</li>
+</ul>
+
+<p>Okay. Now lets try them on using the callbacks of the Activity class.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.thelogbox</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.app.Activity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.View</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.LinearLayout</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">LCycleView</span> <span class="kd">extends</span> <span class="nc">LinearLayout</span> <span class="kd">implements</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span> <span class="o">{</span>
+
+  <span class="nc">LCycleView</span><span class="o">(</span><span class="nc">Context</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+    <span class="n">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Clicked"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LCycle</span> <span class="kd">extends</span> <span class="nc">Activity</span> <span class="o">{</span>
+
+  <span class="cm">/** Called when the activity is first created. */</span>
+
+  <span class="nc">String</span> <span class="no">TAG</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+
+  <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+      <span class="n">setContentView</span><span class="o">(</span><span class="k">new</span> <span class="nc">LCycleView</span><span class="o">(</span><span class="k">this</span><span class="o">));</span>
+
+      <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"onCreate"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onResume</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onResume</span><span class="o">();</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"onResume"</span><span class="o">);</span>
+  <span class="o">}</span>    
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onRestart</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onRestart</span><span class="o">();</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"Restart"</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPause</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onPause</span><span class="o">();</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"Paused"</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onStop</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onStop</span><span class="o">();</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"Stoppped"</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span> 
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">(){</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"Destroy"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The above code is one of the few examples an Android developer might spike while beginning to explore Android programming. After reading all about lifecycle of the Activity class, of course you want to know when the events will actually be fired.</p>
+
+<p>If you simply type adb logcat, everything that an application does (and the operating system) will be displayed on the screen, it will also scroll very fast because there are lots of things that the Android operating system is doing.</p>
+
+<p>If you want to see only the logs associated with your app, type adb <code class="highlighter-rouge">logcat -s com.thelogbox.LCycle</code></p>
+:ET

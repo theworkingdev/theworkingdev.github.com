@@ -1,0 +1,3 @@
+I"1<p>Get the UnifiedLinuxDriver.tar either from the CD that came with the printer or from the Samsung site. You need to navigate the site a little bit. Go to Support and Downloads page 
+Find a way to upload UnifiedLinuxDriver.tar.gz to your headless server. FTP or SCP or even Samba shares should do it</p>
+:ET

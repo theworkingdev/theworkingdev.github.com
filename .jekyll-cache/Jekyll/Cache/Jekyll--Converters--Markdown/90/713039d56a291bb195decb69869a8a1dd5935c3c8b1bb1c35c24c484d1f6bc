@@ -1,0 +1,44 @@
+I"�<p>Android Intents can do so much more than just just simpy activate or launch another Activity in your app, it can also carry data. This capability lets you pass around data between components.</p>
+
+<p>Let’s say you have two Activities; MainActivity and SecondActivity, when a Button is clicked in MainActivity, you’d like to launch SecondActivity but you would also like pass some data to it. The steps to do this are as follows;</p>
+
+<ol>
+  <li>Create an Intent, for the purposes of our example here, it will be an explicit Intent,</li>
+  <li>Add data to the intent using the putExtra method</li>
+  <li>Launch the other Activity by calling the startActivity method, at this point, the Android runtime will launch SecondActivity</li>
+  <li>Within the onCreate method of SecondActivity, we can extract the data from the Intent by using the getExtra method
+Intents can carry data</li>
+</ol>
+
+<p><img src="/images/intents-sequence-diagram.png" alt="" /></p>
+
+<aside><strong>NOTE</strong> 
+Most of the function calls in Android like startActivity, onCreate etc. are asynchronous — that’s why the arrows used in the sequence diagram are half-stick arrows. The sequence of calls as shown here are approximations only, they may not actually happen in that order
+</aside>
+
+<p>Somewhere in MainActivity’s event handling code, you could write something like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+  <span class="kd">val</span> <span class="py">intent</span> <span class="p">=</span> <span class="nc">Intent</span><span class="p">(</span><span class="k">this</span><span class="nd">@MainActivity</span><span class="p">,</span> <span class="nc">SecondActivity</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span> <span class="c1">// (1)</span>
+  <span class="n">intent</span><span class="p">.</span><span class="nf">putExtra</span><span class="p">(</span><span class="s">"main_activity_data"</span><span class="p">,</span> <span class="n">editText</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">toString</span><span class="p">())</span> <span class="c1">// (2)</span>
+  <span class="nf">startActivity</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span> <span class="c1">// (3)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> Create an explicit Intent. 1st argument is a Context object and 2nd argument is the Class object of SecondActivity</p>
+
+<p><strong>(2)</strong> Assuming there is an editText View object in your activity_main.xml, were getting the runtime value of editText and setting it as value of “main_activity_data”. The putExtra method of the Intent object takes in a key-value pair. The first parameter is the key (“main_activity_data”) and it’s value is the runtime value of editText</p>
+
+<p><strong>(3)</strong> Now, we launch the Intent</p>
+
+<p>To receive the data in SecondActivity, you can do something like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">myintent</span> <span class="p">=</span> <span class="nf">getIntent</span><span class="p">()</span> <span class="c1">// (1)</span>
+<span class="kd">val</span> <span class="py">data</span> <span class="p">=</span> <span class="n">myintent</span><span class="p">.</span><span class="nf">getStringExtra</span><span class="p">(</span><span class="err">“</span><span class="n">main_activity_data</span><span class="err">”</span><span class="p">)</span> <span class="c1">// (2)</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> Get a reference to Intent object that’s associated with SecondActivity. We are not creating a new Intent in here. The Intent that you want is the one that’s already associated with SecondActivity, because that’s the Intent that was launched by MainActivity. That’s the Intent that carries the data</p>
+
+<p><strong>(2)</strong> We are using getStringExtra because we know that what we put in here was a String</p>
+
+:ET

@@ -1,0 +1,24 @@
+I"I<p>Python has counting numbers (ints) and measuring numbers (floats). You already know what these are, the ints are whole numbers, that’s why we use them for counting and floats are the ones with decimal parts — that’s why they are perfect for doing measurements.</p>
+
+<p>Unlike in other languages, Python does not require you to declare the type of the number</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ma</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">mb</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">ma</span> <span class="o">/</span> <span class="n">mb</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mc</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'ma is type {0}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ma</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'mb is type {0}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">mb</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'mc is type {0}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">mc</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>This program outputs the following.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ma</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">mb</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">ma</span><span class="p">)))</span>  <span class="o">//</span> <span class="n">prints</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">float</span><span class="o">=</span><span class="s">""</span><span class="o">&gt;</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">mb</span><span class="p">)))</span>    <span class="o">//</span> <span class="n">prints</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">int</span><span class="o">=</span><span class="s">""</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+:ET

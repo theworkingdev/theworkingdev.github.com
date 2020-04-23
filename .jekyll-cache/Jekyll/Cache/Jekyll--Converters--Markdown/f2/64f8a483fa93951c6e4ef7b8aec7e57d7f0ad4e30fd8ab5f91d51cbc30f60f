@@ -1,0 +1,2 @@
+I"Á<p>When you pass arguments to Node program in a command line, they are kept in an array inside the process object. The name of the array is argv. The contents of process.argv is as follows</p>
+:ET

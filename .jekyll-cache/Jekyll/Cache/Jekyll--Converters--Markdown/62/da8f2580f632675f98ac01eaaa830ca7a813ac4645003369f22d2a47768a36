@@ -1,0 +1,2 @@
+I"¦<p>Your programs will deal with date and times some of the time. On some occassions, the date and time data will be inputs coming from an html view. These inputs will be in string format which means you need to transform them to the appropriate date/time format before you can persist them to the database. On other occassions,  you will read the date/time data from a database and then display them in the html view.</p>
+:ET

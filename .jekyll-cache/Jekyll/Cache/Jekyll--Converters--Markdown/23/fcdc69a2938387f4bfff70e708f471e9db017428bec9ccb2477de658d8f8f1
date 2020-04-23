@@ -1,0 +1,52 @@
+I"G<p>In a few hours, I will head to Asia Pacific College to give an introductory talk about Android applications development. I haven’t been to APC for a very long time, and I haven’t talked in front of a crowd for a very long time as well, much less give an introductory talk inside an auditorium—but no matter, I think all will be well.</p>
+
+<p>I think I will structure the talk like this;</p>
+
+<p><strong>What is it</strong></p>
+
+<p>A Linux based Operating System for mobile devices
+Developed by OHA (Open Handset Alliance) led by Google Inc
+A rich development platform for mobile applications
+The timeline</p>
+
+<ul>
+  <li>2003 - Android Inc., was founded by Andy Rubin</li>
+  <li>2005 - Android Inc was Acquired by Google</li>
+  <li>2008 - Android v1.0</li>
+  <li>2009 - Android v1.1</li>
+  <li>2009 - v1.5 (CupCake), v1.6 (Donut)</li>
+  <li>2009 - v2.0/2.1 (Eclair)</li>
+  <li>2010 - v2.2 (Froyo), v2.3 (GingerBread)</li>
+  <li>2011 - v3.0 (HoneyComb)</li>
+  <li>2011 - v4.0 (Ice Cream Sandwich)</li>
+</ul>
+
+<p><strong>Why bother</strong></p>
+
+<p>Because of;</p>
+
+<ul>
+  <li>10 Billion apps downloaded</li>
+  <li>Hundred thousand device activations per day</li>
+  <li>500,000 apps downloaded from Google Play (IOS has roughly same number)</li>
+</ul>
+
+<p><strong>Pros of Android development</strong></p>
+
+<ul>
+  <li>Low barrier to entry. Android SDK runs on Linux, OSX and Windows</li>
+  <li>Volume. Lots of people are downloading apps
+*( Easy to get started. Android apps are unlike enterprise apps, they have shorter  development time</li>
+</ul>
+
+<p><strong>Things you need to get started</strong></p>
+
+<ul>
+  <li>Android SDK (downloadable from developer.android.com)</li>
+  <li>A development tool (Eclipse, NetBeans – a programmer’s editor will do)</li>
+  <li>JDK 1.5 or 1.6</li>
+  <li>Apache Ant</li>
+  <li>Java programming background</li>
+</ul>
+
+:ET

@@ -1,0 +1,2 @@
+I"<p>An extension function in Kotlin allows to add behavior to an existing class, including the ones written in Java, without using inheritance. It essentially lets us define a function that can be invoked as a member of the class, but the function is implemented outside the class</p>
+:ET

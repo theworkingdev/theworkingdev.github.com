@@ -1,0 +1,76 @@
+I"�,<p>Two basic data stuctures you can use in JavaScript are Arrays and Objects. Unlike simple types like String, Number or Boolean, Arrays and Objects represent a collection of values, not just single or scalar values.</p>
+
+<p>Think of an Object type like a dictionary or the yellow pages. The items in a dictionary always comes in pair. On the one hand, we have term and on the other, it’s definition. An object’s structure is very much like that, but we don’t call it term and definition, we call it key and value instead. An Object may contain multiple key-value pairs but keep in mind that the key has to be unique.</p>
+
+<p>The value part of each pair could be anything. It could be simple data (Numbers, Booleans, Strings) or it could be complex data (Arrays, Objects or functions).</p>
+
+<p>There are a couple of ways to create objects in JS.</p>
+
+<ol>
+  <li>Using object literals</li>
+  <li>Using the new keyword against the Object type</li>
+  <li>Constructor functions</li>
+</ol>
+
+<p>Try your best to ignore number 3 above (at least for now). We will circle around that later when we get to JavaScript OOP.</p>
+
+<h2 id="object-literals">Object Literals</h2>
+
+<p>Object literals have very simple construction. The code sample below illustrates how to use object literals in your code. Object literals are also known as JSON — short for JavaScript Object Notation.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">// this one constructs an empty object</span>
+<span class="kd">var</span> <span class="nx">pt</span>  <span class="o">=</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span> <span class="c1">// an object with simple data types as members</span>
+<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John Doe</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">johndoe@somewhere.com</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span> <span class="c1">// an object that has two members, both of which are Strings</span>
+</code></pre></div></div>
+
+<p>When you use object literals to initialize objects, don’t forget to separate the pairs using comma. You can add properties (the key-value pair) to objects by simply declaring the member–using the dot notation–and assigning them values</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">person</span><span class="p">.</span><span class="nx">date_hired</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">some date value</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">address</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">some address</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Similarly, you can access values of the object properties using the dot notation as well, although this is not the only way.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>JavaScript’s use of dot notation to access object properties and method will feel very familiar with programmers because a lot of other languages use this notation too. What might not feel familiar will be the fact that JS can also access object properties using square brackets. Like this</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">person</span><span class="p">[</span><span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">];</span>
+<span class="nx">person</span><span class="p">[</span><span class="dl">"</span><span class="s2">address</span><span class="dl">"</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>JS objects are actually associative arrays—I need to clarify one point, when I write Array (capitalized) I am referring to the JavaScript complex type. When I write array (lowercase) I am referring to the array data structure in general, what I mean by this is a collection of rows (and sometimes columns). An object looks like an array because it a collection of named values, this is the reason you can use the square braces approach to reference a member of a specific object.</p>
+
+<h2 id="arrays">Arrays</h2>
+
+<p>An Array is also a collection of values. Unlike an object, an Array is a collection of ordered values, not named values. Each member of an Array is called an element. Each element is denoted by a numeric position in the array–the position is called an index. Like objects, Arrays can be created using a variety of ways;</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">//an empty array</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">];</span> <span class="c1">//an array with 7 elements</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">World</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">];</span> <span class="c1">//an array with members of diff types</span>
+<span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]];</span> <span class="c1">// an array with members, which are also arrays. </span>
+<span class="nx">The</span> <span class="nx">other</span> <span class="nx">way</span> <span class="nx">to</span> <span class="nx">create</span> <span class="nx">an</span> <span class="nb">Array</span> <span class="nx">is</span> <span class="nx">to</span> <span class="nx">use</span> <span class="nx">the</span> <span class="nb">Array</span><span class="p">()</span> <span class="kd">constructor</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> <span class="c1">//equivalent to var a = []</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">World</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mh">0xFF</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">//with 5 new elements</span>
+</code></pre></div></div>
+
+<p>If you call the Array constructor with a single integer as parameter, it means you are specifying the length of the Array–you are not declaring an array with a single element, and the number you passed is the value of the first element.</p>
+
+<p>Array members can be retrieved by accessing the individual elements. Arrays are zero-based, hence the first element is index 0.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span>  <span class="mi">8</span><span class="p">;</span> <span class="c1">//assigns the value 8 to the first element of the Array</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">//prints the value of the third element (remember, zero based)</span>
+</code></pre></div></div>
+
+<p>The characteristic of arrays having index positions makes them ideal for iterating using a for-loop. You cannot access members of an array using the dot notation–like you did when you accessed members of an object.</p>
+
+:ET

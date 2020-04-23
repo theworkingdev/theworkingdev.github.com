@@ -1,0 +1,123 @@
+I"C0<p>What we want to do;</p>
+
+<ul>
+  <li>Learn to open or create a <strong>sqlite3</strong> database programmatically</li>
+  <li>Learn to view the contents of  a sqlite database in the adb shell</li>
+  <li>Learn the various objects that are needed to create a database, create a table, save a record to a table and read records from a table</li>
+  <li>Learn to use the scrollview</li>
+</ul>
+
+<p><strong>1. Create a project with an empty activity</strong>,</p>
+
+<p>Named the project “databasesample”. Add two buttons, a scrollview and a textview. The textview should be nested inside the scrollview.</p>
+
+<p><img src="/images/basic-sqlite-lab.png" alt="" /></p>
+
+<p>Parts of the main activity xml is shown below. Take care that the textview is nested inside the scrollview. When the number rows in the database table exceeds the height of the textview, some records will not be visible. The textview does not have a scrollable viewport, but the scrollview has. That is the reason we embedded the textview inside a scrollview.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;RelativeLayout&gt;</span>
+  <span class="nt">&lt;ScrollView</span>
+    <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+    <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+    <span class="na">android:id=</span><span class="s">"@+id/scrollView"</span>
+    <span class="na">android:layout_centerVertical=</span><span class="s">"true"</span>
+    <span class="na">android:layout_alignParentStart=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;TextView</span>
+      <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+      <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+      <span class="na">android:id=</span><span class="s">"@+id/textView"</span>
+      <span class="na">android:layout_below=</span><span class="s">"@+id/scrollView"</span>
+      <span class="na">android:layout_toEndOf=</span><span class="s">"@+id/textView"</span>
+      <span class="na">android:layout_marginTop=</span><span class="s">"44dp"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/ScrollView&gt;</span>
+<span class="nt">&lt;/RelativeLayout&gt;</span> 
+</code></pre></div></div>
+
+<p><strong>2. Create some private members</strong> of the main activity class</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">AppCompatActivity</span> <span class="o">{</span>
+  <span class="nc">String</span> <span class="no">DB</span> <span class="o">=</span> <span class="s">"mydb"</span><span class="o">;</span>
+  <span class="nc">SQLiteDatabase</span> <span class="n">db</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="nc">TextView</span> <span class="n">tv</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    
+  <span class="nc">String</span> <span class="n">stmt1</span> <span class="o">=</span> <span class="s">"CREATE TABLE IF NOT EXISTS MyTable (lastname VARCHAR, firstname VARCHAR, email VARCHAR)"</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">stmt2</span> <span class="o">=</span> <span class="s">"INSERT INTO MyTable VALUES ('Doe', 'John', 'jdoe@gmail.com')"</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">stmt3</span> <span class="o">=</span> <span class="s">"INSERT INTO MyTable VALUES ('Gosling', 'James', 'jgosling@sun.com')"</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">stmt4</span> <span class="o">=</span> <span class="s">"INSERT INTO MyTable VALUES ('Ritchie', 'Dennis', 'dmr@belllabs.com')"</span><span class="o">;</span>
+
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<p>The variables <strong>mydb</strong>, <strong>db</strong> and <strong>tv</strong> will be accessed later by the methods createRecords and readRecords, that is the reason why they needed to be defined as top level class members.</p>
+
+<p><strong>3. Implement the onCreate</strong> method of the main activity.</p>
+
+<p>Add event listeners for the buttons “Read records” and “Insert records”.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">Button</span> <span class="n">btnCreate</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Button</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">insertButton</span><span class="o">);</span>
+    <span class="nc">Button</span> <span class="n">btnRead</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Button</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">readButton</span><span class="o">);</span>
+    <span class="n">tv</span> <span class="o">=</span> <span class="o">(</span><span class="nc">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">textView</span><span class="o">);</span>
+    <span class="k">assert</span> <span class="n">btnCreate</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="n">btnCreate</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">createRecords</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+    <span class="k">assert</span> <span class="n">btnRead</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">btnRead</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">readRecords</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+</code></pre></div></div>
+
+<p><strong>4. Implement the createRecord method</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">createRecords</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">openOrCreateDatabase</span><span class="o">(</span><span class="no">DB</span><span class="o">,</span> <span class="no">MODE_PRIVATE</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="n">db</span><span class="o">.</span><span class="na">execSQL</span><span class="o">(</span><span class="n">stmt1</span><span class="o">);</span>
+    <span class="n">db</span><span class="o">.</span><span class="na">execSQL</span><span class="o">(</span><span class="n">stmt2</span><span class="o">);</span>
+    <span class="n">db</span><span class="o">.</span><span class="na">execSQL</span><span class="o">(</span><span class="n">stmt3</span><span class="o">);</span>
+    <span class="n">db</span><span class="o">.</span><span class="na">execSQL</span><span class="o">(</span><span class="n">stmt4</span><span class="o">);</span>
+    <span class="n">db</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+  <span class="o">}</span> 
+</code></pre></div></div>
+
+<p><strong>5. Verify creation of the database</strong> using the android device monitor</p>
+
+<p><img border="0" height="376" src="https://1.bp.blogspot.com/-F7WiODNYHTU/W2vECn3V4bI/AAAAAAAABOg/xzAHMPY4zJsHq-aYaXMwwXoXnvHcmPbAwCK4BGAYYCw/s640/android-device-monitor-db.png" width="640" /></p>
+
+<p><strong>6. Inspect contents of the database</strong> using the adb shell</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell
+
+<span class="c"># sqlite3 /data/data/com.example.ted.databasesample/databases/mydb</span>
+sqlite&gt; .databases
+sqlite&gt; .tables
+sqlite&gt; .schema MyTable
+sqlite&gt; SELECT <span class="k">*</span> FROM MyTable<span class="p">;</span>
+sqlite&gt; .quit
+</code></pre></div></div>
+
+<p><strong>7. Implement the readRecords method</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">readRecords</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">openOrCreateDatabase</span><span class="o">(</span><span class="no">DB</span><span class="o">,</span> <span class="no">MODE_PRIVATE</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="nc">Cursor</span> <span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">rawQuery</span><span class="o">(</span><span class="s">"SELECT * FROM MyTable"</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="c1">//c.moveToFirst();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">moveToNext</span><span class="o">())</span> <span class="o">{</span>
+      <span class="cm">/*   System.out.println(c.getString(c.getColumnIndex("lastname")));
+    System.out.println(c.getString(c.getColumnIndex("firstname")));
+System.out.println(c.getString(c.getColumnIndex("email")));
+      */</span>
+      <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">+</span> <span class="s">" , "</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="mi">2</span><span class="o">));</span>
+      <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+      <span class="n">tv</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+:ET

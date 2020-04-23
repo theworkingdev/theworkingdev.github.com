@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to use Anko’s doAsync for background task | The Working Dev</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="How to use Anko’s doAsync for background task" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I wrote a series of post on how to handle background processing in an Android app. You don’t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following." />
+<meta property="og:description" content="I wrote a series of post on how to handle background processing in an Android app. You don’t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following." />
+<link rel="canonical" href="http://localhost:4000/2018/08/android-using-ankos-doasync-to-do.html" />
+<meta property="og:url" content="http://localhost:4000/2018/08/android-using-ankos-doasync-to-do.html" />
+<meta property="og:site_name" content="The Working Dev" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-08-01T00:00:00+08:00" />
+<script type="application/ld+json">
+{"headline":"How to use Anko’s doAsync for background task","dateModified":"2018-08-01T00:00:00+08:00","url":"http://localhost:4000/2018/08/android-using-ankos-doasync-to-do.html","datePublished":"2018-08-01T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/08/android-using-ankos-doasync-to-do.html"},"description":"I wrote a series of post on how to handle background processing in an Android app. You don’t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">The Working Dev</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How to use Anko&#39;s doAsync for background task</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-08-01T00:00:00+08:00" itemprop="datePublished">Aug 1, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I wrote a series of post on how to handle background processing in an Android app. You don’t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following.</p>
+
+<ol>
+  <li><a href="/2018/07/android-jank_31.html">Android Jank</a>. Running codes in the background using Java Threads</li>
+  <li><a href="/2018/07/android-threads-handlers-and-messages.html">Android Threads, Handlers and Messages</a>. Doing background work using Handlers and Messages, unlike Threads, Handler’s and Messages are part of the Android Framework (not part of Java)</li>
+  <li><a href="/2018/08/android-asynctask.html">Android AsyncTask</a>. Doing work in the background using the AsyncTask class. The AsyncTask, like Handlers and Messages, are also part of the Android Framework</li>
+</ol>
+
+<p>In this post, we’ll take a look at another way to avoid jank. If you haven’t read the three previous post about jank, the following list summarizes what we’re trying to do.</p>
+
+<p>What is jank?. When you try to do too much on the UI Thread, the Android runtime will start dropping frames. When your app’s FPS drops, the UI will stutter, it will be sluggish and annoying to use. This is jank
+How do we avoid it?. Don’t try to do too much on UI Thread. Don’t;
+Read from a large file, or write a large amount of info to a file
+Connect to the network and read from it (or write)
+Compute a complex routine Do these things in background thread
+What is the UI Thread. It’s the original Thread that’s responsible for creating (and modifying) View elements in your app. Some developers refer to UI Thread as the “Main Thread”
+What is a background thread. Any thread that isn’t the UI Thread. You generally create a background thread for your app</p>
+
+<p>Now that you’re all caught up, let’s look at another way to run codes in the background. In this post, we will use the Anko library.</p>
+
+<p>Anko is an Android library written in Kotlin by Jetbrains (the same company that created Kotlin). You can use for wide variety of task but for our purpose, we only need the doAsync portion. As it’s name implies, Anko’s doAsync will let us run codes asynchronously or in the background.</p>
+
+<p>To start using Anko in a project, we need to add it’s dependency to the Gradle file.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+  <span class="o">....</span>
+  <span class="n">implementation</span> <span class="s1">'org.jetbrains.anko:anko-common:0.9'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The doAsync’s code structure is as follows</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">doAsync</span> <span class="p">{</span>
+  <span class="c1">// do things in the background  1</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> In here, you can read or write to large files, download a file from the internet or do a task that will take a long time to complete. This block will execute in a background thread</p>
+
+<p>The next challenge is how to go back to the UI Thread. Remember that a background thread is not allowed to change anything in the UI. Anko’s approach is is probably the simplest of all the other options (Threads, Handlers or AsyncTask).</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">doAsync</span> <span class="p">{</span>
+  <span class="c1">// do things in the background  // (1)</span>
+  <span class="nf">activityUiThread</span> <span class="p">{</span>
+    <span class="c1">// make changes to the UI     // (2)</span>
+    <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="s">"Hello"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> Background processing
+<strong>(2)</strong> Now, you’re back to the UI Thread. It’s that simple. Whenever you need to go back to the UI Thread, just do it inside the activityUiThread block
+The following code example shows a complete listing of a sample Activity which uses Anko’s doAsync to perform a long computation and then write something back to the UI
+MainActivity, annotated code.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span>
+<span class="k">import</span> <span class="nn">android.os.Bundle</span>
+<span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
+<span class="k">import</span> <span class="nn">org.jetbrains.anko.activityUiThread</span>
+<span class="k">import</span> <span class="nn">org.jetbrains.anko.doAsync</span>
+
+<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="nc">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="nf">setContentView</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
+
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>             <span class="c1">// (1)</span>
+      <span class="nf">doAsync</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1</span><span class="o">..</span><span class="m">15</span><span class="p">)</span> <span class="p">{</span>                   <span class="c1">// (2)</span>
+          <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>                <span class="c1">// (3)</span>
+          <span class="nf">activityUiThread</span> <span class="p">{</span>
+            <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>    <span class="c1">// (4)</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> Let’s setup a basic OnClickListener. This will trigger the background task</p>
+
+<p><strong>(2)</strong> Let’s just count from 1 to 15</p>
+
+<p><strong>(3)</strong> This simulates a long running task, our loop will come around 15 times, so the task will take a total of 30 seconds to complete</p>
+
+<p><strong>(4)</strong> Let’s tell the user what’s going on with the app. Update the TextView object with the current value of i</p>
+
+
+  </div><a class="u-url" href="/2018/08/android-using-ankos-doasync-to-do.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">The Working Dev</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:workingdevmedia@gmail.com">workingdevmedia@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://www.twitter.com/lovescaffeine"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">lovescaffeine</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Code samples, snippets and tutorials for the working programmer</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

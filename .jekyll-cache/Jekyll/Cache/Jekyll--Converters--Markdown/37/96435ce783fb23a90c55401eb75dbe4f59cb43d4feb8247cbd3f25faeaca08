@@ -1,0 +1,49 @@
+I"�<p>Python’s <em>while</em> loop behaves exactly as you might expect. It works a lot like in other languages you may have used.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="mi">5</span>             <span class="c1"># (1)
+</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>           <span class="c1"># (2)
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>      <span class="c1"># (3)
+</span>    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">-</span> <span class="mi">1</span> 
+    <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> Initialize a counter variable</p>
+
+<p><strong>(2)</strong> Like many programming languages, Python uses the <em>while</em> keyword for looping. Take note of the following</p>
+<ol>
+  <li>The while block doesn’t use curly braces to define the block body</li>
+  <li>You have to use the colon character to tell the interpreter that it’s a block</li>
+  <li>You don’t have to use a pair parentheses when writing the condition for the while loop</li>
+</ol>
+
+<p><strong>(3)</strong> We’re inside the while loop now. Statements inside the body of loop (or any block, for that matter) has to be indented. This is how Python knows that the statement belongs to a block; no curly braces, remember?</p>
+
+<p>The previous example can also be written like this.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">while</span> <span class="n">count</span> <span class="o">!=</span><span class="mi">0</span> <span class="p">:</span>  
+    <span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">-</span> <span class="mi">1</span>   
+</code></pre></div></div>
+
+<p>Much better than the previous example because;</p>
+<ol>
+  <li>It uses an expression for the <em>while</em> statement instead of the literal <em>True</em>, and because of this;</li>
+  <li>We didn’t need the <em>if</em> block anymore. The purpose of the if block was just to check if we’ve reached zero. It’s redundant now because we’re already checking for zero as part of the <em>while</em> statement</li>
+</ol>
+
+<p>Just the last point before we end the note on the while loop, consider the following code</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">while</span> <span class="n">count</span><span class="p">:</span>       <span class="c1"># (1)
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>     <span class="c1"># (2)
+</span></code></pre></div></div>
+<p><strong>(1)</strong> We didn’t have to compare <em>count</em> to zero because, while the variable <em>count</em> is not yet zero, the expression considered <em>True</em>. Python has this concept of <em>truthy</em> and <em>falsy</em>. Something is considered truthy if it’s value is non-zero. On the flipside of it, something is falsy if it’s zero. This code is legal but I urge you not to use it. Remember the Zen of Python “Explicit is better than implicit” and “Readability counts”
+<strong>(2)</strong> You can also do this in Python, it’s equivalent to <code class="highlighter-rouge">count = count -1</code></p>
+
+:ET

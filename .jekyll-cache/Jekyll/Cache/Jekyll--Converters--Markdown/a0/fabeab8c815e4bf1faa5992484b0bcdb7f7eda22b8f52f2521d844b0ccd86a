@@ -1,0 +1,53 @@
+I"�<p>CIFS is short for Common Internet File System, it’s also known as SMB which is short for Server Message Block.</p>
+
+<p><em>Example 1. How to get smb</em></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>smb smbfs
+</code></pre></div></div>
+
+<p>Edit the samba configuration file which is located in /etc/smb.conf you will need elevated privileges when you edit it. You need to use sudo, like this
+<code class="highlighter-rouge">sudo vim /etc/smb.conf</code></p>
+
+<p>Don’t forget to backup the original configuration file before you do any edits. It might be best to delete all contents of the existing smb.conf and just start with a blank config.</p>
+
+<p>Listing 1 shows a minimal samba configuration</p>
+
+<p><em>Listing 1. minimal /etc/smb.conf</em></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>security=user                     # (1)
+username map=/etc/samba/smbusers  # (2)
+
+[homes]
+comment=Home Directories
+browseable=yes
+writable=yes
+valid=%S ; so that only the defined users can view it
+</code></pre></div></div>
+
+<p><strong>(1)</strong> allow only members of /etc/samba/smbusers</p>
+
+<p><strong>(2)</strong> restrict access only members of smbusers who also have a shell account. A shell account lets you login to linux as a user</p>
+
+<p>The lines under [home] defines which folders Windows users can see, access, and write to, the rest is self explanatory.</p>
+
+<p>Next, edit the Samba users file</p>
+
+<p><em>Listing 2./etc/samba/smbusers</em></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ted=ted
+johndoe=johndoe
+adrianne=dennis
+</code></pre></div></div>
+
+<p>The left hand side is the Samba users name and the right hand side is the shell account. In the example, the Samba user name is “ted” which is mapped to shell account “ted”; the Samba user name is exactly the same as the shell user name.
+Next, set the Samba password for the users, note that the a user’s Samba password is distinct from his shell account’s password.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>smbpasswd <span class="nt">-a</span> ted
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">-a</code> flag is used to create a password entry in /etc/samba/smbpasswd in case it doesn’t exist yet. If the password for the user already exist, the existing password entry will be updated. The shell account for the user must already exist before running this command.</p>
+
+<p>Reboot the box.</p>
+
+<p>The Finder in macOS should be able to see the Samba share, it should also appear to Windows users in Network Places. When the Samba server asks for your password, it’s asking for your Samba password and not your shell account password.</p>
+
+:ET

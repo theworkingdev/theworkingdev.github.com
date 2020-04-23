@@ -1,0 +1,59 @@
+I"s<p>You can create an Array like using the <strong>emptyArray</strong> function, like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">arr</span> <span class="p">=</span> <span class="n">emptyArray</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;()</span>
+</code></pre></div></div>
+
+<p>That creates an empty Array of Strings. The Array is paraemeterized type, so you need to pass the type of data  you want for the Array. The above example, obviously, creates an empty array of String.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">arrInt</span> <span class="p">=</span> <span class="n">emptyArray</span><span class="p">&lt;</span><span class="nc">Int</span><span class="p">&gt;()</span>     <span class="c1">// array of Ints</span>
+<span class="kd">var</span> <span class="py">arrFloat</span> <span class="p">=</span> <span class="n">emptyArray</span><span class="p">&lt;</span><span class="nc">Float</span><span class="p">&gt;()</span> <span class="c1">// array of Floats</span>
+</code></pre></div></div>
+
+<p>Empty arrays aren’t of much use, you need a way to add items to it. Here’s how to do it.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">fruits</span> <span class="p">=</span> <span class="n">emptyArray</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;()</span>
+<span class="n">fruits</span> <span class="p">+=</span> <span class="s">"Apple"</span>
+<span class="n">fruits</span> <span class="p">+=</span> <span class="s">"Banana"</span>
+<span class="n">fruits</span> <span class="p">+=</span> <span class="s">"Orange"</span>
+</code></pre></div></div>
+
+<p>See how easy that was? It’s as simple as concatenating Strings.  But don’t be fooled by the easy syntax, Kotlin Arrays have fixed sizes, like their Java cousins. That means it’s still expensive to do Array operations, like what we just did. In order to add an element to an Array, the runtime needs to;</p>
+
+<ol>
+  <li>Create a new Array that is larger than the old array</li>
+  <li>Copy the contents of the old array to the new one</li>
+  <li>Add the new item to the new Array</li>
+</ol>
+
+<p>The syntactic sugar of Kotlin hides all these ugliness from us, but it’s best to keep this in mind when working with Arrays. If you’re not dealing with too much data, Arrays can be very handy.</p>
+
+<p>Another way to create Arrays is to use <strong>arrayOfNulls</strong> function. Here’s how it looks like</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">fruits</span> <span class="p">=</span> <span class="n">arrayOfNulls</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;(</span><span class="m">3</span><span class="p">)</span> 
+<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="s">"Apple"</span><span class="p">)</span>
+<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s">"Banana"</span><span class="p">)</span>
+<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s">"Orange"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The Int on the Array constructor (3) indicates that we want to create an Array with 3 elements, and then fill them all up with <em>nulls</em></p>
+
+<p>The third way to create Arrays is by using the <strong>arrayOf</strong> constructor function. This is probably the simplest and easiest way to create Arrays. Here’s how it looks like.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">fruits</span> <span class="p">=</span> <span class="nf">arrayOf</span><span class="p">(</span><span class="s">"Apple"</span><span class="p">,</span><span class="s">"Banana"</span><span class="p">,</span><span class="s">"Orange"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This is probably the most natural way to create an Array, so, just use it whenever you can. You don’t have to say what type is it, it can be inferred from the constructor arguments; plus, you can declare and define the array in one line.</p>
+
+<p>Looping through arrays can be simply managed by the following code</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="n">fruits</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Or you can use the forEach technique, it looks like something like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fruits</span><span class="p">.</span><span class="nf">forEach</span> <span class="p">{</span> <span class="nf">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">}</span>
+</code></pre></div></div>
+
+:ET

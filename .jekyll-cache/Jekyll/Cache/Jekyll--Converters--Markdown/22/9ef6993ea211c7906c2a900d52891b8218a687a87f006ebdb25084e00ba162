@@ -1,0 +1,4 @@
+I"�<p>The Snackbar is a view that’s mostly used to give quick feedback to the user, like Toast. It appears at the bottom of the the screen and disappears after some timeout. Sometimes the user can “swipe” the Snackbar to make it disappear. But unlike Toast, you can put some actions in the Snackbar.</p>
+
+<p><img src="/images/android-snackbar-with-action-callback-undo.png" alt="" /></p>
+:ET

@@ -1,0 +1,10 @@
+I"�<ol>
+  <li>Get the tsclient with the command sudo apt-get install xnest</li>
+  <li>Enable xdmcp. Edit the configuration file, it’s located at etc/gdm/gdm.conf</li>
+  <li>Uncomment RemoteGreeter in the daemon section. Delete the pound or sharp sign on theleft of RemoteGreeter</li>
+  <li>Find the xdmcp section and change the value of Enable key, set it to true</li>
+  <li>Log out of Ubuntu in order to restart the gdm. Altenatively, if you don’t want to logout, from the Terminal, you can restart with this command <code class="highlighter-rouge">sudo /etc/init.d/gdm restart</code></li>
+  <li>You can now connect from your Windows machine to an Ubuntu machine using Remote Desktop Protocol</li>
+</ol>
+
+:ET

@@ -1,0 +1,47 @@
+I"ú<p>You have to sign your app before you can sell them and before other people can install them on their devices. Follow the steps below to sign your app.</p>
+
+<p><strong>1. Generate a key</strong></p>
+
+<p>You will need a key to sign your app. This can be generated using the keytool command. The keytool is part the Java SDK. If <JAVA_HOME>/bin folder is part of your system path, you should be able to invoke the keytool command from a terminal window</JAVA_HOME></p>
+
+<p>To generate a key, run the following command from a terminal window</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keytool <span class="nt">-genkey</span> <span class="nt">-v</span> <span class="nt">-keystore</span> thelogbox_key.keystore <span class="nt">-alias</span> thelogbox_key_alias <span class="nt">-keyalg</span> RSA <span class="nt">-keysize</span> 2048 <span class="nt">-validity</span> 10000
+</code></pre></div></div>
+
+<p><strong>2. Use the jarsigner</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jarsigner <span class="nt">-verbose</span> <span class="nt">-sigalg</span> MD5withRSA <span class="nt">-digestalg</span> SHA1 <span class="nt">-keystore</span> my-release-key.keystore my_application.apk alias_name
+</code></pre></div></div>
+
+<p>Substitute the actual name of your application in place of my_application above. The jarsigner prompts you to provide passwords for the keystore and key. It then modifies the apk in-place and signs it accordignly. Note that you can sign an APK multiple times with different keys.</p>
+
+<p>One thing to note is that as of JDK 7, the default signing algorithim has changed, requiring you to specify the signature and digest algorithims, -sigalg and -digestalg, when you sign an APK.</p>
+
+<p><strong>3. Verify that your apk is signed</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jarsigner <span class="nt">-verify</span> my_signed.apk 
+</code></pre></div></div>
+
+<p>You can also use the command</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jarsigner <span class="nt">-verify</span> <span class="nt">-verbose</span> my_application.apk
+</code></pre></div></div>
+
+<p>or this command</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jarsigner <span class="nt">-verify</span> <span class="nt">-verbose</span> <span class="nt">-certs</span> my_application.apk
+</code></pre></div></div>
+
+<p><strong>4. Align the package</strong></p>
+
+<p>Use the <code class="highlighter-rouge">zipalign</code> command on your apk file after you have signed it with your private key. This command ensures that all uncompressed data starts with a particular byte alignment relative to the start of the file, zipalign is part of Android SDK, not the Java SDK.</p>
+
+<p>Ensuring the alignment at 4 byte boundaries has a positive effect on application performance when installed on a device.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zipalign <span class="nt">-v</span> 4 your_project_name-unaligned.apk your_project_name.apk
+</code></pre></div></div>
+
+<p>When aligned, the Android system is able to read files with mmap(), even if they contain binary data with alignment restrictions, rather than copying all of the data from the package. The benefit is a reduction in the amount of RAM consumed by the running application.</p>
+
+:ET
