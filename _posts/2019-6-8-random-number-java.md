@@ -6,6 +6,7 @@ categories:
   - android
 comments: true
 date:   2019-6-8  
+author: "Ted Hagos"
 ---
 
 If you need to generate Random numbers in your Android app (assuming you're using Java), you can simply use the `java.util.Random` class. 

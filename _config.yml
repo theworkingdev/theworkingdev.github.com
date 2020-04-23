@@ -27,6 +27,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: lovescaffeine
 # github_username:  tedhagos
 
+
 # Build settings
 theme: minima
 # remote_theme: pmarsceill/just-the-docs
@@ -54,3 +55,11 @@ plugins:
 #   - vendor/ruby/
 
 show_excerpts: true
+
+google_analytics: UA-123410395-1
+disqus:
+  shortname: workingdev-net.
+
+defaults:
+  layout: post
+  author: "Ted Hagos"
