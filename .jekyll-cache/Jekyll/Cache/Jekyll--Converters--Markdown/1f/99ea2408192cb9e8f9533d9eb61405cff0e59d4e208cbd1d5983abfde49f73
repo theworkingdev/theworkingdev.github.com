@@ -1,0 +1,156 @@
+I"�C<p>Android has various ways to run your code in the background. From what I can recall, we can use any of the following;</p>
+
+<ul>
+  <li>Good ole <strong>Threads</strong> and <strong>Runnables</strong></li>
+  <li>The newer AsyncTask and <strong>AsyncTaskLoader</strong></li>
+  <li>Services, these are for heavy duty tasks</li>
+  <li>and the newest one, Anko’s <strong>doAsync</strong></li>
+</ul>
+
+<p>Each option has pros and cons and some approaches are more suitable to some problems. So you need to consider the fitness of each approach’s mechanics for the problem you’re trying to solve.But why do we need to bother? Why run some of our codes in the background? Because the Android runtime is a strict police of performance. It won’t let you hog resources for a long period of time. If your app hogs processing time and other computing resources, the runtime can kill your app and then your users will see the <strong>ANR</strong> error (Android Not Responding).</p>
+
+<p>When a user clicks your app, the runtime launches it and it is given 1 thread to do everything it needs to do. This thread, famously known as the <strong>UI thread</strong> is where everything will happen. Whenever you do something like change the text attribute of a TextView, build a menu dynamically or respond to a click, all of these things will happen on the UI thread. So you can’t hog it. If you’re just doing some quick calculations and displaying the result to a TextView, you should’nt worry too much because the UI thread can handle without breaking a sweat. However, there are things you will do that isn’t as simple as displaying the result of a Math calculation; Sometimes you may need to read from a database, download a JSON file from the Internet or read the contents of a file. You know, I/O stuff. These things take time. These are the kinds of things you cannot do on the UI thread.</p>
+
+<p>If we can’t do it on the UI thread, where are supposed to do it? In a background thread.</p>
+
+<p>To dive into a bit of detail, let’s do a sample task. We’ll pull some user information from GitHub. There’s a publicly accessible endpoint at <code class="highlighter-rouge">https://api.github.com/users/UserName</code> (replace <strong>UserName</strong> with a valid Github login id).</p>
+
+<p>Let’s use <strong>OkHttp</strong> for the http requirements; many developers are using this library nowadays.
+We need to do 2 things before we can use OkHttp. We need to include the OkHttp dependency on our gradle script, then we need to add the INTERNET permission to project’s manifest file.</p>
+
+<p>Add the OkHttp dependency on the gradle module.</p>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">dependencies</span> <span class="o">{</span>
+  <span class="o">...</span>
+  <span class="n">implementation</span> <span class="s1">'com.squareup.okhttp:okhttp:2.5.0'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Add the INTERNET permission to the manifest.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+  <span class="na">package=</span><span class="s">"net.workingdev.httpscratch"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span><span class="nt">/&gt;</span> <span class="c">&lt;!--(1)--&gt;</span> 
+  <span class="nt">&lt;application</span>
+  <span class="err">....</span>
+  <span class="err">&lt;/application</span><span class="nt">&gt;</span>=
+<span class="nt">&lt;/manifest&gt;</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> You should add this to the project’s AndroidManifest file
+Now we’re ready to start. We will use the following code snippet to pull the GitHub info from the web.</p>
+
+<p>_Listing 1. OkHttp sample usage. _</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="s">"https://api.github.com/users/tedhagos"</span>
+<span class="nf">println</span><span class="p">(</span><span class="s">"inside doGetHttp"</span><span class="p">)</span>
+<span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="nc">OkHttpClient</span><span class="p">()</span>
+<span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="nc">Request</span><span class="p">.</span><span class="nc">Builder</span><span class="p">().</span><span class="nf">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span>
+<span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="nf">execute</span><span class="p">()</span>
+
+<span class="kd">val</span> <span class="py">bodystr</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">().</span><span class="nf">string</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>If you run this code on the UI thread, say, inside an OnClickListener, like this</p>
+
+<p><em>Listing 2. OkHttp code inside a click listener.</em></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+  <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="s">"https://api.github.com/users/tedhagos"</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"inside doGetHttp"</span><span class="p">)</span>
+  <span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="nc">OkHttpClient</span><span class="p">()</span>
+  <span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="nc">Request</span><span class="p">.</span><span class="nc">Builder</span><span class="p">().</span><span class="nf">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span>
+  <span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="nf">execute</span><span class="p">()</span>
+
+  <span class="kd">val</span> <span class="py">bodystr</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">().</span><span class="nf">string</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This will throw the <strong>NetworkOnMainThreadException</strong>. We’re not supposed run any code that accesses the network on the UI thread. So, we’ll run in a background thread.
+Using Threads and Runnables</p>
+
+<p>We can use the tried and tested <strong>Thread</strong> class to make this work. If we run all the network codes in background thread, the Android runtime shouldn’t give us anymore problems.The following listing shows an annotated MainActivity with an inner class that extends the <strong>Runnable</strong> interface. We run all our network codes inside the run method.</p>
+
+<p>Listing 3. Annotated MainActivity.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span>
+<span class="k">import</span> <span class="nn">android.os.Bundle</span>
+<span class="k">import</span> <span class="nn">com.squareup.okhttp.OkHttpClient</span>
+<span class="k">import</span> <span class="nn">com.squareup.okhttp.Request</span>
+<span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
+
+<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="nc">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="nf">setContentView</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
+
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+      <span class="nc">Thread</span><span class="p">(</span><span class="nc">BackgroundFetcher</span><span class="p">()).</span><span class="nf">start</span><span class="p">()</span> <span class="c1">// (1)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="k">fun</span> <span class="nf">fetchGithubInfo</span><span class="p">()</span> <span class="p">:</span> <span class="nc">String</span>  <span class="p">{</span>  <span class="c1">// (2)</span>
+    <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="s">"https://api.github.com/users/tedhagos"</span>
+
+    <span class="kd">val</span> <span class="py">client</span> <span class="p">=</span> <span class="nc">OkHttpClient</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">request</span> <span class="p">=</span> <span class="nc">Request</span><span class="p">.</span><span class="nc">Builder</span><span class="p">().</span><span class="nf">url</span><span class="p">(</span><span class="n">url</span><span class="p">).</span><span class="nf">build</span><span class="p">()</span>
+    <span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="nf">execute</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">().</span><span class="nf">string</span><span class="p">()</span>
+  <span class="p">}</span>
+
+  <span class="c1">// INNER CLASS DEFINITIONS</span>
+
+  <span class="k">inner</span> <span class="kd">class</span> <span class="nc">BackgroundFetcher</span> <span class="p">:</span> <span class="nc">Runnable</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="k">public</span> <span class="k">fun</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>  <span class="c1">// (3)</span>
+      <span class="kd">val</span> <span class="py">github_info</span> <span class="p">=</span> <span class="nf">fetchGithubInfo</span><span class="p">()</span>
+      <span class="nf">println</span><span class="p">(</span><span class="n">github_info</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> If you can still remember this from Java, this is how to run a code in a background thread. Create a new Thread object, pass an instance of Runnable type and invoke the start method on the thread object</p>
+
+<p><strong>(1)</strong> This is a small function definition. It’s just a little place we can collect all our network related codes</p>
+
+<p><strong>(3)</strong> The run method of a Runnable type is where you should put all the codes that you want to run in the background, so, we call fetchGithubInfo right here</p>
+
+<p>This code is fine if all need to do is send the output to println. You will run into problems if you try set the text attribute of a TextView while you’re inside the run method of BackgroundFetcher. While your code is running on a background thread, you cannot make changes to the UI. All UI changes needs to happen on the UI thread alone. As an exercise, try to replace println(github_info) with something like textView.text = github_info. You might encounter an exception that says</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">android</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="nc">ViewRootImpl</span><span class="err">$</span><span class="nc">CalledFromWrongThreadException</span><span class="p">:</span>
+<span class="nc">Only</span> <span class="n">the</span> <span class="n">original</span> <span class="n">thread</span> <span class="n">that</span> <span class="n">created</span> <span class="n">a</span> <span class="n">view</span> <span class="n">hierarchy</span> <span class="n">can</span> <span class="n">touch</span> <span class="n">its</span> <span class="n">views</span>
+</code></pre></div></div>
+
+<p>To solve the problem, we need to set the TextView while we are running on the UI thread. There are a couple of ways to do this but we’ll use the simplest. We’ll invoke the runOnUiThread method of MainActivity and change the TextView in there.</p>
+
+<p>Listing 4. BackgroundFetcher calling the UI Thread.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">inner</span> <span class="kd">class</span> <span class="nc">BackgroundFetcher</span> <span class="p">:</span> <span class="nc">Runnable</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">public</span> <span class="k">fun</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">github_info</span> <span class="p">=</span> <span class="nf">fetchGithubInfo</span><span class="p">()</span>
+    <span class="nf">runOnUiThread</span><span class="p">(</span><span class="nc">Runnable</span> <span class="p">{</span> <span class="c1">// (1)</span>
+      <span class="kd">val</span> <span class="py">jsonrdr</span> <span class="p">=</span> <span class="nc">JSONObject</span><span class="p">(</span><span class="n">github_info</span><span class="p">)</span>  <span class="p">(</span><span class="m">2</span><span class="p">)</span>
+      <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">jsonrdr</span><span class="p">.</span><span class="nf">getString</span><span class="p">(</span><span class="s">"login"</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><strong>(1)</strong> runOnUiThread is a method of the Activity class. We are in an inner class which means the scope of the enclosing class (MainActivity) is accessible to us. Some things to note about this method are
+It takes an instance of a Runnable type, that’s why I created an anonymous class here, and because of Kotlin’s magic, we don’t have to spell out the whole class structure. Notice that it doesn’t have the run method inside it?
+This method will first check if the current thread is already the UI thread. If it is, it will will execute our statement already, but the current thread is not the UI thread; we are running inside a background thread. In this case, our statement will will be put into a message queue where the looper of the UI Thread can pick it up later for execution</p>
+
+<p><strong>(2)</strong> The github_info variable contains the whole response from GitHub, we only want to display the “login” field. So, that’s what we did here with the help of the built-in JSON reader</p>
+
+<!-- <p>
+  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484239063">Learn Android Studio 3 with Kotlin</a>
+</p>
+<img src="/images/book_las3_kotlin.png" alt="Learn Android Studio 3 with Kotlin"> -->
+
+<div class="card" style="width: 22rem;">
+  <img src="/images/book_las3_kotlin.png" class="card-img-top" alt="Learn Android Studio 3 with Kotlin" />
+  <div class="card-body">
+    <h5 class="card-title">Learn Android Studio 3 with Kotlin</h5>
+    <p class="card-text">Learn more. See more code samples like this</p>
+    <a target="_blank" href="https://www.apress.com/gp/book/9781484239063" class="btn btn-primary">
+      Get the book</a>
+  </div>
+</div>
+:ET

@@ -1,0 +1,124 @@
+I"1<p>You can create a menu for an app in 3 steps. First is to create a menu resource file which will contain all the menu items, Next steps is to inflate the menu file and attach it to a <strong>Menu</strong> object and lastly, handle the events for each menu item.</p>
+
+<p>Create a <strong>menu</strong> folder in the under the <strong>app</strong>/res folder of the project. On the Project Window, use the context menu of Android Studio; right-click on the res folder then <strong>New</strong> &gt; <strong>Android Resource Directory</strong></p>
+
+<p>Next, right click the <strong>app/res/menu</strong> folder, choose New &gt; Menu Resource File, give the new menu a name, like “main_menu”. This will create the file “app/res/menu/main_menu.xml”.</p>
+
+<p>Put some items in the menu file, follow the codes in listing 1.</p>
+
+<p><strong>listing 1. /app/res/menu/main_menu.xml</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;menu</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;item</span> <span class="na">android:id=</span><span class="s">"@+id/menuFile"</span>
+    <span class="na">android:title=</span><span class="s">"@string/menuFile"</span>
+    <span class="nt">/&gt;</span>
+  <span class="nt">&lt;item</span> <span class="na">android:id=</span><span class="s">"@+id/menuEdit"</span>
+    <span class="na">android:title=</span><span class="s">"@string/menuEdit"</span>
+    <span class="nt">/&gt;</span>
+  <span class="nt">&lt;item</span> <span class="na">android:id=</span><span class="s">"@+id/menuHelp"</span>
+    <span class="na">android:title=</span><span class="s">"@string/menuHelp"</span>
+    <span class="nt">/&gt;</span>
+  <span class="nt">&lt;item</span> <span class="na">android:id=</span><span class="s">"@+id/menuExit"</span>
+    <span class="na">android:title=</span><span class="s">"@string/menuExit"</span>
+    <span class="nt">/&gt;</span>
+<span class="nt">&lt;/menu&gt;</span>
+</code></pre></div></div>
+
+<p>You will also need to create the corresponding XML entries for @string/menuFile, @string/menuEdit, @string/menuHelp and @string/menuExit in the /app/res/value/strings.xml file. You can use Andr0id Studio’s Quick Fix so you don’t have to do it manually. To use Quick Fix, click on the text @string/menuFile, then press <strong>OPTION</strong> + <strong>ENTER</strong> if you’re on macOS; it’s <strong>ALT</strong> + <strong>ENTER</strong> for Windows and Linux.</p>
+
+<p>To inlate and attach the menu item to the ActionBar, you need to override the  <strong>onCreateOptionsMenu()</strong> in MainActivity.  This project targets API level 23 (Marshmallow) so the onCreateOptionsMenu function will be called after the <strong>onCreate</strong> callback. If the project is API level 10 or lower, the onCreateOptionsMenu will only be called when the user clicks the hardware menu button.</p>
+
+<p><strong>listing 2. onCreateOptionsMenu</strong></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="nc">Menu</span><span class="p">?):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+  <span class="n">menuInflater</span><span class="p">.</span><span class="nf">inflate</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">menu</span><span class="p">.</span><span class="n">main_menu</span><span class="p">,</span> <span class="n">menu</span><span class="p">)</span>
+  <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="nf">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We can intercept the menu item events by overriding <strong>onOptionsItemSelected</strong>. Each time a menu item is clicked or touched by the user, the Android runtime calls this function. Listing 3 shows a simple way to handle the event.</p>
+
+<p><strong>listing 3. onOptionsItemSelected</strong></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="k">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="nc">MenuItem</span><span class="p">?):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">item</span><span class="o">?.</span><span class="n">itemId</span> <span class="p">==</span> <span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">menuFile</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">showMessage</span><span class="p">(</span><span class="err">“</span><span class="nc">File</span> <span class="nc">Menu</span> <span class="err">“</span><span class="p">)</span> <span class="c1">// user defined function</span>
+    <span class="k">return</span> <span class="k">true</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The Android runtime passes the <strong>MenuItem</strong> object each time it calls onOptionsItemSelected. We can use this object route program logic via if-else constructs. But using Kotlin’s when might be more appropriate. See listing 4 for a complete code listing of hte MainActivity.</p>
+
+<p>NOTE: I used the safe-call operator (?.)  in the expression <strong>item?.itemId</strong> because MenuItem is declared as a nullable type. There is a chance that it might be null.</p>
+
+<p><strong>listing 4. MainActivity.Kt</strong></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span>
+<span class="k">import</span> <span class="nn">android.os.Bundle</span>
+<span class="k">import</span> <span class="nn">android.support.design.widget.Snackbar</span>
+<span class="k">import</span> <span class="nn">android.view.Menu</span>
+<span class="k">import</span> <span class="nn">android.view.MenuItem</span>
+
+<span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
+
+<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="nc">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="nf">setContentView</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">:</span> <span class="nc">Menu</span><span class="p">?):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+    <span class="n">menuInflater</span><span class="p">.</span><span class="nf">inflate</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">menu</span><span class="p">.</span><span class="n">main_menu</span><span class="p">,</span> <span class="n">menu</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="nf">onCreateOptionsMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="nc">MenuItem</span><span class="p">?):</span> <span class="nc">Boolean</span> <span class="p">{</span>
+
+    <span class="k">when</span><span class="p">(</span><span class="n">item</span><span class="o">?.</span><span class="n">itemId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">menuFile</span> <span class="p">-&gt;</span> <span class="p">{</span>
+        <span class="nf">showMessage</span><span class="p">(</span><span class="s">"File menu"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">true</span>
+      <span class="p">}</span>
+      <span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">menuEdit</span> <span class="p">-&gt;</span> <span class="p">{</span>
+        <span class="nf">showMessage</span><span class="p">(</span><span class="s">"Edit menu"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">true</span>
+      <span class="p">}</span>
+      <span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">menuHelp</span> <span class="p">-&gt;</span> <span class="p">{</span>
+        <span class="nf">showMessage</span><span class="p">(</span><span class="s">"Help menu"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">true</span>
+      <span class="p">}</span>
+      <span class="nc">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">menuExit</span> <span class="p">-&gt;</span> <span class="p">{</span>
+        <span class="nf">showMessage</span><span class="p">(</span><span class="s">"Exit"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">true</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">super</span><span class="p">.</span><span class="nf">onOptionsItemSelected</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="k">fun</span> <span class="nf">showMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="nc">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nc">Snackbar</span><span class="p">.</span><span class="nf">make</span><span class="p">(</span><span class="n">root_layout</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="nc">Snackbar</span><span class="p">.</span><span class="nc">LENGTH_LONG</span><span class="p">).</span><span class="nf">show</span><span class="p">()</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>NOTE</strong>: This project used the Snackbar control. If you will follow this example, you need to add the  ’com.android.support:design’ in the dependencies entries of the <strong>build.gradle</strong> file (see this post for instructions http://bit.ly/usingsnackbar)</p>
+
+<!-- <p>
+  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484239063">Learn Android Studio 3 with Kotlin</a>
+</p>
+<img src="/images/book_las3_kotlin.png" alt="Learn Android Studio 3 with Kotlin"> -->
+
+<div class="card" style="width: 24rem;">
+  <img src="/images/book_las3_kotlin.png" class="card-img-top" alt="Learn Android Studio 3 with Kotlin" />
+  <div class="card-body">
+    <h5 class="card-title">Learn Android Studio 3 with Kotlin</h5>
+    <p class="card-text">Learn more. See more code samples like this</p>
+    <a target="_blank" href="https://www.apress.com/gp/book/9781484239063" class="btn btn-primary">
+      Get the book</a>
+  </div>
+</div>
+
+:ET

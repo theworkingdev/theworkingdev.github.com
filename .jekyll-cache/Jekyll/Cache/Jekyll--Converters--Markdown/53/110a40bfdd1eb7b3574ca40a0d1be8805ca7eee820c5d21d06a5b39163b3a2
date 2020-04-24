@@ -1,0 +1,65 @@
+I"�<p>The <em>if</em> construct in Kotlin works almost the same as in Java.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">theQuestion</span> <span class="p">=</span> <span class="s">"Doctor who?"</span>
+<span class="kd">val</span> <span class="py">answer</span> <span class="p">=</span> <span class="s">"Theta Sigma"</span>
+<span class="kd">val</span> <span class="py">correctAnswer</span> <span class="p">=</span> <span class="s">""</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">answer</span> <span class="p">==</span> <span class="n">correctAnswer</span><span class="p">)</span> <span class="p">{</span>
+ <span class="nf">println</span><span class="p">(</span><span class="s">"You are correct"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Another example, this time, let’s use the <code class="highlighter-rouge">else if</code> and <code class="highlighter-rouge">else</code> clause.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">d</span> <span class="p">=</span> <span class="nc">Date</span><span class="p">()</span>
+<span class="kd">val</span> <span class="py">c</span> <span class="p">=</span> <span class="nc">Calendar</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">()</span>
+<span class="kd">val</span> <span class="py">day</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="nc">Calendar</span><span class="p">.</span><span class="nc">DAY_OF_WEEK</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">day</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+ <span class="nf">println</span><span class="p">(</span><span class="s">"Today is Sunday"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">day</span> <span class="p">==</span> <span class="m">2</span><span class="p">)</span> <span class="p">{</span>
+ <span class="nf">println</span><span class="p">(</span><span class="s">"Today is Monday"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">day</span> <span class="p">==</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
+ <span class="nf">println</span><span class="p">(</span><span class="s">"Today is Tuesday"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"Unknown"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>So far, it looks a lot like how you would you do it in Java. Doesn’t it? What’s different in Kotlin is, the <code class="highlighter-rouge">if</code> construct isn’t a statement, it’s an expression. Which means, you can assign the result of the <code class="highlighter-rouge">if</code> expression to a variable. Like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">theQuestion</span> <span class="p">=</span> <span class="s">"Doctor who"</span>
+<span class="kd">val</span> <span class="py">answer</span> <span class="p">=</span> <span class="s">"Theta Sigma"</span>
+<span class="kd">val</span> <span class="py">correctAnswer</span> <span class="p">=</span> <span class="s">""</span>
+
+<span class="kd">var</span> <span class="py">message</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">answer</span> <span class="p">==</span> <span class="n">correctAnswer</span><span class="p">)</span> <span class="p">{</span>
+ <span class="s">"You are correct"</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+ <span class="s">"Try again"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If you have only one statement (each) on the if and else block, you can even shorten the code, like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">message</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">answer</span> <span class="p">==</span> <span class="n">correctAnswer</span><span class="p">)</span> <span class="s">"You are correct"</span> <span class="k">else</span> <span class="s">"Try again"</span>
+</code></pre></div></div>
+
+<!-- <p>
+  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484239063">Learn Android Studio 3 with Kotlin</a>
+</p>
+<img src="/images/book_las3_kotlin.png" alt="Learn Android Studio 3 with Kotlin"> -->
+
+<div class="card" style="width: 24rem;">
+  <img src="/images/book_las3_kotlin.png" class="card-img-top" alt="Learn Android Studio 3 with Kotlin" />
+  <div class="card-body">
+    <h5 class="card-title">Learn Android Studio 3 with Kotlin</h5>
+    <p class="card-text">Learn more. See more code samples like this</p>
+    <a target="_blank" href="https://www.apress.com/gp/book/9781484239063" class="btn btn-primary">
+      Get the book</a>
+  </div>
+</div>
+:ET

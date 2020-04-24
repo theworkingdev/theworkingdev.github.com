@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-24T21:42:20+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>Code samples, snippets and tutorials for the working programmer</subtitle><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html">&lt;p&gt;You can pass an argument to a Node app like this&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-24T21:50:35+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>Code samples, snippets and tutorials for the working programmer</subtitle><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html">&lt;p&gt;You can pass an argument to a Node app like this&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;node myapp.js &quot;John Doe&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -207,7 +207,7 @@
 &lt;/p&gt;
 &lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
 
-&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
   &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
   &lt;div class=&quot;card-body&quot;&gt;
     &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
@@ -351,7 +351,7 @@
 &lt;/p&gt;
 &lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
 
-&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
   &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
   &lt;div class=&quot;card-body&quot;&gt;
     &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
@@ -396,7 +396,7 @@ variety of types&lt;/p&gt;
 &lt;/p&gt;
 &lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
 
-&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
   &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
   &lt;div class=&quot;card-body&quot;&gt;
     &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
@@ -617,7 +617,7 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
 &lt;/p&gt;
 &lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
 
-&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
   &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
   &lt;div class=&quot;card-body&quot;&gt;
     &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
@@ -762,7 +762,7 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
 &lt;/p&gt;
 &lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
 
-&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
   &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
   &lt;div class=&quot;card-body&quot;&gt;
     &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
@@ -825,7 +825,7 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
 &lt;/p&gt;
 &lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
 
-&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
   &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
   &lt;div class=&quot;card-body&quot;&gt;
     &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
@@ -859,7 +859,7 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
 &lt;/p&gt;
 &lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
 
-&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
   &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
   &lt;div class=&quot;card-body&quot;&gt;
     &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;

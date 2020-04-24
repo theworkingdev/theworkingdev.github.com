@@ -1,0 +1,47 @@
+I"�<p>Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type <code class="highlighter-rouge">...</code> , we use the <code class="highlighter-rouge">vararg</code> keyword instead.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="nf">manyParams</span><span class="p">(</span><span class="k">vararg</span> <span class="n">va</span> <span class="p">:</span> <span class="nc">T</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// (1)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="n">va</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// (2) </span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;)</span> <span class="p">{</span>
+  <span class="nf">manyParams</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>  <span class="c1">// (3)</span>
+  <span class="nf">manyParams</span><span class="p">(</span><span class="s">"From"</span><span class="p">,</span> <span class="s">"Gallifrey"</span><span class="p">,</span> <span class="s">"to"</span><span class="p">,</span> <span class="s">"Trenzalore"</span><span class="p">)</span>  <span class="c1">// (4) </span>
+  <span class="nf">manyParams</span><span class="p">(*</span><span class="n">args</span><span class="p">)</span> <span class="c1">// (5) </span>
+  <span class="nf">manyParams</span><span class="p">(*</span><span class="s">"Hello there"</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s">" "</span><span class="p">).</span><span class="nf">toTypedArray</span><span class="p">())</span> <span class="c1">// (6)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> The vararg keyword lets us accept multiple parameter for
+this function. In this example, we declared a function that has a typed
+parameter; it’s generic. We didn’t have to declare it as generic in order to
+work with variable arguments, we just chose to so that it can work with a
+variety of types</p>
+
+<p><strong>(2)</strong> This is a simple looping mechanism so that we can print each item in the argument</p>
+
+<p><strong>(3)</strong> We can pass Ints, and we can pass as many as we want because manyParams accepts variable number of arguments</p>
+
+<p><strong>(4)</strong> It works with Strings as well</p>
+
+<p><strong>(5)</strong> Like in Java, we can pass an array to a function that accepts variable arguments. We need to use spread operator * to unpack the array. It’s like passing the individual elements of the array one by one, manually</p>
+
+<p><strong>(6)</strong> The split() member function will return an <em>ArrayList</em>, you can convert it to an <em>Array</em> , then use the spread operator so you can pass it to a <em>vararg</em> function</p>
+
+<!-- <p>
+  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484239063">Learn Android Studio 3 with Kotlin</a>
+</p>
+<img src="/images/book_las3_kotlin.png" alt="Learn Android Studio 3 with Kotlin"> -->
+
+<div class="card" style="width: 20rem;">
+  <img src="/images/book_las3_kotlin.png" class="card-img-top" alt="Learn Android Studio 3 with Kotlin" />
+  <div class="card-body">
+    <h5 class="card-title">Learn Android Studio 3 with Kotlin</h5>
+    <p class="card-text">Learn more. See more code samples like this</p>
+    <a target="_blank" href="https://www.apress.com/gp/book/9781484239063" class="btn btn-primary">
+      Get the book</a>
+  </div>
+</div>
+:ET
