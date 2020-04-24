@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/08/how-to-create-and-loop-through-kotlin_3.html
 date:   2018-08-01 
+
 ---
 
 It's very easy to work with Maps in Kotlin, you can see for yourself in the following examples.
@@ -47,4 +48,4 @@ months.forEach { k, v -> println("$k | $v") }
 Where `k` is the key and `v` is the value.
 
 
- 
+{% include book_las3_kotlin.html %}

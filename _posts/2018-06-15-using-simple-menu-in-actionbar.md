@@ -116,9 +116,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-<aside>
 <strong>NOTE</strong>: This project used the Snackbar control. If you will follow this example, you need to add the  'com.android.support:design' in the dependencies entries of the **build.gradle** file (see this post for instructions http://bit.ly/usingsnackbar)
-</aside>
 
+{% include book_las3_kotlin.html %}
 
- 

@@ -22,3 +22,5 @@ out.use { // (2)
 
 **(3)** The write method expects ByteArray. So, we need to convert the Editable (data type of EditText) to a String, then convert it to a ByteArray
  
+
+ {% include book_las3_kotlin.html %}

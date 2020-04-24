@@ -116,3 +116,5 @@ fun main(args:Array<String>) {
 
 In the example above, we only passed two arguments, but since our function has default parameters, that's okay.
  
+
+ {% include book_las3_kotlin.html %}

@@ -40,5 +40,5 @@ Next up is the application framework layer. It sits on top of both the low-level
 
 Finally, on top is the application layer. This is where all our applications reside, both the ones we write and the ones that comes prebuilt. It should be pointed out that prebuilt applications which comes with the device do not have any special privileges over the ones we will write. If you don’t like the email app of the phone, you can write your own and replace it. Android is democratic like that.
 
-
+{% include book_las3_kotlin.html %}
  

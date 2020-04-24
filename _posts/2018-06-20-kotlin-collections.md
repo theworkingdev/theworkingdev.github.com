@@ -94,3 +94,5 @@ The sample code below is another way of traversing the same list of Strings, but
 fruits.forEach { println(it) }  
 ```
  
+
+{% include book_las3_kotlin.html %}

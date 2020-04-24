@@ -46,3 +46,5 @@ val mfirstname = pref.getString("firstname", "")
 
 **(2)** First parameter is the key, it’s the name of the preference to retrieve. The second parameter is a default value, in case the key doesn’t exist
  
+
+ {% include book_las3_kotlin.html %}

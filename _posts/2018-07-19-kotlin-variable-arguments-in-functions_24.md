@@ -40,3 +40,5 @@ variety of types
 
 **(6)** The split() member function will return an *ArrayList*, you can convert it to an *Array* , then use the spread operator so you can pass it to a *vararg* function
  
+
+{% include book_las3_kotlin.html %}

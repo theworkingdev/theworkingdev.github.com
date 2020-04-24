@@ -81,3 +81,5 @@ fun main(args: Array<String>) {
 
 It’s perfectly alright to still write utility functions in Kotlin, but with extension functions at our disposal, it seems more natural to use them because it increases the semantic value of our code. It feels more natural to use extension function syntax.
  
+
+{% include book_las3_kotlin.html %}

@@ -1,0 +1,30 @@
+I"<p>The following snippet shows how to write a file in the internal storage (standard location, not cache).</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">filename</span> <span class="p">=</span> <span class="s">"ourfile.txt"</span>
+
+<span class="kd">val</span> <span class="py">out</span> <span class="p">=</span> <span class="nf">openFileOutput</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nc">Context</span><span class="p">.</span><span class="nc">MODE_PRIVATE</span><span class="p">)</span> <span class="c1">// (1)</span>
+<span class="k">out</span><span class="p">.</span><span class="nf">use</span> <span class="p">{</span> <span class="c1">// (2)</span>
+  <span class="k">out</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">txtinput</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">toString</span><span class="p">().</span><span class="nf">toByteArray</span><span class="p">())</span> <span class="c1">// (3)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><strong>(1)</strong> openFileOutput returns a FileOutputStream object. The first parameter of the call is name of the file we want to create. The second parameter is a Context mode. You’re already know this from the previous chapter. We’re using MODE_PRIVATE because we want the file to be private to our app</p>
+
+<p><strong>(2)</strong> the use extension means I don’t have to close file explicitly or manually. As soon as we’re done using it, the Android runtime will close it for us. This is pretty handy considering that a lot of developers forget to close the files. Leaving a file handle open until the app terminates causes memory-leak. The use extension is Kotlin’s equivalent of Java’s try-with-resources</p>
+
+<p><strong>(3)</strong> The write method expects ByteArray. So, we need to convert the Editable (data type of EditText) to a String, then convert it to a ByteArray</p>
+
+<!-- <p>
+  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484239063">Learn Android Studio 3 with Kotlin</a>
+</p>
+<img src="/images/book_las3_kotlin.png" alt="Learn Android Studio 3 with Kotlin"> -->
+
+<div class="card" style="width: 28rem;">
+  <img src="/images/book_las3_kotlin.png" class="card-img-top" alt="Learn Android Studio 3 with Kotlin" />
+  <div class="card-body">
+    <h5 class="card-title">Learn Android Studio 3 with Kotlin</h5>
+    <p class="card-text">Learn more. See more code samples like this</p>
+    <a target="_blank" href="https://www.apress.com/gp/book/9781484239063" class="btn btn-primary">
+      Get the book</a>
+  </div>
+</div>
+:ET

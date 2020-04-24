@@ -157,5 +157,4 @@ This method will first check if the current thread is already the UI thread. If 
 
 **(2)** The github_info variable contains the whole response from GitHub, we only want to display the "login" field. So, that’s what we did here with the help of the built-in JSON reader
 
-
- 
+{% include book_las3_kotlin.html %}

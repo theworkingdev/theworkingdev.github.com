@@ -37,3 +37,4 @@ button.setOnClickListener {
 
 **(3)** We launch the Activity by calling startActivity() and passing the intent object to it
  
+{% include book_las3_kotlin.html %}

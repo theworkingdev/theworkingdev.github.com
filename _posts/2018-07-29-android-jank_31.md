@@ -92,3 +92,4 @@ class MainActivity : AppCompatActivity() {
 
 **(4)** One of the limitations of a background thread is that it cannot do anything that modifies the UI. Any UI modification code has to run from the original thread that created the UI — which is the UI Thread. If you need to change the UI from a background thread (like this) you can call the runOnUiThread method of the Activity class. It takes a Runnable type (again), you can put all the UI modification code on the run method of this Runnable type
  
+{% include book_las3_kotlin.html %}

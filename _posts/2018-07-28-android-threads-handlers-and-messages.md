@@ -83,3 +83,5 @@ class MainActivity : AppCompatActivity() {
 
 **(7)** Send the Message to the Handler object
  
+
+{% include book_las3_kotlin.html %}

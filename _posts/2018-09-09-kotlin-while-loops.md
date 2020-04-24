@@ -26,3 +26,5 @@ This is what's going on in the first line;
 * `filter {it % 2 == 0}` - Filter is an extension function (we'll come up on that in a little while). It does exactly what you think it does, it filters data. It works on objects that are a subtype Iterable. What's inside is a lambda expression that's used to evaluate each item of the list. If the item satisfies the condition (is it an even number), then it will be included in the list
 * `toTypedArray()` - The filter function returns a list. For this example, I didn't want to work with Lists, I wanted to work with arrays instead, so, I converted it with this function
  
+
+ {% include book_las3_kotlin.html %}

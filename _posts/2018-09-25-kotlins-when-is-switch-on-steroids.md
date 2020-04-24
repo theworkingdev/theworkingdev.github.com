@@ -147,4 +147,4 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
- 
+ {% include book_las3_kotlin.html %}

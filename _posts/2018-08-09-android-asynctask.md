@@ -103,3 +103,6 @@ class MainActivity : AppCompatActivity() {
 **(4)** This simulates a length operation
 
 **(5)** Now that were in the UI Thread, we can safely set the text attribute of TextView to the current value of i. We only passed one parameter from publishProgress, so, if we want to get that, it’s the 0th element of the values parameter
+
+
+{% include book_las3_kotlin.html %}

@@ -1,0 +1,112 @@
+I"�1<p>In previous posts (<a href="/2018/07/android-jank_31.html">Android Jank</a> and <a href="/2018/07/android-threads-handlers-and-messages.html">Android Threads, Handlers and Messages</a>) we explored ways on how to run code in the background. Why would we want to do that? So that UI Thread is freed up to do UI stuff like creating and updating views. Coz if we burden the UI Thread with other stuff that doesn’t concern the UI, like doing I/O work or doing complex calculations, the Android runtime will reduce the framerate of our app which will cause it behave sluggishly — in short, jank.</p>
+
+<p>In this post, we will look at another way to run code in the background. AsyncTask is part of the Android Platform (like Handlers and Messages). To use an AsyncTask, you generally need to do the following;
+Extend the AsyncTask class.
+Override AsyncTask’s doInBackground method so you can accomplish the background work</p>
+
+<p>Override a couple more of AsyncTask’s lifecycle methods so can update the UI and report on the overall status of the background task
+Create an instance of AsyncTask subclass and call execute on it, that’s how you kickstart the background operation</p>
+
+<p>One of the reasons why AsyncTask is less preferred than basic Threads is that it uses generics. The AsyncTask class is a parameterized class. You have to specify three types before you can use it.</p>
+
+<p><em>Listing 1. The AsyncTask class.</em></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">AsyncTask</span><span class="p">&lt;</span><span class="nc">Void</span><span class="p">,</span> <span class="nc">String</span><span class="p">,</span> <span class="nc">Boolean</span><span class="p">&gt;</span> <span class="p">{</span>                              <span class="c1">// (1)</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">doInBackground</span><span class="p">(</span><span class="k">vararg</span> <span class="n">p0</span><span class="p">:</span> <span class="nc">Void</span><span class="p">?)</span> <span class="p">:</span> <span class="nc">Boolean</span> <span class="p">{</span>     <span class="c1">// (2)</span>
+    <span class="c1">// statement</span>
+    <span class="nf">publishProgress</span><span class="p">(</span><span class="s">"status of anything"</span><span class="p">)</span>                       <span class="c1">// (3)</span>
+  <span class="p">}</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onProgressUpdate</span><span class="p">(</span><span class="k">vararg</span> <span class="n">values</span><span class="p">:</span> <span class="nc">String</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="c1">// update the UI                                            // (4)</span>
+  <span class="p">}</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onPostExecute</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="nf">println</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>                                             <span class="c1">// (5)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> he AsyncTask is a parameterized class. You have to specify three types before you can use it. The three types, in the order they appear, are the following;</p>
+
+<ul>
+  <li><strong>Params</strong>. This is the information you need to pass to the AsyncTask so it can do the background task. It could be anything like a list of URLs, View object(s), String(s), and to make it a bit more challenging for us, it’s a vararg parameter. Typically, developers use this parameter to pass the View elements so that the AsyncTask can refer to the View objects of the Activity. But in our example, I will make the AsyncTask an inner class, so it can refer to any View element in MainActivity — this is reason why I used Void as the first type parameter</li>
+  <li><strong>Progress</strong>. The type of information that you want the background thread to pass to the UI thread so you can tell the user what’s going on</li>
+  <li><strong>Result</strong>. The kind data you want to indicate the result of the background operation, most of the time this is either true or false. If the operation  succeeds, then it’s true, otherwise it’s _false</li>
+</ul>
+
+<p><strong>(2)</strong> This is the only mandatory function to override. As the name suggests, this is where you will do things in the background. Whenever you need to read/write to a file or a network I/O, you’d want to do it here. You will notice that this function takes in a vararg Void parameter, it corresponds to the first type parameter we defined for our class. Had you made the first type parameter as String, then doInBackground would have taken a String. Notice also that this method returns a Boolean, that’s because we passed a Boolean as the third parameter type.</p>
+
+<p><strong>(3)</strong> Periodically, you may want to inform the user of what’s going on in your app, especially if it’s a lengthy operation. The publishProgress method lets you do that. While you are inside doInBackground, you cannot make any changes to the UI. UI changes needs to happen on the UI Thread. When you call publishProgress, the Android runtime will call onProgressUpdate, that’s where you can make UI changes. When you pass an argument to this method, the onProgressUpdate receives that argument</p>
+
+<p><strong>(4)</strong> When you’re inside this method, all the statements will be executed on the UI Thread. This is where you make changes to your View objects. The method takes a String parameter because we passed String as the second type parameter of the AsyncTask class, it corresponds to that. This method will be called after we’ve invoked publishProgress from the doInBackground method, whatever data you pass to publishProgress will be received by onProgressUpdate</p>
+
+<p><strong>(5)</strong> When doInBackground finishes, the runtime will call this method. The result parameter was returned by doInBackground</p>
+
+<p><em>Listing 2. Full and annotated code listing for MainActivity.</em></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">android.os.AsyncTask</span>
+<span class="k">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span>
+<span class="k">import</span> <span class="nn">android.os.Bundle</span>
+<span class="k">import</span> <span class="nn">android.view.View</span>
+<span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
+
+<span class="kd">class</span> <span class="nc">MainActivity</span> <span class="p">:</span> <span class="nc">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+    <span class="nf">setContentView</span><span class="p">(</span><span class="nc">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
+
+    <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>
+      <span class="nc">Worker</span><span class="p">().</span><span class="nf">execute</span><span class="p">()</span>                                           <span class="c1">// (1)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">inner</span> <span class="kd">class</span> <span class="nc">Worker</span> <span class="p">:</span> <span class="nc">AsyncTask</span><span class="p">&lt;</span><span class="nc">Void</span><span class="p">,</span> <span class="nc">String</span><span class="p">,</span> <span class="nc">Boolean</span><span class="p">&gt;()</span> <span class="p">{</span>        <span class="c1">// (2)</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">doInBackground</span><span class="p">(</span><span class="k">vararg</span> <span class="n">p0</span><span class="p">:</span> <span class="nc">Void</span><span class="p">?)</span> <span class="p">:</span> <span class="nc">Boolean</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1</span><span class="o">..</span><span class="m">20</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">publishProgress</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="nf">toString</span><span class="p">())</span>                              <span class="c1">// (3)</span>
+        <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>                                         <span class="c1">// (4)</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="k">true</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onProgressUpdate</span><span class="p">(</span><span class="k">vararg</span> <span class="n">values</span><span class="p">:</span> <span class="nc">String</span><span class="p">?)</span> <span class="p">{</span>
+      <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">values</span><span class="p">[</span><span class="m">0</span><span class="p">]</span>                                    <span class="c1">// (5)</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onPostExecute</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">?)</span> <span class="p">{</span>
+      <span class="nf">println</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>(1)</strong> Create an instance of Worker, then execute it</p>
+
+<p><strong>(2)</strong> Define an AsyncTask as an inner class, so we can refer to the View objects of the enclosing MainActivity. The type parameters are explained below</p>
+<ul>
+  <li><strong>Void</strong>. I don’t really need to pass anything to the AsyncTask, so, Void</li>
+  <li><strong>String</strong>. the onProgressUpdate method will update the the TextView. Since we’ll use this second Type to update the value TextView, String seems like a good choice</li>
+  <li><strong>Boolean</strong>. When we’re done with doInBackground, we want to set a status to indicate failure or success, Boolean seems to be good choice for that</li>
+</ul>
+
+<p><strong>(3)</strong> Let’s tell the user what the current value of i is. The onProgressUpdate takes a String argument, that’s why we’re converting i to an Int</p>
+
+<p><strong>(4)</strong> This simulates a length operation</p>
+
+<p><strong>(5)</strong> Now that were in the UI Thread, we can safely set the text attribute of TextView to the current value of i. We only passed one parameter from publishProgress, so, if we want to get that, it’s the 0th element of the values parameter</p>
+
+<!-- <p>
+  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484239063">Learn Android Studio 3 with Kotlin</a>
+</p>
+<img src="/images/book_las3_kotlin.png" alt="Learn Android Studio 3 with Kotlin"> -->
+
+<div class="card" style="width: 28rem;">
+  <img src="/images/book_las3_kotlin.png" class="card-img-top" alt="Learn Android Studio 3 with Kotlin" />
+  <div class="card-body">
+    <h5 class="card-title">Learn Android Studio 3 with Kotlin</h5>
+    <p class="card-text">Learn more. See more code samples like this</p>
+    <a target="_blank" href="https://www.apress.com/gp/book/9781484239063" class="btn btn-primary">
+      Get the book</a>
+  </div>
+</div>
+:ET

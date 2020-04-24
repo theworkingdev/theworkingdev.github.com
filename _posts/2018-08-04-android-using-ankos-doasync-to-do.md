@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/08/android-using-ankos-doasync-to-do.html 
 date:   2018-08-01 
+image: /images/book_las3_kotlin.png
 ---
 
 
@@ -99,4 +100,4 @@ class MainActivity : AppCompatActivity() {
 
 **(4)** Let’s tell the user what’s going on with the app. Update the TextView object with the current value of i
 
- 
+ {% include book_las3_kotlin.html %}

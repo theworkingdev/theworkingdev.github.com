@@ -40,3 +40,5 @@ input.use {
 
 **(7)** When we run out of bytes to read, we’ll get out of the loop and print the content of StringBuilder
  
+
+ {% include book_las3_kotlin.html %}

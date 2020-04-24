@@ -99,4 +99,4 @@ One thing of note in Listing 2 is that all the View elements have an android:id 
 ```
 
 
- 
+{% include book_las3_kotlin.html %}

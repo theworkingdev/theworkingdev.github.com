@@ -46,3 +46,6 @@ So how do you know if you need to use try-catch. You might not like the answers 
 
 1. You have to know the API's you're using. I know that this is not great news for beginners, but look at it this way, you won't be a beginner for long. And you really should know the API's you're using. TL;DR won't serve you well in this area
 2. You have to get into the habit of unit-testing your code. This is a good habit to develop anyway
+
+
+{% include book_las3_kotlin.html %}

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-24T19:15:34+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>Code samples, snippets and tutorials for the working programmer</subtitle><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html">&lt;p&gt;You can pass an argument to a Node app like this&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-24T21:42:20+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>Code samples, snippets and tutorials for the working programmer</subtitle><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html">&lt;p&gt;You can pass an argument to a Node app like this&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;node myapp.js &quot;John Doe&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -105,9 +105,10 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;This article is excerpted from the book &lt;strong&gt;Learn Android Studio 4&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/las4_amazon.png&quot; alt=&quot;Learn Android Studio 4&quot; /&gt;&lt;/p&gt;</content><author><name>Ted Hagos</name></author><summary type="html">The user interacts with an app by touching, clicking, swiping or typing something. The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions</summary></entry><entry><title type="html">How to create a simple Random number generator in Java</title><link href="http://localhost:4000/java/android/2019/06/08/random-number-java.html" rel="alternate" type="text/html" title="How to create a simple Random number generator in Java" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/java/android/2019/06/08/random-number-java</id><content type="html" xml:base="http://localhost:4000/java/android/2019/06/08/random-number-java.html">&lt;p&gt;If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the &lt;code class=&quot;highlighter-rouge&quot;&gt;java.util.Random&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484259368&quot;&gt;Learn Android Studio 4&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/book_las4.png&quot; alt=&quot;Learn Android Studio 4&quot; /&gt;&lt;/p&gt;</content><author><name>Ted Hagos</name></author><summary type="html">The user interacts with an app by touching, clicking, swiping or typing something. The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las4.png" /><media:content medium="image" url="http://localhost:4000/images/book_las4.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to create a simple Random number generator in Java</title><link href="http://localhost:4000/java/android/2019/06/08/random-number-java.html" rel="alternate" type="text/html" title="How to create a simple Random number generator in Java" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/java/android/2019/06/08/random-number-java</id><content type="html" xml:base="http://localhost:4000/java/android/2019/06/08/random-number-java.html">&lt;p&gt;If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the &lt;code class=&quot;highlighter-rouge&quot;&gt;java.util.Random&lt;/code&gt; class.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Random&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// (1)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mrandomnumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nextInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2)&lt;/span&gt;
@@ -163,7 +164,12 @@
     &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TextView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;txtrandom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ted Hagos</name></author><summary type="html">If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the java.util.Random class.</summary></entry><entry><title type="html">How to open a file in Kotlin</title><link href="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html" rel="alternate" type="text/html" title="How to open a file in Kotlin" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin</id><content type="html" xml:base="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html">&lt;p&gt;Just like in Java, you use the &lt;code class=&quot;highlighter-rouge&quot;&gt;java.io&lt;/code&gt; classes, like this;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562&quot;&gt;Learn Android Studio 3&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/book_las3.png&quot; alt=&quot;Learn Android Studio 3&quot; /&gt;&lt;/p&gt;</content><author><name>Ted Hagos</name></author><summary type="html">If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the java.util.Random class.</summary></entry><entry><title type="html">How to open a file in Kotlin</title><link href="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html" rel="alternate" type="text/html" title="How to open a file in Kotlin" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin</id><content type="html" xml:base="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html">&lt;p&gt;Just like in Java, you use the &lt;code class=&quot;highlighter-rouge&quot;&gt;java.io&lt;/code&gt; classes, like this;&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.io.FileNotFoundException&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.io.FileReader&lt;/span&gt;
@@ -194,7 +200,22 @@
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileReader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
   &lt;span class=&quot;nf&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Just like in Java, you use the java.io classes, like this;</summary></entry><entry><title type="html">Reified Generics in Kotlin</title><link href="http://localhost:4000/2018/09/reified-generics-in-kotlin.html" rel="alternate" type="text/html" title="Reified Generics in Kotlin" /><published>2018-09-29T00:00:00+08:00</published><updated>2018-09-29T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/reified-generics-in-kotlin</id><content type="html" xml:base="http://localhost:4000/2018/09/reified-generics-in-kotlin.html">&lt;p&gt;Let’s deal with the meaning of &lt;em&gt;reify&lt;/em&gt; first. It means to make something real, and the reason we’re using reify and generics on the same statement is because of Java’s type erasure.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;!-- &lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
+&lt;/p&gt;
+&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Just like in Java, you use the java.io classes, like this;</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las4_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las4_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Reified Generics in Kotlin</title><link href="http://localhost:4000/2018/09/reified-generics-in-kotlin.html" rel="alternate" type="text/html" title="Reified Generics in Kotlin" /><published>2018-09-29T00:00:00+08:00</published><updated>2018-09-29T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/reified-generics-in-kotlin</id><content type="html" xml:base="http://localhost:4000/2018/09/reified-generics-in-kotlin.html">&lt;p&gt;Let’s deal with the meaning of &lt;em&gt;reify&lt;/em&gt; first. It means to make something real, and the reason we’re using reify and generics on the same statement is because of Java’s type erasure.&lt;/p&gt;
 
 &lt;p&gt;Type erasure means exactly what you think it means. Java, and Kotlin as well, erases generic type information at runtime. There are good reasons for this, but unfortunately, we’re not going to discuss those reasons why the language design is like that — but we will discuss its effects. Because of &lt;em&gt;type erasure&lt;/em&gt;, you can’t perform any reflection activity and you can’t do any runtime check on a type. So, the following code won’t work.&lt;/p&gt;
 
@@ -325,8 +346,20 @@
 &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Tester&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Employee&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Photo credit: yenwen / E+ / Getty Images
-Disclaimer: no copyright infringement intended&lt;/p&gt;</content><author><name></name></author><summary type="html">Let’s deal with the meaning of reify first. It means to make something real, and the reason we’re using reify and generics on the same statement is because of Java’s type erasure.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/reified-generics.jpg" /><media:content medium="image" url="http://localhost:4000/images/reified-generics.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Kotlin’s function can take variable arguments</title><link href="http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions.html" rel="alternate" type="text/html" title="Kotlin's function can take variable arguments" /><published>2018-09-29T00:00:00+08:00</published><updated>2018-09-29T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions</id><content type="html" xml:base="http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions.html">&lt;p&gt;Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type &lt;code class=&quot;highlighter-rouge&quot;&gt;...&lt;/code&gt; , we use the &lt;code class=&quot;highlighter-rouge&quot;&gt;vararg&lt;/code&gt; keyword instead.&lt;/p&gt;
+&lt;!-- &lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
+&lt;/p&gt;
+&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Let’s deal with the meaning of reify first. It means to make something real, and the reason we’re using reify and generics on the same statement is because of Java’s type erasure.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Kotlin’s function can take variable arguments</title><link href="http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions.html" rel="alternate" type="text/html" title="Kotlin's function can take variable arguments" /><published>2018-09-29T00:00:00+08:00</published><updated>2018-09-29T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions</id><content type="html" xml:base="http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions.html">&lt;p&gt;Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type &lt;code class=&quot;highlighter-rouge&quot;&gt;...&lt;/code&gt; , we use the &lt;code class=&quot;highlighter-rouge&quot;&gt;vararg&lt;/code&gt; keyword instead.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;manyParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;vararg&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;va&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// (1)&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;va&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2) &lt;/span&gt;
@@ -356,7 +389,22 @@ variety of types&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;(5)&lt;/strong&gt; Like in Java, we can pass an array to a function that accepts variable arguments. We need to use spread operator * to unpack the array. It’s like passing the individual elements of the array one by one, manually&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;(6)&lt;/strong&gt; The split() member function will return an &lt;em&gt;ArrayList&lt;/em&gt;, you can convert it to an &lt;em&gt;Array&lt;/em&gt; , then use the spread operator so you can pass it to a &lt;em&gt;vararg&lt;/em&gt; function&lt;/p&gt;</content><author><name></name></author><summary type="html">Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments. The syntax is a bit different from Java, instead of using three dots after the type ... , we use the vararg keyword instead.</summary></entry><entry><title type="html">Variance in Kotlin Generics</title><link href="http://localhost:4000/2018/09/variance-in-kotlin-generics.html" rel="alternate" type="text/html" title="Variance in Kotlin Generics" /><published>2018-09-28T00:00:00+08:00</published><updated>2018-09-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/variance-in-kotlin-generics</id><content type="html" xml:base="http://localhost:4000/2018/09/variance-in-kotlin-generics.html">&lt;p&gt;We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(6)&lt;/strong&gt; The split() member function will return an &lt;em&gt;ArrayList&lt;/em&gt;, you can convert it to an &lt;em&gt;Array&lt;/em&gt; , then use the spread operator so you can pass it to a &lt;em&gt;vararg&lt;/em&gt; function&lt;/p&gt;
+
+&lt;!-- &lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
+&lt;/p&gt;
+&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments. The syntax is a bit different from Java, instead of using three dots after the type ... , we use the vararg keyword instead.</summary></entry><entry><title type="html">Variance in Kotlin Generics</title><link href="http://localhost:4000/2018/09/variance-in-kotlin-generics.html" rel="alternate" type="text/html" title="Variance in Kotlin Generics" /><published>2018-09-28T00:00:00+08:00</published><updated>2018-09-28T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/variance-in-kotlin-generics</id><content type="html" xml:base="http://localhost:4000/2018/09/variance-in-kotlin-generics.html">&lt;p&gt;We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.&lt;/p&gt;
 
 &lt;p&gt;OOP is boon to developers, because of it, we can write codes like this&lt;/p&gt;
 
@@ -564,11 +612,20 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
 
 &lt;p&gt;So, now that we understand types and subtypes a bit better, like in a Quentin Tarantino movie, I’d like you go back to the beginning of the article and give it another read. I hope it’ll make better sense by then.&lt;/p&gt;
 
-&lt;p&gt;This article is in Chapter 7 of &lt;a href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;&lt;/p&gt;
+&lt;!-- &lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
+&lt;/p&gt;
+&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Learn-Android-Studio-Kotlin-Development/dp/1484239067&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/images/las3kotlin.jpg&quot; style=&quot;display:block;margin-left:auto;margin-right:auto&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;It’s available from the &lt;a href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Apress website&lt;/a&gt; and &lt;a href=&quot;https://www.amazon.com/Learn-Android-Studio-Kotlin-Development/dp/1484239067&quot;&gt;Amazon&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.</summary></entry><entry><title type="html">Kotlin when, switch statement on steroids</title><link href="http://localhost:4000/2018/09/kotlins-when-is-switch-on-steroids.html" rel="alternate" type="text/html" title="Kotlin when, switch statement on steroids" /><published>2018-09-25T00:00:00+08:00</published><updated>2018-09-25T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/kotlins-when-is-switch-on-steroids</id><content type="html" xml:base="http://localhost:4000/2018/09/kotlins-when-is-switch-on-steroids.html">&lt;p&gt;Kotlin doesn’t have a &lt;em&gt;switch&lt;/em&gt; statement, but it has the &lt;em&gt;when&lt;/em&gt; construct. It looks a lot like the &lt;em&gt;switch&lt;/em&gt; but it packs a lot more punch. In its simplest form, it can be implemented like this&lt;/p&gt;
+&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.</summary></entry><entry><title type="html">Kotlin when, switch statement on steroids</title><link href="http://localhost:4000/2018/09/kotlins-when-is-switch-on-steroids.html" rel="alternate" type="text/html" title="Kotlin when, switch statement on steroids" /><published>2018-09-25T00:00:00+08:00</published><updated>2018-09-25T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/kotlins-when-is-switch-on-steroids</id><content type="html" xml:base="http://localhost:4000/2018/09/kotlins-when-is-switch-on-steroids.html">&lt;p&gt;Kotlin doesn’t have a &lt;em&gt;switch&lt;/em&gt; statement, but it has the &lt;em&gt;when&lt;/em&gt; construct. It looks a lot like the &lt;em&gt;switch&lt;/em&gt; but it packs a lot more punch. In its simplest form, it can be implemented like this&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
  &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Calendar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -698,7 +755,22 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Kotlin doesn’t have a switch statement, but it has the when construct. It looks a lot like the switch but it packs a lot more punch. In its simplest form, it can be implemented like this</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/switch-on-steroids.jpg" /><media:content medium="image" url="http://localhost:4000/images/switch-on-steroids.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Kotlin if-then expressions</title><link href="http://localhost:4000/2018/09/kotlin-if-then.html" rel="alternate" type="text/html" title="Kotlin if-then expressions" /><published>2018-09-22T00:00:00+08:00</published><updated>2018-09-22T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/kotlin-if-then</id><content type="html" xml:base="http://localhost:4000/2018/09/kotlin-if-then.html">&lt;p&gt;The &lt;em&gt;if&lt;/em&gt; construct in Kotlin works almost the same as in Java.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;!-- &lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
+&lt;/p&gt;
+&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Kotlin doesn’t have a switch statement, but it has the when construct. It looks a lot like the switch but it packs a lot more punch. In its simplest form, it can be implemented like this</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/switch-on-steroids.jpg" /><media:content medium="image" url="http://localhost:4000/images/switch-on-steroids.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Kotlin if-then expressions</title><link href="http://localhost:4000/2018/09/kotlin-if-then.html" rel="alternate" type="text/html" title="Kotlin if-then expressions" /><published>2018-09-22T00:00:00+08:00</published><updated>2018-09-22T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/kotlin-if-then</id><content type="html" xml:base="http://localhost:4000/2018/09/kotlin-if-then.html">&lt;p&gt;The &lt;em&gt;if&lt;/em&gt; construct in Kotlin works almost the same as in Java.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;theQuestion&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Doctor who?&quot;&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Theta Sigma&quot;&lt;/span&gt;
@@ -746,7 +818,22 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
 &lt;p&gt;If you have only one statement (each) on the if and else block, you can even shorten the code, like this&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;correctAnswer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;You are correct&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Try again&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">The if construct in Kotlin works almost the same as in Java.</summary></entry><entry><title type="html">Kotlin while loops</title><link href="http://localhost:4000/2018/09/kotlin-while-loops.html" rel="alternate" type="text/html" title="Kotlin while loops" /><published>2018-09-09T00:00:00+08:00</published><updated>2018-09-09T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/kotlin-while-loops</id><content type="html" xml:base="http://localhost:4000/2018/09/kotlin-while-loops.html">&lt;p&gt;Kotlin has a while loop that looks and behaves exactly like the one in Java&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;!-- &lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
+&lt;/p&gt;
+&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">The if construct in Kotlin works almost the same as in Java.</summary></entry><entry><title type="html">Kotlin while loops</title><link href="http://localhost:4000/2018/09/kotlin-while-loops.html" rel="alternate" type="text/html" title="Kotlin while loops" /><published>2018-09-09T00:00:00+08:00</published><updated>2018-09-09T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/kotlin-while-loops</id><content type="html" xml:base="http://localhost:4000/2018/09/kotlin-while-loops.html">&lt;p&gt;Kotlin has a while loop that looks and behaves exactly like the one in Java&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;toTypedArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
@@ -765,4 +852,19 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;(0..100)&lt;/code&gt; - This creates a series of Ints from 1 to 100, using the range function in operator form&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;filter {it % 2 == 0}&lt;/code&gt; - Filter is an extension function (we’ll come up on that in a little while). It does exactly what you think it does, it filters data. It works on objects that are a subtype Iterable. What’s inside is a lambda expression that’s used to evaluate each item of the list. If the item satisfies the condition (is it an even number), then it will be included in the list&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;toTypedArray()&lt;/code&gt; - The filter function returns a list. For this example, I didn’t want to work with Lists, I wanted to work with arrays instead, so, I converted it with this function&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Kotlin has a while loop that looks and behaves exactly like the one in Java</summary></entry></feed>
+&lt;/ul&gt;
+
+&lt;!-- &lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
+&lt;/p&gt;
+&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 28rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Kotlin has a while loop that looks and behaves exactly like the one in Java</summary></entry></feed>

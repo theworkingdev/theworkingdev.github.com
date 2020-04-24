@@ -4,6 +4,7 @@ layout: post
 categories: android, java
 permalink: /2018/07/learn-android-studio-3-java-ed.html
 date:   2018-07-08 
+image: /images/book_las3.png
 ---
 
 ![](/images/learnandroidstudio3.jpg)

@@ -52,3 +52,4 @@ toast(R.string.message)
 longToast("Heeeeelllllllllllooooo")
 ```
 
+{% include book_las3_kotlin.html %}

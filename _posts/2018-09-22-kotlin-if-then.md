@@ -62,3 +62,4 @@ If you have only one statement (each) on the if and else block, you can even sho
 var message = if (answer == correctAnswer) "You are correct" else "Try again"
 ```
 
+{% include book_las3_kotlin.html %}

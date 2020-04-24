@@ -7,6 +7,7 @@ categories:
 comments: true
 date:   2020-4-23   
 author: "Ted Hagos"
+image: /images/book_las4.png
 ---
 
 
@@ -56,8 +57,6 @@ View objects, like _Buttons_, can be bound to other listeners; the table below s
 | **View.OnFocusChangeListener**       | `onFocusChange()`       | when the user navigates onto or away from  the control       |
 | **View.OnTouchListener**             | `onTouch()`             | Almost the same as click action but this  handler lets you find out if the user swiped up or down. You can use this to  respond to gestures |
 | **View.OnCreateContextMenuListener** | `onCreateContextMenu()` | Android calls this when a ContextMenu is  being built, as a result of a sustained long click |
-
-
 
 
 
