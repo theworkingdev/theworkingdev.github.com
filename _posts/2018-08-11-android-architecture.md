@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/08/android-architecture.html
 date:   2018-08-11
+image: /images/book_las3_kotlin.png
 ---
 
 The most visible part of Android, at least for developers, is its operating system (OS). An OS is a complex thing but for the most part, it is what stands between a user and the hardware. That is an oversimplification, but it will suffice for our purposes. By "user", I don’t literally mean an end user or a person. What I mean by it is an application, a piece of code that a programmer creates, like a word processor or an email client.

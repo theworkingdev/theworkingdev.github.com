@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/07/android-jank.html
 date:   2018-07-29 
+image: /images/book_las3_kotlin.png
 ---
 
 The following code used to trigger **ANR** (Android Not Responding) error

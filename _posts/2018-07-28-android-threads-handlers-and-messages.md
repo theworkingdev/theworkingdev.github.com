@@ -4,6 +4,7 @@ layout: post
 categories: kotlin, android
 permalink: /2018/07/android-threads-handlers-and-messages.html
 date:   2018-07-28 
+image: /images/book_las3_kotlin.png
 ---
 
 > If your app suffers from slow UI rendering, then the system is forced to skip frames and the user will perceive stuttering in your app. We call this jank.	

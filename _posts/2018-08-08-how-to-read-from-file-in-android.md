@@ -6,6 +6,7 @@ categories:
  - kotlin
 permalink: /2018/08/how-to-read-from-file-in-android.html
 date:   2018-08-08 
+image: /images/book_las3_kotlin.png
 ---
 
 The following snippet shows how to read from a file in the internal storage (standard location, not cache).

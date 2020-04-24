@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/07/intents-can-carry-data.html 
 date:   2018-07-04 
+image: /images/book_las3_kotlin.png
 ---
 
 Android Intents can do so much more than just just simpy activate or launch another Activity in your app, it can also carry data. This capability lets you pass around data between components.

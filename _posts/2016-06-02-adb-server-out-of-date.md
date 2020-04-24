@@ -8,8 +8,6 @@ date:   2016-06-02
 
 ## adb server out of date - linux
 
-
-
 When you encounter an adb server out of date in a Linux environment, that might be because there's more than one location in your machine where the Android tools are installed. This error happened to me on a Lubuntu 15, while I was using Genymotion (for the emulator) and Android Studio (for the IDE).
 
 **Problem**. Cannot connect to adb server via the command line. Simple commands like `adb devices` produces the out of date error

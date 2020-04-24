@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/06/android-oncreateoptionsmenu.html 
 date:   2018-06-15 
+image: /images/book_las3_kotlin.png
 ---
 
 Menus can be created either [by using an XML resource file](https://www.workingdev.net/2018/06/using-simple-menu-in-actionbar.html) or by dynamically adding menu items through program code. This post is the latter.  

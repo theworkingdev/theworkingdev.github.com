@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/06/using-simple-menu-in-actionbar.html
 date:   2018-06-15 
+image: /images/book_las3_kotlin.png
 ---
 
 You can create a menu for an app in 3 steps. First is to create a menu resource file which will contain all the menu items, Next steps is to inflate the menu file and attach it to a **Menu** object and lastly, handle the events for each menu item.

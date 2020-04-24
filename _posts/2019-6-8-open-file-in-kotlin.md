@@ -5,7 +5,7 @@ categories:
  - kotlin
 comments: true
 date:   2019-6-8  
-image: /images/book_las4_kotlin.png
+image: /images/book_las3_kotlin.png
 ---
 
 Just like in Java, you use the `java.io` classes, like this;

@@ -5,6 +5,7 @@ categories: android, kotlin
 permalink: /2018/07/kotlin-extension-functions.html
 date:   2018-07-02 
 description: An extension function in Kotlin allows to add behavior to an existing class, including the ones written in Java, without using inheritance. It essentially lets us define a function that can be invoked as a member of the class, but the function is implemented outside the class
+image: /images/book_las3_kotlin.png
 ---
 
 In Java, if we needed to add functionality to a class, we could either add methods to the class itself or extend it by inheritance. An extension function in Kotlin allows to add behavior to an existing class, including the ones written in Java, without using inheritance. We can define additional behavior for an existing class and do the definition outside of that class.

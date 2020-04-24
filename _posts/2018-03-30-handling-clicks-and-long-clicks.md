@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: 
 date:   2018-08-01 
+image: /images/book_las3_kotlin.png
 ---
 
 An onClickListener for a Button View object can be coded like this

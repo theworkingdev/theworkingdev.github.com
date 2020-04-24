@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/07/how-to-launch-another-activity.html
 date:   2018-07-23 
+image: /images/book_las3_kotlin.png
 ---
 
 Android is made up of loosely coupled components. What if you need your components to talk to each other e.g. launch another Activity? How do you think we should manage that? If you have any experience with desktop programming, you might think that you can do it with a code like this

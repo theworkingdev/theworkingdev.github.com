@@ -5,6 +5,7 @@ categories: kotlin
 permalink: /2018/09/kotlin-if-then.html
 date:   2018-09-22 
 description: Kotlin's if-then construct is almost the same as Java's, but in Kotlin, if-then is an expression, not a statement
+image: /images/book_las3_kotlin.png
 ---
 
 

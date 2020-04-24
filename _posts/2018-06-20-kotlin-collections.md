@@ -4,6 +4,7 @@ layout: post
 categories: kotlin
 permalink: /2018/06/kotlin-collections.html
 date:   2018-08-01 
+image: /images/kotlin-collection-classes.png
 ---
 
 ![](/images/kotlin-collections-classes.png)

@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/08/how-to-create-and-loop-through-kotlin.html
 date:   2018-08-01 
+image: /images/book_las3_kotlin.png
 ---
 
 

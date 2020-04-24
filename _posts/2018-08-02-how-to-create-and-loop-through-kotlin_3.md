@@ -4,7 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/08/how-to-create-and-loop-through-kotlin_3.html
 date:   2018-08-01 
-
+image: /images/book_las3_kotlin.png
 ---
 
 It's very easy to work with Maps in Kotlin, you can see for yourself in the following examples.

@@ -5,7 +5,7 @@ categories: kotlin
 permalink: /2018/09/kotlins-when-is-switch-on-steroids.html 
 date:   2018-09-25 
 description: Kotlin doesn't have a switch statement, like the one in Java. But, it has the when construct. You can use it either as a statement or expression. It's got superpowers
-image: /images/switch-on-steroids.jpg
+image: /images/book_las3_kotlin.jpg
 ---
 
 Kotlin doesn’t have a _switch_ statement, but it has the _when_ construct. It looks a lot like the _switch_ but it packs a lot more punch. In its simplest form, it can be implemented like this

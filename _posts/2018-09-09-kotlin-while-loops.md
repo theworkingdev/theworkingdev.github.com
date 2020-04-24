@@ -4,6 +4,7 @@ layout: post
 categories: kotlin
 permalink: /2018/09/kotlin-while-loops.html
 date:   2018-09-09 
+image: /images/book_las3_kotlin.png
 ---
 
 Kotlin has a while loop that looks and behaves exactly like the one in Java
