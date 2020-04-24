@@ -67,6 +67,8 @@ table td { border: 1px solid #e8e8e8; }
 
 #disqus_thread { margin-top: 2em; }
 
+ul > h3 { margin-top: 1em; font-family: sans-serif; font-weight: bold; }
+
 /** Site header */
 .site-header { border-top: 5px solid #424242; border-bottom: 1px solid #e8e8e8; min-height: 55.95px; position: relative; }
 
