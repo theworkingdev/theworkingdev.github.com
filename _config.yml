@@ -65,6 +65,9 @@ defaults:
   layout: post
   author: "Ted Hagos"
 
+plugins:
+  - jekyll-sitemap
+
 # plugins:
 #   - jekyll-sitemap
 #   - jekyll-feed
