@@ -1,0 +1,21 @@
+I"�<p>You can pass an argument to a Node app like this</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
+</code></pre></div></div>
+
+<p>Any token (String or number) that’s passed after the name of the program file (myapp.js in this case) is a command line argument. If you want to pass more than one argument, simply separate them by space, like this</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe" 1 2 3 4
+</code></pre></div></div>
+
+<p>All the command line arguments will be stored in the <strong>process.argv</strong> object; it’s Array.  The 0th element contains the <em>node</em> executable itself, the 1st element is the name of JavaScript program; the 2nd element is the first command line parameter,  the 3rd element is the 2nd command line parameter, so on and so forth. So, in our example above, here’s what the <strong>process.argv</strong>  contains</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
+/Users/ted/temp/cmdlineparams.js              | process.argv[1]
+                                           | process.argv[2]
+Quick                                         | process.argv[3]
+Brown                                         | process.argv[4]
+Fox                                           | process.argv[5]
+</code></pre></div></div>
+
+:ET

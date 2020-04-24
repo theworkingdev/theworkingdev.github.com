@@ -1,0 +1,11 @@
+I"0<p>You can pass an argument to a Node app like this</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
+</code></pre></div></div>
+
+<p>Any token (String or number) that’s passed after the name of the program file (myapp.js in this case) is a command line argument. If you want to pass more than one argument, simply separate them by space, like this</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe" 1 2 3 4
+</code></pre></div></div>
+
+:ET

@@ -1,0 +1,6 @@
+I"{<p>You can pass an argument to a Node app like this</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">node</span> <span class="nx">myapp</span><span class="p">.</span><span class="nx">js</span> <span class="dl">"</span><span class="s2">John Doe</span><span class="dl">"</span>
+</code></pre></div></div>
+
+:ET
