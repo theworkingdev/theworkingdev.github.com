@@ -325,6 +325,10 @@
 <lastmod>2020-04-24T00:00:00+08:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html</loc>
+<lastmod>2020-04-25T00:00:00+08:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about/</loc>
 </url>
 <url>
@@ -332,5 +336,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/subscribe/</loc>
 </url>
 </urlset>

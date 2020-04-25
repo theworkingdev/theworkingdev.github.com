@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-24T22:15:40+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>Code samples, snippets and tutorials for the working programmer</subtitle><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html">&lt;p&gt;You can pass an argument to a Node app like this&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-25T22:31:59+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>Code samples, snippets and tutorials for the working programmer</subtitle><entry><title type="html">Basic Android APIs for the Game Programmer</title><link href="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" rel="alternate" type="text/html" title="Basic Android APIs for the Game Programmer" /><published>2020-04-25T00:00:00+08:00</published><updated>2020-04-25T00:00:00+08:00</updated><id>http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers</id><content type="html" xml:base="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html">&lt;p&gt;This is a sample text&lt;/p&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_beginning_androidgames.png&quot; class=&quot;card-img-top&quot; alt=&quot;Beginning Android Games&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Beginning Android Games&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;I want to be notified when the book comes out&lt;/p&gt;
+
+    &lt;form action=&quot;https://buttondown.email/api/emails/embed-subscribe/workingdev&quot; method=&quot;post&quot; target=&quot;popupwindow&quot; onsubmit=&quot;window.open('https://buttondown.email/workingdev', 'popupwindow')&quot; class=&quot;embeddable-buttondown-form&quot;&gt;
+    &lt;label for=&quot;bd-email&quot;&gt;Enter your email&lt;/label&gt;
+    &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;bd-email&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; value=&quot;beginningandroidgames&quot; name=&quot;tag&quot; /&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name>Ted Hagos</name></author><summary type="html">This is a sample text</summary></entry><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html">&lt;p&gt;You can pass an argument to a Node app like this&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;node myapp.js &quot;John Doe&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -105,10 +121,36 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;
-  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484259368&quot;&gt;Learn Android Studio 4&lt;/a&gt;
+&lt;!-- &lt;p&gt;
+  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562&quot;&gt;Learn Android Studio 3&lt;/a&gt;
 &lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/book_las4.png&quot; alt=&quot;Learn Android Studio 4&quot; /&gt;&lt;/p&gt;</content><author><name>Ted Hagos</name></author><summary type="html">The user interacts with an app by touching, clicking, swiping or typing something. The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las4.png" /><media:content medium="image" url="http://localhost:4000/images/book_las4.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to create a simple Random number generator in Java</title><link href="http://localhost:4000/java/android/2019/06/08/random-number-java.html" rel="alternate" type="text/html" title="How to create a simple Random number generator in Java" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/java/android/2019/06/08/random-number-java</id><content type="html" xml:base="http://localhost:4000/java/android/2019/06/08/random-number-java.html">&lt;p&gt;If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the &lt;code class=&quot;highlighter-rouge&quot;&gt;java.util.Random&lt;/code&gt; class.&lt;/p&gt;
+&lt;img src=&quot;/images/book_las3.png&quot; alt=&quot;Learn Android Studio 3&quot;&gt; --&gt;
+
+&lt;!-- &lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las4.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 4&quot;&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 4&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt; --&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_las4.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 4&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 4&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;I want to be notified when the book comes out&lt;/p&gt;
+
+    &lt;form action=&quot;https://buttondown.email/api/emails/embed-subscribe/workingdev&quot; method=&quot;post&quot; target=&quot;popupwindow&quot; onsubmit=&quot;window.open('https://buttondown.email/workingdev', 'popupwindow')&quot; class=&quot;embeddable-buttondown-form&quot;&gt;
+    &lt;label for=&quot;bd-email&quot;&gt;Enter your email&lt;/label&gt;
+    &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;bd-email&quot; /&gt;
+    &lt;input type=&quot;hidden&quot; value=&quot;learnandroidstudio4&quot; name=&quot;tag&quot; /&gt;
+    &lt;p&gt;&lt;/p&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name>Ted Hagos</name></author><summary type="html">The user interacts with an app by touching, clicking, swiping or typing something. The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las4.png" /><media:content medium="image" url="http://localhost:4000/images/book_las4.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to create a simple Random number generator in Java</title><link href="http://localhost:4000/java/android/2019/06/08/random-number-java.html" rel="alternate" type="text/html" title="How to create a simple Random number generator in Java" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/java/android/2019/06/08/random-number-java</id><content type="html" xml:base="http://localhost:4000/java/android/2019/06/08/random-number-java.html">&lt;p&gt;If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the &lt;code class=&quot;highlighter-rouge&quot;&gt;java.util.Random&lt;/code&gt; class.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Random&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;// (1)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;mrandomnumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;nextInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// (2)&lt;/span&gt;
@@ -843,38 +885,4 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
     &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
       Get the book&lt;/a&gt;
   &lt;/div&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">The if construct in Kotlin works almost the same as in Java.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Kotlin while loops</title><link href="http://localhost:4000/2018/09/kotlin-while-loops.html" rel="alternate" type="text/html" title="Kotlin while loops" /><published>2018-09-09T00:00:00+08:00</published><updated>2018-09-09T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/kotlin-while-loops</id><content type="html" xml:base="http://localhost:4000/2018/09/kotlin-while-loops.html">&lt;p&gt;Kotlin has a while loop that looks and behaves exactly like the one in Java&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;toTypedArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;++]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sum is $sum&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The code above, with the exception of the first line, should look very familiar to Java folks. That’s exactly how Java would do a while loop. So, we’ll leave it at that.&lt;/p&gt;
-
-&lt;p&gt;This is what’s going on in the first line;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;(0..100)&lt;/code&gt; - This creates a series of Ints from 1 to 100, using the range function in operator form&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;filter {it % 2 == 0}&lt;/code&gt; - Filter is an extension function (we’ll come up on that in a little while). It does exactly what you think it does, it filters data. It works on objects that are a subtype Iterable. What’s inside is a lambda expression that’s used to evaluate each item of the list. If the item satisfies the condition (is it an even number), then it will be included in the list&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;toTypedArray()&lt;/code&gt; - The filter function returns a list. For this example, I didn’t want to work with Lists, I wanted to work with arrays instead, so, I converted it with this function&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!-- &lt;p&gt;
-  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
-&lt;/p&gt;
-&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
-
-&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
-  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
-    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
-    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
-      Get the book&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Kotlin has a while loop that looks and behaves exactly like the one in Java</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/div&gt;</content><author><name></name></author><summary type="html">The if construct in Kotlin works almost the same as in Java.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

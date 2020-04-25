@@ -1,20 +1,26 @@
 
-<table>
-  <tr style="width:auto !important">
-    <td>
-      <img src="/images/android_games.jpg">
-    </td>
-    <td>
-      This is a sample text
-    </td>
-  </tr>
-</table>
+<div class="card" style="width: 22rem;">
+  <img src="/images/book_beginning_androidgames.png" class="card-img-top" alt="Beginning Android Games">
+  <div class="card-body">
+    <h5 class="card-title">Beginning Android Games</h5>
+    <p class="card-text">I want to be notified when the book comes out</p>
 
-<div>
-  <div>
-    <img src="/images/android_games.jpg">
-  </div>
-  <div style="float:right">
-    This is a sample text
+    <form
+    action="https://buttondown.email/api/emails/embed-subscribe/workingdev"
+    method="post"
+    target="popupwindow"
+    onsubmit="window.open('https://buttondown.email/workingdev', 'popupwindow')"
+    class="embeddable-buttondown-form"
+  >
+    <label for="bd-email">Enter your email</label>
+    <input type="email" name="email" id="bd-email" />
+    <input type="hidden" value="beginningandroidgames" name="tag"/>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
   </div>
 </div>
+
+
+
+
