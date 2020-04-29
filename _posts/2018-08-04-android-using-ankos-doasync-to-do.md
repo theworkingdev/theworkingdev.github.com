@@ -5,6 +5,7 @@ categories: android, kotlin
 permalink: /2018/08/android-using-ankos-doasync-to-do.html 
 date:   2018-08-01 
 image: /images/book_las3_kotlin.png
+comments: true
 ---
 
 

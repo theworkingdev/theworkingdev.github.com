@@ -4,6 +4,7 @@ layout: post
 categories: android, kotlin
 permalink: /2018/08/how-to-write-to-file-in-android.html
 date:   2018-08-19 
+comments: true
 ---
 
 The following snippet shows how to write a file in the internal storage (standard location, not cache).

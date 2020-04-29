@@ -7,6 +7,7 @@ categories:
 permalink: /2018/08/how-to-use-androids-sharedpreferences.html
 date:   2018-08-07 
 image: /images/book_las3_kotlin.png
+comments: true
 ---
 
 A preference file is the easiest and most straightforward way to store data in Android app. A preference file stores pairs of key-value items, like dictionaries or maps, and they are stored in the file system as XML files.

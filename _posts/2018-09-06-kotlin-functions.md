@@ -6,6 +6,7 @@ permalink: /2018/09/kotlin-functions.html
 date:   2018-09-06
 description: Kotlin functions are much richer than Java's. You have the flexibility to define default values for parameters and even name the parameters at the call site. This why you don't need to do much overloading in Kotlin
 image: /images/book_las3_kotlin.png
+comments: true
 ---
 
 Kotlin functions are defined using `fun` keyword, followed by the name of the function, a pair of parentheses, optional parameters, the return type of function and then the body of the function, which is pair of curly braces. It's pretty much like a Java function, except that in Java,  we have no `fun` (pun intended) and the type of the function  is written to the left of the function (in Java), while in Kotlin, the return type of the function is to the right of function name. 

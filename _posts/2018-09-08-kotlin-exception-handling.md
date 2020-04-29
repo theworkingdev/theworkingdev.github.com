@@ -6,6 +6,7 @@ permalink: /2018/09/kotlin-exception-handling.html
 date:   2018-09-08 
 description: Like Java, Kotlin uses the same try-catch construct. But unlike Java, Kotlin treat all exceptions as unchecked. Hence, try-catch is optional
 image: /images/book_las3_kotlin.jpg
+comments: true
 ---
 
 Kotlin's approach to exception is similar to Java. Somewhat. It uses the _try-catch-finally_, just like in Java. So, your knowledge about how _try-catch_ works commutes nicely to Kotlin. The code below should be very familiar. It shows a typical code on how to open a file
