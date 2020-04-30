@@ -45,7 +45,7 @@ if (process.argv.length > 2) {   // (1)
 }
 ```
 
-**(1)** If the length of the array is greater than 2, we know that the user passed command line arguments. Remember that the first two elements of the array contains the node executable and the name of program file; so, the length of the **process.argv** array, is at a minimum, always 2. That's why we're checking for a value > 2
+![](/images/1.png) If the length of the array is greater than 2, we know that the user passed command line arguments. Remember that the first two elements of the array contains the node executable and the name of program file; so, the length of the **process.argv** array, is at a minimum, always 2. That's why we're checking for a value > 2
 
-**(2)** We can use a simple **for in** loop to traverse the array
+![](/images/2.png) We can use a simple **for in** loop to traverse the array
 

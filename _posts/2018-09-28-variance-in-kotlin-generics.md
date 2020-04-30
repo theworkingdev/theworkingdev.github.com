@@ -31,10 +31,13 @@ fun foo(arg:Number) { // (4)
   println(arg)
 }
 ```
-(1) _Int_ literal
-(2) _Float_ literal
-(3) _Double_ literal
-(4) function *Foo* expects a _Number_, it can take _Ints, Floats_ and _Doubles_. No Problem
+![](/images/1.png) _Int_ literal
+
+![](/images/2.png) _Float_ literal
+
+![](/images/3.png) _Double_ literal
+
+![](/images/4.png) function *Foo* expects a _Number_, it can take _Ints, Floats_ and _Doubles_. No Problem
 
 The codes are possible because of the _Liskov Substitution Principle_ (LSP). It’s one of the more important parts of OOP — where a parent type is expected, you can use a subtype in its place. The reason we use a more generalized type (like *Number*, in our code example), is so that in the future, if we need to, we can write an implementation of a subtype and insert into an existing and working code. This is the essence of the Open Closed Principle (which states that a class must be open to extension but closed to modification).
 
@@ -62,9 +65,9 @@ fun main(args: Array<String>) {
   println(employee_2)
 }
 ```
-(1) employee_1 is of type Employee, we’re assigning a Programmer object to it. Which is okay. Programmer is a subtype of Employee
+![](/images/1.png) employee_1 is of type Employee, we’re assigning a Programmer object to it. Which is okay. Programmer is a subtype of Employee
 
-(2) Same thing here, the type Tester is a subtype of Employee, so the assignment should be okay
+![](/images/2.png) Same thing here, the type Tester is a subtype of Employee, so the assignment should be okay
 
 No surprises here, the Liskov principle is still at work. Even if you put Programmer and Employee on a List, the type relationship is preserved. 
 
@@ -100,9 +103,9 @@ fun main(args: Array<String>) {
   val a:Group<Employee> = Group<Programmer>()  // (2)
 }
 ```
-(1) When you put the out keyword before the type parameter, that makes the type parameter covariant
+![](/images/1.png) When you put the out keyword before the type parameter, that makes the type parameter covariant
 
-(2) This code works because, Group<Programmer> is now a subtype of Group<Employee>, thanks to the out keyword
+![](/images/2.png) This code works because, Group<Programmer> is now a subtype of Group<Employee>, thanks to the out keyword
 
 From these examples, we can now generalize that if  type Programmer is a subtype of Employee and Group<T> is covariant, then `Group<Programmer>` is a subtype of `Group<Employee>`.  Also, we can generalize that generic class, like Group, is invariant on type parameter, if for the given types Employee and Programmer, `Group<Programmer>` isn’t a subtype of `Group<Employee>`.
 
@@ -110,7 +113,7 @@ Now we’ve dealt with _invariant_ and _covariant_. The last terminology we need
 
 _Listing 5. Use the in keyword for contravariance_
 ```kotlin
-class Group<in T>  // (2)
+class Group<in T>  // (1)
 
 open class Employee(val name:String) {
   override fun toString(): String {
@@ -124,9 +127,9 @@ fun main(args: Array<String>) {
   val a:Group<Programmer> = Group<Employee>()   // (2)
 }
 ```
-(1) The in keyword makes the type parameter <T> contravariant, which means;
+![](/images/1.png) The in keyword makes the type parameter <T> contravariant, which means;
 
-(2) type Group<Employee> is now a subtype of Group<Programmer>
+![](/images/1.png) type Group<Employee> is now a subtype of Group<Programmer>
 
 ## Subclass vs subtype
 
@@ -138,6 +141,7 @@ Going back to “a class has at least one type”, well, it can have more. Just 
 
 
 ![](/images/kotlin-variance-1.png)
+
 _Figure 1_
 
 From Figure 1, we can say 
@@ -154,6 +158,7 @@ The case of the nullable type is an example where a subclass is not the same as 
 
 
 ![](/images/kotlin-variance-2.png)
+
 _Figure 2_
 
 
@@ -176,6 +181,7 @@ Now we come to generics.  Figure 3 should help us illustrate the next set of con
 
 
 ![](/images/kotlin-variance-3.png)
+
 _Figure 3_
 
 We know the first relationship, Employee is the supertype of Programmer. We also know `List<Employee>` will accept `List<Programmer>`,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes. 
@@ -227,7 +233,7 @@ public interface List<out E> : Collection<E> {  // (1)
     public fun subList(fromIndex: Int, toIndex: Int): List<E>
 }
 ```
-(1) Type parameter is covariant. List uses the out keyword before the type parameter E
+![](/images/1.png) Type parameter is covariant. List uses the out keyword before the type parameter E
 
 The reason why it’s okay to assign `List<Programmer>` to `List<Employee>` is because the type parameter on `List<E>` is covariant.  Hence, if type *Employee* is a supertype of *Programmer*, and `List<E>` is covariant, then `List<Programmer>` is a subtype of `List<Employee>`.
 

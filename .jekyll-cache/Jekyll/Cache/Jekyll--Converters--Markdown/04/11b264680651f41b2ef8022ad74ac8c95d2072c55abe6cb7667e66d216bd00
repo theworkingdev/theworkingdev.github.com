@@ -1,0 +1,35 @@
+I"><p>You can pass an argument to a Node app like this</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
+</code></pre></div></div>
+
+<p>Any token (String or number) that’s passed after the name of the program file (myapp.js in this case) is a command line argument. If you want to pass more than one argument, simply separate them by space, like this</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe" 1 2 3 4
+</code></pre></div></div>
+
+<p>All the command line arguments will be stored in the <strong>process.argv</strong> object; it’s an Array.  The 0th element contains the <em>node</em> executable itself, the 1st element is the name of JavaScript program; the 2nd element is the first command line parameter,  the 3rd element is the 2nd command line parameter, so on and so forth. So, in our example above, here’s what the <strong>process.argv</strong>  contains</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
+/Users/ted/temp/cmdlineparams.js              | process.argv[1]
+"John Doe"                                    | process.argv[2]
+1                                             | process.argv[3]
+2                                             | process.argv[4]
+3                                             | process.argv[5]
+4                                             | process.argv[6]
+</code></pre></div></div>
+
+<p>You can process the command line arguments like this;</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// (1)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">)</span> <span class="p">{</span>      <span class="c1">// (2)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/images/1.png" alt="" /> If the length of the array is greater than 2, we know that the user passed command line arguments. Remember that the first two elements of the array contains the node executable and the name of program file; so, the length of the <strong>process.argv</strong> array, is at a minimum, always 2. That’s why we’re checking for a value &gt; 2</p>
+
+<p>v We can use a simple <strong>for in</strong> loop to traverse the array</p>
+
+:ET
