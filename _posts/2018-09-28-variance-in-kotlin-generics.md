@@ -129,7 +129,7 @@ fun main(args: Array<String>) {
 ```
 ![](/images/1.png) The in keyword makes the type parameter <T> contravariant, which means;
 
-![](/images/1.png) type Group<Employee> is now a subtype of Group<Programmer>
+![](/images/2.png) type Group<Employee> is now a subtype of Group<Programmer>
 
 ## Subclass vs subtype
 

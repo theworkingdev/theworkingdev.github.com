@@ -1,4 +1,4 @@
-I"Ep<p>We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.</p>
+I"6q<p>We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.</p>
 
 <p>OOP is boon to developers, because of it, we can write codes like this</p>
 
@@ -51,9 +51,9 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
   <span class="nf">println</span><span class="p">(</span><span class="n">employee_2</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>(1) employee_1 is of type Employee, we’re assigning a Programmer object to it. Which is okay. Programmer is a subtype of Employee</p>
+<p><img src="/images/1.png" alt="" /> employee_1 is of type Employee, we’re assigning a Programmer object to it. Which is okay. Programmer is a subtype of Employee</p>
 
-<p>(2) Same thing here, the type Tester is a subtype of Employee, so the assignment should be okay</p>
+<p><img src="/images/2.png" alt="" /> Same thing here, the type Tester is a subtype of Employee, so the assignment should be okay</p>
 
 <p>No surprises here, the Liskov principle is still at work. Even if you put Programmer and Employee on a List, the type relationship is preserved.</p>
 
@@ -86,16 +86,16 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
   <span class="kd">val</span> <span class="py">a</span><span class="p">:</span><span class="nc">Group</span><span class="p">&lt;</span><span class="nc">Employee</span><span class="p">&gt;</span> <span class="p">=</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="nc">Programmer</span><span class="p">&gt;()</span>  <span class="c1">// (2)</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>(1) When you put the out keyword before the type parameter, that makes the type parameter covariant</p>
+<p><img src="/images/1.png" alt="" /> When you put the out keyword before the type parameter, that makes the type parameter covariant</p>
 
-<p>(2) This code works because, Group<Programmer> is now a subtype of Group<Employee>, thanks to the out keyword</Employee></Programmer></p>
+<p><img src="/images/2.png" alt="" /> This code works because, Group<Programmer> is now a subtype of Group<Employee>, thanks to the out keyword</Employee></Programmer></p>
 
 <p>From these examples, we can now generalize that if  type Programmer is a subtype of Employee and Group<T> is covariant, then `Group<Programmer>` is a subtype of `Group<Employee>`.  Also, we can generalize that generic class, like Group, is invariant on type parameter, if for the given types Employee and Programmer, `Group<Programmer>` isn’t a subtype of `Group<Employee>`.</Employee></Programmer></Employee></Programmer></T></p>
 
 <p>Now we’ve dealt with <em>invariant</em> and <em>covariant</em>. The last terminology we need to deal with is <em>contravariant</em>. If  the type parameter of <code class="highlighter-rouge">Group&lt;T&gt;</code> is contravariant, for the same given types Employee and Programmer, then we can say that <code class="highlighter-rouge">Group&lt;Employee&gt;</code> is a subtype of <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> — it’s quite the reverse of covariant.</p>
 
 <p><em>Listing 5. Use the in keyword for contravariance</em></p>
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="k">in</span> <span class="nc">T</span><span class="p">&gt;</span>  <span class="c1">// (2)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="k">in</span> <span class="nc">T</span><span class="p">&gt;</span>  <span class="c1">// (1)</span>
 
 <span class="k">open</span> <span class="kd">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="kd">val</span> <span class="py">name</span><span class="p">:</span><span class="nc">String</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">override</span> <span class="k">fun</span> <span class="nf">toString</span><span class="p">():</span> <span class="nc">String</span> <span class="p">{</span>
@@ -109,9 +109,9 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
   <span class="kd">val</span> <span class="py">a</span><span class="p">:</span><span class="nc">Group</span><span class="p">&lt;</span><span class="nc">Programmer</span><span class="p">&gt;</span> <span class="p">=</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="nc">Employee</span><span class="p">&gt;()</span>   <span class="c1">// (2)</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>(1) The in keyword makes the type parameter <T> contravariant, which means;</T></p>
+<p><img src="/images/1.png" alt="" /> The in keyword makes the type parameter <T> contravariant, which means;</T></p>
 
-<p>(2) type Group<Employee> is now a subtype of Group<Programmer></Programmer></Employee></p>
+<p><img src="/images/2.png" alt="" /> type Group<Employee> is now a subtype of Group<Programmer></Programmer></Employee></p>
 
 <h2 id="subclass-vs-subtype">Subclass vs subtype</h2>
 
@@ -121,8 +121,9 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 
 <p>Going back to “a class has at least one type”, well, it can have more. Just look at Figure 1.</p>
 
-<p><img src="/images/kotlin-variance-1.png" alt="" />
-<em>Figure 1</em></p>
+<p><img src="/images/kotlin-variance-1.png" alt="" /></p>
+
+<p><em>Figure 1</em></p>
 
 <p>From Figure 1, we can say</p>
 
@@ -138,8 +139,9 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 
 <p>The case of the nullable type is an example where a subclass is not the same as a subtype. See Figure 2.</p>
 
-<p><img src="/images/kotlin-variance-2.png" alt="" />
-<em>Figure 2</em></p>
+<p><img src="/images/kotlin-variance-2.png" alt="" /></p>
+
+<p><em>Figure 2</em></p>
 
 <p>When you put a question mark after the name of a type, it becomes the nullable version of that type. In Kotlin, we can create two types from the same class — the nullable and the non-nullable version. We can’t really say <em>Programmer</em> is a subclass of <em>Programmer?</em> because there is just one class definition for <em>Programmer</em>, but <em>Programmer</em> (the non-nullable version) is a subtype of Programmer? (the nullable one).  Similarly, <em>Any</em> is a subtype of <em>Any?</em> but <em>Any?</em> is not a subtype of <em>Any</em> — the reverse direction isn’t true.</p>
 
@@ -156,8 +158,9 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 
 <p>Now we come to generics.  Figure 3 should help us illustrate the next set of concepts we need to grapple with.</p>
 
-<p><img src="/images/kotlin-variance-3.png" alt="" />
-<em>Figure 3</em></p>
+<p><img src="/images/kotlin-variance-3.png" alt="" /></p>
+
+<p><em>Figure 3</em></p>
 
 <p>We know the first relationship, Employee is the supertype of Programmer. We also know <code class="highlighter-rouge">List&lt;Employee&gt;</code> will accept <code class="highlighter-rouge">List&lt;Programmer&gt;</code>,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes.</p>
 
@@ -203,7 +206,7 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
     <span class="k">public</span> <span class="k">fun</span> <span class="nf">subList</span><span class="p">(</span><span class="n">fromIndex</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span> <span class="n">toIndex</span><span class="p">:</span> <span class="nc">Int</span><span class="p">):</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">E</span><span class="p">&gt;</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>(1) Type parameter is covariant. List uses the out keyword before the type parameter E</p>
+<p><img src="/images/1.png" alt="" /> Type parameter is covariant. List uses the out keyword before the type parameter E</p>
 
 <p>The reason why it’s okay to assign <code class="highlighter-rouge">List&lt;Programmer&gt;</code> to <code class="highlighter-rouge">List&lt;Employee&gt;</code> is because the type parameter on <code class="highlighter-rouge">List&lt;E&gt;</code> is covariant.  Hence, if type <em>Employee</em> is a supertype of <em>Programmer</em>, and <code class="highlighter-rouge">List&lt;E&gt;</code> is covariant, then <code class="highlighter-rouge">List&lt;Programmer&gt;</code> is a subtype of <code class="highlighter-rouge">List&lt;Employee&gt;</code>.</p>
 

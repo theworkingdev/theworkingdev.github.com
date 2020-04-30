@@ -8,10 +8,6 @@ dl, dd, ol, ul, figure {
   padding: 0;
 }
 
-.post-title {
-  font-weight: 700;
-}
-
 em {font-family: serif;}
 
 /**
@@ -32,7 +28,11 @@ body {
   flex-direction: column;
 }
 
-
+.post-title {
+  font-family: 'Roboto';
+  font-weight: 700;
+  color: #5b5b5b;
+}
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -114,7 +114,7 @@ a {
   text-decoration: none;
 
   &:visited {
-    // color: darken($brand-color, 15%);
+    color: darken($brand-color, 15%);
   }
 
   &:hover {
