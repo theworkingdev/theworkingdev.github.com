@@ -1,4 +1,274 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-30T19:39:45+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>Code samples, snippets and tutorials for the working programmer</subtitle><entry><title type="html">Basic Android APIs for the Game Programmer</title><link href="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" rel="alternate" type="text/html" title="Basic Android APIs for the Game Programmer" /><published>2020-04-25T00:00:00+08:00</published><updated>2020-04-25T00:00:00+08:00</updated><id>http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers</id><content type="html" xml:base="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html">&lt;p&gt;This is a sample text&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-02T13:20:23+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>Code samples, snippets and tutorials for the working programmer</subtitle><entry><title type="html">Android Studio Time Savers</title><link href="http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers.html" rel="alternate" type="text/html" title="Android Studio Time Savers" /><published>2020-05-01T00:00:00+08:00</published><updated>2020-05-01T00:00:00+08:00</updated><id>http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers</id><content type="html" xml:base="http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers.html">&lt;p&gt;What we usually mean when talking about productivity is that we want to do what we need to do in the shortest possible time; that means keyboard shortcuts, templates, snippets etc. In this section, we’ll take a peek at some of what Android Studio has to offer give our productivity a little boost. We won’t go into detail; that’s not the goal, but rather just to show you what’s available in Android Studio.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#import-samples&quot; id=&quot;markdown-toc-import-samples&quot;&gt;Import Samples&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#refactoring&quot; id=&quot;markdown-toc-refactoring&quot;&gt;Refactoring&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#generate&quot; id=&quot;markdown-toc-generate&quot;&gt;Generate&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#coding-styles&quot; id=&quot;markdown-toc-coding-styles&quot;&gt;Coding Styles&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#live-templates&quot; id=&quot;markdown-toc-live-templates&quot;&gt;Live Templates&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#important-keyboard-shortcuts&quot; id=&quot;markdown-toc-important-keyboard-shortcuts&quot;&gt;Important Keyboard Shortcuts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;import-samples&quot;&gt;Import Samples&lt;/h2&gt;
+
+&lt;p&gt;One way to boost your productivity and save time is to learn how to create things and discover how they work in Android Studio. The  &lt;strong&gt;Import Sample&lt;/strong&gt; feature can save you a lot of time. You can get to this feature from the main menu bar of Android Studio, choose &lt;strong&gt;File &amp;gt; New &amp;gt; Import Sample&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/images/import-sample-1.png&quot; /&gt;
+  &lt;figcaption&gt;Figure 1. Import Sample&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;What you see in figure 1 above is a list of code samples you can either browse or create as a local project.&lt;/p&gt;
+
+&lt;p&gt;Let’s say I’d like to learn something about the Autofill Framework — like what you see you in figure 1, you can see a preview of what it looks like, and you can also click on the “Browse in GitHub” link.  When you click &lt;em&gt;Next&lt;/em&gt;, you’ll see dialog that’s somewhat similar to when creating a new project, as shown in figure 2.&lt;/p&gt;
+
+&lt;figure style=&quot;width: 40rem; margin-right:auto; margin-left:auto&quot;&gt;
+  &lt;img src=&quot;/images/import-sample-2.png&quot; /&gt;
+  &lt;figcaption&gt; Figure 2. Import Sample, next Window&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;If you click “Finish” on “Import Sample” dialog, Android Studio will create a new project locally and download the sample file from GitHub so you can take a closer look at it and work on right away.&lt;/p&gt;
+
+&lt;h2 id=&quot;refactoring&quot;&gt;Refactoring&lt;/h2&gt;
+
+&lt;p&gt;Refactoring is basically rewriting and improving your source code without creating new functionality; this practice helps keep the code SOLID, DRY (don’t repeat yourself) and hence, easier to maintain.&lt;/p&gt;
+
+&lt;aside&gt;
+&lt;strong&gt;NOTE.&lt;/strong&gt; I spelled SOLID in all caps because it’s also an acronym which stands for &lt;strong&gt;S&lt;/strong&gt;ingle Responsibility, &lt;strong&gt;O&lt;/strong&gt;pen Closed Principle, &lt;strong&gt;L&lt;/strong&gt;iskov Principle, &lt;strong&gt;I&lt;/strong&gt;nterface Segregation and &lt;strong&gt;D&lt;/strong&gt;ependency Inversion Principle — these are principles for object oriented design which was popularized by Robert C. Martin
+&lt;/aside&gt;
+
+&lt;p&gt;Android Studio has some nifty refactoring capabilities. It’s easy to get started, just select a piece of code that you’d like to refactor, then use the context sensitive right-click, as shown in figure 3. Alternatively, you can also use the keyboard shortcuts — CTRL + T for macOS and CTRL + Alt + Shift + T if you’re on Windows/Linux.&lt;/p&gt;
+
+&lt;figure style=&quot;width: 40rem; margin-right:auto; margin-left:auto&quot;&gt;
+  &lt;img src=&quot;/images/refactor.png&quot; /&gt;
+  &lt;figcaption&gt;Figure 3. Refactor&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I’m sure you’ve done refactoring many times before, but let’s just jog our memories here.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Rename. This will let you safely rename variables and other identifiers etc. You should use this instead of Find and Replace.  This works across the entire project, and not only in the current file&lt;/li&gt;
+  &lt;li&gt;Change Signature. This will let you change a method, either its name or the parameters. It also works at a class level e.g. you can turn a class into a generic type and manipulate the type parameters&lt;/li&gt;
+  &lt;li&gt;Move. Move an element; you can move a method to another class if you want to&lt;/li&gt;
+  &lt;li&gt;Copy. Let’s you copy elements e.g. currently selected class&lt;/li&gt;
+  &lt;li&gt;Safe Delete. If you need to delete something, Android Studio will verify that what you’re deleting isn’t in use by anything else in the code base. If it is in use, you’ll be prompted so you can address those things before you actually delete something important&lt;/li&gt;
+  &lt;li&gt;Extract Constant. Avoid using hard-coded values — you shouldn’t, you know it and you know why. The Extract option for refactoring works not only for constants, you can extract fields, methods, superclasses, variable, parameter and interfaces&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are plenty more options in the Refactor menu; make sure to check the others out.&lt;/p&gt;
+
+&lt;h2 id=&quot;generate&quot;&gt;Generate&lt;/h2&gt;
+
+&lt;p&gt;Another time-saving feature of Android Studio is the code generator; it’s aptly named because it does exactly what you think it does — it generates code. Let’s take an example; figure 4 shows the keyboard cursor inside a class definition, while the cursor is within the class body, launch the Generator action; from the main menu bar, go to &lt;strong&gt;Code &amp;gt; Generate&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;figure style=&quot;margin: 1.5rem;&quot;&gt;
+  &lt;img src=&quot;/images/code-generate.png&quot; style=&quot;margin-right:auto; margin-left:auto;&quot; /&gt;
+  &lt;figcaption&gt;
+    Figure 4. Generate Code
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;As you can see, you can generate quite a lot of boiler-plate code. When you choose any of the Generate options, Android Studio will generate a generalized stub of code. Let’s choose the getter and setter option, shall we? Let’s say I have a PersonTest class, as shown in figure 8-5, while the keyboard cursor is still within the PersonTest class, go to the main menu bar, then Code &amp;gt; Generate — alternatively, you can use the keyboard shortcut Command + N (macOS) or Alt + Insert (Windows and Linux); then choose to generate Getter and Setter. You’ll see the generate setters and getters dialog, as shown in figure 5.&lt;/p&gt;
+
+&lt;figure style=&quot;margin-top: 1.5rem; margin-bottom: 1.5rem;&quot;&gt;
+  &lt;img src=&quot;/images/generate-getters-setters.png&quot; style=&quot;margin-right:auto; margin-left:auto;&quot; /&gt;
+  &lt;figcaption&gt;Figure 5. Generate getters and setters&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The generator dialog shows all the autodetected fields in our class. It shows us the mFirstname and mLastname member variables; it also lets you do multiple selection. Select both member variables and click OK. Listing 1 shows the PersonTest class after code generation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Listing 1. PersonTest class&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PersonTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getmFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setmFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mFirstname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getmLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setmLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mLastname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;PersonTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mFirstname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mLastname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is pretty neat already. Anything that lets us save on keystrokes is a good thing. I’m guessing you probably have just one thing to nitpick on this example; the method naming isn’t right. You probably would prefer to call** setLastname()** rather than &lt;strong&gt;setmLastname()&lt;/strong&gt; don’t you? We’ll fix that in the next section.&lt;/p&gt;
+
+&lt;h2 id=&quot;coding-styles&quot;&gt;Coding Styles&lt;/h2&gt;
+
+&lt;p&gt;If you go to Android Studio’s Preferences or Settings, then go to Editor &amp;gt; Code Style &amp;gt; Java, you’ll find that there’s plenty of things you can change about how the editor behaves. Figure 8-7 shows the options for the Code Style, specifically the Java language.&lt;/p&gt;
+
+&lt;figure style=&quot;width: 40rem; margin-right:auto; margin-left:auto; margin-top: 1.5rem; margin-bottom: 1.5rem;&quot;&gt;
+  &lt;img src=&quot;/images/coding-styles.png&quot; /&gt;
+  &lt;figcaption&gt; figure 6. Preferences &amp;gt; Code Style &amp;gt; Java&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;If you want to change the number of spaces for tabs and indents, you can do that in the Tabs and Indents area; be sure to check out the other options in this dialog. What I’d like to do, is to go to the Code Generation tab (shown in figure 7).&lt;/p&gt;
+
+&lt;figure style=&quot;width: 40rem; margin-right:auto; margin-left:auto; margin-top: 1.5rem; margin-bottom: 1.5rem;&quot;&gt;
+  &lt;img src=&quot;/images/code-generation.png&quot; /&gt;
+  &lt;figcaption&gt; figure 7. Code Generation&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This is where we can tell Android Studio how we name our variables. If you go back to listing 1, you’ll notice that I’d like to prefix my variables with &lt;em&gt;m&lt;/em&gt;, like &lt;strong&gt;mLastname&lt;/strong&gt; and &lt;strong&gt;mFirstname&lt;/strong&gt;; initially, Android Studio didn’t know about it, that’s why when I generated some getters and setters for the member vars, it gave us &lt;strong&gt;setmLastname()&lt;/strong&gt; instead of just &lt;strong&gt;setLastname()&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;aside&gt;
+&lt;strong&gt;NOTE.&lt;/strong&gt; Prefixing a member variable with m comes from AOSP (Android Open Source Project). I used it here because quite a lot of sample codes you will read online uses this convention. You can further read about it at &lt;a href=&quot;https://bit.ly/styleguideaosp&quot;&gt;Android Open Source Project&lt;/a&gt; 
+&lt;/aside&gt;
+
+&lt;p&gt;To tell Android Studio that I prefix my variables with m, I’ll put the m in Name Prefix for Field; as shown in figure 6. Click OK when you’re done.&lt;/p&gt;
+
+&lt;p&gt;Now, if I generate some getters and setters, we’ll get the more appropriate method names. Listing 2 shows the re-generated code for PersonTest class.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Listing 2. PersonTest, regenerated&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PersonTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;PersonTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mFirstname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mFirstname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mLastname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLastname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;live-templates&quot;&gt;Live Templates&lt;/h2&gt;
+
+&lt;p&gt;Another time-saver in Android Studio are Live Templates, it works a lot like those text expander applications, if you have used some of them. The basic idea is when you type a series of characters e.g. &lt;em&gt;datetoday&lt;/em&gt;, then the editor will replace it with the text of the actual date today — that’s how live templates work.&lt;/p&gt;
+
+&lt;p&gt;If you’ve done some Android programming in the past, you’ve probably made this mistake at least once;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Toast.makeText(MainActivity.this, &quot;no show&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is easy enough to spot, but some other errors may not be as obvious. Anyway, live templates can help you avoid these hassles. Live templates are shortcuts that are displayed as code-completion options; for example, try typing &lt;strong&gt;fbc&lt;/strong&gt; inside an &lt;strong&gt;OnClick&lt;/strong&gt; handler (or any event handler), as shown in figure 8.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/images/live-template-sample.png&quot; style=&quot;margin-left:auto; margin-right:auto;&quot; /&gt;
+  &lt;figcaption&gt;Figure 8. Live Template Sample&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;You’ll see the code completion options. Try to press the TAB key and see what happens.&lt;/p&gt;
+
+&lt;p&gt;Here are some common built-in templates; as listed in table 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Table 1. Common Live Templates&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;strong&gt;Abbreviation&lt;/strong&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;strong&gt;Code&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;fbc&lt;/td&gt;
+      &lt;td&gt;Find view by ID with cast&lt;/td&gt;
+      &lt;td&gt;($cast$)  findViewById(R.id.$resId$);&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;const&lt;/td&gt;
+      &lt;td&gt;Define an Android style constant&lt;/td&gt;
+      &lt;td&gt;private  static final int $name$ = $value$;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Toast&lt;/td&gt;
+      &lt;td&gt;Create a new Toast&lt;/td&gt;
+      &lt;td&gt;Toast.makeText($classname$.this,  “$text$”).show();&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;fori&lt;/td&gt;
+      &lt;td&gt;Creates for loop&lt;/td&gt;
+      &lt;td&gt;for(int  $INDEX$ = 0;$INDEX$&amp;lt;$LIMIT$;$INDEX++$ ) {   $END$  }&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Make sure you check out the other Live Templates, go to the Settings or Preferences window. If you’re on Windows or Linux, go to the main menu bar, then &lt;strong&gt;File &amp;gt; Settings &amp;gt; Editor &amp;gt; Live Templates&lt;/strong&gt;; if you’re on macOS, it’s at &lt;strong&gt;Android Studio &amp;gt; Preferences &amp;gt; Editor &amp;gt; Live Templates&lt;/strong&gt; — you can even create your own Live Templates from there.&lt;/p&gt;
+
+&lt;h2 id=&quot;important-keyboard-shortcuts&quot;&gt;Important Keyboard Shortcuts&lt;/h2&gt;
+
+&lt;p&gt;The Android developer website maintains a page where you can find the keyboard shortcuts for Android Studio, it’s at http://bit.ly/androidstudiokbshortcuts. You should really make it a point to read that page; but before we close the chapter,  I’d like to leave you with 6 shortcuts that I find to be very useful for me — it could be useful for you too. Table 2 lists these shortcuts.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;strong&gt;Shortcut&lt;/strong&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;strong&gt;What it does&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Press Shift  twice&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;It lets you search for a term everywhere. It searches assets  folder, gradle files, images resources, codes, xml configuration files etc.  If you don’t know which folder to search, just use this&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;CTRL +  Space  | Command + Space&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Android Studio already has code completions and code  hinting; this is just a little extra. If you forgot the parameters for a  method that uses lots of parameters, you can use this to preview all the  variants of method and the corresponding parameters they expect&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;ALT +  Insert  | Command + N&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;We’ve used this in the previous section where we generated  some code. This is the shortcut for the code generator&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;CTRL + O    | Command + O&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;When you want to override methods, use this shortcut&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;CTRL + -    | Command + -&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;You can use these to expand or collapse code blocks. It’s  handy to be able to fold codes when you’re working with a large codebase,  these shortcuts will make your life a bit easier when you fold/unfold blocks&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;CTRL + Alt  + L | Command + Option + L&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Don’t manually indent or re-indent your code — if you  messed up the indentation of a for loop or nested conditional blocks, just  highlight the code block and use this shortcut&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
+  &lt;img src=&quot;/images/book_androidstudio_quickref.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
+  &lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5 class=&quot;card-title&quot;&gt;Android Studio Quick Reference&lt;/h5&gt;
+    &lt;p class=&quot;card-text&quot;&gt;There are more tips like this in the book&lt;/p&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484249529&quot; class=&quot;btn btn-primary&quot;&gt;
+      Get the book&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</content><author><name>Ted Hagos</name></author><summary type="html">What we usually mean when talking about productivity is that we want to do what we need to do in the shortest possible time; that means keyboard shortcuts, templates, snippets etc. In this section, we’ll take a peek at some of what Android Studio has to offer give our productivity a little boost. We won’t go into detail; that’s not the goal, but rather just to show you what’s available in Android Studio.</summary></entry><entry><title type="html">Basic Android APIs for the Game Programmer</title><link href="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" rel="alternate" type="text/html" title="Basic Android APIs for the Game Programmer" /><published>2020-04-25T00:00:00+08:00</published><updated>2020-04-25T00:00:00+08:00</updated><id>http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers</id><content type="html" xml:base="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html">&lt;p&gt;This is a sample text&lt;/p&gt;
 
 &lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
   &lt;img src=&quot;/images/book_beginning_androidgames.png&quot; class=&quot;card-img-top&quot; alt=&quot;Beginning Android Games&quot; /&gt;
@@ -616,9 +886,10 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
 
 &lt;p&gt;Now we come to generics.  Figure 3 should help us illustrate the next set of concepts we need to grapple with.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/kotlin-variance-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Figure 3&lt;/em&gt;&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&quot;/images/kotlin-variance-3.png&quot; /&gt;
+&lt;figcaption&gt;Figure3 &lt;/figcaption&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;We know the first relationship, Employee is the supertype of Programmer. We also know &lt;code class=&quot;highlighter-rouge&quot;&gt;List&amp;lt;Employee&amp;gt;&lt;/code&gt; will accept &lt;code class=&quot;highlighter-rouge&quot;&gt;List&amp;lt;Programmer&amp;gt;&lt;/code&gt;,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes.&lt;/p&gt;
 
@@ -632,7 +903,10 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
 
 &lt;p&gt;It’s because, while &lt;code class=&quot;highlighter-rouge&quot;&gt;Group&lt;/code&gt;  is a class, &lt;code class=&quot;highlighter-rouge&quot;&gt;Group&amp;lt;Employee&amp;gt;&lt;/code&gt; is not, and by extension,&lt;code class=&quot;highlighter-rouge&quot;&gt;Group&amp;lt;Programmer&amp;gt;&lt;/code&gt; is not a subclass of  &lt;code class=&quot;highlighter-rouge&quot;&gt;Group&amp;lt;Employee&amp;gt;&lt;/code&gt; — if you’re thinking of &lt;code class=&quot;highlighter-rouge&quot;&gt;List&amp;lt;Employee&amp;gt;&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;List&amp;lt;Programmer&amp;gt;&lt;/code&gt; right now, stop. I did say I’ll circle back to that. Stick with &lt;code class=&quot;highlighter-rouge&quot;&gt;Group&amp;lt;Employee&amp;gt;&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Group&amp;lt;Programmer&amp;gt;&lt;/code&gt; first. Table 1 should help us summarize some of these things.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/kotlin-variance-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&quot;/images/kotlin-variance-4.png&quot; /&gt;
+&lt;figcaption&gt;Table 1 &lt;/figcaption&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;Now we can establish that &lt;code class=&quot;highlighter-rouge&quot;&gt;Group&amp;lt;Employee&amp;gt;&lt;/code&gt; has no type relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;Group&amp;lt;Programmer&amp;gt;&lt;/code&gt; even if class Employee has a type relationship with Programmer. The type parameter in &lt;code class=&quot;highlighter-rouge&quot;&gt;Group&amp;lt;T&amp;gt;&lt;/code&gt; is by default, invariant (no type relationship).  In order to change the variance of &lt;T&gt; you need to use either out (to make it covariant) or in (to make contravariant) keyword.&lt;/T&gt;&lt;/p&gt;
 
@@ -828,67 +1102,4 @@ The &lt;em&gt;Liskov Substitution Principle&lt;/em&gt; and &lt;em&gt;Open Closed
     &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
       Get the book&lt;/a&gt;
   &lt;/div&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Kotlin doesn’t have a switch statement, but it has the when construct. It looks a lot like the switch but it packs a lot more punch. In its simplest form, it can be implemented like this</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.jpg" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Kotlin if-then expressions</title><link href="http://localhost:4000/2018/09/kotlin-if-then.html" rel="alternate" type="text/html" title="Kotlin if-then expressions" /><published>2018-09-22T00:00:00+08:00</published><updated>2018-09-22T00:00:00+08:00</updated><id>http://localhost:4000/2018/09/kotlin-if-then</id><content type="html" xml:base="http://localhost:4000/2018/09/kotlin-if-then.html">&lt;p&gt;The &lt;em&gt;if&lt;/em&gt; construct in Kotlin works almost the same as in Java.&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;theQuestion&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Doctor who?&quot;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Theta Sigma&quot;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;correctAnswer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;correctAnswer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;nf&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;You are correct&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Another example, this time, let’s use the &lt;code class=&quot;highlighter-rouge&quot;&gt;else if&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;else&lt;/code&gt; clause.&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Calendar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Calendar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DAY_OF_WEEK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;nf&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Today is Sunday&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;nf&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Today is Monday&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;nf&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Today is Tuesday&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nf&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Unknown&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;So far, it looks a lot like how you would you do it in Java. Doesn’t it? What’s different in Kotlin is, the &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; construct isn’t a statement, it’s an expression. Which means, you can assign the result of the &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; expression to a variable. Like this&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;theQuestion&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Doctor who&quot;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Theta Sigma&quot;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;correctAnswer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;correctAnswer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;s&quot;&gt;&quot;You are correct&quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;s&quot;&gt;&quot;Try again&quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you have only one statement (each) on the if and else block, you can even shorten the code, like this&lt;/p&gt;
-
-&lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;correctAnswer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;You are correct&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Try again&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;!-- &lt;p&gt;
-  This article is excerpted from the book &lt;a target=&quot;&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/a&gt;
-&lt;/p&gt;
-&lt;img src=&quot;/images/book_las3_kotlin.png&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot;&gt; --&gt;
-
-&lt;div class=&quot;card&quot; style=&quot;width: 22rem;&quot;&gt;
-  &lt;img src=&quot;/images/book_las3_kotlin.png&quot; class=&quot;card-img-top&quot; alt=&quot;Learn Android Studio 3 with Kotlin&quot; /&gt;
-  &lt;div class=&quot;card-body&quot;&gt;
-    &lt;h5 class=&quot;card-title&quot;&gt;Learn Android Studio 3 with Kotlin&lt;/h5&gt;
-    &lt;p class=&quot;card-text&quot;&gt;Learn more. See more code samples like this&lt;/p&gt;
-    &lt;a target=&quot;_blank&quot; href=&quot;https://www.apress.com/gp/book/9781484239063&quot; class=&quot;btn btn-primary&quot;&gt;
-      Get the book&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">The if construct in Kotlin works almost the same as in Java.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Kotlin doesn’t have a switch statement, but it has the when construct. It looks a lot like the switch but it packs a lot more punch. In its simplest form, it can be implemented like this</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.jpg" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

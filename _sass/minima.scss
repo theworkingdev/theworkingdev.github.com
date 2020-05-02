@@ -2,15 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&family=Ubuntu+Mono:wght@400;700&display=swap');
 
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
-
 // Define defaults for each variable.
 
 // $base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 
 // $base-font-family: 'Lucida Grande','Georgia', 'Times New Roman', 'Times', serif;
 $base-font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+// $base-font-family: "Georgia", "Times New Roman", "Times", serif;
 // $base-font-family: sans-serif;
 
 $base-font-size:   16px !default;
@@ -23,7 +21,8 @@ $spacing-unit:     30px !default;
 // $text-color:       #111 !default;
 $text-color:       #000 !default;
 // $background-color: #fdfdfd !default;
-$background-color: #fff !default;
+// $background-color: #fff !default;
+$background-color: #fffff0 !default;  // ivory
 $brand-color:      #2a7ae2 !default;
 
 $grey-color:       #828282 !default;

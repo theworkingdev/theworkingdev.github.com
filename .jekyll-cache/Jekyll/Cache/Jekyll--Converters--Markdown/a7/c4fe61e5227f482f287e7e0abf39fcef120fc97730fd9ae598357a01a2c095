@@ -1,0 +1,263 @@
+I"
+J<ul id="markdown-toc">
+  <li><a href="#import-samples" id="markdown-toc-import-samples">Import Samples</a></li>
+  <li><a href="#refactoring" id="markdown-toc-refactoring">Refactoring</a></li>
+  <li><a href="#generate" id="markdown-toc-generate">Generate</a></li>
+  <li><a href="#coding-styles" id="markdown-toc-coding-styles">Coding Styles</a></li>
+  <li><a href="#live-templates" id="markdown-toc-live-templates">Live Templates</a></li>
+  <li><a href="#important-keyboard-shortcuts" id="markdown-toc-important-keyboard-shortcuts">Important Keyboard Shortcuts</a></li>
+</ul>
+
+<p>What we usually mean when talking about productivity is that we want to do what we need to do in the shortest possible time; that means keyboard shortcuts, templates, snippets etc. In this section, we’ll take a peek at some of what Android Studio has to offer give our productivity a little boost. We won’t go into detail; that’s not the goal, but rather just to show you what’s available in Android Studio.</p>
+
+<h2 id="import-samples">Import Samples</h2>
+
+<p>One way to boost your productivity and save time is to learn how to create things and discover how they work in Android Studio. The  <strong>Import Sample</strong> feature can save you a lot of time. You can get to this feature from the main menu bar of Android Studio, choose <strong>File &gt; New &gt; Import Sample</strong>.</p>
+
+<figure>
+  <img src="/images/import-sample-1.png" />
+  <figcaption>Figure 1. Import Sample</figcaption>
+</figure>
+
+<p>What you see in figure 1 above is a list of code samples you can either browse or create as a local project.</p>
+
+<p>Let’s say I’d like to learn something about the Autofill Framework — like what you see you in figure 1, you can see a preview of what it looks like, and you can also click on the “Browse in GitHub” link.  When you click <em>Next</em>, you’ll see dialog that’s somewhat similar to when creating a new project, as shown in figure 2.</p>
+
+<figure style="width: 40rem; margin-right:auto; margin-left:auto">
+  <img src="/images/import-sample-2.png" />
+  <figcaption> Figure 2. Import Sample, next Window</figcaption>
+</figure>
+
+<p>If you click “Finish” on “Import Sample” dialog, Android Studio will create a new project locally and download the sample file from GitHub so you can take a closer look at it and work on right away.</p>
+
+<h2 id="refactoring">Refactoring</h2>
+
+<p>Refactoring is basically rewriting and improving your source code without creating new functionality; this practice helps keep the code SOLID, DRY (don’t repeat yourself) and hence, easier to maintain.</p>
+
+<aside>
+<strong>NOTE.</strong> I spelled SOLID in all caps because it’s also an acronym which stands for <strong>S</strong>ingle Responsibility, <strong>O</strong>pen Closed Principle, <strong>L</strong>iskov Principle, <strong>I</strong>nterface Segregation and <strong>D</strong>ependency Inversion Principle — these are principles for object oriented design which was popularized by Robert C. Martin
+</aside>
+
+<p>Android Studio has some nifty refactoring capabilities. It’s easy to get started, just select a piece of code that you’d like to refactor, then use the context sensitive right-click, as shown in figure 3. Alternatively, you can also use the keyboard shortcuts — CTRL + T for macOS and CTRL + Alt + Shift + T if you’re on Windows/Linux.</p>
+
+<figure style="width: 40rem; margin-right:auto; margin-left:auto">
+  <img src="/images/refactor.png" />
+  <figcaption>Figure 3. Refactor</figcaption>
+</figure>
+
+<p>I’m sure you’ve done refactoring many times before, but let’s just jog our memories here.</p>
+<ul>
+  <li>Rename. This will let you safely rename variables and other identifiers etc. You should use this instead of Find and Replace.  This works across the entire project, and not only in the current file</li>
+  <li>Change Signature. This will let you change a method, either its name or the parameters. It also works at a class level e.g. you can turn a class into a generic type and manipulate the type parameters</li>
+  <li>Move. Move an element; you can move a method to another class if you want to</li>
+  <li>Copy. Let’s you copy elements e.g. currently selected class</li>
+  <li>Safe Delete. If you need to delete something, Android Studio will verify that what you’re deleting isn’t in use by anything else in the code base. If it is in use, you’ll be prompted so you can address those things before you actually delete something important</li>
+  <li>Extract Constant. Avoid using hard-coded values — you shouldn’t, you know it and you know why. The Extract option for refactoring works not only for constants, you can extract fields, methods, superclasses, variable, parameter and interfaces</li>
+</ul>
+
+<p>There are plenty more options in the Refactor menu; make sure to check the others out.</p>
+
+<h2 id="generate">Generate</h2>
+
+<p>Another time-saving feature of Android Studio is the code generator; it’s aptly named because it does exactly what you think it does — it generates code. Let’s take an example; figure 4 shows the keyboard cursor inside a class definition, while the cursor is within the class body, launch the Generator action; from the main menu bar, go to <strong>Code &gt; Generate</strong>.</p>
+
+<figure style="margin: 1.5rem;">
+  <img src="/images/code-generate.png" style="margin-right:auto; margin-left:auto;" />
+  <figcaption>
+    Figure 4. Generate Code
+  </figcaption>
+</figure>
+
+<p>As you can see, you can generate quite a lot of boiler-plate code. When you choose any of the Generate options, Android Studio will generate a generalized stub of code. Let’s choose the getter and setter option, shall we? Let’s say I have a PersonTest class, as shown in figure 8-5, while the keyboard cursor is still within the PersonTest class, go to the main menu bar, then Code &gt; Generate — alternatively, you can use the keyboard shortcut Command + N (macOS) or Alt + Insert (Windows and Linux); then choose to generate Getter and Setter. You’ll see the generate setters and getters dialog, as shown in figure 5.</p>
+
+<figure style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+  <img src="/images/generate-getters-setters.png" style="margin-right:auto; margin-left:auto;" />
+  <figcaption>Figure 5. Generate getters and setters</figcaption>
+</figure>
+
+<p>The generator dialog shows all the autodetected fields in our class. It shows us the mFirstname and mLastname member variables; it also lets you do multiple selection. Select both member variables and click OK. Listing 1 shows the PersonTest class after code generation.</p>
+
+<p><strong>Listing 1. PersonTest class</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">PersonTest</span> <span class="o">{</span>
+
+  <span class="nc">String</span> <span class="n">mFirstname</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">mLastname</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getmFirstname</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">mFirstname</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setmFirstname</span><span class="o">(</span><span class="nc">String</span> <span class="n">mFirstname</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">mFirstname</span> <span class="o">=</span> <span class="n">mFirstname</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getmLastname</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">mLastname</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setmLastname</span><span class="o">(</span><span class="nc">String</span> <span class="n">mLastname</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">mLastname</span> <span class="o">=</span> <span class="n">mLastname</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nf">PersonTest</span><span class="o">(</span><span class="nc">String</span> <span class="n">mFirstname</span><span class="o">,</span> <span class="nc">String</span> <span class="n">mLastname</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">mFirstname</span> <span class="o">=</span> <span class="n">mFirstname</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">mLastname</span> <span class="o">=</span> <span class="n">mLastname</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This is pretty neat already. Anything that lets us save on keystrokes is a good thing. I’m guessing you probably have just one thing to nitpick on this example; the method naming isn’t right. You probably would prefer to call** setLastname()** rather than <strong>setmLastname()</strong> don’t you? We’ll fix that in the next section.</p>
+
+<h2 id="coding-styles">Coding Styles</h2>
+
+<p>If you go to Android Studio’s Preferences or Settings, then go to Editor &gt; Code Style &gt; Java, you’ll find that there’s plenty of things you can change about how the editor behaves. Figure 8-7 shows the options for the Code Style, specifically the Java language.</p>
+
+<figure style="width: 40rem; margin-right:auto; margin-left:auto; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+  <img src="/images/coding-styles.png" />
+  <figcaption> figure 6. Preferences &gt; Code Style &gt; Java</figcaption>
+</figure>
+
+<p>If you want to change the number of spaces for tabs and indents, you can do that in the Tabs and Indents area; be sure to check out the other options in this dialog. What I’d like to do, is to go to the Code Generation tab (shown in figure 7).</p>
+
+<figure style="width: 40rem; margin-right:auto; margin-left:auto; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+  <img src="/images/code-generation.png" />
+  <figcaption> figure 7. Code Generation</figcaption>
+</figure>
+
+<p>This is where we can tell Android Studio how we name our variables. If you go back to listing 1, you’ll notice that I’d like to prefix my variables with <em>m</em>, like <strong>mLastname</strong> and <strong>mFirstname</strong>; initially, Android Studio didn’t know about it, that’s why when I generated some getters and setters for the member vars, it gave us <strong>setmLastname()</strong> instead of just <strong>setLastname()</strong>.</p>
+
+<aside>
+<strong>NOTE.</strong> Prefixing a member variable with m comes from AOSP (Android Open Source Project). I used it here because quite a lot of sample codes you will read online uses this convention. You can further read about it at <a href="https://bit.ly/styleguideaosp">Android Open Source Project</a> 
+</aside>
+
+<p>To tell Android Studio that I prefix my variables with m, I’ll put the m in Name Prefix for Field; as shown in figure 6. Click OK when you’re done.</p>
+
+<p>Now, if I generate some getters and setters, we’ll get the more appropriate method names. Listing 2 shows the re-generated code for PersonTest class.</p>
+
+<p><strong>Listing 2. PersonTest, regenerated</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">PersonTest</span> <span class="o">{</span>
+
+  <span class="nc">String</span> <span class="n">mFirstname</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">mLastname</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getFirstname</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">mFirstname</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setFirstname</span><span class="o">(</span><span class="nc">String</span> <span class="n">firstname</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">mFirstname</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getLastname</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">mLastname</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLastname</span><span class="o">(</span><span class="nc">String</span> <span class="n">lastname</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">mLastname</span> <span class="o">=</span> <span class="n">lastname</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nf">PersonTest</span><span class="o">(</span><span class="nc">String</span> <span class="n">mFirstname</span><span class="o">,</span> <span class="nc">String</span> <span class="n">mLastname</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">mFirstname</span> <span class="o">=</span> <span class="n">mFirstname</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">mLastname</span> <span class="o">=</span> <span class="n">mLastname</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="live-templates">Live Templates</h2>
+
+<p>Another time-saver in Android Studio are Live Templates, it works a lot like those text expander applications, if you have used some of them. The basic idea is when you type a series of characters e.g. <em>datetoday</em>, then the editor will replace it with the text of the actual date today — that’s how live templates work.</p>
+
+<p>If you’ve done some Android programming in the past, you’ve probably made this mistake at least once;</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Toast.makeText(MainActivity.this, "no show");
+</code></pre></div></div>
+
+<p>This is easy enough to spot, but some other errors may not be as obvious. Anyway, live templates can help you avoid these hassles. Live templates are shortcuts that are displayed as code-completion options; for example, try typing <strong>fbc</strong> inside an <strong>OnClick</strong> handler (or any event handler), as shown in figure 8.</p>
+
+<figure>
+  <img src="/images/live-template-sample.png" style="margin-left:auto; margin-right:auto;" />
+  <figcaption>Figure 8. Live Template Sample</figcaption>
+</figure>
+
+<p>You’ll see the code completion options. Try to press the TAB key and see what happens.</p>
+
+<p>Here are some common built-in templates; as listed in table 1.</p>
+
+<p><strong>Table 1. Common Live Templates</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Abbreviation</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Code</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>fbc</td>
+      <td>Find view by ID with cast</td>
+      <td>($cast$)  findViewById(R.id.$resId$);</td>
+    </tr>
+    <tr>
+      <td>const</td>
+      <td>Define an Android style constant</td>
+      <td>private  static final int $name$ = $value$;</td>
+    </tr>
+    <tr>
+      <td>Toast</td>
+      <td>Create a new Toast</td>
+      <td>Toast.makeText($classname$.this,  “$text$”).show();</td>
+    </tr>
+    <tr>
+      <td>fori</td>
+      <td>Creates for loop</td>
+      <td>for(int  $INDEX$ = 0;$INDEX$&lt;$LIMIT$;$INDEX++$ ) {   $END$  }</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Make sure you check out the other Live Templates, go to the Settings or Preferences window. If you’re on Windows or Linux, go to the main menu bar, then <strong>File &gt; Settings &gt; Editor &gt; Live Templates</strong>; if you’re on macOS, it’s at <strong>Android Studio &gt; Preferences &gt; Editor &gt; Live Templates</strong> — you can even create your own Live Templates from there.</p>
+
+<h2 id="important-keyboard-shortcuts">Important Keyboard Shortcuts</h2>
+
+<p>The Android developer website maintains a page where you can find the keyboard shortcuts for Android Studio, it’s at http://bit.ly/androidstudiokbshortcuts. You should really make it a point to read that page; but before we close the chapter,  I’d like to leave you with 6 shortcuts that I find to be very useful for me — it could be useful for you too. Table 2 lists these shortcuts.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Shortcut</strong></th>
+      <th><strong>What it does</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Press Shift  twice</strong></td>
+      <td>It lets you search for a term everywhere. It searches assets  folder, gradle files, images resources, codes, xml configuration files etc.  If you don’t know which folder to search, just use this</td>
+    </tr>
+    <tr>
+      <td><strong>CTRL +  Space  | Command + Space</strong></td>
+      <td>Android Studio already has code completions and code  hinting; this is just a little extra. If you forgot the parameters for a  method that uses lots of parameters, you can use this to preview all the  variants of method and the corresponding parameters they expect</td>
+    </tr>
+    <tr>
+      <td><strong>ALT +  Insert  | Command + N</strong></td>
+      <td>We’ve used this in the previous section where we generated  some code. This is the shortcut for the code generator</td>
+    </tr>
+    <tr>
+      <td><strong>CTRL + O    | Command + O</strong></td>
+      <td>When you want to override methods, use this shortcut</td>
+    </tr>
+    <tr>
+      <td><strong>CTRL + -    | Command + -</strong></td>
+      <td>You can use these to expand or collapse code blocks. It’s  handy to be able to fold codes when you’re working with a large codebase,  these shortcuts will make your life a bit easier when you fold/unfold blocks</td>
+    </tr>
+    <tr>
+      <td><strong>CTRL + Alt  + L | Command + Option + L</strong></td>
+      <td>Don’t manually indent or re-indent your code — if you  messed up the indentation of a for loop or nested conditional blocks, just  highlight the code block and use this shortcut</td>
+    </tr>
+  </tbody>
+</table>
+
+:ET

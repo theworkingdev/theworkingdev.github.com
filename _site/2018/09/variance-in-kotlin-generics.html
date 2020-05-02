@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-09-28T00:00:00+08:00" />
 <script type="application/ld+json">
-{"headline":"Variance in Kotlin Generics","dateModified":"2018-09-28T00:00:00+08:00","datePublished":"2018-09-28T00:00:00+08:00","url":"http://localhost:4000/2018/09/variance-in-kotlin-generics.html","image":"http://localhost:4000/images/book_las3_kotlin.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/09/variance-in-kotlin-generics.html"},"description":"Learn how to use the in and out keyword in Kotlin Generics. Read along if you’re curious about invariant, covariant and contravariant in Kotlin Generics","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"headline":"Variance in Kotlin Generics","dateModified":"2018-09-28T00:00:00+08:00","datePublished":"2018-09-28T00:00:00+08:00","image":"http://localhost:4000/images/book_las3_kotlin.png","url":"http://localhost:4000/2018/09/variance-in-kotlin-generics.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/09/variance-in-kotlin-generics.html"},"description":"Learn how to use the in and out keyword in Kotlin Generics. Read along if you’re curious about invariant, covariant and contravariant in Kotlin Generics","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /><!-- Twitter cards -->
     <meta name= "twitter:site"    content = "@lovescaffeine" />
@@ -220,9 +220,10 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 
 <p>Now we come to generics.  Figure 3 should help us illustrate the next set of concepts we need to grapple with.</p>
 
-<p><img src="/images/kotlin-variance-3.png" alt="" /></p>
-
-<p><em>Figure 3</em></p>
+<figure>
+<img src="/images/kotlin-variance-3.png" />
+<figcaption>Figure3 </figcaption>
+</figure>
 
 <p>We know the first relationship, Employee is the supertype of Programmer. We also know <code class="highlighter-rouge">List&lt;Employee&gt;</code> will accept <code class="highlighter-rouge">List&lt;Programmer&gt;</code>,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes.</p>
 
@@ -236,7 +237,10 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 
 <p>It’s because, while <code class="highlighter-rouge">Group</code>  is a class, <code class="highlighter-rouge">Group&lt;Employee&gt;</code> is not, and by extension,<code class="highlighter-rouge">Group&lt;Programmer&gt;</code> is not a subclass of  <code class="highlighter-rouge">Group&lt;Employee&gt;</code> — if you’re thinking of <code class="highlighter-rouge">List&lt;Employee&gt;</code> and <code class="highlighter-rouge">List&lt;Programmer&gt;</code> right now, stop. I did say I’ll circle back to that. Stick with <code class="highlighter-rouge">Group&lt;Employee&gt;</code> and <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> first. Table 1 should help us summarize some of these things.</p>
 
-<p><img src="/images/kotlin-variance-4.png" alt="" /></p>
+<figure>
+<img src="/images/kotlin-variance-4.png" />
+<figcaption>Table 1 </figcaption>
+</figure>
 
 <p>Now we can establish that <code class="highlighter-rouge">Group&lt;Employee&gt;</code> has no type relationship with <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> even if class Employee has a type relationship with Programmer. The type parameter in <code class="highlighter-rouge">Group&lt;T&gt;</code> is by default, invariant (no type relationship).  In order to change the variance of <T> you need to use either out (to make it covariant) or in (to make contravariant) keyword.</T></p>
 

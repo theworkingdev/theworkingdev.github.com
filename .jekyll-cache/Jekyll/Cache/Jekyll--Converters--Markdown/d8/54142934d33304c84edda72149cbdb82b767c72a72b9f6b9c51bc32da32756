@@ -1,4 +1,4 @@
-I"6q<p>We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.</p>
+I"jq<p>We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.</p>
 
 <p>OOP is boon to developers, because of it, we can write codes like this</p>
 
@@ -158,9 +158,10 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 
 <p>Now we come to generics.  Figure 3 should help us illustrate the next set of concepts we need to grapple with.</p>
 
-<p><img src="/images/kotlin-variance-3.png" alt="" /></p>
-
-<p><em>Figure 3</em></p>
+<figure>
+<img src="/images/kotlin-variance-3.png" />
+<figcaption>Figure3 </figcaption>
+</figure>
 
 <p>We know the first relationship, Employee is the supertype of Programmer. We also know <code class="highlighter-rouge">List&lt;Employee&gt;</code> will accept <code class="highlighter-rouge">List&lt;Programmer&gt;</code>,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes.</p>
 
@@ -174,7 +175,10 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 
 <p>It’s because, while <code class="highlighter-rouge">Group</code>  is a class, <code class="highlighter-rouge">Group&lt;Employee&gt;</code> is not, and by extension,<code class="highlighter-rouge">Group&lt;Programmer&gt;</code> is not a subclass of  <code class="highlighter-rouge">Group&lt;Employee&gt;</code> — if you’re thinking of <code class="highlighter-rouge">List&lt;Employee&gt;</code> and <code class="highlighter-rouge">List&lt;Programmer&gt;</code> right now, stop. I did say I’ll circle back to that. Stick with <code class="highlighter-rouge">Group&lt;Employee&gt;</code> and <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> first. Table 1 should help us summarize some of these things.</p>
 
-<p><img src="/images/kotlin-variance-4.png" alt="" /></p>
+<figure>
+<img src="/images/kotlin-variance-4.png" />
+<figcaption>Table 1 </figcaption>
+</figure>
 
 <p>Now we can establish that <code class="highlighter-rouge">Group&lt;Employee&gt;</code> has no type relationship with <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> even if class Employee has a type relationship with Programmer. The type parameter in <code class="highlighter-rouge">Group&lt;T&gt;</code> is by default, invariant (no type relationship).  In order to change the variance of <T> you need to use either out (to make it covariant) or in (to make contravariant) keyword.</T></p>
 

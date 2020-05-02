@@ -180,9 +180,11 @@ var i:Programmer = j // assign j (which is null) to non-nullable Programmer
 Now we come to generics.  Figure 3 should help us illustrate the next set of concepts we need to grapple with.
 
 
-![](/images/kotlin-variance-3.png)
+<figure>
+<img src="/images/kotlin-variance-3.png"/>
+<figcaption>Figure3 </figcaption>
+</figure>
 
-_Figure 3_
 
 We know the first relationship, Employee is the supertype of Programmer. We also know `List<Employee>` will accept `List<Programmer>`,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes. 
 
@@ -198,7 +200,10 @@ Why is it that we can’t reliably answer the question “is `Group<Employee>` a
 It’s because, while `Group`  is a class, `Group<Employee>` is not, and by extension,`Group<Programmer>` is not a subclass of  `Group<Employee>` — if you’re thinking of `List<Employee>` and `List<Programmer>` right now, stop. I did say I’ll circle back to that. Stick with `Group<Employee>` and `Group<Programmer>` first. Table 1 should help us summarize some of these things.
 
 
-![](/images/kotlin-variance-4.png)
+<figure>
+<img src="/images/kotlin-variance-4.png"/>
+<figcaption>Table 1 </figcaption>
+</figure>
 
 Now we can establish that `Group<Employee>` has no type relationship with `Group<Programmer>` even if class Employee has a type relationship with Programmer. The type parameter in `Group<T>` is by default, invariant (no type relationship).  In order to change the variance of <T> you need to use either out (to make it covariant) or in (to make contravariant) keyword.
 

@@ -1,6 +1,11 @@
-I"ô<p>An Android Toast is a small message displayed on the screen, similar to a tool tip or other similar popup notification. A Toast is displayed on top of the main content of an activity, and only remains visible for a short time period.</p>
+I"É<p>An Android Toast is a small message displayed on the screen, similar to a tool tip or other similar popup notification. A Toast is displayed on top of the main content of an activity, and only remains visible for a short time period; a sample Toast message is shown on figure 1.</p>
 
-<p><img src="/images/android-simple-toast-example.jpg" alt="" /></p>
+<!-- ![](/images/android-simple-toast-example.jpg) -->
+
+<figure style="margin-right:auto; margin-left:auto; width:20rem;">
+<img src="/images/android-simple-toast-example.jpg" />
+<figcaption>Figure 1. Toast Message</figcaption>
+</figure>
 
 <p><strong>Listing 1. Toast example</strong></p>
 
