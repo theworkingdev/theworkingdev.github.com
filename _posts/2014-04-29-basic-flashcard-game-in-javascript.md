@@ -12,6 +12,10 @@ When the page loads up, a picture will be shown. The user will guess who or what
 
 If the user guesses correctly, proceed to the next picture and let the user guess again. If the guess is incorrect, display a "Try again message", clear the text field and await for the response.
 
+**Contents**
+* TOC
+{:toc}
+
 ## Solution 
 
 Will make the html portion quite spartan. We won't use any fancy divs or nested tables so that we won't get distracted by styling clutter. We will handle the image using the img tag. We will use the old school input element for the text field and we will use the button element for, well, the button.

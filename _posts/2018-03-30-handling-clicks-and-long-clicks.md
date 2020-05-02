@@ -1,7 +1,10 @@
 ---
 title: How to handle clicks and long-clicks in Kotlin
 layout: post
+
 categories: android, kotlin
+
+tags: ["androidstudio", "kotlin"]
 permalink: 
 date:   2018-08-01 
 image: /images/book_las3_kotlin.png
@@ -98,6 +101,8 @@ One thing of note in Listing 2 is that all the View elements have an android:id 
     android:layout_height="wrap_content"
     app:layout_constraintTop_toBottomOf="@+id/textView" />
 ```
+
+Related content: [How to handle clicks in Android (Java)]({{ site.baseurl }}{% post_url 2020-5-2-howto-handle-clicks-android %})
 
 
 {% include book_las3_kotlin.html %}

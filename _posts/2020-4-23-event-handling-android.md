@@ -13,8 +13,10 @@ image: /images/book_las4.png
 
 The user interacts with an app by touching, clicking, swiping or typing something.  The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions
 
-![](/images/android-event-handling.png)
-<figcaption>Figure 1. Android Event Handling Overview</figcaption>
+<figure>
+  <img src="/images/android-event-handling.png">
+  <figcaption>Figure 1. Android Event Handling Overview</figcaption>
+</figure> 
 
 You can make the app respond these to events by doing the following;
 
@@ -22,8 +24,12 @@ You can make the app respond these to events by doing the following;
 2. Override the abstract methods of the listener. In case of the **OnClickListener**, the abstract method you need to override is the **onClick()** method
 3. Bind the listener object to a View object, like a Button; Figure 2 shows an annotated diagram on how this might look in code
 
-![](/images/android-event-model.png)
-<figcaption>Figure 2. Android Event Model</figcaption>
+
+
+<figure>
+  <img src="/images/android-event-model.png">
+  <figcaption>Figure 2. Android Event Model</figcaption>
+</figure> 
 
 Assuming that in your project, you already have a Button object **id** of which is _button_, the following code gets a reference to the Button object
 

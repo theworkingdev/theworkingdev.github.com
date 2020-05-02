@@ -11,6 +11,13 @@ comments: true
 
 Kotlin functions are defined using `fun` keyword, followed by the name of the function, a pair of parentheses, optional parameters, the return type of function and then the body of the function, which is pair of curly braces. It's pretty much like a Java function, except that in Java,  we have no `fun` (pun intended) and the type of the function  is written to the left of the function (in Java), while in Kotlin, the return type of the function is to the right of function name. 
 
+**Contents**
+* TOC
+{:toc}
+
+
+## General usage
+
 When a function declares a return type, the type and the function's name must be separated by a colon.  Like this function that takes in a Float argument and returns a Float value
 
 
@@ -42,9 +49,9 @@ fun talk() {       // (1)
 }
 ```
 
-(1) Our function doesn't have a declared return type. Hence, it's automatically Unit
+![](/images/1.png) Our function doesn't have a declared return type. Hence, it's automatically Unit
 
-(2) The body of a function whose return type is Unit cannot have any return statement in it; just like void methods in Java
+![](/images/2.png) The body of a function whose return type is Unit cannot have any return statement in it; just like void methods in Java
 
 Functions can be written in 3 places; as a top-level (which you've seen already) inside classes (which you've also seen) and inside another function.
 
@@ -67,15 +74,15 @@ class Person(val firstname:String, val lastname:String) {
 ```
 
 
-(1) `foo()` is a top level function. It isn't nested in a class or another function
+![](/images/1.png)  `foo()` is a top level function. It isn't nested in a class or another function
 
-(2) `bazz()` is nested inside function `foo()`. Which means, baz is scoped with foo; which means, it can only be called within the body of `foo()`
+![](/images/2.png)  `bazz()` is nested inside function `foo()`. Which means, baz is scoped with foo; which means, it can only be called within the body of `foo()`
 
-(3) This call is ok, `baz()` is callable within `foo()`
+![](/images/3.png)  This call is ok, `baz()` is callable within `foo()`
 
-(4) Not OK. This call will fail,  `baz()` is not callable from `main()` , you can only call `baz()` from within `foo()`
+![](/images/4.png)  Not OK. This call will fail,  `baz()` is not callable from `main()` , you can only call `baz()` from within `foo()`
 
-(5) Like Java, you can put functions inside a class
+![](/images/5.png)  Like Java, you can put functions inside a class
 
 ## Default function arguments
 
