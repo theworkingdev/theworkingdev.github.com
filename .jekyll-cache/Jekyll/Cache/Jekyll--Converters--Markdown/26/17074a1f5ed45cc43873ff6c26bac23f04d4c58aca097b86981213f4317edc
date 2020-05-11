@@ -1,4 +1,4 @@
-I"�*<p>To follow the tutorial, you’ll need to create a project (or download the project file here https://bit.ly/3bENu2x). I created this project using Android Studio 4 (Canary version, at the time of writing). Below are the project details;</p>
+I"�)<p>To follow the tutorial, you’ll need to create a project or <a href="https://bit.ly/3bENu2x">download the project file here</a>. I created this project using Android Studio 4 (Canary version, at the time of writing). Below are the project details;</p>
 
 <ul>
   <li><strong>Name of project</strong>. My Application</li>
@@ -70,7 +70,7 @@
 <p>Now, you can run the application. Test it either in the emulator (AVD) or a connected device. The app looks like this</p>
 
 <figure>
-  <img style="width: 19rem;" src="/images/Android-buttonclick-toast.png" />
+  <img style="width: 19rem;" src="/images/android-buttonclick-toast.png" />
   <figcaption>Fig 1. Toast Message</figcaption>
 </figure>
 
@@ -127,7 +127,7 @@
   <img src="/images/book_las4.png" class="card-img-top" alt="Learn Android Studio 4" />
   <div class="card-body">
     <h5 class="card-title">Learn Android Studio 4</h5>
-    <p class="card-text">Learn more tips like thisI want to be notified when the book comes out</p>
+    <p class="card-text">Learn more tips like this from the book. Can I notify you when the book comes out?</p>
 
     <form action="https://buttondown.email/api/emails/embed-subscribe/workingdev" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/workingdev', 'popupwindow')" class="embeddable-buttondown-form">
     <label for="bd-email">Enter your email</label>
@@ -139,5 +139,4 @@
   </div>
 </div>
 
-<p>If you want to see more programming tutorials like this, watch out for Learn Android Studio 4. I’m nearly finished in writing this book. Send me an email if you’d like me to let you know when the book comes out. You can drop me an email at <a href="mailto:workingdevmedia@gmail.com">workingdevmedia@gmail.com</a></p>
 :ET

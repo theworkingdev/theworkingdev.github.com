@@ -10,7 +10,7 @@ description: The article walks through the details on how to build a click-handl
 ---
 
 
-To follow the tutorial, you’ll need to create a project (or download the project file here https://bit.ly/3bENu2x). I created this project using Android Studio 4 (Canary version, at the time of writing). Below are the project details;
+To follow the tutorial, you’ll need to create a project or [download the project file here](https://bit.ly/3bENu2x). I created this project using Android Studio 4 (Canary version, at the time of writing). Below are the project details;
 
 * **Name of project**. My Application
 * **MIN SDK**. Android 10, API level 29
@@ -87,7 +87,7 @@ btn.setOnClickListener(listener);
 Now, you can run the application. Test it either in the emulator (AVD) or a connected device. The app looks like this
 
 <figure>
-  <img style="width: 19rem;" src="/images/Android-buttonclick-toast.png">
+  <img style="width: 19rem;" src="/images/android-buttonclick-toast.png">
   <figcaption>Fig 1. Toast Message</figcaption>
 </figure> 
 
