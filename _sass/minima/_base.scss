@@ -13,6 +13,13 @@ em {font-family: serif;}
 /**
  * Basic styling
  */
+
+.wrapper {
+  padding: 1em;
+  background: #fff;
+  box-shadow: 2px 3px 8px #eee;
+}
+
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: $text-color;
