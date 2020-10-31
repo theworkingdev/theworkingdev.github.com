@@ -14,6 +14,10 @@
   box-shadow: none;
 }
 
+.site-footer > .wrapper {
+  background-color: #fbfbfb;
+  box-shadow: none;
+}
 
 .site-title {
   @include relative-font-size(1.625);
@@ -111,7 +115,7 @@
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid $grey-color-light;
+  // border-top: 1px solid $grey-color-light;
   padding: $spacing-unit 0;
 }
 
@@ -227,6 +231,7 @@
   letter-spacing: -1px;
   line-height: 1;
   text-align: center;
+  margin-top:1.5em;
 
   @include media-query($on-laptop) {
     @include relative-font-size(2.25);
@@ -235,6 +240,7 @@
 
 .post-content {
   margin-bottom: $spacing-unit;
+  margin-top: 4em;
 
   h2 {
     @include relative-font-size(2);

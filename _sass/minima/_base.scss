@@ -17,7 +17,11 @@ em {font-family: serif;}
 .wrapper {
   padding: 1em;
   background: #fff;
-  box-shadow: 2px 3px 8px #eee;
+  box-shadow: 2px 3px 5px #b3b3b3;
+}
+
+.discussion {
+  margin-top: 2em;
 }
 
 body {
@@ -35,10 +39,21 @@ body {
   flex-direction: column;
 }
 
+// .post-content {
+
+//   line-height: 1.5em;
+// }
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
 .post-title {
   font-family: 'Roboto';
-  font-weight: 700;
-  color: #5b5b5b;
+  font-weight: normal;
+  // color: #5b5b5b;
+  color: #000;
 }
 
 /**
