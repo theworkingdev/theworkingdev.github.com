@@ -1,4 +1,4 @@
-I"¬$<blockquote>
+I"¯$<blockquote>
   <p>If your app suffers from slow UI rendering, then the system is forced to skip frames and the user will perceive stuttering in your app. We call this jank.	
 â€“ developer.android.com</p>
 </blockquote>
@@ -50,11 +50,11 @@ In the handleMessage callback of the Handler object, do your UI changes</p>
   <span class="p">}</span>
 
   <span class="k">private</span> <span class="k">fun</span> <span class="nf">killSomeTime</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1</span><span class="o">..</span><span class="m">20</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="py">msg</span> <span class="p">=</span> <span class="nc">Message</span><span class="p">.</span><span class="nf">obtain</span><span class="p">()</span>                        <span class="c1">// (5)</span>
       <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">putString</span><span class="p">(</span><span class="s">"counter"</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="nf">toString</span><span class="p">())</span>       <span class="c1">// (6)</span>
       <span class="n">mhandler</span><span class="p">.</span><span class="nf">sendMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>                         <span class="c1">// (7)</span>
-      <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
+      <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>

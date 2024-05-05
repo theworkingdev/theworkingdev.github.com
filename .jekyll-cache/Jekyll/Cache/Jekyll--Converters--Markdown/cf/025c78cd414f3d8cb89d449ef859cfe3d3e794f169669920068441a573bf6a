@@ -1,8 +1,8 @@
-I"‹<p>Kotlin has a while loop that looks and behaves exactly like the one in Java</p>
+I"‘<p>Kotlin has a while loop that looks and behaves exactly like the one in Java</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">arr</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span><span class="o">..</span><span class="m">100</span><span class="p">).</span><span class="nf">filter</span> <span class="p">{</span> <span class="n">it</span> <span class="p">%</span> <span class="m">2</span> <span class="p">==</span> <span class="m">0</span> <span class="p">}.</span><span class="nf">toTypedArray</span><span class="p">()</span>
-<span class="kd">var</span> <span class="py">counter</span> <span class="p">=</span> <span class="m">0</span>
-<span class="kd">var</span> <span class="py">sum</span> <span class="p">=</span> <span class="m">0</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">arr</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">100</span><span class="p">).</span><span class="nf">filter</span> <span class="p">{</span> <span class="n">it</span> <span class="p">%</span> <span class="mi">2</span> <span class="p">==</span> <span class="mi">0</span> <span class="p">}.</span><span class="nf">toTypedArray</span><span class="p">()</span>
+<span class="kd">var</span> <span class="py">counter</span> <span class="p">=</span> <span class="mi">0</span>
+<span class="kd">var</span> <span class="py">sum</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="k">while</span><span class="p">(</span><span class="n">counter</span> <span class="p">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">sum</span> <span class="p">+=</span> <span class="n">arr</span><span class="p">[</span><span class="n">counter</span><span class="p">++]</span>
 <span class="p">}</span>

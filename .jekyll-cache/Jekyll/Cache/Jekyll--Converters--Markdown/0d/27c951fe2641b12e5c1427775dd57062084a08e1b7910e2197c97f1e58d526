@@ -1,4 +1,4 @@
-I"�(<p>Kotlin functions are defined using <code class="highlighter-rouge">fun</code> keyword, followed by the name of the function, a pair of parentheses, optional parameters, the return type of function and then the body of the function, which is pair of curly braces. It’s pretty much like a Java function, except that in Java,  we have no <code class="highlighter-rouge">fun</code> (pun intended) and the type of the function  is written to the left of the function (in Java), while in Kotlin, the return type of the function is to the right of function name.</p>
+I"7)<p>Kotlin functions are defined using <code class="highlighter-rouge">fun</code> keyword, followed by the name of the function, a pair of parentheses, optional parameters, the return type of function and then the body of the function, which is pair of curly braces. It’s pretty much like a Java function, except that in Java,  we have no <code class="highlighter-rouge">fun</code> (pun intended) and the type of the function  is written to the left of the function (in Java), while in Kotlin, the return type of the function is to the right of function name.</p>
 
 <p><strong>Contents</strong></p>
 <ul id="markdown-toc">
@@ -12,17 +12,17 @@
 <p>When a function declares a return type, the type and the function’s name must be separated by a colon.  Like this function that takes in a Float argument and returns a Float value</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">inchesToCm</span><span class="p">(</span><span class="n">inches</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">:</span> <span class="nc">Float</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">inches</span> <span class="p">*</span> <span class="m">2.54</span>
+  <span class="k">return</span> <span class="n">inches</span> <span class="p">*</span> <span class="mf">2.54</span>
 <span class="p">}</span> 
 
 <span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nc">Array</span><span class="p">&lt;</span><span class="nc">String</span><span class="err">)</span> <span class="err">{</span>
-  <span class="err">println(inches</span><span class="nc">ToCm</span><span class="err">(10))</span>
+  <span class="err">pr</span><span class="k">in</span><span class="err">tln(</span><span class="k">in</span><span class="err">ches</span><span class="nc">ToCm</span><span class="err">(10))</span>
 <span class="err">}</span>
 </code></pre></div></div>
 
 <p>If a function has a single statement in it’s body (like the previous code sample), you can write it as an expression. Like this</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">inchesToCm</span><span class="p">(</span><span class="n">inches</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">=</span> <span class="n">inches</span> <span class="p">*</span> <span class="m">2.54</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">inchesToCm</span><span class="p">(</span><span class="n">inches</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">=</span> <span class="n">inches</span> <span class="p">*</span> <span class="mf">2.54</span>
 </code></pre></div></div>
 
 <p>In a function expression, you don’t have to write the return type because Kotlin can infer it from the RHS (right hand side of the assignment operator).</p>

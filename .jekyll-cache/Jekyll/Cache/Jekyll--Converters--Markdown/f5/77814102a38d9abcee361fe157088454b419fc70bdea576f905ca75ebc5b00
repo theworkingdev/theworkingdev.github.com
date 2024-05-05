@@ -1,4 +1,4 @@
-I"H%<p>In Java, if we needed to add functionality to a class, we could either add methods to the class itself or extend it by inheritance. An extension function in Kotlin allows to add behavior to an existing class, including the ones written in Java, without using inheritance. We can define additional behavior for an existing class and do the definition outside of that class.</p>
+I"µ$<p>In Java, if we needed to add functionality to a class, we could either add methods to the class itself or extend it by inheritance. An extension function in Kotlin allows to add behavior to an existing class, including the ones written in Java, without using inheritance. We can define additional behavior for an existing class and do the definition outside of that class.</p>
 
 <p>To demonstrate extension functions, letâ€™s start with some simple codes and build it up as we go along.</p>
 
@@ -26,10 +26,10 @@
    <span class="nf">println</span><span class="p">(</span><span class="n">util</span><span class="p">.</span><span class="nf">terminatorify</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
  <span class="p">}</span>
  
-<span class="cm">/*</span><span class="err">
-</span><span class="cm">  The StringUtil class consolidates our 3 methods as member functions.</span><span class="err">
-</span><span class="cm">  This is a very common Java practice</span><span class="err">
-</span><span class="cm">*/</span>
+<span class="cm">/*
+  The StringUtil class consolidates our 3 methods as member functions.
+  This is a very common Java practice
+*/</span>
  <span class="kd">class</span> <span class="nc">StringUtil</span> <span class="p">{</span>
    <span class="k">fun</span> <span class="nf">homerify</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">=</span> <span class="s">"msg -- woohoo!"</span>
    <span class="k">fun</span> <span class="nf">chanthofy</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span><span class="nc">String</span><span class="p">)</span> <span class="p">=</span> <span class="s">"Chan, msg , tho"</span>

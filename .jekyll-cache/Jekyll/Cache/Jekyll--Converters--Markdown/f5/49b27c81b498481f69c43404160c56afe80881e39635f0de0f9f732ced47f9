@@ -1,4 +1,4 @@
-I"í<p>The <em>if</em> construct in Kotlin works almost the same as in Java.</p>
+I"ð<p>The <em>if</em> construct in Kotlin works almost the same as in Java.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">theQuestion</span> <span class="p">=</span> <span class="s">"Doctor who?"</span>
 <span class="kd">val</span> <span class="py">answer</span> <span class="p">=</span> <span class="s">"Theta Sigma"</span>
@@ -15,13 +15,13 @@
 <span class="kd">val</span> <span class="py">c</span> <span class="p">=</span> <span class="nc">Calendar</span><span class="p">.</span><span class="nf">getInstance</span><span class="p">()</span>
 <span class="kd">val</span> <span class="py">day</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="nc">Calendar</span><span class="p">.</span><span class="nc">DAY_OF_WEEK</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="n">day</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">day</span> <span class="p">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
  <span class="nf">println</span><span class="p">(</span><span class="s">"Today is Sunday"</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">day</span> <span class="p">==</span> <span class="m">2</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">day</span> <span class="p">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
  <span class="nf">println</span><span class="p">(</span><span class="s">"Today is Monday"</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">day</span> <span class="p">==</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">day</span> <span class="p">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
  <span class="nf">println</span><span class="p">(</span><span class="s">"Today is Tuesday"</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="k">else</span> <span class="p">{</span>

@@ -1,4 +1,4 @@
-I"s<p>You can create an Array like using the <strong>emptyArray</strong> function, like this</p>
+I"w<p>You can create an Array like using the <strong>emptyArray</strong> function, like this</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">arr</span> <span class="p">=</span> <span class="n">emptyArray</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;()</span>
 </code></pre></div></div>
@@ -29,10 +29,10 @@
 
 <p>Another way to create Arrays is to use <strong>arrayOfNulls</strong> function. Here’s how it looks like</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">fruits</span> <span class="p">=</span> <span class="n">arrayOfNulls</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;(</span><span class="m">3</span><span class="p">)</span> 
-<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="s">"Apple"</span><span class="p">)</span>
-<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s">"Banana"</span><span class="p">)</span>
-<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s">"Orange"</span><span class="p">)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">fruits</span> <span class="p">=</span> <span class="n">arrayOfNulls</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;(</span><span class="mi">3</span><span class="p">)</span> 
+<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"Apple"</span><span class="p">)</span>
+<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"Banana"</span><span class="p">)</span>
+<span class="n">fruits</span><span class="p">.</span><span class="k">set</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"Orange"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>The Int on the Array constructor (3) indicates that we want to create an Array with 3 elements, and then fill them all up with <em>nulls</em></p>

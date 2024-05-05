@@ -1,4 +1,4 @@
-I"Y<p>Start by connecting to the database</p>
+I"H<p>Start by connecting to the database</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">define</span><span class="p">(</span><span class="s2">"DBSERVER"</span> <span class="p">,</span> <span class="s2">"localhost"</span><span class="p">);</span>
 <span class="nb">define</span><span class="p">(</span><span class="s2">"DBUSER"</span> <span class="p">,</span> <span class="s2">"dbuser"</span><span class="p">);</span>
@@ -6,18 +6,18 @@
 <span class="nb">define</span><span class="p">(</span><span class="s2">"DBNAME"</span> <span class="p">,</span> <span class="s2">"dbname"</span><span class="p">);</span>
 
 <span class="k">global</span> <span class="nv">$cn</span><span class="p">;</span>
-<span class="nv">$cn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nx">DBSERVER</span><span class="p">,</span><span class="nx">DBUSER</span><span class="p">,</span><span class="nx">DBPASS</span><span class="p">,</span><span class="nx">DBNAME</span><span class="p">);</span>
+<span class="nv">$cn</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">mysqli</span><span class="p">(</span><span class="no">DBSERVER</span><span class="p">,</span><span class="no">DBUSER</span><span class="p">,</span><span class="no">DBPASS</span><span class="p">,</span><span class="no">DBNAME</span><span class="p">);</span>
 
-<span class="k">if</span><span class="p">(</span><span class="nx">mysqli_connect_errno</span><span class="p">())</span> <span class="p">{</span>
-  <span class="k">die</span><span class="p">(</span><span class="s2">"DBCONNECT | database connection failed"</span> <span class="o">.</span> <span class="nx">mysqli_connect_error</span><span class="p">());</span>
+<span class="k">if</span><span class="p">(</span><span class="nf">mysqli_connect_errno</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">die</span><span class="p">(</span><span class="s2">"DBCONNECT | database connection failed"</span> <span class="mf">.</span> <span class="nf">mysqli_connect_error</span><span class="p">());</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Fetch just the one record from the database</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * FROM tbousers WHERE idno=11"</span><span class="p">;</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">cn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
-<span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">();</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cn</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">();</span>
 
 <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$row</span><span class="p">);</span>
 </code></pre></div></div>
@@ -25,10 +25,10 @@
 <p>To get more than one record, use the following code</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * FROM tbousers"</span><span class="p">;</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">cn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
-<span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">();</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cn</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">();</span>
 
-<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">()){</span>
+<span class="k">while</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">()){</span>
   <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$row</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -37,11 +37,11 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$storage</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * FROM tbousers"</span><span class="p">;</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">cn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
-<span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">();</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cn</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">();</span>
 
-<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">()){</span>
-  <span class="nb">array_push</span><span class="p">(</span><span class="nx">storage</span><span class="p">,</span> <span class="nx">row</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">()){</span>
+  <span class="nb">array_push</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="n">row</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$storage</span><span class="p">);</span>

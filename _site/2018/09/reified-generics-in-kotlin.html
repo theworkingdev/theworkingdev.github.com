@@ -2,9 +2,9 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Reified Generics in Kotlin | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Reified Generics in Kotlin" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="learn how to deal with type erasures during runtime. Kotlin has ways to make the runtime remember the type parameters for generics" />
@@ -15,8 +15,11 @@
 <meta property="og:image" content="http://localhost:4000/images/book_las3_kotlin.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-09-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/images/book_las3_kotlin.png" />
+<meta property="twitter:title" content="Reified Generics in Kotlin" />
 <script type="application/ld+json">
-{"headline":"Reified Generics in Kotlin","dateModified":"2018-09-29T00:00:00+08:00","datePublished":"2018-09-29T00:00:00+08:00","url":"http://localhost:4000/2018/09/reified-generics-in-kotlin.html","image":"http://localhost:4000/images/book_las3_kotlin.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/09/reified-generics-in-kotlin.html"},"description":"learn how to deal with type erasures during runtime. Kotlin has ways to make the runtime remember the type parameters for generics","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2018-09-29T00:00:00+08:00","datePublished":"2018-09-29T00:00:00+08:00","description":"learn how to deal with type erasures during runtime. Kotlin has ways to make the runtime remember the type parameters for generics","headline":"Reified Generics in Kotlin","image":"http://localhost:4000/images/book_las3_kotlin.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/09/reified-generics-in-kotlin.html"},"url":"http://localhost:4000/2018/09/reified-generics-in-kotlin.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /><!-- Twitter cards -->
     <meta name= "twitter:site"    content = "@lovescaffeine" />
@@ -131,7 +134,7 @@
 
 <p>That last code sample would have worked perfectly if only <code class="highlighter-rouge">List.typeOf</code> can remember (at runtime) what kind of list it is. As it turns out, Kotlin can actually make generics types remember these kinds of things at runtime. We just need to use a couple of special words, like <code class="highlighter-rouge">inline</code> and <code class="highlighter-rouge">reified</code>. Let’s see how to do this in code.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">inline</span> <span class="k">fun</span> <span class="p">&lt;</span><span class="err">reified</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="nf">List</span><span class="p">&lt;</span><span class="n">pass</span><span class="p">:[*]&gt;.</span><span class="nf">typeOf</span><span class="p">()</span> <span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="p">{</span> <span class="c1">// (1)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">inline</span> <span class="k">fun</span> <span class="p">&lt;</span><span class="k">reified</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="nf">List</span><span class="p">&lt;</span><span class="n">pass</span><span class="p">:[*]&gt;.</span><span class="nf">typeOf</span><span class="p">()</span> <span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="p">{</span> <span class="c1">// (1)</span>
 
   <span class="kd">val</span> <span class="py">retlist</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;()</span>
   <span class="k">this</span><span class="p">.</span><span class="nf">forEach</span> <span class="p">{</span>
@@ -171,7 +174,7 @@
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">inline</span> <span class="k">fun</span> <span class="p">&lt;</span><span class="err">reified</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="nf">List</span><span class="p">&lt;*&gt;.</span><span class="nf">typeOf</span><span class="p">()</span> <span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="p">{</span>
+<span class="k">inline</span> <span class="k">fun</span> <span class="p">&lt;</span><span class="k">reified</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="nf">List</span><span class="p">&lt;*&gt;.</span><span class="nf">typeOf</span><span class="p">()</span> <span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="p">{</span>
 
   <span class="kd">val</span> <span class="py">retlist</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;()</span>
   <span class="k">this</span><span class="p">.</span><span class="nf">forEach</span> <span class="p">{</span>
@@ -219,7 +222,7 @@
   <div class="card" style="width: 22rem;">
     <div class="card-body">
       <h5 class="card-title">Get the Newsletter</h5>
-      <p class="card-text">We can send tutorials straight to your inbox.</p>
+      <p class="card-text">Read tutorials from your inbox.</p>
       <a target="_blank"href="https://buttondown.email/workingdev" class="btn btn-info">SUBSCRIBE</a>
     </div>
   </div>
@@ -258,7 +261,7 @@
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:workingdevmedia@gmail.com">workingdevmedia@gmail.com</a></li></ul>
+          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
       </div>
 
       <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://www.twitter.com/lovescaffeine"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">lovescaffeine</span></a></li></ul>

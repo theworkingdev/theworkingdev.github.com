@@ -1,9 +1,7 @@
 @charset "utf-8";
-
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,400;1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&family=Ubuntu+Mono:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 // Define defaults for each variable.
 
 // $base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
@@ -14,10 +12,13 @@
 // $base-font-family: sans-serif;
 // $base-font-family: "Roboto";
 
+
+$color-crimson: #4d0013;
+
 $base-font-family: 'Work Sans', 'sans-serif';
 
 
-$base-font-size:   16px !default;
+$base-font-size:   18px !default;
 $base-font-weight: 400 !default;
 $small-font-size:  $base-font-size * 0.875 !default;
 $base-line-height: 1.5 !default;
@@ -25,12 +26,14 @@ $base-line-height: 1.5 !default;
 $spacing-unit:     30px !default;
 
 // $text-color:       #111 !default;
-$text-color:       #515151 !default;
+//$text-color:       #515151 !default;
+$text-color: #000;
 // $background-color: #fdfdfd !default;
 // $background-color: #fff !default;
 // $background-color: #fffff0 !default;  // ivory
 // $background-color: #fff;
-$background-color: #fbfbfb;
+// $background-color: #fbfbfb;
+$background-color: #fff;
 $brand-color:      #2a7ae2 !default;
 
 $grey-color:       #828282 !default;
@@ -40,10 +43,10 @@ $grey-color-dark:  darken($grey-color, 25%) !default;
 $table-text-align: left !default;
 
 // Width of the content area
-$content-width:    720px !default;
+$content-width:    800px !default;
 
-$on-palm:          600px !default;
-$on-laptop:        700px !default;
+$on-palm:          650px !default;
+$on-laptop:        800px !default;
 
 // Use media queries like this:
 // @include media-query($on-palm) {

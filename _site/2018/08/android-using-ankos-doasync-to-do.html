@@ -2,9 +2,9 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>How to use Anko’s doAsync for background task | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="How to use Anko’s doAsync for background task" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I wrote a series of post on how to handle background processing in an Android app. You don’t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following." />
@@ -15,8 +15,11 @@
 <meta property="og:image" content="http://localhost:4000/images/book_las3_kotlin.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-08-01T00:00:00+08:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/images/book_las3_kotlin.png" />
+<meta property="twitter:title" content="How to use Anko’s doAsync for background task" />
 <script type="application/ld+json">
-{"headline":"How to use Anko’s doAsync for background task","dateModified":"2018-08-01T00:00:00+08:00","datePublished":"2018-08-01T00:00:00+08:00","url":"http://localhost:4000/2018/08/android-using-ankos-doasync-to-do.html","image":"http://localhost:4000/images/book_las3_kotlin.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/08/android-using-ankos-doasync-to-do.html"},"description":"I wrote a series of post on how to handle background processing in an Android app. You don’t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2018-08-01T00:00:00+08:00","datePublished":"2018-08-01T00:00:00+08:00","description":"I wrote a series of post on how to handle background processing in an Android app. You don’t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following.","headline":"How to use Anko’s doAsync for background task","image":"http://localhost:4000/images/book_las3_kotlin.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/08/android-using-ankos-doasync-to-do.html"},"url":"http://localhost:4000/2018/08/android-using-ankos-doasync-to-do.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /><!-- Twitter cards -->
     <meta name= "twitter:site"    content = "@lovescaffeine" />
@@ -129,8 +132,8 @@ MainActivity, annotated code.</p>
 
     <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>             <span class="c1">// (1)</span>
       <span class="nf">doAsync</span> <span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1</span><span class="o">..</span><span class="m">15</span><span class="p">)</span> <span class="p">{</span>                   <span class="c1">// (2)</span>
-          <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>                <span class="c1">// (3)</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">15</span><span class="p">)</span> <span class="p">{</span>                   <span class="c1">// (2)</span>
+          <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>                <span class="c1">// (3)</span>
           <span class="nf">activityUiThread</span> <span class="p">{</span>
             <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>    <span class="c1">// (4)</span>
           <span class="p">}</span>
@@ -177,7 +180,7 @@ MainActivity, annotated code.</p>
   <div class="card" style="width: 22rem;">
     <div class="card-body">
       <h5 class="card-title">Get the Newsletter</h5>
-      <p class="card-text">We can send tutorials straight to your inbox.</p>
+      <p class="card-text">Read tutorials from your inbox.</p>
       <a target="_blank"href="https://buttondown.email/workingdev" class="btn btn-info">SUBSCRIBE</a>
     </div>
   </div>
@@ -216,7 +219,7 @@ MainActivity, annotated code.</p>
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:workingdevmedia@gmail.com">workingdevmedia@gmail.com</a></li></ul>
+          <li class="p-name">The Working Dev</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
       </div>
 
       <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://www.twitter.com/lovescaffeine"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">lovescaffeine</span></a></li></ul>

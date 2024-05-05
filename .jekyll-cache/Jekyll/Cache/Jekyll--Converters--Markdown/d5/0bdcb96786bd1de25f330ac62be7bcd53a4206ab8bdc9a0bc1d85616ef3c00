@@ -1,4 +1,4 @@
-I"94<p>Start by connecting to the database. PHP is a server side scripting language and heavily dependent on the http protocol. The  request/response nature of http means that whatever data or information you created on previous requests, will not matter in future request. Everytime you need to do something that involves a database operation (insert, delete, update or select), you need to make a connection to the database before you can do anything else.</p>
+I"4<p>Start by connecting to the database. PHP is a server side scripting language and heavily dependent on the http protocol. The  request/response nature of http means that whatever data or information you created on previous requests, will not matter in future request. Everytime you need to do something that involves a database operation (insert, delete, update or select), you need to make a connection to the database before you can do anything else.</p>
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// filename db.php
 <span class="cp">&lt;?php</span>
@@ -8,10 +8,10 @@
 <span class="nb">define</span><span class="p">(</span><span class="s2">"DBNAME"</span> <span class="p">,</span> <span class="s2">"thedb"</span><span class="p">);</span>
 
 <span class="k">global</span> <span class="nv">$cn</span><span class="p">;</span>
-<span class="nv">$cn</span> <span class="o">=</span> <span class="nb">mysqli_connect</span><span class="p">(</span><span class="nx">DBSERVER</span><span class="p">,</span><span class="nx">DBUSER</span><span class="p">,</span><span class="nx">DBPASS</span><span class="p">,</span><span class="nx">DBNAME</span><span class="p">);</span>
+<span class="nv">$cn</span> <span class="o">=</span> <span class="nb">mysqli_connect</span><span class="p">(</span><span class="no">DBSERVER</span><span class="p">,</span><span class="no">DBUSER</span><span class="p">,</span><span class="no">DBPASS</span><span class="p">,</span><span class="no">DBNAME</span><span class="p">);</span>
 
-<span class="k">if</span><span class="p">(</span><span class="nx">mysqli_connect_errno</span><span class="p">())</span> <span class="p">{</span>
-  <span class="k">die</span><span class="p">(</span><span class="s2">"DBCONNECT | database connection failed"</span> <span class="o">.</span> <span class="nx">mysqli_connect_error</span><span class="p">());</span>
+<span class="k">if</span><span class="p">(</span><span class="nf">mysqli_connect_errno</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">die</span><span class="p">(</span><span class="s2">"DBCONNECT | database connection failed"</span> <span class="mf">.</span> <span class="nf">mysqli_connect_error</span><span class="p">());</span>
 <span class="p">}</span>
 <span class="cp">?&gt;</span>
 
@@ -26,11 +26,11 @@
 <span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
 
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users;"</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">mysqli_query</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
 
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="mf">.</span> <span class="nf">mysqli_error</span><span class="p">(</span><span class="n">cn</span><span class="p">));</span>
 
-<span class="nx">row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="n">row</span> <span class="o">=</span> <span class="nf">mysqli_fetch_assoc</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
 <span class="cp">?&gt;</span>
 
 </code></pre></div></div>
@@ -43,13 +43,13 @@
 <span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
 
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users"</span><span class="p">;</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">mysqli_query</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
 
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="mf">.</span> <span class="nf">mysqli_error</span><span class="p">(</span><span class="n">cn</span><span class="p">));</span>
 
-<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">mysqli_fetch_assoc</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span> <span class="p">{</span>
-  <span class="nx">fname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">];</span>
-  <span class="nx">lname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="s1">'lname'</span><span class="p">];</span>
+<span class="k">while</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="nf">mysqli_fetch_assoc</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">fname</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">];</span>
+  <span class="n">lname</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">'lname'</span><span class="p">];</span>
   <span class="k">echo</span> <span class="s2">"</span><span class="si">{</span><span class="nv">fname</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nv">lname</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="cp">?&gt;</span>
@@ -65,13 +65,13 @@
 <span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
 
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT * from users"</span><span class="p">;</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">mysqli_query</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
 
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="mf">.</span> <span class="nf">mysqli_error</span><span class="p">(</span><span class="n">cn</span><span class="p">));</span>
 
-<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nb">mysqli_fetch</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">MYSQL_NUM</span><span class="p">))</span> <span class="p">{</span>
-  <span class="nx">fname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-  <span class="nx">lname</span> <span class="o">=</span> <span class="nx">row</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="k">while</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="nb">mysqli_fetch</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="no">MYSQL_NUM</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">fname</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="n">lname</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
   <span class="k">echo</span> <span class="s2">"</span><span class="si">{</span><span class="nv">fname</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nv">lname</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="cp">?&gt;</span>
@@ -84,16 +84,16 @@
 
 <span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
 
-<span class="nx">idno</span>  <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'idno'</span><span class="p">];</span>
-<span class="nx">fname</span> <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">];</span>
-<span class="nx">lname</span> <span class="o">=</span> <span class="nx">_POST</span><span class="p">[</span><span class="s1">'lastname'</span><span class="p">];</span>
+<span class="n">idno</span>  <span class="o">=</span> <span class="n">_POST</span><span class="p">[</span><span class="s1">'idno'</span><span class="p">];</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="n">_POST</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">];</span>
+<span class="n">lname</span> <span class="o">=</span> <span class="n">_POST</span><span class="p">[</span><span class="s1">'lastname'</span><span class="p">];</span>
 
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"UPDATE users SET firstname=</span><span class="si">{</span><span class="nv">$fname</span><span class="si">}</span><span class="s2">,
           lastname=</span><span class="si">{</span><span class="nv">$lname</span><span class="si">}</span><span class="s2">
           WHERE idno=</span><span class="si">{</span><span class="nv">$idno</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
 
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">mysqli_query</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="mf">.</span> <span class="nf">mysqli_error</span><span class="p">(</span><span class="n">cn</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
  
 </code></pre></div></div>
@@ -104,16 +104,16 @@
 
 <span class="k">require_once</span><span class="p">(</span><span class="s2">"db.php"</span><span class="p">);</span>
 
-<span class="nx">idno</span>   <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'idno'</span><span class="p">]);</span>
-<span class="nx">fname</span>  <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">]);</span>
-<span class="nx">lname</span>  <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'lastname'</span><span class="p">]);</span>
+<span class="n">idno</span>   <span class="o">=</span> <span class="nf">mysqli_real_escape_string</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'idno'</span><span class="p">]);</span>
+<span class="n">fname</span>  <span class="o">=</span> <span class="nf">mysqli_real_escape_string</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'firstname'</span><span class="p">]);</span>
+<span class="n">lname</span>  <span class="o">=</span> <span class="nf">mysqli_real_escape_string</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'lastname'</span><span class="p">]);</span>
 
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"UPDATE users SET firstname=</span><span class="si">{</span><span class="nv">$fname</span><span class="si">}</span><span class="s2">,
           lastname=</span><span class="si">{</span><span class="nv">$lname</span><span class="si">}</span><span class="s2">
           WHERE idno=</span><span class="si">{</span><span class="nv">$idno</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
 
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nx">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="o">.</span> <span class="nx">mysqli_error</span><span class="p">(</span><span class="nx">cn</span><span class="p">));</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">mysqli_query</span><span class="p">(</span><span class="n">cn</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">result</span><span class="p">)</span> <span class="k">die</span><span class="p">(</span><span class="s2">"db error "</span> <span class="mf">.</span> <span class="nf">mysqli_error</span><span class="p">(</span><span class="n">cn</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 
 </code></pre></div></div>

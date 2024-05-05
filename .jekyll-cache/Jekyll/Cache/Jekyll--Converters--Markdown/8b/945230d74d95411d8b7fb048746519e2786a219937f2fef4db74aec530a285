@@ -1,8 +1,8 @@
-I"Ù<p>Itâ€™s very easy to work with Maps in Kotlin, you can see for yourself in the following examples.</p>
+I"Ü<p>Itâ€™s very easy to work with Maps in Kotlin, you can see for yourself in the following examples.</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">months</span> <span class="p">=</span> <span class="nf">hashMapOf</span><span class="p">(</span><span class="s">"January"</span> <span class="n">to</span> <span class="m">1</span><span class="p">)</span> <span class="c1">// (1)</span>
-<span class="n">months</span><span class="p">[</span><span class="s">"February"</span><span class="p">]</span> <span class="p">=</span> <span class="m">2</span>                 <span class="c1">// (2)</span>
-<span class="n">months</span><span class="p">[</span><span class="s">"March"</span><span class="p">]</span> <span class="p">=</span> <span class="m">3</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">months</span> <span class="p">=</span> <span class="nf">hashMapOf</span><span class="p">(</span><span class="s">"January"</span> <span class="n">to</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// (1)</span>
+<span class="n">months</span><span class="p">[</span><span class="s">"February"</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>                 <span class="c1">// (2)</span>
+<span class="n">months</span><span class="p">[</span><span class="s">"March"</span><span class="p">]</span> <span class="p">=</span> <span class="mi">3</span>
 </code></pre></div></div>
 
 <p><strong>(1)</strong> You can simply use the <code class="highlighter-rouge">hashMapOf</code> constructor function to declare and initialize the map. Thereâ€™s no need to provide the type parameter (you still can if you want to, but why bother), the type is inferred from the constructor arguments

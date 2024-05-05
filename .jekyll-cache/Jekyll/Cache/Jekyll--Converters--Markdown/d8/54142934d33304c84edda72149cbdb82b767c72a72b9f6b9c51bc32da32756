@@ -1,8 +1,8 @@
-I"jq<p>We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.</p>
+I"nq<p>We’ll need to review some of our OOP basics to prepare us for a discussion on variance. Hopefully, we can jog your memory and remember some of the fundamental principles of object-oriented programming.</p>
 
 <p>OOP is boon to developers, because of it, we can write codes like this</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">a</span><span class="p">:</span><span class="nc">Int</span> <span class="p">=</span>  <span class="m">1</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">a</span><span class="p">:</span><span class="nc">Int</span> <span class="p">=</span>  <span class="mi">1</span>
 <span class="kd">val</span> <span class="py">b</span><span class="p">:</span><span class="nc">Number</span> <span class="p">=</span> <span class="n">a</span>
 
 <span class="nf">println</span><span class="p">(</span><span class="s">"b:$b is of type ${b.javaClass.name}"</span><span class="p">)</span>
@@ -10,9 +10,9 @@
 
 <p>We can also write functions like this</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">foo</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>        <span class="c1">// (1)</span>
-<span class="nf">foo</span><span class="p">(</span><span class="m">100F</span><span class="p">)</span>     <span class="c1">// (2)</span>
-<span class="nf">foo</span><span class="p">(</span><span class="m">120.0</span><span class="p">)</span>      <span class="c1">// (3)</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        <span class="c1">// (1)</span>
+<span class="nf">foo</span><span class="p">(</span><span class="mf">100F</span><span class="p">)</span>     <span class="c1">// (2)</span>
+<span class="nf">foo</span><span class="p">(</span><span class="mf">120.0</span><span class="p">)</span>      <span class="c1">// (3)</span>
 
 <span class="k">fun</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span><span class="nc">Number</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// (4)</span>
   <span class="nf">println</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>

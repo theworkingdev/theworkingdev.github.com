@@ -1,4 +1,4 @@
-I"†<p>The following snippet shows how to read from a file in the internal storage (standard location, not cache).</p>
+I"‡<p>The following snippet shows how to read from a file in the internal storage (standard location, not cache).</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">filename</span> <span class="p">=</span> <span class="s">"ourfile.txt"</span>
 <span class="kd">val</span> <span class="py">input</span> <span class="p">=</span> <span class="nf">openFileInput</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="c1">// (1)</span>
@@ -6,7 +6,7 @@
 <span class="n">input</span><span class="p">.</span><span class="nf">use</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="py">buffer</span> <span class="p">=</span> <span class="nc">StringBuilder</span><span class="p">()</span> <span class="c1">// (2)</span>
   <span class="kd">var</span> <span class="py">bytes_read</span> <span class="p">=</span> <span class="n">input</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span> <span class="c1">// (3)</span>
-  <span class="k">while</span><span class="p">(</span><span class="n">bytes_read</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// (4)</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">bytes_read</span> <span class="p">!=</span> <span class="p">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// (4)</span>
     <span class="n">buffer</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">bytes_read</span><span class="p">.</span><span class="nf">toChar</span><span class="p">())</span>  <span class="c1">//(5)</span>
     <span class="n">bytes_read</span> <span class="p">=</span> <span class="n">input</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span> <span class="c1">// (6)</span>
   <span class="p">}</span>

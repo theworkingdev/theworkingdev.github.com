@@ -4,4 +4,5 @@ title: Subscribe
 permalink: /subscribe/
 ---
 
-This is the subscription page.
+
+Subscribe to the mailing list so I can tell you when new tutorials are available. 

@@ -1,4 +1,4 @@
-I"å3<p>Your programs will deal with date and times some of the time. On some occassions, the date and time data will be inputs coming from an html view. These inputs will be in string format which means you need to transform them to the appropriate date/time format before you can persist them to the database. On other occassions,  you will read the date/time data from a database and then display them in the html view.</p>
+I"À3<p>Your programs will deal with date and times some of the time. On some occassions, the date and time data will be inputs coming from an html view. These inputs will be in string format which means you need to transform them to the appropriate date/time format before you can persist them to the database. On other occassions,  you will read the date/time data from a database and then display them in the html view.</p>
 
 <p>There are two functions that will be handy when you need to work with date and times, these are the <code class="highlighter-rouge">date</code> and <code class="highlighter-rouge">strtotime</code> functions.</p>
 
@@ -6,7 +6,7 @@
 
 <p>The code below will extract the data from the <code class="highlighter-rouge">inputdate</code> element sent from an html form.</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">date</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">,</span> <span class="nb">strtotime</span><span class="p">(</span><span class="nx">_POST</span><span class="p">[</span><span class="s2">"inputdate"</span><span class="p">]));</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">date</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'Y-m-d'</span><span class="p">,</span> <span class="nb">strtotime</span><span class="p">(</span><span class="n">_POST</span><span class="p">[</span><span class="s2">"inputdate"</span><span class="p">]));</span>
 </code></pre></div></div>
 
 <p>The <code class="highlighter-rouge">strtotime</code> function by itself may not be enough. You will need to use it in tandem with the <code class="highlighter-rouge">date</code> function; <code class="highlighter-rouge">strtotime</code> takes a date or time data in string format and converts it to a UNIX timestamp. This timestamp is an integer value which represents the number of seconds that has elapsed since January 1 1970 (UTC). This timestamp is also known as POSIX time or epoch time.</p>
@@ -24,10 +24,10 @@
 
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT username, workdate, timein, timeout FROM attendance"</span><span class="p">;</span>
 
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">cn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
-<span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">();</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cn</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">();</span>
 
-<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">()){</span>
+<span class="k">while</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">()){</span>
   <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'m-d-Y'</span><span class="p">,</span><span class="nv">$row</span><span class="p">[</span><span class="s1">'workdate'</span><span class="p">]);</span>
   <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'H:i'</span><span class="p">,</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">'timein'</span><span class="p">]);</span>
   <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'H:i'</span><span class="p">,</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">'timeout'</span><span class="p">]);</span>
@@ -50,14 +50,14 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$returnarray</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT username, workdate, timein, timeout FROM attendance"</span><span class="p">;</span>
 
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">cn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
-<span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">();</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cn</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">();</span>
 
-<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">()){</span>
-  <span class="nx">workdate</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'m-d-Y'</span><span class="p">,</span><span class="nx">row</span><span class="p">[</span><span class="s1">'workdate'</span><span class="p">]);</span>
-  <span class="nx">timein</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'H:i'</span><span class="p">,</span> <span class="nx">row</span><span class="p">[</span><span class="s1">'timein'</span><span class="p">]);</span>
-  <span class="nx">timeout</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'H:i'</span><span class="p">,</span> <span class="nx">row</span><span class="p">[</span><span class="s1">'timeout'</span><span class="p">]);</span>
-  <span class="nb">array_push</span><span class="p">(</span><span class="nx">returnarray</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'workdate'</span><span class="o">=&gt;</span> <span class="nx">workdate</span><span class="p">,</span> <span class="o">...</span><span class="p">));</span>
+<span class="k">while</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">()){</span>
+  <span class="n">workdate</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'m-d-Y'</span><span class="p">,</span><span class="n">row</span><span class="p">[</span><span class="s1">'workdate'</span><span class="p">]);</span>
+  <span class="n">timein</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'H:i'</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">'timein'</span><span class="p">]);</span>
+  <span class="n">timeout</span> <span class="o">=</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'H:i'</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">'timeout'</span><span class="p">]);</span>
+  <span class="nb">array_push</span><span class="p">(</span><span class="n">returnarray</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'workdate'</span><span class="o">=&gt;</span> <span class="n">workdate</span><span class="p">,</span> <span class="mf">...</span><span class="p">));</span>
 <span class="p">}</span>
 
 <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$returnarray</span><span class="p">);</span>
@@ -69,11 +69,11 @@
 <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$returnarray</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">"SELECT username, workdate, timein, timeout FROM attendance"</span><span class="p">;</span>
 
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">cn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
-<span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">();</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cn</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">();</span>
 
-<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">()){</span>
-  <span class="nb">array_push</span><span class="p">(</span><span class="nx">returnarray</span><span class="p">,</span> <span class="nx">row</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">()){</span>
+  <span class="nb">array_push</span><span class="p">(</span><span class="n">returnarray</span><span class="p">,</span> <span class="n">row</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$returnarray</span><span class="p">);</span>
@@ -89,11 +89,11 @@
           DATE_FORMAT(timeout, '%h:%i %p')
           FROM attendance"</span><span class="p">;</span>
 
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">cn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
-<span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">();</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cn</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">();</span>
 
-<span class="k">while</span><span class="p">(</span><span class="nx">row</span> <span class="o">=</span> <span class="nx">result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">()){</span>
-  <span class="nb">array_push</span><span class="p">(</span><span class="nx">returnarray</span><span class="p">,</span> <span class="nx">row</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="n">result</span><span class="o">-&gt;</span><span class="nf">fetch_assoc</span><span class="p">()){</span>
+  <span class="nb">array_push</span><span class="p">(</span><span class="n">returnarray</span><span class="p">,</span> <span class="n">row</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$returnarray</span><span class="p">);</span>

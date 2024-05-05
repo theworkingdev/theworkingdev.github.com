@@ -1,4 +1,4 @@
-I"—C<p>Android has various ways to run your code in the background. From what I can recall, we can use any of the following;</p>
+I"˜C<p>Android has various ways to run your code in the background. From what I can recall, we can use any of the following;</p>
 
 <ul>
   <li>Good ole <strong>Threads</strong> and <strong>Runnables</strong></li>
@@ -127,7 +127,7 @@ Using Threads and Runnables</p>
   <span class="k">override</span> <span class="k">public</span> <span class="k">fun</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">val</span> <span class="py">github_info</span> <span class="p">=</span> <span class="nf">fetchGithubInfo</span><span class="p">()</span>
     <span class="nf">runOnUiThread</span><span class="p">(</span><span class="nc">Runnable</span> <span class="p">{</span> <span class="c1">// (1)</span>
-      <span class="kd">val</span> <span class="py">jsonrdr</span> <span class="p">=</span> <span class="nc">JSONObject</span><span class="p">(</span><span class="n">github_info</span><span class="p">)</span>  <span class="p">(</span><span class="m">2</span><span class="p">)</span>
+      <span class="kd">val</span> <span class="py">jsonrdr</span> <span class="p">=</span> <span class="nc">JSONObject</span><span class="p">(</span><span class="n">github_info</span><span class="p">)</span>  <span class="p">(</span><span class="mi">2</span><span class="p">)</span>
       <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">jsonrdr</span><span class="p">.</span><span class="nf">getString</span><span class="p">(</span><span class="s">"login"</span><span class="p">)</span>
     <span class="p">})</span>
   <span class="p">}</span>

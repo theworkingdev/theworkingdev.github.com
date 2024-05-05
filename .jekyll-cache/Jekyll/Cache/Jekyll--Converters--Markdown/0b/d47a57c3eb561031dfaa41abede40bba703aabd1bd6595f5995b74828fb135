@@ -1,4 +1,4 @@
-I"Ì <p>I wrote a series of post on how to handle background processing in an Android app. You donâ€™t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following.</p>
+I"Ï <p>I wrote a series of post on how to handle background processing in an Android app. You donâ€™t really need to read them before you dive into this post, but it will give you context and more background about jank and how we use Threads, Handlers and AsyncTask to avoid it. The three previous post about jank are the following.</p>
 
 <ol>
   <li><a href="/2018/07/android-jank_31.html">Android Jank</a>. Running codes in the background using Java Threads</li>
@@ -67,8 +67,8 @@ MainActivity, annotated code.</p>
 
     <span class="n">button</span><span class="p">.</span><span class="nf">setOnClickListener</span> <span class="p">{</span>             <span class="c1">// (1)</span>
       <span class="nf">doAsync</span> <span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1</span><span class="o">..</span><span class="m">15</span><span class="p">)</span> <span class="p">{</span>                   <span class="c1">// (2)</span>
-          <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>                <span class="c1">// (3)</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">15</span><span class="p">)</span> <span class="p">{</span>                   <span class="c1">// (2)</span>
+          <span class="nc">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>                <span class="c1">// (3)</span>
           <span class="nf">activityUiThread</span> <span class="p">{</span>
             <span class="n">textView</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">toString</span><span class="p">()</span>    <span class="c1">// (4)</span>
           <span class="p">}</span>
