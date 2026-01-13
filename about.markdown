@@ -4,4 +4,6 @@ title: About
 permalink: /about/
 ---
 
-This is my coding journal. Most of the entries here are either parts of a lesson plan, a tutorial or just some stuff that I'd like to remember; one of the best ways to remember a coding technique is to actually write it and try to explain it either to yourself or to somebody else.  
+I write about software careers, AI-assisted development, basic security literacy, and how working developers avoid career decay over time.
+
+This site is where I think in public. The newsletter is where I write short, practical notes without hype.

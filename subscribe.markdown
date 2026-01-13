@@ -5,4 +5,4 @@ permalink: /subscribe/
 ---
 
 
-Subscribe to the mailing list so I can tell you when new tutorials are available. 
+Short, practical notes on software careers, AI, and security—written for working developers who plan to be around for a while.

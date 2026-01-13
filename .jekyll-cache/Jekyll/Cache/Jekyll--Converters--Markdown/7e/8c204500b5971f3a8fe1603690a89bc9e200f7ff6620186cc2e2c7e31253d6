@@ -1,0 +1,127 @@
+I"	-<h3 id="a-java-developers-take-on-using-ai-without-outsourcing-thinking">A Java developer’s take on using AI without outsourcing thinking</h3>
+
+<p>For the last couple of years, I mostly ignored AI coding tools.</p>
+
+<p>Not because I’m anti-AI. Not because I didn’t understand the technology. But because the early conversation was noisy. “Vibe coding.” “Replace developers.” “Just prompt your way to an app.”</p>
+
+<p>If you’ve been building software professionally—especially in Java, maintaining services that have survived three company rebrands, and onboarding into legacy systems written by people who apparently hated their future selves—it was reasonable to sit this out.</p>
+
+<p>Now the tools are better. The hype has cooled down. And curiosity is creeping back in. So here’s the smallest useful way to start, without changing how you think about software.</p>
+
+<h2 id="you-dont-vibe-code">You Don’t “Vibe Code”</h2>
+
+<p>Let’s get this out of the way.</p>
+
+<p>You don’t outsource thinking. 
+You don’t paste code you didn’t read. 
+You don’t treat an AI model as a senior engineer. 
+You use AI where it replaces friction, not judgment.</p>
+
+<p>That distinction matters.</p>
+
+<h2 id="why-skipping-the-early-hype-was-reasonable">Why Skipping the Early Hype Was Reasonable</h2>
+
+<p>Early AI tooling optimized for spectacle, not workflow. Demos over discipline. Speed over correctness. Output over ownership.</p>
+
+<p>For those of us shipping Java services, debugging production issues, and maintaining codebases where “speed over correctness” is just another way of saying</p>
+
+<p>“I want my pager to go off at 2:00 AM,” that was a red flag.</p>
+
+<p>If your instinct was “I’ll wait until this is boring,” that was good engineering judgment. It’s starting to get boring now.</p>
+
+<p>And that’s a compliment.</p>
+
+<h2 id="one-concrete-use-case-the-second-set-of-eyes">One Concrete Use Case: The “Second Set of Eyes”</h2>
+
+<p>Forget code generation. Start with explanation. You already spend time reading unfamiliar Java code: legacy services, old utility classes, and pull requests written by four different people—two of whom have left the company and one who apparently thought <code class="highlighter-rouge">BigDecimal</code> was just a suggestion.</p>
+
+<p>AI is surprisingly good at turning “I think I understand this” into “I see where the sharp edges are.”</p>
+
+<h3 id="the-smallest-useful-workflow">The Smallest Useful Workflow</h3>
+
+<p>Take a real method from your codebase. Paste it into your AI tool of choice and ask:</p>
+
+<blockquote>
+  <p><strong>“Explain what this method does, what assumptions it makes, and what could go wrong.”</strong></p>
+</blockquote>
+
+<p>That’s it. No refactors. No rewrites. Just a system for turning a pile of ambiguous tokens into a slightly more organized pile of tokens that your brain can process without a heat-spike.</p>
+
+<h2 id="a-real-java-service-method-nothing-fancy-just-annoying">A Real Java Service Method (Nothing Fancy, Just Annoying)</h2>
+
+<p>Imagine you encounter this in a typical service class:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">BigDecimal</span> <span class="nf">calculateFinalPrice</span><span class="o">(</span>
+    <span class="nc">BigDecimal</span> <span class="n">basePrice</span><span class="o">,</span>
+    <span class="nc">BigDecimal</span> <span class="n">discount</span><span class="o">,</span>
+    <span class="kt">boolean</span> <span class="n">isPreferredCustomer</span><span class="o">,</span>
+    <span class="kt">int</span> <span class="n">quantity</span><span class="o">)</span> <span class="o">{</span>
+    
+    <span class="k">if</span> <span class="o">(</span><span class="n">basePrice</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">quantity</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">BigDecimal</span><span class="o">.</span><span class="na">ZERO</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="nc">BigDecimal</span> <span class="n">price</span> <span class="o">=</span> <span class="n">basePrice</span><span class="o">.</span><span class="na">multiply</span><span class="o">(</span><span class="nc">BigDecimal</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">quantity</span><span class="o">));</span>
+    
+    <span class="k">if</span> <span class="o">(</span><span class="n">discount</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">discount</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="nc">BigDecimal</span><span class="o">.</span><span class="na">ZERO</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">price</span> <span class="o">=</span> <span class="n">price</span><span class="o">.</span><span class="na">subtract</span><span class="o">(</span><span class="n">price</span><span class="o">.</span><span class="na">multiply</span><span class="o">(</span><span class="n">discount</span><span class="o">));</span>
+    <span class="o">}</span>
+    
+    <span class="k">if</span> <span class="o">(</span><span class="n">isPreferredCustomer</span> <span class="o">&amp;&amp;</span> <span class="n">quantity</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">price</span> <span class="o">=</span> <span class="n">price</span><span class="o">.</span><span class="na">multiply</span><span class="o">(</span><span class="k">new</span> <span class="nc">BigDecimal</span><span class="o">(</span><span class="s">"0.95"</span><span class="o">));</span>
+    <span class="o">}</span>
+    
+    <span class="k">return</span> <span class="n">price</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="nc">BigDecimal</span><span class="o">.</span><span class="na">ZERO</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You can read this, but you don’t fully trust it yet. This is typical Java service-layer code: business rules embedded directly in a method, written incrementally over years.</p>
+
+<p>When you ask the AI for blind spots, a useful explanation surfaces things you might miss when you’re tired:</p>
+
+<ul>
+  <li><strong>Implicit assumptions</strong>: Does the discount stack? Is it expected to be between 0 and 1?</li>
+  <li><strong>Edge cases</strong>: A discount value like 5 (500%) produces a negative intermediate price.</li>
+  <li><strong>Design smells</strong>: Magic numbers like 0.95 and hard-coded rules that should probably be in a database.</li>
+</ul>
+
+<p>You didn’t ask the AI to fix it. You asked it to help you see the landmines faster.</p>
+
+<h2 id="the-review-question-that-changes-things">The Review Question That Changes Things</h2>
+
+<p>Now imagine a method like this shows up in a pull request:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEligibleForRefund</span><span class="o">(</span><span class="nc">Order</span> <span class="n">order</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">order</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">order</span><span class="o">.</span><span class="na">isCancelled</span><span class="o">())</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">order</span><span class="o">.</span><span class="na">getDeliveredAt</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="kt">long</span> <span class="n">daysSinceDelivery</span> <span class="o">=</span> 
+        <span class="nc">ChronoUnit</span><span class="o">.</span><span class="na">DAYS</span><span class="o">.</span><span class="na">between</span><span class="o">(</span><span class="n">order</span><span class="o">.</span><span class="na">getDeliveredAt</span><span class="o">(),</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
+    <span class="k">return</span> <span class="n">daysSinceDelivery</span> <span class="o">&lt;=</span> <span class="mi">30</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>It passes tests. It gets merged. But a solid AI explanation surfaces the temporal coupling: using <code class="highlighter-rouge">LocalDate.now()</code> is a great way to ensure your tests fail exactly once a year during a leap day or whenever the build server’s clock drifts.</p>
+
+<p>AI doesn’t replace the reviewer. Its job is to act as a very fast, slightly pedantic colleague who pokes you in the ribs and points at a line of code until you admit you don’t actually know what happens to that BigDecimal if the quantity is a negative prime number.</p>
+
+<h2 id="the-one-rule-you-dont-break">The One Rule You Don’t Break</h2>
+<p><strong>Never paste code you didn’t read</strong>.</p>
+
+<p>Explanation comes after reading, not instead of it. Think of AI as a second set of eyes that never gets tired, not a brain replacement.</p>
+
+<h2 id="what-this-is-not-the-anti-hype-list">What This Is Not (The “Anti-Hype” List)</h2>
+<p>Look, I’m not talking about “vibe coding”—hoping the computer guesses what I want so I don’t have to learn how a Map works.</p>
+
+<p>This isn’t prompt engineering, which often feels like trying to cast a magic spell by whispering specific adjectives at a server farm. It’s also not a replacement for design thinking. If you don’t know why you’re building a service, a faster way to generate NullPointerExceptions isn’t going to save you.</p>
+
+<h2 id="why-im-opinionated-about-this">Why I’m Opinionated About This</h2>
+<p>I’ve spent years writing and maintaining Java code across production systems, code reviews, and technical books for Apress. I’m not interested in replacing developers with tools. I care about workflows that hold up under maintenance, testing, and real-world constraints.</p>
+
+<p>If a tool doesn’t make you a better reader of code, it’s not worth adopting. We have enough complexity in the JVM as it is; we don’t need to add “statistical guesswork” to the list of reasons why the 2:00 AM deployment failed.</p>
+
+<h2 id="start-here-stop-there">Start Here. Stop There.</h2>
+<p>If you’ve been late to AI coding tools, good. You skipped the worst part. Start small. Stay boring. Use it where it helps, ignore it where it doesn’t. That’s how working Java developers adopt tools that actually last.</p>
+:ET
