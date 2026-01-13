@@ -4,6 +4,7 @@ title: "I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start."
 date: 2026-01-14
 author: "Ted Hagos"
 categories: ["Java", "AI", "Productivity"]
+published: true
 
 description: "A Java veteran's guide to using AI coding tools without losing your mind. Learn how to use AI for friction-free PR reviews and legacy code explanation. Boring but useful."
 ---
