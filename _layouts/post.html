@@ -11,7 +11,20 @@ layout: default
         {{ page.date | date: date_format }}
       </time>
       {%- if page.author -%}
+          
+          <!--
           by: <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
+          -->
+
+
+          by: 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">
+              <a href="{{ site.author.url }}" rel="author">{{ site.author.name }}</a>
+            </span>
+          </span>
+
+
       {%- endif -%}</p>
   </header>
 
@@ -19,44 +32,26 @@ layout: default
     {{ content }}
   </div>
 
-  <!-- <div class="newsletter-box">
-    I hope the article was helpful, if you'd like to get these things piped into your email, you can <a href="https://buttondown.email/workingdev" target="_blank">subscribe to the newsletter</a>.
-  </div> -->
 
-  <!-- <div class="newsletter-box" style="width: 28rem;">
-    Get more tips like this. <a href="https://buttondown.email/workingdev" target="_blank">Subscribe</a>
-  </div> -->
+  <hr class="post-divider" />
 
-  <div class="card" style="width: 22rem;">
-    <div class="card-body">
-      <h5 class="card-title">Get the Newsletter</h5>
-      <p class="card-text">Read tutorials from your inbox.</p>
-      <a target="_blank"href="https://buttondown.email/workingdev" class="btn btn-info">SUBSCRIBE</a>
-    </div>
+  <div class="subscribe-cta">
+    <p>
+      If you liked this, I write short essays on software development and programming careers.
+      <a href="https://tedhagos.kit.com/ab4b864482"
+         target="_blank"
+         rel="noopener">
+        Subscribe here →
+      </a>
+    </p>
   </div>
+
+  
 
   <div class="discussion">
     If you find any corrections in the page or article, the best place to log that is in the site's GitHub repo <a href="https://github.com/theworkingdev/theworkingdev.github.com/issues">workingdev.net/issues</a>. To start a discussion with me, the best place to do that is via twitter <a href="http://twitter/lovescaffeine">@lovescaffeine</a>
   </div>
 
-  <!-- {%- if page.comments -%}
-    <div id="disqus_thread"></div>
-    <script>
-    
-    (function() { 
-    var d = document, s = d.createElement('script');
-    s.src = 'https://workingdev-net.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-  {%- endif -%}  -->
-  
-  <!-- {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%} -->
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

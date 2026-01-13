@@ -6,6 +6,8 @@ comments: true
 date:   2020-5-1  
 author: "Ted Hagos"
 tags: ["java", "androidstudio"]
+
+
 description: The article walks through the details on how to build a click-handler in Android using the Java language. The basics are easy to master once you have broken down the details on how create a listener, bind the Button to the listener and override the onClick method
 ---
 
