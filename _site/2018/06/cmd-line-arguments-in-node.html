@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>cmd line arguments in Node | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="cmd line arguments in Node" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -66,7 +66,7 @@
   <div class="post-content e-content" itemprop="articleBody">
     <p>When you pass arguments to Node program in a command line, they are kept in an array inside the process object. The name of the array is argv. The contents of process.argv is as follows</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>process.argv[0] = The node executable itself
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>process.argv[0] = The node executable itself
 process.argv[1] = Name of the JS file 
 process.argv[2] = 1st command line parameter 
 process.argv[3] = 2nd command line parameter 
@@ -87,7 +87,7 @@ process.argv[n] = nth command line parameter
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node cmdlinetest.js The Quick Brown Fox
 </code></pre></div></div>
 <p>This prints out</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
 /Users/ted/temp/cmdlineparams.js              | process.argv[1]
 The                                           | process.argv[2]
 Quick                                         | process.argv[3]

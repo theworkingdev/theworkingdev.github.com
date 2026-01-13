@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Use Linux CUPS printer from OSX | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Use Linux CUPS printer from OSX" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -70,9 +70,9 @@
 
 <p>Look for the Protocol settings. Click the dropdown and set it to “Internet Printing”</p>
 
-<p>On the address field, type the IP address or the hostname of the CUPS server, just write the hostname, don’t include the protocol. Hence you would write CupsIpAddress, not <code class="highlighter-rouge">ipp://CupsIpAddress</code></p>
+<p>On the address field, type the IP address or the hostname of the CUPS server, just write the hostname, don’t include the protocol. Hence you would write CupsIpAddress, not <code class="language-plaintext highlighter-rouge">ipp://CupsIpAddress</code></p>
 
-<p>On the queue input field, type the Queue name of the target printer attached to the CUPS server, the queue name of printers in a CUPS server is always prefixed by the word printers/. You need to ask your administrator what is the name of the printer as defined on the CUPS server. If you are the administrator, the name of the queue name is the same as what you typed on the name field of a printer when you were installing your printer to the CUPS server. What you need to type on the queue input field is <code class="highlighter-rouge">printers/nameofprinteroncups</code></p>
+<p>On the queue input field, type the Queue name of the target printer attached to the CUPS server, the queue name of printers in a CUPS server is always prefixed by the word printers/. You need to ask your administrator what is the name of the printer as defined on the CUPS server. If you are the administrator, the name of the queue name is the same as what you typed on the name field of a printer when you were installing your printer to the CUPS server. What you need to type on the queue input field is <code class="language-plaintext highlighter-rouge">printers/nameofprinteroncups</code></p>
 
 <p>On the name field, type something that you can easily recognize, when you have several printers installed on your MAC, it helps if the printer names are easily recognizable.</p>
 

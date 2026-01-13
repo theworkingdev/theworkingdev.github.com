@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Simple Samba File Server setup in Debian Linux | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Simple Samba File Server setup in Debian Linux" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -73,14 +73,14 @@
 </code></pre></div></div>
 
 <p>Edit the samba configuration file which is located in /etc/smb.conf you will need elevated privileges when you edit it. You need to use sudo, like this
-<code class="highlighter-rouge">sudo vim /etc/smb.conf</code></p>
+<code class="language-plaintext highlighter-rouge">sudo vim /etc/smb.conf</code></p>
 
 <p>Don’t forget to backup the original configuration file before you do any edits. It might be best to delete all contents of the existing smb.conf and just start with a blank config.</p>
 
 <p>Listing 1 shows a minimal samba configuration</p>
 
 <p><em>Listing 1. minimal /etc/smb.conf</em></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>security=user                     # (1)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>security=user                     # (1)
 username map=/etc/samba/smbusers  # (2)
 
 [homes]
@@ -99,7 +99,7 @@ valid=%S ; so that only the defined users can view it
 <p>Next, edit the Samba users file</p>
 
 <p><em>Listing 2./etc/samba/smbusers</em></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ted=ted
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ted=ted
 johndoe=johndoe
 adrianne=dennis
 </code></pre></div></div>
@@ -110,7 +110,7 @@ Next, set the Samba password for the users, note that the a user’s Samba passw
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>smbpasswd <span class="nt">-a</span> ted
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">-a</code> flag is used to create a password entry in /etc/samba/smbpasswd in case it doesn’t exist yet. If the password for the user already exist, the existing password entry will be updated. The shell account for the user must already exist before running this command.</p>
+<p>The <code class="language-plaintext highlighter-rouge">-a</code> flag is used to create a password entry in /etc/samba/smbpasswd in case it doesn’t exist yet. If the password for the user already exist, the existing password entry will be updated. The shell account for the user must already exist before running this command.</p>
 
 <p>Reboot the box.</p>
 

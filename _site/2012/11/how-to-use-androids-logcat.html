@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>How to use Android’s Logcat | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="How to use Android’s Logcat" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -89,12 +89,12 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>On a terminal window, run <code class="highlighter-rouge">adb logcat</code>. The logcat utility supports a couple of flags. Here’s how you might use them</p>
+<p>On a terminal window, run <code class="language-plaintext highlighter-rouge">adb logcat</code>. The logcat utility supports a couple of flags. Here’s how you might use them</p>
 
 <ul>
-  <li><code class="highlighter-rouge">adb logcat</code> — Prints everything that happens to the device, on the screen. You probably don’t want this</li>
-  <li><code class="highlighter-rouge">adb logcat * -S</code> — Direct opposite of adb logcat, this is very silent, you won’t see anything (meaningful)</li>
-  <li><code class="highlighter-rouge">adb logcat -s </code>— filters the output messages that matches the TAG name</li>
+  <li><code class="language-plaintext highlighter-rouge">adb logcat</code> — Prints everything that happens to the device, on the screen. You probably don’t want this</li>
+  <li><code class="language-plaintext highlighter-rouge">adb logcat * -S</code> — Direct opposite of adb logcat, this is very silent, you won’t see anything (meaningful)</li>
+  <li><code class="language-plaintext highlighter-rouge">adb logcat -s </code>— filters the output messages that matches the TAG name</li>
 </ul>
 
 <p>Okay. Now lets try them on using the callbacks of the Activity class.</p>
@@ -170,7 +170,7 @@
 
 <p>If you simply type adb logcat, everything that an application does (and the operating system) will be displayed on the screen, it will also scroll very fast because there are lots of things that the Android operating system is doing.</p>
 
-<p>If you want to see only the logs associated with your app, type adb <code class="highlighter-rouge">logcat -s com.thelogbox.LCycle</code></p>
+<p>If you want to see only the logs associated with your app, type adb <code class="language-plaintext highlighter-rouge">logcat -s com.thelogbox.LCycle</code></p>
 
   </div>
 

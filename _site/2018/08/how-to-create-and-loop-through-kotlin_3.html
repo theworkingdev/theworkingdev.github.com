@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Creating and looping through Kotlin Map | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Creating and looping through Kotlin Map" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -73,7 +73,7 @@
 <span class="n">months</span><span class="p">[</span><span class="s">"March"</span><span class="p">]</span> <span class="p">=</span> <span class="mi">3</span>
 </code></pre></div></div>
 
-<p><strong>(1)</strong> You can simply use the <code class="highlighter-rouge">hashMapOf</code> constructor function to declare and initialize the map. There’s no need to provide the type parameter (you still can if you want to, but why bother), the type is inferred from the constructor arguments
+<p><strong>(1)</strong> You can simply use the <code class="language-plaintext highlighter-rouge">hashMapOf</code> constructor function to declare and initialize the map. There’s no need to provide the type parameter (you still can if you want to, but why bother), the type is inferred from the constructor arguments
 <strong>(2)</strong> Adds a new key and value to the map</p>
 
 <p>Another way to create a Map is shown below</p>
@@ -81,7 +81,7 @@
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">snapshot</span><span class="p">:</span> <span class="nc">MutableMap</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">,</span> <span class="nc">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">months</span>
 </code></pre></div></div>
 
-<p>The variable <code class="highlighter-rouge">snapshot</code> is declared to be a <strong>MutableMap</strong> (pretty much like what we did with <code class="highlighter-rouge">hashMapOf</code>. And then, we assigned the months Map object to the snapshot variable. Were not creating a new Map object here, snapshot is essentially months also, they are both pointing to the same Map object.</p>
+<p>The variable <code class="language-plaintext highlighter-rouge">snapshot</code> is declared to be a <strong>MutableMap</strong> (pretty much like what we did with <code class="language-plaintext highlighter-rouge">hashMapOf</code>. And then, we assigned the months Map object to the snapshot variable. Were not creating a new Map object here, snapshot is essentially months also, they are both pointing to the same Map object.</p>
 
 <p>You can get to the items in the Map this way</p>
 
@@ -99,7 +99,7 @@
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">months</span><span class="p">.</span><span class="nf">forEach</span> <span class="p">{</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="p">-&gt;</span> <span class="nf">println</span><span class="p">(</span><span class="s">"$k | $v"</span><span class="p">)</span> <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Where <code class="highlighter-rouge">k</code> is the key and <code class="highlighter-rouge">v</code> is the value.</p>
+<p>Where <code class="language-plaintext highlighter-rouge">k</code> is the key and <code class="language-plaintext highlighter-rouge">v</code> is the value.</p>
 
 <!-- <p>
   This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484239063">Learn Android Studio 3 with Kotlin</a>

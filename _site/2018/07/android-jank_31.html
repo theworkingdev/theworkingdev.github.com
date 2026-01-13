@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Android Jank | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Android Jank" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -98,7 +98,7 @@
   <li>You expect that the TextView will refresh every 2 seconds to show the current value of i. It won’t. The frames are gonna drop, so you won’t see any UI activity</li>
   <li>But you will see the the value of i as it gets updated every 2 seconds in the Logcat window. This is because println isn’t using the UI Thread, so it’s not affected by the dropped frames</li>
   <li>You might see a message like this from the runtime’s Choreographer
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>07-31 15:51:29.646 13403-13403/net.workingdev.ch15scratchasynctask
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>07-31 15:51:29.646 13403-13403/net.workingdev.ch15scratchasynctask
 I/Choreographer: Skipped 2402 frames!  The application may be doing too 
 much work on its main thread
 </code></pre></div>    </div>

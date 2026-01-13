@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>An introduction to Kotlin functions | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="An introduction to Kotlin functions" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -66,7 +66,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Kotlin functions are defined using <code class="highlighter-rouge">fun</code> keyword, followed by the name of the function, a pair of parentheses, optional parameters, the return type of function and then the body of the function, which is pair of curly braces. It’s pretty much like a Java function, except that in Java,  we have no <code class="highlighter-rouge">fun</code> (pun intended) and the type of the function  is written to the left of the function (in Java), while in Kotlin, the return type of the function is to the right of function name.</p>
+    <p>Kotlin functions are defined using <code class="language-plaintext highlighter-rouge">fun</code> keyword, followed by the name of the function, a pair of parentheses, optional parameters, the return type of function and then the body of the function, which is pair of curly braces. It’s pretty much like a Java function, except that in Java,  we have no <code class="language-plaintext highlighter-rouge">fun</code> (pun intended) and the type of the function  is written to the left of the function (in Java), while in Kotlin, the return type of the function is to the right of function name.</p>
 
 <p><strong>Contents</strong></p>
 <ul id="markdown-toc">
@@ -125,13 +125,13 @@
   <span class="k">fun</span> <span class="nf">fullname</span><span class="p">()</span> <span class="p">=</span> <span class="s">"$firstname $lastname"</span>  <span class="c1">// (5)</span>
 </code></pre></div></div>
 
-<p><img src="/images/1.png" alt="" />  <code class="highlighter-rouge">foo()</code> is a top level function. It isn’t nested in a class or another function</p>
+<p><img src="/images/1.png" alt="" />  <code class="language-plaintext highlighter-rouge">foo()</code> is a top level function. It isn’t nested in a class or another function</p>
 
-<p><img src="/images/2.png" alt="" />  <code class="highlighter-rouge">bazz()</code> is nested inside function <code class="highlighter-rouge">foo()</code>. Which means, baz is scoped with foo; which means, it can only be called within the body of <code class="highlighter-rouge">foo()</code></p>
+<p><img src="/images/2.png" alt="" />  <code class="language-plaintext highlighter-rouge">bazz()</code> is nested inside function <code class="language-plaintext highlighter-rouge">foo()</code>. Which means, baz is scoped with foo; which means, it can only be called within the body of <code class="language-plaintext highlighter-rouge">foo()</code></p>
 
-<p><img src="/images/3.png" alt="" />  This call is ok, <code class="highlighter-rouge">baz()</code> is callable within <code class="highlighter-rouge">foo()</code></p>
+<p><img src="/images/3.png" alt="" />  This call is ok, <code class="language-plaintext highlighter-rouge">baz()</code> is callable within <code class="language-plaintext highlighter-rouge">foo()</code></p>
 
-<p><img src="/images/4.png" alt="" />  Not OK. This call will fail,  <code class="highlighter-rouge">baz()</code> is not callable from <code class="highlighter-rouge">main()</code> , you can only call <code class="highlighter-rouge">baz()</code> from within <code class="highlighter-rouge">foo()</code></p>
+<p><img src="/images/4.png" alt="" />  Not OK. This call will fail,  <code class="language-plaintext highlighter-rouge">baz()</code> is not callable from <code class="language-plaintext highlighter-rouge">main()</code> , you can only call <code class="language-plaintext highlighter-rouge">baz()</code> from within <code class="language-plaintext highlighter-rouge">foo()</code></p>
 
 <p><img src="/images/5.png" alt="" />  Like Java, you can put functions inside a class</p>
 

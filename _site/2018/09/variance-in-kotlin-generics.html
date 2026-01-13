@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Variance in Kotlin Generics | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Variance in Kotlin Generics" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -160,7 +160,7 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 
 <p>From these examples, we can now generalize that if  type Programmer is a subtype of Employee and Group<T> is covariant, then `Group<Programmer>` is a subtype of `Group<Employee>`.  Also, we can generalize that generic class, like Group, is invariant on type parameter, if for the given types Employee and Programmer, `Group<Programmer>` isn’t a subtype of `Group<Employee>`.</Employee></Programmer></Employee></Programmer></T></p>
 
-<p>Now we’ve dealt with <em>invariant</em> and <em>covariant</em>. The last terminology we need to deal with is <em>contravariant</em>. If  the type parameter of <code class="highlighter-rouge">Group&lt;T&gt;</code> is contravariant, for the same given types Employee and Programmer, then we can say that <code class="highlighter-rouge">Group&lt;Employee&gt;</code> is a subtype of <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> — it’s quite the reverse of covariant.</p>
+<p>Now we’ve dealt with <em>invariant</em> and <em>covariant</em>. The last terminology we need to deal with is <em>contravariant</em>. If  the type parameter of <code class="language-plaintext highlighter-rouge">Group&lt;T&gt;</code> is contravariant, for the same given types Employee and Programmer, then we can say that <code class="language-plaintext highlighter-rouge">Group&lt;Employee&gt;</code> is a subtype of <code class="language-plaintext highlighter-rouge">Group&lt;Programmer&gt;</code> — it’s quite the reverse of covariant.</p>
 
 <p><em>Listing 5. Use the in keyword for contravariance</em></p>
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="k">in</span> <span class="nc">T</span><span class="p">&gt;</span>  <span class="c1">// (1)</span>
@@ -231,7 +231,7 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 <figcaption>Figure3 </figcaption>
 </figure>
 
-<p>We know the first relationship, Employee is the supertype of Programmer. We also know <code class="highlighter-rouge">List&lt;Employee&gt;</code> will accept <code class="highlighter-rouge">List&lt;Programmer&gt;</code>,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes.</p>
+<p>We know the first relationship, Employee is the supertype of Programmer. We also know <code class="language-plaintext highlighter-rouge">List&lt;Employee&gt;</code> will accept <code class="language-plaintext highlighter-rouge">List&lt;Programmer&gt;</code>,  we tested this in Listing 2 — you’re probably not quite sure why it works, so, I’ll circle back to this point after we deal with the third set of boxes.</p>
 
 <p>Now, given the codes</p>
 
@@ -239,24 +239,24 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 <span class="kd">val</span> <span class="py">a</span><span class="p">:</span><span class="nc">Group</span><span class="p">&lt;</span><span class="nc">Employee</span><span class="p">&gt;</span> <span class="p">=</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="nc">Programmer</span><span class="p">&gt;()</span> <span class="c1">// not sure</span>
 </code></pre></div></div>
 
-<p>Why is it that we can’t reliably answer the question “is <code class="highlighter-rouge">Group&lt;Employee&gt;</code> a supertype of <code class="highlighter-rouge">Group&lt;Programmer&gt;</code>”.</p>
+<p>Why is it that we can’t reliably answer the question “is <code class="language-plaintext highlighter-rouge">Group&lt;Employee&gt;</code> a supertype of <code class="language-plaintext highlighter-rouge">Group&lt;Programmer&gt;</code>”.</p>
 
-<p>It’s because, while <code class="highlighter-rouge">Group</code>  is a class, <code class="highlighter-rouge">Group&lt;Employee&gt;</code> is not, and by extension,<code class="highlighter-rouge">Group&lt;Programmer&gt;</code> is not a subclass of  <code class="highlighter-rouge">Group&lt;Employee&gt;</code> — if you’re thinking of <code class="highlighter-rouge">List&lt;Employee&gt;</code> and <code class="highlighter-rouge">List&lt;Programmer&gt;</code> right now, stop. I did say I’ll circle back to that. Stick with <code class="highlighter-rouge">Group&lt;Employee&gt;</code> and <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> first. Table 1 should help us summarize some of these things.</p>
+<p>It’s because, while <code class="language-plaintext highlighter-rouge">Group</code>  is a class, <code class="language-plaintext highlighter-rouge">Group&lt;Employee&gt;</code> is not, and by extension,<code class="language-plaintext highlighter-rouge">Group&lt;Programmer&gt;</code> is not a subclass of  <code class="language-plaintext highlighter-rouge">Group&lt;Employee&gt;</code> — if you’re thinking of <code class="language-plaintext highlighter-rouge">List&lt;Employee&gt;</code> and <code class="language-plaintext highlighter-rouge">List&lt;Programmer&gt;</code> right now, stop. I did say I’ll circle back to that. Stick with <code class="language-plaintext highlighter-rouge">Group&lt;Employee&gt;</code> and <code class="language-plaintext highlighter-rouge">Group&lt;Programmer&gt;</code> first. Table 1 should help us summarize some of these things.</p>
 
 <figure>
 <img src="/images/kotlin-variance-4.png" />
 <figcaption>Table 1 </figcaption>
 </figure>
 
-<p>Now we can establish that <code class="highlighter-rouge">Group&lt;Employee&gt;</code> has no type relationship with <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> even if class Employee has a type relationship with Programmer. The type parameter in <code class="highlighter-rouge">Group&lt;T&gt;</code> is by default, invariant (no type relationship).  In order to change the variance of <T> you need to use either out (to make it covariant) or in (to make contravariant) keyword.</T></p>
+<p>Now we can establish that <code class="language-plaintext highlighter-rouge">Group&lt;Employee&gt;</code> has no type relationship with <code class="language-plaintext highlighter-rouge">Group&lt;Programmer&gt;</code> even if class Employee has a type relationship with Programmer. The type parameter in <code class="language-plaintext highlighter-rouge">Group&lt;T&gt;</code> is by default, invariant (no type relationship).  In order to change the variance of <T> you need to use either out (to make it covariant) or in (to make contravariant) keyword.</T></p>
 
-<p>So, if we want  <code class="highlighter-rouge">Group&lt;Programmer&gt;</code> to be a subtype of <code class="highlighter-rouge">Group&lt;Employee&gt;</code> we need to write the <em>Group</em> class like this</p>
+<p>So, if we want  <code class="language-plaintext highlighter-rouge">Group&lt;Programmer&gt;</code> to be a subtype of <code class="language-plaintext highlighter-rouge">Group&lt;Employee&gt;</code> we need to write the <em>Group</em> class like this</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="k">out</span> <span class="nc">T</span><span class="p">&gt;</span>
 <span class="kd">val</span> <span class="py">a</span><span class="p">:</span><span class="nc">Group</span><span class="p">&lt;</span><span class="nc">Employee</span><span class="p">&gt;</span> <span class="p">=</span> <span class="nc">Group</span><span class="p">&lt;</span><span class="nc">Programmer</span><span class="p">&gt;()</span> <span class="c1">// this is ok now</span>
 </code></pre></div></div>
 
-<p>Now we can circle back to <code class="highlighter-rouge">List&lt;Employee&gt;</code> and <code class="highlighter-rouge">List&lt;Programmer&gt;</code> question. Why and how does it work. Why is it okay to write this</p>
+<p>Now we can circle back to <code class="language-plaintext highlighter-rouge">List&lt;Employee&gt;</code> and <code class="language-plaintext highlighter-rouge">List&lt;Programmer&gt;</code> question. Why and how does it work. Why is it okay to write this</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">m</span><span class="p">:</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">Employee</span><span class="p">&gt;</span> <span class="p">=</span> <span class="nf">listOf</span><span class="p">(</span><span class="nc">Programmer</span><span class="p">(</span><span class="s">"Ted"</span><span class="p">))</span>
 </code></pre></div></div>
@@ -280,7 +280,7 @@ The <em>Liskov Substitution Principle</em> and <em>Open Closed Principle</em> ar
 </code></pre></div></div>
 <p><img src="/images/1.png" alt="" /> Type parameter is covariant. List uses the out keyword before the type parameter E</p>
 
-<p>The reason why it’s okay to assign <code class="highlighter-rouge">List&lt;Programmer&gt;</code> to <code class="highlighter-rouge">List&lt;Employee&gt;</code> is because the type parameter on <code class="highlighter-rouge">List&lt;E&gt;</code> is covariant.  Hence, if type <em>Employee</em> is a supertype of <em>Programmer</em>, and <code class="highlighter-rouge">List&lt;E&gt;</code> is covariant, then <code class="highlighter-rouge">List&lt;Programmer&gt;</code> is a subtype of <code class="highlighter-rouge">List&lt;Employee&gt;</code>.</p>
+<p>The reason why it’s okay to assign <code class="language-plaintext highlighter-rouge">List&lt;Programmer&gt;</code> to <code class="language-plaintext highlighter-rouge">List&lt;Employee&gt;</code> is because the type parameter on <code class="language-plaintext highlighter-rouge">List&lt;E&gt;</code> is covariant.  Hence, if type <em>Employee</em> is a supertype of <em>Programmer</em>, and <code class="language-plaintext highlighter-rouge">List&lt;E&gt;</code> is covariant, then <code class="language-plaintext highlighter-rouge">List&lt;Programmer&gt;</code> is a subtype of <code class="language-plaintext highlighter-rouge">List&lt;Employee&gt;</code>.</p>
 
 <p>So, now that we understand types and subtypes a bit better, like in a Quentin Tarantino movie, I’d like you go back to the beginning of the article and give it another read. I hope it’ll make better sense by then.</p>
 

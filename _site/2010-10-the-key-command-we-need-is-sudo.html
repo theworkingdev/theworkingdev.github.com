@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Automatic backup of MySQL database | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Automatic backup of MySQL database" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -69,7 +69,7 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mysqldump <span class="nt">-u</span> UserName <span class="nt">-p</span> <span class="nt">--all-databases</span> <span class="o">&gt;</span> /path/to/file.backup
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">--all-databases</code> flag will back up everything inside of the MySQL instance. If you don’t want to backup everything, specify the database name(s) instead of backing up everything.</p>
+<p>The <code class="language-plaintext highlighter-rouge">--all-databases</code> flag will back up everything inside of the MySQL instance. If you don’t want to backup everything, specify the database name(s) instead of backing up everything.</p>
 
 <p>The result of mysqldump is a series of SQL commands that contains both the structure and contents of the database.</p>
 

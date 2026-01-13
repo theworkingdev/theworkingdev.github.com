@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Install Samsung CLP-315 on Linux | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Install Samsung CLP-315 on Linux" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -79,7 +79,7 @@ Run the installer</p>
 </code></pre></div></div>
 
 <p>The installer needs to run in GUI workstation, so it will give you some warnings that may look like errors. It will eventually detect that you are not running on a GUI and it will degrade gracefully to a text-based installation. We need to run the installer because we need a very specific file. That file is rastertosamsungsplc. We need the PPD file in order for the CLP 315 printer to function normally in Linux 
-Next, copy the rastertosamsungsplc PPD file to the <code class="highlighter-rouge">/usr/lib/cups/filter</code> folder</p>
+Next, copy the rastertosamsungsplc PPD file to the <code class="language-plaintext highlighter-rouge">/usr/lib/cups/filter</code> folder</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /Path/To/Where/rastertosamsungsplc-is/
 <span class="nb">cp </span>rastertosamsungsplc /usr/lib/cups/filterrastertosamsungsplc

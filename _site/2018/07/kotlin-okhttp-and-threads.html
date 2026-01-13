@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>OkHTTP and Threads | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="OkHTTP and Threads" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -81,7 +81,7 @@
 
 <p>If we can’t do it on the UI thread, where are supposed to do it? In a background thread.</p>
 
-<p>To dive into a bit of detail, let’s do a sample task. We’ll pull some user information from GitHub. There’s a publicly accessible endpoint at <code class="highlighter-rouge">https://api.github.com/users/UserName</code> (replace <strong>UserName</strong> with a valid Github login id).</p>
+<p>To dive into a bit of detail, let’s do a sample task. We’ll pull some user information from GitHub. There’s a publicly accessible endpoint at <code class="language-plaintext highlighter-rouge">https://api.github.com/users/UserName</code> (replace <strong>UserName</strong> with a valid Github login id).</p>
 
 <p>Let’s use <strong>OkHttp</strong> for the http requirements; many developers are using this library nowadays.
 We need to do 2 things before we can use OkHttp. We need to include the OkHttp dependency on our gradle script, then we need to add the INTERNET permission to project’s manifest file.</p>

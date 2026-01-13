@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Small voice recording app in Android | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Small voice recording app in Android" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -201,7 +201,7 @@ set the datasource for the MediaPlayer. This is the audio file that you recorded
 
 <p><strong>Permissions</strong></p>
 
-<p>The code above will already compile (and run). If you do the first testing, it will run for a while but will immediately crash when you press the Start button. The MediaRecorder will not initialize properly and hence will hit an IllegalStateException when you start invoking the MediaRecorder methods. The Android runtime needs to allow your application to capture and record audio. App permissions are declared on the AndroidManifest.xml file, you will need to add the entry <code class="highlighter-rouge">&lt;uses-permission android:name="android.permission.RECORD_AUDIO" /&gt;</code> to the manifest. Make sure also that you add the permissions entry out the <code class="highlighter-rouge">&lt;application .../&gt;</code> node. Here is the full entry of the AndroidManifest.xml for this exercise.</p>
+<p>The code above will already compile (and run). If you do the first testing, it will run for a while but will immediately crash when you press the Start button. The MediaRecorder will not initialize properly and hence will hit an IllegalStateException when you start invoking the MediaRecorder methods. The Android runtime needs to allow your application to capture and record audio. App permissions are declared on the AndroidManifest.xml file, you will need to add the entry <code class="language-plaintext highlighter-rouge">&lt;uses-permission android:name="android.permission.RECORD_AUDIO" /&gt;</code> to the manifest. Make sure also that you add the permissions entry out the <code class="language-plaintext highlighter-rouge">&lt;application .../&gt;</code> node. Here is the full entry of the AndroidManifest.xml for this exercise.</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 

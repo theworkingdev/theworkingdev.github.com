@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-14T02:03:50+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start.</title><link href="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html" rel="alternate" type="text/html" title="I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start." /><published>2026-01-14T00:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code</id><content type="html" xml:base="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html"><![CDATA[<h3 id="a-java-developers-take-on-using-ai-without-outsourcing-thinking">A Java developer’s take on using AI without outsourcing thinking</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-14T02:20:47+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start.</title><link href="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html" rel="alternate" type="text/html" title="I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start." /><published>2026-01-14T00:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code</id><content type="html" xml:base="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html"><![CDATA[<h3 id="a-java-developers-take-on-using-ai-without-outsourcing-thinking">A Java developer’s take on using AI without outsourcing thinking</h3>
 
 <p>For the last couple of years, I mostly ignored AI coding tools.</p>
 
@@ -33,7 +33,7 @@ You use AI where it replaces friction, not judgment.</p>
 
 <h2 id="one-concrete-use-case-the-second-set-of-eyes">One Concrete Use Case: The “Second Set of Eyes”</h2>
 
-<p>Forget code generation. Start with explanation. You already spend time reading unfamiliar Java code: legacy services, old utility classes, and pull requests written by four different people—two of whom have left the company and one who apparently thought <code class="highlighter-rouge">BigDecimal</code> was just a suggestion.</p>
+<p>Forget code generation. Start with explanation. You already spend time reading unfamiliar Java code: legacy services, old utility classes, and pull requests written by four different people—two of whom have left the company and one who apparently thought <code class="language-plaintext highlighter-rouge">BigDecimal</code> was just a suggestion.</p>
 
 <p>AI is surprisingly good at turning “I think I understand this” into “I see where the sharp edges are.”</p>
 
@@ -103,7 +103,7 @@ You use AI where it replaces friction, not judgment.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>It passes tests. It gets merged. But a solid AI explanation surfaces the temporal coupling: using <code class="highlighter-rouge">LocalDate.now()</code> is a great way to ensure your tests fail exactly once a year during a leap day or whenever the build server’s clock drifts.</p>
+<p>It passes tests. It gets merged. But a solid AI explanation surfaces the temporal coupling: using <code class="language-plaintext highlighter-rouge">LocalDate.now()</code> is a great way to ensure your tests fail exactly once a year during a leap day or whenever the build server’s clock drifts.</p>
 
 <p>AI doesn’t replace the reviewer. Its job is to act as a very fast, slightly pedantic colleague who pokes you in the ribs and points at a line of code until you admit you don’t actually know what happens to that BigDecimal if the quantity is a negative prime number.</p>
 
@@ -174,7 +174,7 @@ You use AI where it replaces friction, not judgment.</p>
 
 <p><strong>First step</strong> is to get a reference to the Button object. You can do this with the findViewById() method, like this</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Button btn = (Button) findViewById(R.id.***button\***);
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Button btn = (Button) findViewById(R.id.***button\***);
 </code></pre></div></div>
 
 <p>You need to pass the resource <strong>ID</strong> as an argument to this method; the resource ID of the button is R.id.button. The <strong>R.java</strong> file is generated by the Android Runtime during compilation so we can use it to reference the View objects in the layout files.</p>
@@ -193,7 +193,7 @@ You use AI where it replaces friction, not judgment.</p>
 
 <p><strong>Fourth step</strong> is to bind the listener object to the Button object, like this</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>btn.setOnClickListener(listener);
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>btn.setOnClickListener(listener);
 </code></pre></div></div>
 
 <p>Now, you can run the application. Test it either in the emulator (AVD) or a connected device. The app looks like this</p>
@@ -449,7 +449,7 @@ You use AI where it replaces friction, not judgment.</p>
 
 <p>If you’ve done some Android programming in the past, you’ve probably made this mistake at least once;</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Toast.makeText(MainActivity.this, "no show");
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Toast.makeText(MainActivity.this, "no show");
 </code></pre></div></div>
 
 <p>This is easy enough to spot, but some other errors may not be as obvious. Anyway, live templates can help you avoid these hassles. Live templates are shortcuts that are displayed as code-completion options; for example, try typing <strong>fbc</strong> inside an <strong>OnClick</strong> handler (or any event handler), as shown in figure 8.</p>
@@ -564,17 +564,17 @@ You use AI where it replaces friction, not judgment.</p>
   </div>
 </div>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="java" /><category term="gameprog" /><summary type="html"><![CDATA[This is a sample text]]></summary></entry><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html"><![CDATA[<p>You can pass an argument to a Node app like this</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
 </code></pre></div></div>
 
 <p>Any token (String or number) that’s passed after the name of the program file (myapp.js in this case) is a command line argument. If you want to pass more than one argument, simply separate them by space, like this</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe" 1 2 3 4
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe" 1 2 3 4
 </code></pre></div></div>
 
 <p>All the command line arguments will be stored in the <strong>process.argv</strong> object; it’s an Array.  The 0th element contains the <em>node</em> executable itself, the 1st element is the name of JavaScript program; the 2nd element is the first command line parameter,  the 3rd element is the 2nd command line parameter, so on and so forth. So, in our example above, here’s what the <strong>process.argv</strong>  contains</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
 /Users/ted/temp/cmdlineparams.js              | process.argv[1]
 "John Doe"                                    | process.argv[2]
 1                                             | process.argv[3]
@@ -630,7 +630,7 @@ You use AI where it replaces friction, not judgment.</p>
 
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">onClick()</code> method, as shown in the code above, will be called whenever <strong>btn</strong> is clicked by the user; that’s where you should put program logic.</p>
+<p>The <code class="language-plaintext highlighter-rouge">onClick()</code> method, as shown in the code above, will be called whenever <strong>btn</strong> is clicked by the user; that’s where you should put program logic.</p>
 
 <p>View objects, like <em>Buttons</em>, can be bound to other listeners; the table below shows some of the more common listener interfaces.</p>
 
@@ -647,27 +647,27 @@ You use AI where it replaces friction, not judgment.</p>
   <tbody>
     <tr>
       <td><strong>View.OnClickListener</strong></td>
-      <td><code class="highlighter-rouge">onClick() </code></td>
+      <td><code class="language-plaintext highlighter-rouge">onClick() </code></td>
       <td>This gets called when the user either  touches and holds the control (when in touch mode), or focuses upon the item  with the navigation keys then presses the ENTER key</td>
     </tr>
     <tr>
       <td><strong>View.OnLongClickListener</strong></td>
-      <td><code class="highlighter-rouge">onLongClick()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">onLongClick()</code></td>
       <td>Almost the same as a click, but only  longer</td>
     </tr>
     <tr>
       <td><strong>View.OnFocusChangeListener</strong></td>
-      <td><code class="highlighter-rouge">onFocusChange()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">onFocusChange()</code></td>
       <td>when the user navigates onto or away from  the control</td>
     </tr>
     <tr>
       <td><strong>View.OnTouchListener</strong></td>
-      <td><code class="highlighter-rouge">onTouch()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">onTouch()</code></td>
       <td>Almost the same as click action but this  handler lets you find out if the user swiped up or down. You can use this to  respond to gestures</td>
     </tr>
     <tr>
       <td><strong>View.OnCreateContextMenuListener</strong></td>
-      <td><code class="highlighter-rouge">onCreateContextMenu()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">onCreateContextMenu()</code></td>
       <td>Android calls this when a ContextMenu is  being built, as a result of a sustained long click</td>
     </tr>
   </tbody>
@@ -712,7 +712,7 @@ You use AI where it replaces friction, not judgment.</p>
   </div>
 </div>
 
--->]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[The user interacts with an app by touching, clicking, swiping or typing something. The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las4.png" /><media:content medium="image" url="http://localhost:4000/images/book_las4.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to create a simple Random number generator in Java</title><link href="http://localhost:4000/java/android/2019/06/08/random-number-java.html" rel="alternate" type="text/html" title="How to create a simple Random number generator in Java" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/java/android/2019/06/08/random-number-java</id><content type="html" xml:base="http://localhost:4000/java/android/2019/06/08/random-number-java.html"><![CDATA[<p>If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the <code class="highlighter-rouge">java.util.Random</code> class.</p>
+-->]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[The user interacts with an app by touching, clicking, swiping or typing something. The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las4.png" /><media:content medium="image" url="http://localhost:4000/images/book_las4.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to create a simple Random number generator in Java</title><link href="http://localhost:4000/java/android/2019/06/08/random-number-java.html" rel="alternate" type="text/html" title="How to create a simple Random number generator in Java" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/java/android/2019/06/08/random-number-java</id><content type="html" xml:base="http://localhost:4000/java/android/2019/06/08/random-number-java.html"><![CDATA[<p>If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the <code class="language-plaintext highlighter-rouge">java.util.Random</code> class.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>        <span class="c1">// (1)</span>
 <span class="n">mrandomnumber</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span> <span class="c1">// (2)</span>
@@ -724,7 +724,7 @@ You use AI where it replaces friction, not judgment.</p>
 
 <p>Java’s Random class generates not only integers, it can also handle double, float, boolean etc., so,  make sure you check out the docs at  <a href="https://bit.ly/javautilrandom">java.util.Random docs page</a></p>
 
-<p>Here’s a small sample on how to use the Random class in Java. The <strong>RandomNumber</strong> class has two methods named <code class="highlighter-rouge">getNumber()</code> and <code class="highlighter-rouge">createRandomNumber()</code>, it’s supposed to behave like a <em>Singleton</em> so, it’s designed to create a random number only once.</p>
+<p>Here’s a small sample on how to use the Random class in Java. The <strong>RandomNumber</strong> class has two methods named <code class="language-plaintext highlighter-rouge">getNumber()</code> and <code class="language-plaintext highlighter-rouge">createRandomNumber()</code>, it’s supposed to behave like a <em>Singleton</em> so, it’s designed to create a random number only once.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
@@ -783,7 +783,7 @@ You use AI where it replaces friction, not judgment.</p>
     <a target="_blank" href="https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562" class="btn btn-primary">
       Get the book</a>
   </div>
-</div>]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the java.util.Random class.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3.jpg" /><media:content medium="image" url="http://localhost:4000/images/book_las3.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to open a file in Kotlin</title><link href="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html" rel="alternate" type="text/html" title="How to open a file in Kotlin" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin</id><content type="html" xml:base="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html"><![CDATA[<p>Just like in Java, you use the <code class="highlighter-rouge">java.io</code> classes, like this;</p>
+</div>]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the java.util.Random class.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3.jpg" /><media:content medium="image" url="http://localhost:4000/images/book_las3.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to open a file in Kotlin</title><link href="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html" rel="alternate" type="text/html" title="How to open a file in Kotlin" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin</id><content type="html" xml:base="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html"><![CDATA[<p>Just like in Java, you use the <code class="language-plaintext highlighter-rouge">java.io</code> classes, like this;</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">java.io.FileNotFoundException</span>
 <span class="k">import</span> <span class="nn">java.io.FileReader</span>
@@ -829,7 +829,7 @@ You use AI where it replaces friction, not judgment.</p>
     <a target="_blank" href="https://www.apress.com/gp/book/9781484239063" class="btn btn-primary">
       Get the book</a>
   </div>
-</div>]]></content><author><name>Ted Hagos</name></author><category term="kotlin" /><summary type="html"><![CDATA[Just like in Java, you use the java.io classes, like this;]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Kotlin’s function can take variable arguments</title><link href="http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions.html" rel="alternate" type="text/html" title="Kotlin’s function can take variable arguments" /><published>2018-09-29T00:00:00+08:00</published><updated>2018-09-29T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions</id><content type="html" xml:base="http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions.html"><![CDATA[<p>Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type <code class="highlighter-rouge">...</code> , we use the <code class="highlighter-rouge">vararg</code> keyword instead.</p>
+</div>]]></content><author><name>Ted Hagos</name></author><category term="kotlin" /><summary type="html"><![CDATA[Just like in Java, you use the java.io classes, like this;]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Kotlin’s function can take variable arguments</title><link href="http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions.html" rel="alternate" type="text/html" title="Kotlin’s function can take variable arguments" /><published>2018-09-29T00:00:00+08:00</published><updated>2018-09-29T00:00:00+08:00</updated><id>http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions</id><content type="html" xml:base="http://localhost:4000/2018/10/kotlin-variable-arguments-in-functions.html"><![CDATA[<p>Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type <code class="language-plaintext highlighter-rouge">...</code> , we use the <code class="language-plaintext highlighter-rouge">vararg</code> keyword instead.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="nf">manyParams</span><span class="p">(</span><span class="k">vararg</span> <span class="n">va</span> <span class="p">:</span> <span class="nc">T</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// (1)</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="n">va</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// (2) </span>

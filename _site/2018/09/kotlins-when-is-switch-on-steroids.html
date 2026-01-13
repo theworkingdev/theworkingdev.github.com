@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Kotlin when, switch statement on steroids | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Kotlin when, switch statement on steroids" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -80,7 +80,7 @@
  <span class="p">}</span>
 </code></pre></div></div>
 
-<p>The idea is to match the argument (the variable <code class="highlighter-rouge">day</code>) against the branches <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">2</code>, <code class="highlighter-rouge">3</code> or <code class="highlighter-rouge">4</code> . The test is carried out from top to bottom (1, then 2, then 3 then 4) and when a match is made the statement (or block) to right of the thin arrow <code class="highlighter-rouge">-&gt;</code> is executed. Unlike in <em>switch</em> statements, when a match is found, it doesn’t flow through or cascade to the next branch, so, you don’t need to put a <em>break</em> statement.</p>
+<p>The idea is to match the argument (the variable <code class="language-plaintext highlighter-rouge">day</code>) against the branches <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">3</code> or <code class="language-plaintext highlighter-rouge">4</code> . The test is carried out from top to bottom (1, then 2, then 3 then 4) and when a match is made the statement (or block) to right of the thin arrow <code class="language-plaintext highlighter-rouge">-&gt;</code> is executed. Unlike in <em>switch</em> statements, when a match is found, it doesn’t flow through or cascade to the next branch, so, you don’t need to put a <em>break</em> statement.</p>
 
 <p>The <em>when</em> construct can also be used as an expression, and when it’s used as such, each branch becomes the returned value of the expression. See the code example below.</p>
 
@@ -116,7 +116,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><strong>(1)</strong> <code class="highlighter-rouge">readLine()</code> reads an input from the console. Don’t worry about the questions marks for now, we’ll get to that in the coming sections</p>
+<p><strong>(1)</strong> <code class="language-plaintext highlighter-rouge">readLine()</code> reads an input from the console. Don’t worry about the questions marks for now, we’ll get to that in the coming sections</p>
 
 <p><strong>(2)</strong> The branch conditions may be combined with a comma</p>
 
@@ -139,9 +139,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Which effectively makes it the equivalent of an <em>if-elseif</em> structure; it looks much cleaner though. But hold on a minute, read the sample code above again, and this time, examine it closely. Have you noticed that all the conditions in all the branches should evaluate to true? They do. However, if you run code above, it will only print the first branch, <code class="highlighter-rouge">a &gt; b</code>. Like the <em>if-elseif</em>, when one branch evaluates to true, the rest of the succeeding branches are ignored. They will no longer be evaluated. Best to take note of that.</p>
+<p>Which effectively makes it the equivalent of an <em>if-elseif</em> structure; it looks much cleaner though. But hold on a minute, read the sample code above again, and this time, examine it closely. Have you noticed that all the conditions in all the branches should evaluate to true? They do. However, if you run code above, it will only print the first branch, <code class="language-plaintext highlighter-rouge">a &gt; b</code>. Like the <em>if-elseif</em>, when one branch evaluates to true, the rest of the succeeding branches are ignored. They will no longer be evaluated. Best to take note of that.</p>
 
-<p>You can also use the <code class="highlighter-rouge">is</code> operator in a <em>when</em> construct. If you do that, you get the benefit of smart casts as well. See the following code for an example.</p>
+<p>You can also use the <code class="language-plaintext highlighter-rouge">is</code> operator in a <em>when</em> construct. If you do that, you get the benefit of smart casts as well. See the following code for an example.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">when</span> <span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">is</span> <span class="nc">Int</span> <span class="p">-&gt;</span> <span class="nf">println</span><span class="p">(</span><span class="s">"The square of $arg is ${arg * arg}"</span><span class="p">)</span>
@@ -151,7 +151,7 @@
 
 </code></pre></div></div>
 
-<p>Another (slightly more complicated) example of using the <code class="highlighter-rouge">is</code> operator in a <em>when</em> construction.</p>
+<p>Another (slightly more complicated) example of using the <code class="language-plaintext highlighter-rouge">is</code> operator in a <em>when</em> construction.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="nf">fooBar</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span><span class="nc">T</span><span class="p">)</span> <span class="p">:</span> <span class="nc">T</span> <span class="p">{</span>   
   <span class="kd">var</span> <span class="py">retval</span><span class="p">:</span><span class="nc">T</span> <span class="p">=</span> <span class="mi">0</span> <span class="k">as</span> <span class="nc">T</span>

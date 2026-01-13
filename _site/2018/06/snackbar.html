@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Android’s Snackbar in Kotlin | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Android’s Snackbar in Kotlin" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -77,11 +77,11 @@
 <ol>
   <li>Update the build.gradle file to include ‘com.android.support:design’ in the dependencies. Without this, you won’t be able to use the Snackbar control. In an Android Studio project, there are 2 gradle files. One is located on the project’s root folder and the other is inside the app folder. It’s the latter that we need to update</li>
   <li>Add an android:id attribute to the layout container.You will refer to it later when you use Snackbar. The layout container doesn’t have a View ID by default, so you need to put it in</li>
-  <li>Import the Kotlin Android Extensions (KAE) in your MainActivity file. This is actually optional, but it would be nice if we can refer to View Ids without using <code class="highlighter-rouge">findViewById()</code>. The KAE synthesizes all the View Ids in the layout files and exposes them as extension properties of the class
+  <li>Import the Kotlin Android Extensions (KAE) in your MainActivity file. This is actually optional, but it would be nice if we can refer to View Ids without using <code class="language-plaintext highlighter-rouge">findViewById()</code>. The KAE synthesizes all the View Ids in the layout files and exposes them as extension properties of the class
 Listing 1. excerpt from app/build.gradle</li>
 </ol>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependencies {
   ...
   implementation "com.android.support:design:27.1.0"
 }
@@ -101,7 +101,7 @@ Listing 1. excerpt from app/build.gradle</li>
 <p>Snackbar’s <strong>make()</strong> function takes 3 parameters, they are;</p>
 
 <ol>
-  <li>the View ID of the layout container, this is why you need to put an <code class="highlighter-rouge">android:id="root_layout"</code> in the container</li>
+  <li>the View ID of the layout container, this is why you need to put an <code class="language-plaintext highlighter-rouge">android:id="root_layout"</code> in the container</li>
   <li>the String message you want to show, and</li>
   <li>the amount of time, in milliseconds, that the message will be visible</li>
 </ol>

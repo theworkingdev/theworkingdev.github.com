@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>How to pass command line arguments to a Node app | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="How to pass command line arguments to a Node app" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -76,17 +76,17 @@
   <div class="post-content e-content" itemprop="articleBody">
     <p>You can pass an argument to a Node app like this</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
 </code></pre></div></div>
 
 <p>Any token (String or number) that’s passed after the name of the program file (myapp.js in this case) is a command line argument. If you want to pass more than one argument, simply separate them by space, like this</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe" 1 2 3 4
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe" 1 2 3 4
 </code></pre></div></div>
 
 <p>All the command line arguments will be stored in the <strong>process.argv</strong> object; it’s an Array.  The 0th element contains the <em>node</em> executable itself, the 1st element is the name of JavaScript program; the 2nd element is the first command line parameter,  the 3rd element is the 2nd command line parameter, so on and so forth. So, in our example above, here’s what the <strong>process.argv</strong>  contains</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
 /Users/ted/temp/cmdlineparams.js              | process.argv[1]
 "John Doe"                                    | process.argv[2]
 1                                             | process.argv[3]

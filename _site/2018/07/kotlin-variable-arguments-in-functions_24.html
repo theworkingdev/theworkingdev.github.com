@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Kotlin supports variable function arguments | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Kotlin supports variable function arguments" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -66,7 +66,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type <code class="highlighter-rouge">...</code> , we use the <code class="highlighter-rouge">vararg</code> keyword instead.</p>
+    <p>Functions in Kotlin, like in Java, can also accept an arbitrary number of arguments.  The syntax is a bit different from Java, instead of using three dots after the type <code class="language-plaintext highlighter-rouge">...</code> , we use the <code class="language-plaintext highlighter-rouge">vararg</code> keyword instead.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span><span class="p">&lt;</span><span class="nc">T</span><span class="p">&gt;</span> <span class="nf">manyParams</span><span class="p">(</span><span class="k">vararg</span> <span class="n">va</span> <span class="p">:</span> <span class="nc">T</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// (1)</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="n">va</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// (2) </span>

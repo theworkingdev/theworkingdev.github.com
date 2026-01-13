@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Kotlin while loops | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Kotlin while loops" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -82,9 +82,9 @@
 <p>This is what’s going on in the first line;</p>
 
 <ul>
-  <li><code class="highlighter-rouge">(0..100)</code> - This creates a series of Ints from 1 to 100, using the range function in operator form</li>
-  <li><code class="highlighter-rouge">filter {it % 2 == 0}</code> - Filter is an extension function (we’ll come up on that in a little while). It does exactly what you think it does, it filters data. It works on objects that are a subtype Iterable. What’s inside is a lambda expression that’s used to evaluate each item of the list. If the item satisfies the condition (is it an even number), then it will be included in the list</li>
-  <li><code class="highlighter-rouge">toTypedArray()</code> - The filter function returns a list. For this example, I didn’t want to work with Lists, I wanted to work with arrays instead, so, I converted it with this function</li>
+  <li><code class="language-plaintext highlighter-rouge">(0..100)</code> - This creates a series of Ints from 1 to 100, using the range function in operator form</li>
+  <li><code class="language-plaintext highlighter-rouge">filter {it % 2 == 0}</code> - Filter is an extension function (we’ll come up on that in a little while). It does exactly what you think it does, it filters data. It works on objects that are a subtype Iterable. What’s inside is a lambda expression that’s used to evaluate each item of the list. If the item satisfies the condition (is it an even number), then it will be included in the list</li>
+  <li><code class="language-plaintext highlighter-rouge">toTypedArray()</code> - The filter function returns a list. For this example, I didn’t want to work with Lists, I wanted to work with arrays instead, so, I converted it with this function</li>
 </ul>
 
 <!-- <p>

@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Basic flashcard game in JavaScript | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Basic flashcard game in JavaScript" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -262,7 +262,7 @@ Now that we have clarified our solution approach, the next task is to figure out
 
 <p>We need to somehow define each card and populate the deck with it. We will use the built-in JS Array to represent the deck.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var deck = new Array();
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var deck = new Array();
 
 // OTHER STATEMENTS
 
@@ -292,7 +292,7 @@ deck.push(card2);
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>The variable <code class="highlighter-rouge">currcard</code> is initially defined as null. It was defined outside the Draw function so that it other functions will have access to it. We will need the data stored on the current card when we check the user’s answer against the answer key (which is stored on the current card).</p>
+<p>The variable <code class="language-plaintext highlighter-rouge">currcard</code> is initially defined as null. It was defined outside the Draw function so that it other functions will have access to it. We will need the data stored on the current card when we check the user’s answer against the answer key (which is stored on the current card).</p>
 
 <p>The shift method of the JS Array provides the mechanism to take the top card from the deck. When you call shift, it removes whatever is on the top element of the array and returns its value—it allows us to store the return value to a variable, that was why it was assigned to currcard.</p>
 

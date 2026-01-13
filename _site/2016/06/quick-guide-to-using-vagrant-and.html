@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Quick guide to using Vagrant and VirtualBox | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Quick guide to using Vagrant and VirtualBox" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -126,7 +126,7 @@ vboxmanage - v
 
 <p>Vagrant uses the term “box” to refer to an OS image. Before we can create a vagrant instance, we need to get a box. You can get boxes from vagrantup.com and many other places, but we’ll get ours from ubuntu.com. The command below downloads the ubuntu precise box to our workstation</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant box add ubuntu-precise http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-i386-disk1.box
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vagrant box add ubuntu-precise http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-i386-disk1.box
 </code></pre></div></div>
 
 <p>Most of these boxes are 350 - 500mb in size. Grab a coffee if you have slow internet connection</p>
@@ -137,7 +137,7 @@ vboxmanage - v
 
 <p>You can use the ubuntu-precise box we downloaded earlier for multiple projects. This is actually one of the main use cases for vagrant. You can isolate the libraries and configurations of your projects. That way, you always have a clean baseline box.</p>
 
-<p>To create our first project, we need to do (a) create a folder for our project (b) run <code class="highlighter-rouge">vagrant init</code> inside the project folder and c) optionally, edit the vagrant file if we want to alter some of the default settings of vagrant</p>
+<p>To create our first project, we need to do (a) create a folder for our project (b) run <code class="language-plaintext highlighter-rouge">vagrant init</code> inside the project folder and c) optionally, edit the vagrant file if we want to alter some of the default settings of vagrant</p>
 
 <p>To create a project, follow the commands below.</p>
 
@@ -145,7 +145,7 @@ vboxmanage - v
 <span class="nv">$ </span>vagrant init ubuntu-precise
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">vagrant init</code> will create a vagrant config file. This is what you can configure and eventually commit to source control.</p>
+<p><code class="language-plaintext highlighter-rouge">vagrant init</code> will create a vagrant config file. This is what you can configure and eventually commit to source control.</p>
 
 <p>Then we can start using the virtual machine</p>
 
@@ -174,7 +174,7 @@ If you still want to see the GUI of the virtualbox session, you can do 1) exit t
 
 <p>There are many reasons to use vagrant. Some use it as test or staging server and some use it as a development server.  When you use it as a development server, you need to have a way to share data between the host (the machine where you installed the vm) and the guest machine (the vm itself).</p>
 
-<p>By default, Vagrant already shares the folder <code class="highlighter-rouge">/vagrant</code> on the guest machine with the the folder <code class="highlighter-rouge">/vms/myProjectName</code> (this is the directory where you created your vagrant project). If you want the guest and host machine to share files in folder other than the default (/vagrant), you need to configure that in <strong>Vagrantfile</strong></p>
+<p>By default, Vagrant already shares the folder <code class="language-plaintext highlighter-rouge">/vagrant</code> on the guest machine with the the folder <code class="language-plaintext highlighter-rouge">/vms/myProjectName</code> (this is the directory where you created your vagrant project). If you want the guest and host machine to share files in folder other than the default (/vagrant), you need to configure that in <strong>Vagrantfile</strong></p>
 
 <h2 id="managing-boxes">Managing boxes</h2>
 
@@ -182,7 +182,7 @@ If you still want to see the GUI of the virtualbox session, you can do 1) exit t
 
 <p><strong>Table 2. Location of boxes</strong></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+--------------------+-------------------------------+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+--------------------+-------------------------------+
 | OS                 | Location of boxes             |
 +--------------------+-------------------------------+
 | Windows            | %USERHOME%\.vagrant.d\boxes   |
@@ -203,7 +203,7 @@ vagrant box remove &lt;name of the box&gt;
 
 <h2 id="vagrantfile">Vagrantfile</h2>
 
-<p><em>Vagrantfile</em> is a configuration file. It was created when you issued the command <code class="highlighter-rouge">vagrant init</code>. It’s written in the Ruby language, so it’ s very easy to read. There are a lot of defaults that are already defined in this config file. You simply need to uncomment them if you need to enable any particular functionality e.g. port forwarding etc. The Vagrantfile has a simple structure, everything is inside the <code class="highlighter-rouge">Vagrant configure</code> block. See the code example below</p>
+<p><em>Vagrantfile</em> is a configuration file. It was created when you issued the command <code class="language-plaintext highlighter-rouge">vagrant init</code>. It’s written in the Ruby language, so it’ s very easy to read. There are a lot of defaults that are already defined in this config file. You simply need to uncomment them if you need to enable any particular functionality e.g. port forwarding etc. The Vagrantfile has a simple structure, everything is inside the <code class="language-plaintext highlighter-rouge">Vagrant configure</code> block. See the code example below</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Vagrant configure<span class="o">(</span>2<span class="o">)</span> <span class="k">do</span> |config|
    <span class="c"># various configurations</span>

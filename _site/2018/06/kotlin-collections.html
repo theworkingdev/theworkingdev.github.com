@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Kotlin Collections | The Working Dev</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Kotlin Collections" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
@@ -89,18 +89,18 @@
   <tbody>
     <tr>
       <td>list</td>
-      <td><code class="highlighter-rouge">listOf</code></td>
-      <td><code class="highlighter-rouge">mutableListOf</code>, <code class="highlighter-rouge">arrayListOf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">listOf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">mutableListOf</code>, <code class="language-plaintext highlighter-rouge">arrayListOf</code></td>
     </tr>
     <tr>
       <td>set</td>
-      <td><code class="highlighter-rouge">setOf</code></td>
-      <td><code class="highlighter-rouge">mutableSetOf</code>, <code class="highlighter-rouge">hashSetOf</code>, <code class="highlighter-rouge">linkedSetOf</code>, <code class="highlighter-rouge">sortedSetOf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">setOf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">mutableSetOf</code>, <code class="language-plaintext highlighter-rouge">hashSetOf</code>, <code class="language-plaintext highlighter-rouge">linkedSetOf</code>, <code class="language-plaintext highlighter-rouge">sortedSetOf</code></td>
     </tr>
     <tr>
       <td>map</td>
-      <td><code class="highlighter-rouge">mapOf</code></td>
-      <td><code class="highlighter-rouge">mutableMapOf</code>, <code class="highlighter-rouge">hashMapOf</code>, <code class="highlighter-rouge">linkedMapOf</code>, <code class="highlighter-rouge">sortedMapOf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">mapOf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">mutableMapOf</code>, <code class="language-plaintext highlighter-rouge">hashMapOf</code>, <code class="language-plaintext highlighter-rouge">linkedMapOf</code>, <code class="language-plaintext highlighter-rouge">sortedMapOf</code></td>
     </tr>
   </tbody>
 </table>
@@ -138,27 +138,27 @@ Although the map class doesn’t inherit from either Iterable or MutableIterable
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">size</code></td>
+      <td><code class="language-plaintext highlighter-rouge">size</code></td>
       <td>tells you how many elements are in the collection.  Works with lists, sets and maps</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">isEmpty()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">isEmpty()</code></td>
       <td>returns True if the collection is empty, False if it’s not.  Works with lists, sets and maps</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">contains(arg)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">contains(arg)</code></td>
       <td>returns True if arg is within the collection. Works with lists, sets and maps</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">add(arg)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">add(arg)</code></td>
       <td>add arg to the collection. This function returns true if arg was added — in the case of a list,  arg will always be added. In the case of a set, arg will be added and return true the first time, but if the same arg is added the second time, it will return False. This member function is not found on maps</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">remove(arg)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">remove(arg)</code></td>
       <td>returns True if arg was removed from the collection, returns False is the collection is unmodified</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">iterator()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">iterator()</code></td>
       <td>returns an iterator over the elements of the object. This was inherited from the Iterable interface. Works with lists, sets and maps</td>
     </tr>
   </tbody>
