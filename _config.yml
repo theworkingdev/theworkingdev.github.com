@@ -32,16 +32,12 @@ url: "https://workingdev.net" # the base hostname & protocol for your site
 
 # Build settings
 theme: minima
-# remote_theme: pmarsceill/just-the-docs
-
 default_image: /images/gandalf-programmer.jpg
 
 markdown: kramdown
 
 show_excerpts: true
-
 google_analytics: UA-123410395-1
-
 
 
 defaults:

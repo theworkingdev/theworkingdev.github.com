@@ -8,19 +8,19 @@
 <meta property="og:title" content="Basic Android APIs for the Game Programmer" />
 <meta name="author" content="Ted Hagos" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This is a sample text" />
-<meta property="og:description" content="This is a sample text" />
+<meta name="description" content="This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android." />
+<meta property="og:description" content="This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android." />
 <link rel="canonical" href="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" />
 <meta property="og:url" content="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" />
 <meta property="og:site_name" content="The Working Dev" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-04-25T00:00:00+08:00" />
+<meta property="article:published_time" content="2020-04-25T09:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Basic Android APIs for the Game Programmer" />
 <meta name="twitter:site" content="@lovescaffeine" />
 <meta name="twitter:creator" content="@Ted Hagos" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ted Hagos"},"dateModified":"2020-04-25T00:00:00+08:00","datePublished":"2020-04-25T00:00:00+08:00","description":"This is a sample text","headline":"Basic Android APIs for the Game Programmer","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html"},"url":"http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ted Hagos"},"dateModified":"2026-01-14T00:00:00+08:00","datePublished":"2020-04-25T09:00:00+08:00","description":"This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android.","headline":"Basic Android APIs for the Game Programmer","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html"},"url":"http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /><!-- Twitter cards -->
     <meta name= "twitter:site"    content = "@" />
@@ -59,7 +59,7 @@
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Basic Android APIs for the Game Programmer</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2020-04-25T00:00:00+08:00" itemprop="datePublished">Apr 25, 2020
+      <time class="dt-published" datetime="2020-04-25T09:00:00+08:00" itemprop="datePublished">Apr 25, 2020
       </time><!--
           by: <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ted Hagos</span></span>
           -->
@@ -74,24 +74,55 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>This is a sample text</p>
+    <p>This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android.</p>
 
-<div class="card" style="width: 22rem;">
-  <img src="/images/book_beginning_androidgames.png" class="card-img-top" alt="Beginning Android Games" />
-  <div class="card-body">
-    <h5 class="card-title">Beginning Android Games</h5>
-    <p class="card-text">I want to be notified when the book comes out</p>
+<p>This is <strong>not</strong> a full game engine tutorial. Think of it as a mental map.</p>
 
-    <form action="https://buttondown.email/api/emails/embed-subscribe/workingdev" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/workingdev', 'popupwindow')" class="embeddable-buttondown-form">
-    <label for="bd-email">Enter your email</label>
-    <input type="email" name="email" id="bd-email" />
-    <input type="hidden" value="beginningandroidgames" name="tag" />
-    <p></p>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  </div>
-</div>
+<h2 id="core-building-blocks">Core building blocks</h2>
 
+<h3 id="activity-and-lifecycle-apis">Activity and Lifecycle APIs</h3>
+<p>Games on Android live inside an <code class="language-plaintext highlighter-rouge">Activity</code>. Understanding lifecycle callbacks (<code class="language-plaintext highlighter-rouge">onCreate</code>, <code class="language-plaintext highlighter-rouge">onPause</code>, <code class="language-plaintext highlighter-rouge">onResume</code>) is critical, especially for handling interruptions like app switching, phone calls, or screen locks.</p>
+
+<p>If your game ignores lifecycle events, it <em>will</em> behave badly on real devices.</p>
+
+<h3 id="surfaceview-and-rendering">SurfaceView and rendering</h3>
+<p>Most Android games start with <code class="language-plaintext highlighter-rouge">SurfaceView</code> or <code class="language-plaintext highlighter-rouge">TextureView</code> to get direct access to a drawing surface. These APIs allow you to manage your own render loop without fighting the standard UI thread.</p>
+
+<p>This is usually where developers transition from “Android app” thinking to “game loop” thinking.</p>
+
+<h3 id="canvas-and-basic-drawing">Canvas and basic drawing</h3>
+<p>For 2D games, the <code class="language-plaintext highlighter-rouge">Canvas</code> API is often enough:</p>
+<ul>
+  <li>drawing sprites and shapes</li>
+  <li>handling simple animations</li>
+  <li>prototyping mechanics quickly</li>
+</ul>
+
+<p>You don’t need OpenGL on day one.</p>
+
+<h3 id="input-handling">Input handling</h3>
+<p>Touch input (<code class="language-plaintext highlighter-rouge">onTouchEvent</code>, <code class="language-plaintext highlighter-rouge">MotionEvent</code>) is the primary control mechanism on mobile. Games typically bypass standard widgets and work directly with raw input events for responsiveness.</p>
+
+<p>Multi-touch support becomes important sooner than you expect.</p>
+
+<h3 id="audio-apis">Audio APIs</h3>
+<p>Short sound effects are commonly handled via <code class="language-plaintext highlighter-rouge">SoundPool</code>, while longer background tracks use <code class="language-plaintext highlighter-rouge">MediaPlayer</code>. Managing audio correctly — especially across lifecycle events — is one of the easiest places to introduce bugs.</p>
+
+<h3 id="timing-and-game-loops">Timing and game loops</h3>
+<p>Android doesn’t provide a “game loop” abstraction. Most games implement their own loop using a dedicated thread, <code class="language-plaintext highlighter-rouge">Choreographer</code>, or scheduled updates tied to frame rendering.</p>
+
+<p>Consistency matters more than raw speed.</p>
+
+<hr />
+
+<h2 id="a-note-on-engines">A note on engines</h2>
+<p>If you’re using a full game engine (Unity, LibGDX, etc.), many of these APIs are wrapped or abstracted away. Still, understanding what’s underneath helps when debugging performance, lifecycle issues, or platform-specific quirks.</p>
+
+<hr />
+
+<p><em>Note: This post was originally a placeholder in 2020 and was updated in 2026 to serve as a concise reference instead of an empty stub.</em></p>
+
+<p>I prefer publishing small, useful reference posts over leaving unfinished outlines lying around.</p>
 
   </div>
 

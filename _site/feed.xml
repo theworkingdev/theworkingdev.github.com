@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-14T09:39:13+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start.</title><link href="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html" rel="alternate" type="text/html" title="I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start." /><published>2026-01-14T00:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code</id><content type="html" xml:base="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html"><![CDATA[<h3 id="a-java-developers-take-on-using-ai-without-outsourcing-thinking">A Java developer’s take on using AI without outsourcing thinking</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-14T09:52:52+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start.</title><link href="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html" rel="alternate" type="text/html" title="I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start." /><published>2026-01-14T00:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code</id><content type="html" xml:base="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html"><![CDATA[<h3 id="a-java-developers-take-on-using-ai-without-outsourcing-thinking">A Java developer’s take on using AI without outsourcing thinking</h3>
 
 <p>For the last couple of years, I mostly ignored AI coding tools.</p>
 
@@ -123,11 +123,41 @@ You use AI where it replaces friction, not judgment.</p>
 <p>If a tool doesn’t make you a better reader of code, it’s not worth adopting. We have enough complexity in the JVM as it is; we don’t need to add “statistical guesswork” to the list of reasons why the 2:00 AM deployment failed.</p>
 
 <h2 id="start-here-stop-there">Start Here. Stop There.</h2>
-<p>If you’ve been late to AI coding tools, good. You skipped the worst part. Start small. Stay boring. Use it where it helps, ignore it where it doesn’t. That’s how working Java developers adopt tools that actually last.</p>]]></content><author><name>Ted Hagos</name></author><category term="Java" /><category term="AI" /><category term="Productivity" /><summary type="html"><![CDATA[A Java veteran's guide to using AI coding tools without losing your mind. Learn how to use AI for friction-free PR reviews and legacy code explanation. Boring but useful.]]></summary></entry><entry><title type="html">Programming Resources</title><link href="http://localhost:4000/programming/2020/08/25/programming-resources.html" rel="alternate" type="text/html" title="Programming Resources" /><published>2020-08-25T00:00:00+08:00</published><updated>2020-08-25T00:00:00+08:00</updated><id>http://localhost:4000/programming/2020/08/25/programming-resources</id><content type="html" xml:base="http://localhost:4000/programming/2020/08/25/programming-resources.html"><![CDATA[<ul>
-  <li><a href="https://public-apis.io/">public-apis.io</a></li>
-  <li><a href="https://www.drawkit.io/">drawkit.io</a></li>
-  <li><a href="https://css.gg/">css.gg</a></li>
-</ul>]]></content><author><name>Ted Hagos</name></author><category term="programming" /><category term="programming" /><summary type="html"><![CDATA[A list of programming resources]]></summary></entry><entry><title type="html">How to Handle Clicks in Android</title><link href="http://localhost:4000/android/2020/05/01/howto-handle-clicks-android.html" rel="alternate" type="text/html" title="How to Handle Clicks in Android" /><published>2020-05-01T00:00:00+08:00</published><updated>2020-05-01T00:00:00+08:00</updated><id>http://localhost:4000/android/2020/05/01/howto-handle-clicks-android</id><content type="html" xml:base="http://localhost:4000/android/2020/05/01/howto-handle-clicks-android.html"><![CDATA[<p>To follow the tutorial, you’ll need to create a project or <a href="https://bit.ly/3bENu2x">download the project file here</a>. I created this project using Android Studio 4 (Canary version, at the time of writing). Below are the project details;</p>
+<p>If you’ve been late to AI coding tools, good. You skipped the worst part. Start small. Stay boring. Use it where it helps, ignore it where it doesn’t. That’s how working Java developers adopt tools that actually last.</p>]]></content><author><name>Ted Hagos</name></author><category term="Java" /><category term="AI" /><category term="Productivity" /><summary type="html"><![CDATA[A Java veteran's guide to using AI coding tools without losing your mind. Learn how to use AI for friction-free PR reviews and legacy code explanation. Boring but useful.]]></summary></entry><entry><title type="html">Programming Resources</title><link href="http://localhost:4000/resources/programming/2020/08/25/programming-resources.html" rel="alternate" type="text/html" title="Programming Resources" /><published>2020-08-25T00:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/resources/programming/2020/08/25/programming-resources</id><content type="html" xml:base="http://localhost:4000/resources/programming/2020/08/25/programming-resources.html"><![CDATA[<p>Every developer eventually builds a private list of “go-to” sites — tools you reach for when prototyping, teaching, validating an idea, or just trying to move faster without unnecessary ceremony. This post is a curated snapshot of resources I’ve found genuinely useful over time.</p>
+
+<h2 id="core-resources">Core resources</h2>
+
+<h3 id="public-apisio">public-apis.io</h3>
+<p>A directory of free and open APIs, grouped by category. Ideal for learning, demos, interview exercises, or quick prototypes where standing up a backend would be overkill.</p>
+
+<h3 id="drawkitio">drawkit.io</h3>
+<p>Clean, modern illustrations that work well for landing pages, blog headers, and lightweight product mockups. A solid alternative to generic stock imagery.</p>
+
+<h3 id="cssgg">css.gg</h3>
+<p>A lightweight icon library built entirely with CSS. Useful when you want icons without pulling in a large dependency or managing SVGs.</p>
+
+<h2 id="newer-additions">Newer additions</h2>
+
+<h3 id="roadmapsh">roadmap.sh</h3>
+<p>A practical set of learning roadmaps for developers — frontend, backend, DevOps, Android, and more. Especially useful for self-learners and mentors who want a structured reference without fluff.</p>
+
+<h3 id="freecodecamporg">freeCodeCamp.org</h3>
+<p>Still one of the best free learning platforms around. The curriculum, articles, and long-form tutorials make it a strong supplement to formal courses or self-paced study.</p>
+
+<h3 id="ai-assisted-coding-tools">AI-assisted coding tools</h3>
+<p>Tools like GitHub Copilot and similar systems are increasingly useful for boilerplate, refactoring, and exploration. Best treated as assistants, not authorities — they amplify skill, not replace it.</p>
+
+<h3 id="excalidraw">Excalidraw</h3>
+<p>A simple diagramming tool that’s perfect for system design sketches, architecture discussions, and teaching explanations. Low friction and easy to share.</p>
+
+<h3 id="regex101">Regex101</h3>
+<p>An excellent playground for writing, testing, and explaining regular expressions. Especially useful when mentoring or debugging edge cases.</p>
+
+<hr />
+
+<p><em>Note: This post was originally published in 2020 and updated in 2026 to reflect newer tools and workflows.</em></p>
+
+<p>I update this list only when a resource proves useful more than once — the real filter that matters.</p>]]></content><author><name>Ted Hagos</name></author><category term="resources" /><category term="programming" /><category term="learning" /><category term="tools" /><category term="developer" /><summary type="html"><![CDATA[A list of programming resources]]></summary></entry><entry><title type="html">How to Handle Clicks in Android</title><link href="http://localhost:4000/android/2020/05/01/howto-handle-clicks-android.html" rel="alternate" type="text/html" title="How to Handle Clicks in Android" /><published>2020-05-01T00:00:00+08:00</published><updated>2020-05-01T00:00:00+08:00</updated><id>http://localhost:4000/android/2020/05/01/howto-handle-clicks-android</id><content type="html" xml:base="http://localhost:4000/android/2020/05/01/howto-handle-clicks-android.html"><![CDATA[<p>To follow the tutorial, you’ll need to create a project or <a href="https://bit.ly/3bENu2x">download the project file here</a>. I created this project using Android Studio 4 (Canary version, at the time of writing). Below are the project details;</p>
 
 <ul>
   <li><strong>Name of project</strong>. My Application</li>
@@ -546,23 +576,55 @@ You use AI where it replaces friction, not judgment.</p>
     <a target="_blank" href="https://www.apress.com/gp/book/9781484249529" class="btn btn-primary">
       Get the book</a>
   </div>
-</div>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="androidstudio" /><summary type="html"><![CDATA[Android Studio productivity tips. Learn how about automatic code generation, live templates, how to import sample codes and the important keyboard shortcuts you can start using today to boost your productivity]]></summary></entry><entry><title type="html">Basic Android APIs for the Game Programmer</title><link href="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" rel="alternate" type="text/html" title="Basic Android APIs for the Game Programmer" /><published>2020-04-25T00:00:00+08:00</published><updated>2020-04-25T00:00:00+08:00</updated><id>http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers</id><content type="html" xml:base="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html"><![CDATA[<p>This is a sample text</p>
+</div>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="androidstudio" /><summary type="html"><![CDATA[Android Studio productivity tips. Learn how about automatic code generation, live templates, how to import sample codes and the important keyboard shortcuts you can start using today to boost your productivity]]></summary></entry><entry><title type="html">Basic Android APIs for the Game Programmer</title><link href="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" rel="alternate" type="text/html" title="Basic Android APIs for the Game Programmer" /><published>2020-04-25T09:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers</id><content type="html" xml:base="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html"><![CDATA[<p>This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android.</p>
 
-<div class="card" style="width: 22rem;">
-  <img src="/images/book_beginning_androidgames.png" class="card-img-top" alt="Beginning Android Games" />
-  <div class="card-body">
-    <h5 class="card-title">Beginning Android Games</h5>
-    <p class="card-text">I want to be notified when the book comes out</p>
+<p>This is <strong>not</strong> a full game engine tutorial. Think of it as a mental map.</p>
 
-    <form action="https://buttondown.email/api/emails/embed-subscribe/workingdev" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/workingdev', 'popupwindow')" class="embeddable-buttondown-form">
-    <label for="bd-email">Enter your email</label>
-    <input type="email" name="email" id="bd-email" />
-    <input type="hidden" value="beginningandroidgames" name="tag" />
-    <p></p>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  </div>
-</div>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="java" /><category term="gameprog" /><summary type="html"><![CDATA[This is a sample text]]></summary></entry><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html"><![CDATA[<p>You can pass an argument to a Node app like this</p>
+<h2 id="core-building-blocks">Core building blocks</h2>
+
+<h3 id="activity-and-lifecycle-apis">Activity and Lifecycle APIs</h3>
+<p>Games on Android live inside an <code class="language-plaintext highlighter-rouge">Activity</code>. Understanding lifecycle callbacks (<code class="language-plaintext highlighter-rouge">onCreate</code>, <code class="language-plaintext highlighter-rouge">onPause</code>, <code class="language-plaintext highlighter-rouge">onResume</code>) is critical, especially for handling interruptions like app switching, phone calls, or screen locks.</p>
+
+<p>If your game ignores lifecycle events, it <em>will</em> behave badly on real devices.</p>
+
+<h3 id="surfaceview-and-rendering">SurfaceView and rendering</h3>
+<p>Most Android games start with <code class="language-plaintext highlighter-rouge">SurfaceView</code> or <code class="language-plaintext highlighter-rouge">TextureView</code> to get direct access to a drawing surface. These APIs allow you to manage your own render loop without fighting the standard UI thread.</p>
+
+<p>This is usually where developers transition from “Android app” thinking to “game loop” thinking.</p>
+
+<h3 id="canvas-and-basic-drawing">Canvas and basic drawing</h3>
+<p>For 2D games, the <code class="language-plaintext highlighter-rouge">Canvas</code> API is often enough:</p>
+<ul>
+  <li>drawing sprites and shapes</li>
+  <li>handling simple animations</li>
+  <li>prototyping mechanics quickly</li>
+</ul>
+
+<p>You don’t need OpenGL on day one.</p>
+
+<h3 id="input-handling">Input handling</h3>
+<p>Touch input (<code class="language-plaintext highlighter-rouge">onTouchEvent</code>, <code class="language-plaintext highlighter-rouge">MotionEvent</code>) is the primary control mechanism on mobile. Games typically bypass standard widgets and work directly with raw input events for responsiveness.</p>
+
+<p>Multi-touch support becomes important sooner than you expect.</p>
+
+<h3 id="audio-apis">Audio APIs</h3>
+<p>Short sound effects are commonly handled via <code class="language-plaintext highlighter-rouge">SoundPool</code>, while longer background tracks use <code class="language-plaintext highlighter-rouge">MediaPlayer</code>. Managing audio correctly — especially across lifecycle events — is one of the easiest places to introduce bugs.</p>
+
+<h3 id="timing-and-game-loops">Timing and game loops</h3>
+<p>Android doesn’t provide a “game loop” abstraction. Most games implement their own loop using a dedicated thread, <code class="language-plaintext highlighter-rouge">Choreographer</code>, or scheduled updates tied to frame rendering.</p>
+
+<p>Consistency matters more than raw speed.</p>
+
+<hr />
+
+<h2 id="a-note-on-engines">A note on engines</h2>
+<p>If you’re using a full game engine (Unity, LibGDX, etc.), many of these APIs are wrapped or abstracted away. Still, understanding what’s underneath helps when debugging performance, lifecycle issues, or platform-specific quirks.</p>
+
+<hr />
+
+<p><em>Note: This post was originally a placeholder in 2020 and was updated in 2026 to serve as a concise reference instead of an empty stub.</em></p>
+
+<p>I prefer publishing small, useful reference posts over leaving unfinished outlines lying around.</p>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="java" /><category term="gameprog" /><category term="android" /><category term="game-development" /><category term="java" /><summary type="html"><![CDATA[This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android.]]></summary></entry><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html"><![CDATA[<p>You can pass an argument to a Node app like this</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
 </code></pre></div></div>
