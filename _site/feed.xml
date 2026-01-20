@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-20T22:50:01+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose</title><link href="http://localhost:4000/android-jetpack-navigation-type-safety-guide/" rel="alternate" type="text/html" title="Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose" /><published>2026-01-19T09:00:00+08:00</published><updated>2026-01-19T09:00:00+08:00</updated><id>http://localhost:4000/android-jetpack-navigation-type-safety-guide</id><content type="html" xml:base="http://localhost:4000/android-jetpack-navigation-type-safety-guide/"><![CDATA[<h2 id="the-archaeology-of-navigation">The Archaeology of Navigation</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-20T23:08:39+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose</title><link href="http://localhost:4000/android-jetpack-navigation-type-safety-guide/" rel="alternate" type="text/html" title="Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose" /><published>2026-01-19T09:00:00+08:00</published><updated>2026-01-19T09:00:00+08:00</updated><id>http://localhost:4000/android-jetpack-navigation-type-safety-guide</id><content type="html" xml:base="http://localhost:4000/android-jetpack-navigation-type-safety-guide/"><![CDATA[<h2 id="the-archaeology-of-navigation">The Archaeology of Navigation</h2>
 
 <p>In the early days of Android, moving between screens felt less like “navigating a map” and more like “managing a delicate chemical reaction.”</p>
 
@@ -223,7 +223,135 @@ assertThat(state.currentDestination).isInstanceOf(Destinations.Profile::class)
 
 <p>We’ve moved from building the engine while driving it to designing a system where the “map” is the source of truth. By using typed routes, module-agnostic contracts, and deep-link integration, we aren’t just moving users between screens—we’re building a predictable, scalable journey.</p>
 
-<p>The “Engine” is now officially in the driver’s seat.</p>]]></content><author><name>Ted Hagos</name></author><category term="Android" /><category term="Kotlin" /><category term="Jetpack Compose" /><category term="Navigation" /><category term="Kotlin Serialization" /><category term="Type-Safety" /><summary type="html"><![CDATA[A comprehensive 3,000-word deep dive into modern Android navigation. Learn how to replace string-based routes with type-safe Kotlin objects, manage multi-module architecture, and implement predictive back gestures.]]></summary></entry><entry><title type="html">I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start.</title><link href="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html" rel="alternate" type="text/html" title="I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start." /><published>2026-01-14T00:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code</id><content type="html" xml:base="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html"><![CDATA[<h3 id="a-java-developers-take-on-using-ai-without-outsourcing-thinking">A Java developer’s take on using AI without outsourcing thinking</h3>
+<p>The “Engine” is now officially in the driver’s seat.</p>]]></content><author><name>Ted Hagos</name></author><category term="Android" /><category term="Kotlin" /><category term="Jetpack Compose" /><category term="Navigation" /><category term="Kotlin Serialization" /><category term="Type-Safety" /><summary type="html"><![CDATA[A comprehensive 3,000-word deep dive into modern Android navigation. Learn how to replace string-based routes with type-safe Kotlin objects, manage multi-module architecture, and implement predictive back gestures.]]></summary></entry><entry><title type="html">Android Compose Type Safe Navigation Snippets</title><link href="http://localhost:4000/2026/01/19/android-compose-type-safe-navigation-snippets.html" rel="alternate" type="text/html" title="Android Compose Type Safe Navigation Snippets" /><published>2026-01-19T00:00:00+08:00</published><updated>2026-01-19T00:00:00+08:00</updated><id>http://localhost:4000/2026/01/19/android-compose-type-safe-navigation-snippets</id><content type="html" xml:base="http://localhost:4000/2026/01/19/android-compose-type-safe-navigation-snippets.html"><![CDATA[<h2 id="type-safe-navigation-the-practical-cheat-sheet">Type-Safe Navigation: The Practical Cheat Sheet</h2>
+
+<p>Since Navigation 2.8.0, the Android team effectively killed the “String-based route.” We don’t define routes as <code class="language-plaintext highlighter-rouge">"profile/{id}"</code>  anymore; we define them as actual Kotlin types.  Now we don’t need to keep this info in our heads; it’s the compiler’s problem now.</p>
+
+<h3 id="1-the-dependencies">1. The Dependencies</h3>
+
+<p>You will need the Kotlin serialization plugin to use type-safe navigation; it’s the one responsible for turning your objects into navigation paths.</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// build.gradle.kts (Project)
+plugins {
+    kotlin("plugin.serialization") version "2.1.0"
+}
+
+// build.gradle.kts (Module)
+dependencies {
+    val nav_version = "2.8.5"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+}
+</code></pre></div></div>
+
+<h3 id="2-defining-the-route-map">2. Defining the Route Map</h3>
+
+<p>Routes are now <code class="language-plaintext highlighter-rouge">@Serializable</code> classes or objects. Use an <strong>object</strong> for a screen with no data, and a <strong>data class</strong> for screens that need arguments.</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Serializable
+object Home
+
+@Serializable
+data class UserProfile(
+    val id: String,
+    val isPremium: Boolean = false
+)
+</code></pre></div></div>
+
+<h3 id="3-the-implementation-navhost">3. The Implementation (NavHost)</h3>
+
+<p>In your <code class="language-plaintext highlighter-rouge">NavHost</code>, you no longer pass a string to the <code class="language-plaintext highlighter-rouge">composable</code> function. You pass the type as a generic.</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val navController = rememberNavController()
+
+NavHost(navController = navController, startDestination = Home) {
+    composable&lt;Home&gt; {
+        HomeScreen(onUserClick = { userId -&gt;
+            // Navigating is now a type-safe function call
+            navController.navigate(UserProfile(id = userId))
+        })
+    }
+
+    composable&lt;UserProfile&gt; { backStackEntry -&gt;
+        // Pull the object back out of the entry
+        val profile: UserProfile = backStackEntry.toRoute()
+        ProfileScreen(profile.id, profile.isPremium)
+    }
+}
+</code></pre></div></div>
+
+<h3 id="4-handling-complex-types-custom-navtype">4. Handling Complex Types (Custom NavType)</h3>
+
+<p>If you need to pass an object that isn’t a primitive (like a <code class="language-plaintext highlighter-rouge">SearchFilter</code> class), you must create a custom <code class="language-plaintext highlighter-rouge">NavType</code>. Without this, the system won’t know how to “stringify” your object for the backstack.</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Serializable
+data class Filters(val query: String, val sortOrder: String)
+
+val FilterType = object : NavType&lt;Filters&gt;(isNullableAllowed = false) {
+    override fun get(bundle: Bundle, key: String): Filters? =
+        bundle.getString(key)?.let { Json.decodeFromString(it) }
+
+    override fun parseValue(value: String): Filters =
+        Json.decodeFromString(Uri.decode(value))
+
+    override fun put(bundle: Bundle, key: String, value: Filters) =
+        bundle.putString(key, Json.encodeToString(value))
+
+    override fun serializeAsValue(value: Filters): String =
+        Uri.encode(Json.encodeToString(value))
+}
+
+// Register it in the graph
+composable&lt;Filters&gt;(
+    typeMap = mapOf(typeOf&lt;Filters&gt;() to FilterType)
+) { ... }
+</code></pre></div></div>
+
+<h2 id="troubleshooting-the-engine-room">Troubleshooting the “Engine” Room</h2>
+
+<p>Even with the compiler watching your back, Kotlin Serialization can be a picky passenger. Here is why your app might be refusing to build (or crashing at runtime).</p>
+
+<h3 id="1-the-missing-annotation-error">1. The “Missing Annotation” Error</h3>
+
+<p><strong>The Symptom:</strong> You get a build error saying <code class="language-plaintext highlighter-rouge">Serializer for class 'X' is not found</code>.</p>
+
+<p><strong>The Fix:</strong> You forgot the <code class="language-plaintext highlighter-rouge">@Serializable</code> marker. In the 2018 era, a <code class="language-plaintext highlighter-rouge">data class</code> was enough for many things. In 2026, the compiler needs that explicit annotation to generate the serialization logic.</p>
+
+<h3 id="2-the-illegal-character-crash">2. The “Illegal Character” Crash</h3>
+
+<p><strong>The Symptom:</strong> Your app crashes when navigating to a route containing a <code class="language-plaintext highlighter-rouge">/</code> or a space.</p>
+
+<p><strong>The Fix:</strong> Navigation routes are essentially URLs. If your <code class="language-plaintext highlighter-rouge">id</code> is <code class="language-plaintext highlighter-rouge">"user/123"</code>, it breaks the path. Always use <code class="language-plaintext highlighter-rouge">Uri.encode()</code> within your Custom NavType (as shown in the snippet above) to ensure your data doesn’t accidentally look like a sub-route.</p>
+
+<h3 id="3-field-mismatch-in-deep-links">3. Field Mismatch in Deep Links</h3>
+
+<p><strong>The Symptom:</strong> <code class="language-plaintext highlighter-rouge">SerializationException: Field 'rank' is required, but it was missing.</code></p>
+
+<p><strong>The Fix:</strong> If you are using <strong>Deep Links</strong>, the URL might not always contain every parameter. Always provide default values in your data class to prevent the app from exploding when a link is slightly malformed.</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Serializable 
+data class Profile(val id: String, val rank: Int = 0) // rank is now optional
+</code></pre></div></div>
+
+<h3 id="4-the-navtype-mismatch">4. The NavType Mismatch</h3>
+
+<p><strong>The Symptom:</strong> <code class="language-plaintext highlighter-rouge">IllegalArgumentException: NavType mismatch</code>.</p>
+
+<p><strong>The Fix:</strong> When using a <code class="language-plaintext highlighter-rouge">typeMap</code>, ensure the key uses the exact <code class="language-plaintext highlighter-rouge">typeOf&lt;T&gt;()</code> that matches the generic in your <code class="language-plaintext highlighter-rouge">composable&lt;T&gt;</code> call.</p>
+
+<hr />
+
+<p>This approach turns your navigation into a verifiable, compile-time roadmap. It’s the end of “magic strings” and the beginning of actual software architecture for Android navigation.</p>]]></content><author><name>Ted Hagos</name></author><summary type="html"><![CDATA[Type-Safe Navigation: The Practical Cheat Sheet]]></summary></entry><entry><title type="html">I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start.</title><link href="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html" rel="alternate" type="text/html" title="I Ignored AI Coding Tools. Here’s the Smallest Useful Way to Start." /><published>2026-01-14T00:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code</id><content type="html" xml:base="http://localhost:4000/java/ai/productivity/2026/01/14/using-ai-to-understand-java-code.html"><![CDATA[<h3 id="a-java-developers-take-on-using-ai-without-outsourcing-thinking">A Java developer’s take on using AI without outsourcing thinking</h3>
 
 <p>For the last couple of years, I mostly ignored AI coding tools.</p>
 
@@ -1070,50 +1198,4 @@ You use AI where it replaces friction, not judgment.</p>
     <a target="_blank" href="https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562" class="btn btn-primary">
       Get the book</a>
   </div>
-</div>]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the java.util.Random class.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3.jpg" /><media:content medium="image" url="http://localhost:4000/images/book_las3.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to open a file in Kotlin</title><link href="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html" rel="alternate" type="text/html" title="How to open a file in Kotlin" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin</id><content type="html" xml:base="http://localhost:4000/kotlin/2019/06/08/open-file-in-kotlin.html"><![CDATA[<p>Just like in Java, you use the <code class="language-plaintext highlighter-rouge">java.io</code> classes, like this;</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">java.io.FileNotFoundException</span>
-<span class="k">import</span> <span class="nn">java.io.FileReader</span>
-<span class="k">import</span> <span class="nn">java.io.IOException</span>
-
-<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="py">fileReader</span><span class="p">:</span> <span class="nc">FileReader</span>
-    <span class="k">try</span> <span class="p">{</span>
-    <span class="n">fileReader</span> <span class="p">=</span> <span class="nc">FileReader</span><span class="p">(</span><span class="s">"README.txt"</span><span class="p">)</span>
-    <span class="kd">var</span> <span class="py">content</span> <span class="p">=</span> <span class="n">fileReader</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-    <span class="nf">println</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
- <span class="p">}</span>
-  <span class="k">catch</span> <span class="p">(</span><span class="n">ffe</span><span class="p">:</span> <span class="nc">FileNotFoundException</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nf">println</span><span class="p">(</span><span class="n">ffe</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="k">catch</span><span class="p">(</span><span class="n">ioe</span><span class="p">:</span> <span class="nc">IOException</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nf">println</span><span class="p">(</span><span class="n">ioe</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
- <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>It can actually be much simpler than the above code; because in Kotlin, you don’t have to use <em>try-catch</em> if you don’t want to. Exception handling is optional. So, you write the code like this;</p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">java.io.FileReader</span>  
-
-<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="py">fileReader</span> <span class="p">=</span> <span class="nc">FileReader</span><span class="p">(</span><span class="s">"README.txt"</span><span class="p">)</span>  
-  <span class="kd">var</span> <span class="py">content</span> <span class="p">=</span> <span class="n">fileReader</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>  
-  <span class="nf">println</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<!-- <p>
-  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484239063">Learn Android Studio 3 with Kotlin</a>
-</p>
-<img src="/images/book_las3_kotlin.png" alt="Learn Android Studio 3 with Kotlin"> -->
-
-<div class="card" style="width: 22rem;">
-  <img src="/images/book_las3_kotlin.png" class="card-img-top" alt="Learn Android Studio 3 with Kotlin" />
-  <div class="card-body">
-    <h5 class="card-title">Learn Android Studio 3 with Kotlin</h5>
-    <p class="card-text">Learn more. See more code samples like this</p>
-    <a target="_blank" href="https://www.apress.com/gp/book/9781484239063" class="btn btn-primary">
-      Get the book</a>
-  </div>
-</div>]]></content><author><name>Ted Hagos</name></author><category term="kotlin" /><summary type="html"><![CDATA[Just like in Java, you use the java.io classes, like this;]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3_kotlin.png" /><media:content medium="image" url="http://localhost:4000/images/book_las3_kotlin.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+</div>]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the java.util.Random class.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3.jpg" /><media:content medium="image" url="http://localhost:4000/images/book_las3.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
