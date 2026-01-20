@@ -1,0 +1,29 @@
+User-agent: *
+Disallow: /wp-admin/  # If using WordPress
+Disallow: /search/    # Prevents crawl loops on search results
+Disallow: /cgi-bin/
+
+# Block Aggressive Chinese Bots (The likely source of your 88% traffic)
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: Sogou web spider
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+# Block AI/LLM Scrapers (Protecting your book-quality content)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+# Slow down non-Google bots that do listen
+User-agent: *
+Crawl-delay: 10
+

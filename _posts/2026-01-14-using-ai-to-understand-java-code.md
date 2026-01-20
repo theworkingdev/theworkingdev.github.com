@@ -112,7 +112,7 @@ public boolean isEligibleForRefund(Order order) {
 }
 ```
 
-It passes tests. It gets merged. But a solid AI explanation surfaces the temporal coupling: using `LocalDate.now()` is a great way to ensure your tests fail exactly once a year during a leap day or whenever the build server’s clock drifts.
+It passes tests. It gets merged. But a solid AI explanation surfaces the hidden dependency: using LocalDate.now() is a great way to ensure your tests fail exactly once a year during a leap day or whenever the build server’s clock drifts. It’s hard-coding the 'when,' which makes the logic impossible to pin down in a test
 
 AI doesn’t replace the reviewer. Its job is to act as a very fast, slightly pedantic colleague who pokes you in the ribs and points at a line of code until you admit you don’t actually know what happens to that BigDecimal if the quantity is a negative prime number.
 

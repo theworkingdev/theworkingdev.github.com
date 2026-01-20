@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose | The Working Dev</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose" />
+<meta name="author" content="Ted Hagos" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive 3,000-word deep dive into modern Android navigation. Learn how to replace string-based routes with type-safe Kotlin objects, manage multi-module architecture, and implement predictive back gestures." />
+<meta property="og:description" content="A comprehensive 3,000-word deep dive into modern Android navigation. Learn how to replace string-based routes with type-safe Kotlin objects, manage multi-module architecture, and implement predictive back gestures." />
+<link rel="canonical" href="http://localhost:4000/android-jetpack-navigation-type-safety-guide/" />
+<meta property="og:url" content="http://localhost:4000/android-jetpack-navigation-type-safety-guide/" />
+<meta property="og:site_name" content="The Working Dev" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-01-19T09:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose" />
+<meta name="twitter:site" content="@lovescaffeine" />
+<meta name="twitter:creator" content="@Ted Hagos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ted Hagos"},"dateModified":"2026-01-19T09:00:00+08:00","datePublished":"2026-01-19T09:00:00+08:00","description":"A comprehensive 3,000-word deep dive into modern Android navigation. Learn how to replace string-based routes with type-safe Kotlin objects, manage multi-module architecture, and implement predictive back gestures.","headline":"Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/android-jetpack-navigation-type-safety-guide/"},"url":"http://localhost:4000/android-jetpack-navigation-type-safety-guide/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="The Working Dev" /><!-- Twitter cards -->
+    <meta name= "twitter:site"    content = "@" />
+    <meta name= "twitter:creator" content = "@" />
+    <meta name= "twitter:title"   content = "Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose" />
+  
+    
+    <meta name= "twitter:description" content = "A comprehensive 3,000-word deep dive into modern Android navigation. Learn how to replace string-based routes with type-safe Kotlin objects, manage multi-module architecture, and implement predictive back gestures." />
+    
+  
+    
+    <meta name= "twitter:card"  content = "summary_large_image" />
+    <meta name= "twitter:image" content = "https://workingdev.net/images/gandalf-programmer.jpg" />
+    
+    <!-- end of Twitter cards -->
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">The Working Dev</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/blog/">Blog</a><a class="page-link" href="/subscribe/">Subscribe</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-01-19T09:00:00+08:00" itemprop="datePublished">Jan 19, 2026
+      </time><!--
+          by: <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ted Hagos</span></span>
+          -->
+
+
+          by: 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">
+              <a href="https://tedhagos.com" rel="author">Ted Hagos</a>
+            </span>
+          </span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="the-archaeology-of-navigation">The Archaeology of Navigation</h2>
+
+<p>In the early days of Android, moving between screens felt less like “navigating a map” and more like “managing a delicate chemical reaction.”</p>
+
+<p>If you wanted to show a new screen in 2014, you had two choices, and both of them felt like a compromise. You could start a new <strong>Activity</strong>, which was heavy and slow—like building a whole new house just to go into the kitchen. Or you could use <strong>Fragments</strong>, which promised to be “lightweight” but turned out to be sentient puzzles that lived inside your Activities and occasionally decided to stop existing for reasons no one fully understood.</p>
+
+<h3 id="the-problem-with-fragment-transaction">The Problem with Fragment Transaction</h3>
+
+<p>To move from a list of items to a detail view, you didn’t just “navigate.” You performed a <strong>Fragment Transaction</strong>. It looked like this:</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val fragment = DetailFragment.newInstance(itemId)
+supportFragmentManager.beginTransaction()
+    .replace(R.id.container, fragment)
+    .addToBackStack(null)
+    .commit()
+</code></pre></div></div>
+
+<p>On the surface, this looks like code. In reality, it was a prayer.</p>
+
+<p>You were manually telling the <code class="language-plaintext highlighter-rouge">FragmentManager</code> to swap out one piece of UI for another. But the <code class="language-plaintext highlighter-rouge">FragmentManager</code> was fickle and had a mind of its own. If you called <code class="language-plaintext highlighter-rouge">.commit()</code> at the wrong millisecond—say, while the user was rotating their phone or after the app had gone to the background—the system would throw an <code class="language-plaintext highlighter-rouge">IllegalStateException</code>. It was the Android equivalent of a “Check Engine” light that also occasionally makes the car disappear.</p>
+
+<h3 id="the-back-stack-wilderness">The Back Stack Wilderness</h3>
+
+<p>Then there was the <strong>Back Stack</strong>.</p>
+
+<p>In a sane world, if you press the “Back” button, you go to the place you were just at. In the pre-Jetpack world, the back stack was a manual ledger. You had to remember to call <code class="language-plaintext highlighter-rouge">.addToBackStack()</code>. If you forgot, the user would press back and suddenly find themselves looking at their home screen wallpaper, wondering if they’d done something wrong.</p>
+
+<p>If your app had a complex flow—like a checkout process with five steps—you had to manually manage the “Up” button (the arrow in the top left) and the “Back” button (the system gesture). They are technically different things, and making them behave identically required a level of bookkeeping that drove developers toward careers in woodworking.</p>
+
+<h3 id="enter-the-engine">Enter the “Engine”</h3>
+
+<p>The problem wasn’t the code; it was the <strong>mental model</strong>. We were focused on the <em>mechanics</em> of the transition—swapping bits of memory and managing lifecycles—rather than the <em>logic</em> of the journey.</p>
+
+<p>When we got Jetpack Navigation in 2018, it was the first attempt at a dashboard. The idea was that navigation should be declarative. Instead of of writing code to “do” a transaction, you would instead create a Navigation Graph (a literal map of your app).</p>
+
+<p>You stopped saying, “Please replace Fragment A with Fragment B and remember it in the ledger.” You started saying, “Navigate to the Detail Screen.”</p>
+
+<h3 id="the-shift-to-2026">The Shift to 2026</h3>
+
+<p>Now we move to the  current era of <strong>Jetpack Compose</strong>, we’ve finally finished the transition. We stopped thinking about “Screens” as physical places (Activities or Fragments) and started thinking about them as <strong>States</strong>.</p>
+
+<p>But to understand why the modern Type-Safe Navigation we use today is so revolutionary, you have to remember the era of the manual transaction. You have to remember the fear of the <code class="language-plaintext highlighter-rouge">NullPointerException</code> that happened because you tried to pass a <code class="language-plaintext highlighter-rouge">userID</code> to a fragment that hadn’t been fully born yet.</p>
+
+<p>We’ve moved from building the engine while driving it to simply pointing at a map and saying, “Take me there.”</p>
+
+<h2 id="the-modern-stack-2026">The Modern Stack (2026)</h2>
+
+<p>In 2026, we have largely abandoned the “String-based” routing that defined the early years of Jetpack Navigation. We no longer treat routes like URLs in a web browser where a typo in a string like <code class="language-plaintext highlighter-rouge">"user_detials"</code> results in a silent failure or a crash. Instead, we use <strong>Type-Safe Kotlin DSLs</strong>.</p>
+
+<h3 id="the-core-components">The Core Components</h3>
+
+<p>The fundamental architecture still relies on three pillars, but their implementation has evolved to be more robust:</p>
+
+<ol>
+  <li><strong>The NavHost:</strong> This is the visual “anchor” in your Compose UI. It’s no longer an XML tag but a Composable function that acts as a viewport.</li>
+  <li><strong>The NavController:</strong> Think of this as the “State Manager” for your UI’s location. It tracks where the user is and maintains the back stack.</li>
+  <li><strong>The Navigation Graph:</strong> In modern apps, this is defined entirely in Kotlin code. It maps specific <strong>Data Objects</strong> (Routes) to specific <strong>Composable Screens</strong>.</li>
+</ol>
+
+<h3 id="from-strings-to-type-safe-objects">From Strings to Type-Safe Objects</h3>
+
+<p>The biggest shift in the current version of Android is the integration with <strong>Kotlin Serialization</strong>. Instead of defining a route as a string:</p>
+
+<ul>
+  <li><strong>Legacy:</strong> <code class="language-plaintext highlighter-rouge">composable("profile/{userId}")</code></li>
+  <li><strong>Modern:</strong> <code class="language-plaintext highlighter-rouge">composable&lt;ProfileRoute&gt;</code></li>
+</ul>
+
+<p>By defining your destinations as <code class="language-plaintext highlighter-rouge">@Serializable</code> data objects or classes, the compiler now checks your work. If your <code class="language-plaintext highlighter-rouge">ProfileRoute</code> requires a <code class="language-plaintext highlighter-rouge">userId: String</code>, you literally cannot call the navigate function without providing it.</p>
+
+<h3 id="the-standard-implementation">The Standard Implementation</h3>
+
+<p>A typical 2026 implementation looks like this:</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 1. Define your destinations as types
+@Serializable object Home
+@Serializable data class Profile(val id: String)
+
+// 2. Set up the NavHost
+val navController = rememberNavController()
+
+NavHost(navController = navController, startDestination = Home) {
+    composable&lt;Home&gt; { 
+        HomeScreen(onUserClick = { id -&gt; 
+            navController.navigate(Profile(id)) 
+        }) 
+    }
+    composable&lt;Profile&gt; { backStackEntry -&gt;
+        val profile: Profile = backStackEntry.toRoute()
+        ProfileScreen(userId = profile.id)
+    }
+}
+</code></pre></div></div>
+
+<h3 id="why-this-matters-for-the-engine">Why This Matters for the “Engine”</h3>
+
+<p>This shift isn’t just about avoiding typos. It allows for:</p>
+
+<ul>
+  <li><strong>Encapsulation:</strong> Destinations can live in different modules without needing to share a global “Constants” file for strings.</li>
+  <li><strong>Deep Linking:</strong> The system can automatically map an incoming URL to these typed objects.</li>
+  <li><strong>Predictive Back:</strong> Because the system knows the graph structure ahead of time, it can provide those smooth, “peeking” animations when a user starts a back gesture, showing exactly which screen is underneath.</li>
+</ul>
+
+<h2 id="scaling-to-the-enterprise">Scaling to the Enterprise</h2>
+
+<p>As an app grows, it eventually outgrows a single file, a single team, and even a single “brain.” In a professional environment, your “Search” feature might live in one module, while “Payments” lives in another. These modules are like neighbors who share a fence but have never actually met. If the “Home” module doesn’t know the “Payments” module exists, how do you tell the app to go there?</p>
+
+<hr />
+
+<h3 id="module-agnostic-routing-the-i-know-a-guy-pattern">Module-Agnostic Routing: The “I Know a Guy” Pattern</h3>
+
+<p>In a small app, everyone knows everyone. Your Home screen can see your Detail screen and just call it. But in a massive app, the Home screen isn’t allowed to talk to the Checkout screen directly. If it did, you’d end up with a “Circular Dependency”—a situation where Module A needs Module B, but Module B needs Module A, and the compiler eventually just stops trying and starts heating up your laptop until it smells like burnt toast.</p>
+
+<p>In 2026, we solve this by creating a <strong>Navigation Contract</strong>.</p>
+
+<p>Think of it as a middleman. The Home screen doesn’t say, “Open the Checkout Screen.” Instead, it yells into a void, “I have a user who wants to pay!” A separate, central module—which we’ve been calling the <strong>“Engine”</strong>—hears this and says, “I know who handles that,” and connects the dots. This is <strong>Module-Agnostic Routing</strong>. It means your features can stay in their own private silos, blissfuly unaware of the rest of the world, while the Navigation Graph acts as the master air-traffic controller.</p>
+
+<h3 id="navigation-interceptors-the-bouncer-at-the-door">Navigation Interceptors: The Bouncer at the Door</h3>
+
+<p>Then there are <strong>Interceptors</strong>. In 2018, checking if a user was logged in usually involved putting a messy <code class="language-plaintext highlighter-rouge">if (isLoggedIn)</code> check inside every single button click. It was like having to show your ID to every single person you met inside a club.</p>
+
+<p>Today, we use Interceptors to act as the bouncer at the front door of the “Route.” Instead of checking state at the button (the origin), we check it at the Graph (the destination).</p>
+
+<p>If a user tries to navigate to <code class="language-plaintext highlighter-rouge">Settings</code>, the Interceptor pauses the transition:</p>
+
+<ul>
+  <li>“Hold on,” it says. “Settings requires a login. You aren’t logged in.”</li>
+  <li>It then transparently reroutes the user to the <code class="language-plaintext highlighter-rouge">Login</code> screen.</li>
+  <li>Once the user logs in, the Interceptor remembers where they were going and finishes the original trip to <code class="language-plaintext highlighter-rouge">Settings</code>.</li>
+</ul>
+
+<p>The user just thinks the app is smart. You, the developer, don’t have to pepper your UI with “if/else” logic. You just define the “rules of the road” once in the Graph.</p>
+
+<h3 id="predictive-back-the-enterprise-polish">Predictive Back: The Enterprise Polish</h3>
+
+<p>Finally, there’s the “Predictive Back” gesture. Because we now use a structured map (the NavGraph) instead of a manual pile of fragments, Android 15+ can “see” into the past.</p>
+
+<p>As the user starts to swipe back, the current screen starts to shrink, and the previous screen begins to peek through from behind. It’s a small visual touch, but it’s the difference between an app that feels like a professional tool and one that feels like a high school science project. If you handle navigation manually, this “peek” breaks. If you use the Navigation Component, you get it for free.</p>
+
+<h2 id="the-magic-and-the-safety-net">The “Magic” and the Safety Net</h2>
+
+<p>We’ve built the map, defined the routes, and set up the bouncers. Now we need to make the experience feel like a cohesive app rather than a series of sliding slides, and we need to make sure the “outside world” can find its way in.</p>
+
+<h3 id="the-great-misconception-its-not-an-intent">The Great Misconception: It’s Not an Intent</h3>
+
+<p>Before we talk about the polish, we have to clear up a common point of confusion. In the old days, crossing module boundaries meant using an <strong>Intent</strong>. You’d fire a message into the void of the Android OS and hope an Activity was listening.</p>
+
+<p>In 2026, we don’t do that.</p>
+
+<p>A <strong>Navigation Contract</strong> is not an Intent. An Intent is like calling a taxi and giving the driver an address; you’re handing control over to the OS. A Navigation Contract is like walking through a door in your own house that leads into a different wing. You stay within your own app’s “memory space.” This is why it’s faster, why the compiler can check your work, and why you can share data without the “postal service” overhead of the OS.</p>
+
+<h3 id="shared-element-transitions-visual-continuity">Shared Element Transitions: Visual Continuity</h3>
+
+<p>One of the “magic” features of modern navigation is the <strong>Shared Element Transition</strong>.</p>
+
+<p>Imagine a user taps a small thumbnail of a cat in a list. In 2018, the list would disappear, and the detail screen would slide in. In 2026, that specific cat image actually “flies” and grows from its spot in the list to become the header of the detail screen.</p>
+
+<p>Because our <code class="language-plaintext highlighter-rouge">NavHost</code> knows about both screens simultaneously, we can tag specific UI elements:</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Modifier.sharedElement(
+    rememberSharedContentState(key = "cat-${cat.id}"),
+    animatedVisibilityScope = this
+)
+</code></pre></div></div>
+
+<p>The system handles the math. The user feels like they are moving <em>through</em> the content, not just switching pages.</p>
+
+<h3 id="deep-linking-the-front-door">Deep Linking: The Front Door</h3>
+
+<p>Even though we aren’t using Intents internally, the “outside world” still does. When a user clicks a link in an email like <code class="language-plaintext highlighter-rouge">myapp.com/profile/ted</code>, the OS sends an Intent to your app.</p>
+
+<p>In the past, you had to manually parse that URL in your <code class="language-plaintext highlighter-rouge">MainActivity</code>. Now, you just add a line to your NavGraph:</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composable&lt;Profile&gt;(
+    deepLinks = listOf(navDeepLink&lt;Profile&gt;(basePath = "https://myapp.com/profile"))
+)
+</code></pre></div></div>
+
+<p>The Navigation library automatically sees the URL, maps <code class="language-plaintext highlighter-rouge">ted</code> to the <code class="language-plaintext highlighter-rouge">id</code> field in your <code class="language-plaintext highlighter-rouge">Profile</code> data class, and drops the user exactly where they need to be. It’s the “Front Door” to your internal map.</p>
+
+<h2 id="testing-checking-the-path-not-the-pixels">Testing: Checking the Path, Not the Pixels</h2>
+
+<p>Finally, how do you know this 3,000-word architecture actually works?</p>
+
+<h3 id="the-old-era-testing-pixels">The Old Era: Testing “Pixels”</h3>
+
+<p>Previously, we relied on <strong>UI Testing</strong>. We had to boot up an emulator, render the entire interface, and use “robots” to hunt for specific pixels. These tests were slow, brittle, and often failed simply because a button moved or an animation lagged.</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// ❌ The Old Way: Flaky and Slow
+onView(withId(R.id.btn_profile)).perform(click())
+onView(withText("User Profile")).check(matches(isDisplayed()))
+</code></pre></div></div>
+
+<h3 id="2026-testing-navigation-state">2026: Testing Navigation State</h3>
+
+<p>Today, we test the <strong>Navigation State</strong>. Instead of checking if a button <em>appeared</em>, we verify that the app’s “brain” correctly processed a change in logic. We write tests that ask: <em>“If I am on the Home screen and I provide a ‘UserClick’ event, does the NavController’s current destination become the Profile type?”</em></p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// ✅ The 2026 Way: Logic-driven and Instant
+val state = navHost.simulateEvent(UserClick("profile_id"))
+assertThat(state.currentDestination).isInstanceOf(Destinations.Profile::class)
+</code></pre></div></div>
+
+<p>By decoupling the logic from the layout, you can verify your entire app’s flow in seconds. This allows for “headless” testing—verifying complex user journeys without ever needing to render a single image or wait for a slow UI transition.</p>
+
+<hr />
+
+<h2 id="the-moral-of-the-story">The Moral of the Story</h2>
+
+<p>Android navigation evolved from a manual, error-prone ritual of swapping fragments into a robust, type-safe system of state management.</p>
+
+<p>We’ve moved from building the engine while driving it to designing a system where the “map” is the source of truth. By using typed routes, module-agnostic contracts, and deep-link integration, we aren’t just moving users between screens—we’re building a predictable, scalable journey.</p>
+
+<p>The “Engine” is now officially in the driver’s seat.</p>
+
+
+  </div>
+
+
+  <!--
+  <hr class="post-divider" />
+
+  <div class="subscribe-cta">
+    <p>
+      If you liked this, I write short essays on software development and programming careers.
+      <a href="https://tedhagos.kit.com/ab4b864482"
+         target="_blank"
+         rel="noopener">
+        Subscribe here →
+      </a>
+    </p>
+  </div>
+  -->
+
+  <div class="card" style="width: 22rem;">
+    <div class="card-body">
+      <h4 class="card-title">Get the Newsletter</h4>
+      <p class="card-text">
+      If you liked this, I write short essays on software development and programming careers.
+    </p>
+      <a target="_blank"href="https://tedhagos.kit.com/ab4b864482" class="btn btn-info">SUBSCRIBE</a>
+    </div>
+  </div>
+
+  
+<!--
+  <div class="discussion">
+    If you find any corrections in the page or article, the best place to log that is in the site's GitHub repo <a href="https://github.com/theworkingdev/theworkingdev.github.com/issues">workingdev.net/issues</a>. To start a discussion with me, the best place to do that is via twitter <a href="http://twitter/lovescaffeine">@lovescaffeine</a>
+  </div>
+-->
+
+  <a class="u-url" href="/android-jetpack-navigation-type-safety-guide/" hidden></a>
+</article>
+
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+
+  <!--
+  <div class="wrapper">
+
+    <h2 class="footer-heading">The Working Dev</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">{&quot;name&quot;=&gt;&quot;Ted Hagos&quot;, &quot;url&quot;=&gt;&quot;https://tedhagos.com&quot;, &quot;twitter&quot;=&gt;&quot;lovescaffeine&quot;, &quot;description&quot;=&gt;&quot;CTO, author of 8 Apress books, and technical educator.&quot;, &quot;links&quot;=&gt;[&quot;https://www.amazon.com/author/tedhagos&quot;, &quot;https://twitter.com/lovescaffeine&quot;]}</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tedhagos"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tedhagos</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</p>
+      </div>
+    </div>
+
+  </div>
+  -->
+
+</footer>
+</body>
+
+</html>
