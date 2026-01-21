@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-20T23:08:39+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose</title><link href="http://localhost:4000/android-jetpack-navigation-type-safety-guide/" rel="alternate" type="text/html" title="Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose" /><published>2026-01-19T09:00:00+08:00</published><updated>2026-01-19T09:00:00+08:00</updated><id>http://localhost:4000/android-jetpack-navigation-type-safety-guide</id><content type="html" xml:base="http://localhost:4000/android-jetpack-navigation-type-safety-guide/"><![CDATA[<h2 id="the-archaeology-of-navigation">The Archaeology of Navigation</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-22T02:15:19+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">Android Studio Panda: The Release That Gets Out of Your Way</title><link href="http://localhost:4000/android-studio-panda-review" rel="alternate" type="text/html" title="Android Studio Panda: The Release That Gets Out of Your Way" /><published>2026-01-20T00:00:00+08:00</published><updated>2026-01-20T00:00:00+08:00</updated><id>http://localhost:4000/android-studio-panda-review</id><content type="html" xml:base="http://localhost:4000/android-studio-panda-review"><![CDATA[<p>Most Android Studio releases promise <em>features</em>. Panda mostly delivers <strong>less friction</strong>. That’s not marketing fluff—it’s a meaningful shift in how the IDE behaves day to day.</p>
+
+<p>This article isn’t a changelog. It’s a field guide: what actually changed, why it matters, and how it shows up in real code.</p>
+
+<hr />
+
+<h2 id="kotlin-feels-like-the-default-now">Kotlin feels like the default now</h2>
+
+<p>Panda continues a quiet trend: Android Studio no longer treats Kotlin as “Java, but different.” It treats it as the primary language. You see this most clearly in how the IDE proactively guards you against common architectural slips.</p>
+
+<h3 id="safer-coroutine-usage">Safer coroutine usage</h3>
+
+<p>Before Panda, the IDE was often “polite” but quiet—it might let you launch a coroutine in a scope that would outlive the UI, leading to silent memory leaks. Now, it is more opinionated.</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UserViewModel(private val repo: UserRepository) : ViewModel() {
+    fun loadUser() {
+        // Panda reliably warns if this leaks scope
+        viewModelScope.launch {
+            val user = repo.fetchUser()
+            _state.value = user
+        }
+    }
+} 
+</code></pre></div></div>
+
+<p><strong>The Panda Difference:</strong> It isn’t just checking syntax; it understands the <strong>context</strong>. If you try to use a global scope where a lifecycle-aware scope is required, the IDE flags it with the same urgency as a compilation error. It’s the difference between finding a leak in production and never shipping it in the first place.</p>
+
+<h2 id="app-quality-insights-finally-closes-the-loop">App Quality Insights finally closes the loop</h2>
+
+<p>Crash reports used to feel like archaeology. You’d find a stack trace in the Play Console, manually navigate to the file in your IDE, and try to mentally reconstruct the state of the app. Panda tightens that loop by bringing the data to the code.</p>
+
+<h3 id="from-crash-to-fix-without-context-switching">From crash to fix without context switching</h3>
+
+<p>In the past, fixing a <code class="language-plaintext highlighter-rouge">NullPointerException</code> involved a “tab-dance” between your browser and your editor. In Panda, the crash appears grouped correctly in <strong>App Quality Insights</strong>.</p>
+
+<p>When you click the crash, the IDE doesn’t just open the file; it highlights the exact line within the context of your recent changes. Suddenly, the oversight is glaring:</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fun map(dto: ProfileDto): Profile {
+    return Profile(
+        name = dto.name!!, // Panda points directly here from the crash report
+        age = dto.age ?: 0
+    )
+}
+</code></pre></div></div>
+
+<p>You fix it because the IDE stopped hiding the problem. A simple <code class="language-plaintext highlighter-rouge">dto.name.orEmpty()</code> replaces the bang-bang operator, and you’re done.</p>
+
+<h2 id="emulator-improvements-you-feel-not-read-about">Emulator improvements you feel, not read about</h2>
+
+<p>Panda’s emulator changes won’t impress you in release notes, but they will save your sanity during a long Tuesday of debugging.</p>
+
+<ul>
+  <li><strong>Reliable API-level testing:</strong> We’ve all done the “ADB Dance”—manually uninstalling and reinstalling an APK because the emulator got into a “weird” state. Panda handles state restoration and cold starts with much higher fidelity. If you switch from API 31 to API 34, the transition is seamless rather than a series of hanging splash screens.</li>
+  <li><strong>Networking that stays alive:</strong> In previous versions, the emulator’s virtual router could be flaky. Panda stabilizes this, ensuring that if your laptop has Wi-Fi, your emulator does too.</li>
+</ul>
+
+<h2 id="gradle-errors-that-tell-the-truth">Gradle errors that tell the truth</h2>
+
+<p>Gradle is still Gradle, but Panda has improved how the IDE translates “Gradle-speak” into “Developer-speak”.</p>
+
+<p><strong>The Old Way:</strong> You’d get a wall of text starting with <code class="language-plaintext highlighter-rouge">Execution failed for VariantAttr</code> and ending with a generic “Could not determine dependencies”. <strong>The Panda Way:</strong> The IDE now parses those errors to identify the specific culprit. It will explicitly tell you if a specific plugin is incompatible with your current version, where that mismatch originated, and—crucially—what version it actually expects. It chooses clarity over ceremony.</p>
+
+<h2 id="compose-previews-are-more-trustworthy">Compose previews are more trustworthy</h2>
+
+<p>Compose previews used to be aspirational; you’d hope they rendered, but you’d often just run the app on a physical device to be sure. Panda makes them a reliable primary tool.</p>
+
+<p>Kotlin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Preview(showBackground = true)
+@Composable
+fun UserCardPreview() {
+    UserCard(user = User("Ted", 42))
+}
+</code></pre></div></div>
+
+<p>In Panda, these previews recompose more reliably when you tweak a padding value or a color hex code. What you see in the IDE is finally close enough to what you ship that you can stay in the “flow state” longer without deploying to hardware.</p>
+
+<hr />
+
+<h2 id="who-should-upgrade">Who should upgrade?</h2>
+
+<ul>
+  <li><strong>Production Developers:</strong> If you ship apps for a living, Panda pays rent by reducing the cognitive load of tracking down lifecycle-related crashes.</li>
+  <li><strong>Architects of Large Codebases:</strong> If you manage multi-module projects, you’ll benefit from the improved Gradle error reporting that identifies exactly which module is causing a version conflict.</li>
+  <li><strong>Mentors and Teachers:</strong> This release reduces “tooling noise.” When a student’s build fails, Panda helps ensure they learn about the code’s logic rather than spending the lab period debugging the IDE itself.</li>
+  <li><strong>Compose Early-Adopters:</strong> If you are moving toward declarative UI, you need a preview engine you can trust. Panda is the first version where the preview feels like a tool rather than a toy.</li>
+</ul>
+
+<h2 id="the-bottom-line">The Bottom Line</h2>
+
+<p>Android Studio Panda signals a shift in maturity: the tooling is moving from <em>clever</em> to <em>reliable</em>. It isn’t a forcing function, but it is a significant efficiency upgrade. If you’ve skipped a release or two, Panda is a very good place to land.</p>]]></content><author><name>Ted Hagos</name></author><category term="Android" /><category term="Development" /><category term="Android Studio" /><category term="Kotlin" /><category term="Jetpack Compose" /><category term="Gradle" /><summary type="html"><![CDATA[A field guide to Android Studio Panda. Discover why this release focuses on reducing developer friction, improving Kotlin coroutine safety, and streamlining crash analysis.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/android-studio-panda.jpg" /><media:content medium="image" url="http://localhost:4000/images/android-studio-panda.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose</title><link href="http://localhost:4000/android-jetpack-navigation-type-safety-guide/" rel="alternate" type="text/html" title="Modern Android Navigation: The Definitive Guide to Type-Safe Routes in Compose" /><published>2026-01-19T09:00:00+08:00</published><updated>2026-01-19T09:00:00+08:00</updated><id>http://localhost:4000/android-jetpack-navigation-type-safety-guide</id><content type="html" xml:base="http://localhost:4000/android-jetpack-navigation-type-safety-guide/"><![CDATA[<h2 id="the-archaeology-of-navigation">The Archaeology of Navigation</h2>
 
 <p>In the early days of Android, moving between screens felt less like “navigating a map” and more like “managing a delicate chemical reaction.”</p>
 
@@ -1127,75 +1221,4 @@ You use AI where it replaces friction, not judgment.</p>
   </div>
 </div>
 
--->]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[The user interacts with an app by touching, clicking, swiping or typing something. The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las4.png" /><media:content medium="image" url="http://localhost:4000/images/book_las4.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How to create a simple Random number generator in Java</title><link href="http://localhost:4000/java/android/2019/06/08/random-number-java.html" rel="alternate" type="text/html" title="How to create a simple Random number generator in Java" /><published>2019-06-08T00:00:00+08:00</published><updated>2019-06-08T00:00:00+08:00</updated><id>http://localhost:4000/java/android/2019/06/08/random-number-java</id><content type="html" xml:base="http://localhost:4000/java/android/2019/06/08/random-number-java.html"><![CDATA[<p>If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the <code class="language-plaintext highlighter-rouge">java.util.Random</code> class.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>        <span class="c1">// (1)</span>
-<span class="n">mrandomnumber</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span> <span class="c1">// (2)</span>
-</code></pre></div></div>
-
-<p><strong>(1)</strong> Creates a new Random object</p>
-
-<p><strong>(2)</strong> Creates a new random integers not greater than 100</p>
-
-<p>Java’s Random class generates not only integers, it can also handle double, float, boolean etc., so,  make sure you check out the docs at  <a href="https://bit.ly/javautilrandom">java.util.Random docs page</a></p>
-
-<p>Here’s a small sample on how to use the Random class in Java. The <strong>RandomNumber</strong> class has two methods named <code class="language-plaintext highlighter-rouge">getNumber()</code> and <code class="language-plaintext highlighter-rouge">createRandomNumber()</code>, it’s supposed to behave like a <em>Singleton</em> so, it’s designed to create a random number only once.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RandomNumber</span>  <span class="o">{</span>
-
-  <span class="kd">private</span> <span class="nc">String</span> <span class="no">TAG</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">();</span>
-
-  <span class="kt">int</span> <span class="n">mrandomnumber</span><span class="o">;</span>
-  <span class="kt">boolean</span> <span class="n">minitialized</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-
-  <span class="nc">String</span> <span class="nf">getNumber</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(!</span><span class="n">minitialized</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">createRandomNumber</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="nc">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"RETURN Random number"</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">mrandomnumber</span> <span class="o">+</span> <span class="s">""</span><span class="o">;</span>
-  <span class="o">}</span>
-
-   <span class="kt">void</span> <span class="nf">createRandomNumber</span><span class="o">()</span> <span class="o">{</span>
-    <span class="nc">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"CREATE NEW Random number"</span><span class="o">);</span>
-    <span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
-    <span class="n">mrandomnumber</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-    <span class="n">minitialized</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div></div>
-
-<p>Then, you can use it like this from MainActivity</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">AppCompatActivity</span> <span class="o">{</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-    <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
-
-    <span class="nc">RandomNumber</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RandomNumber</span><span class="o">();</span>
-
-    <span class="o">((</span><span class="nc">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">txtrandom</span><span class="o">)).</span><span class="na">setText</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getNumber</span><span class="o">());</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<!-- <p>
-  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562">Learn Android Studio 3</a>
-</p>
-<img src="/images/book_las3.png" alt="Learn Android Studio 3"> -->
-
-<div class="card" style="width: 22rem;">
-  <img src="/images/book_las3.png" class="card-img-top" alt="Learn Android Studio 3" />
-  <div class="card-body">
-    <h5 class="card-title">Learn Android Studio 3</h5>
-    <p class="card-text">Learn more. See more code samples like this</p>
-    <a target="_blank" href="https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562" class="btn btn-primary">
-      Get the book</a>
-  </div>
-</div>]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[If you need to generate Random numbers in your Android app (assuming you’re using Java), you can simply use the java.util.Random class.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las3.jpg" /><media:content medium="image" url="http://localhost:4000/images/book_las3.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+-->]]></content><author><name>Ted Hagos</name></author><category term="java" /><category term="android" /><summary type="html"><![CDATA[The user interacts with an app by touching, clicking, swiping or typing something. The Android framework captures, stores, processes and sends these actions to the app as event objects. The diagram (figure 1) below summarizes these interactions]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/book_las4.png" /><media:content medium="image" url="http://localhost:4000/images/book_las4.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

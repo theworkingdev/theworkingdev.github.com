@@ -1317,3 +1317,20 @@ input[type="button"].btn-block {
     width: 100%;
   }
 }
+
+article hr {
+    /* Resets the default browser styling */
+    border: 0;
+    
+    /* Creates the 1px solid gray line */
+    border-top: 1px solid #d1d1d1;
+    
+    /* Adds vertical spacing: 2rem (approx 32px) top/bottom, 0 left/right */
+    margin: 2rem 0;
+    
+    /* Ensures the line doesn't collapse */
+    display: block;
+    height: 0;
+  }
+
+
