@@ -129,17 +129,15 @@
 
 <p>Before Panda, the IDE was often “polite” but quiet—it might let you launch a coroutine in a scope that would outlive the UI, leading to silent memory leaks. Now, it is more opinionated.</p>
 
-<p>Kotlin</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UserViewModel(private val repo: UserRepository) : ViewModel() {
-    fun loadUser() {
-        // Panda reliably warns if this leaks scope
-        viewModelScope.launch {
-            val user = repo.fetchUser()
-            _state.value = user
-        }
-    }
-} 
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">UserViewModel</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">repo</span><span class="p">:</span> <span class="nc">UserRepository</span><span class="p">)</span> <span class="p">:</span> <span class="nc">ViewModel</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">loadUser</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Panda reliably warns if this leaks scope</span>
+        <span class="n">viewModelScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+            <span class="kd">val</span> <span class="py">user</span> <span class="p">=</span> <span class="n">repo</span><span class="p">.</span><span class="nf">fetchUser</span><span class="p">()</span>
+            <span class="n">_state</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">user</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
 </code></pre></div></div>
 
 <p><strong>The Panda Difference:</strong> It isn’t just checking syntax; it understands the <strong>context</strong>. If you try to use a global scope where a lifecycle-aware scope is required, the IDE flags it with the same urgency as a compilation error. It’s the difference between finding a leak in production and never shipping it in the first place.</p>
@@ -156,12 +154,12 @@
 
 <p>Kotlin</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fun map(dto: ProfileDto): Profile {
-    return Profile(
-        name = dto.name!!, // Panda points directly here from the crash report
-        age = dto.age ?: 0
-    )
-}
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">map</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">ProfileDto</span><span class="p">):</span> <span class="nc">Profile</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nc">Profile</span><span class="p">(</span>
+        <span class="n">name</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">name</span><span class="o">!!</span><span class="p">,</span> <span class="c1">// Panda points directly here from the crash report</span>
+        <span class="n">age</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">age</span> <span class="o">?:</span> <span class="mi">0</span>
+    <span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>You fix it because the IDE stopped hiding the problem. A simple <code class="language-plaintext highlighter-rouge">dto.name.orEmpty()</code> replaces the bang-bang operator, and you’re done.</p>
@@ -187,11 +185,11 @@
 
 <p>Kotlin</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Preview(showBackground = true)
-@Composable
-fun UserCardPreview() {
-    UserCard(user = User("Ted", 42))
-}
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">UserCardPreview</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nc">UserCard</span><span class="p">(</span><span class="n">user</span> <span class="p">=</span> <span class="nc">User</span><span class="p">(</span><span class="s">"Ted"</span><span class="p">,</span> <span class="mi">42</span><span class="p">))</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>In Panda, these previews recompose more reliably when you tweak a padding value or a color hex code. What you see in the IDE is finally close enough to what you ship that you can stay in the “flow state” longer without deploying to hardware.</p>

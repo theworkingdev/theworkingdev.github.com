@@ -27,9 +27,7 @@ Panda continues a quiet trend: Android Studio no longer treats Kotlin as “Java
 
 Before Panda, the IDE was often "polite" but quiet—it might let you launch a coroutine in a scope that would outlive the UI, leading to silent memory leaks. Now, it is more opinionated.
 
-Kotlin
-
-```
+```kotlin
 class UserViewModel(private val repo: UserRepository) : ViewModel() {
     fun loadUser() {
         // Panda reliably warns if this leaks scope
@@ -55,7 +53,7 @@ When you click the crash, the IDE doesn't just open the file; it highlights the 
 
 Kotlin
 
-```
+```kotlin
 fun map(dto: ProfileDto): Profile {
     return Profile(
         name = dto.name!!, // Panda points directly here from the crash report
@@ -85,7 +83,7 @@ Compose previews used to be aspirational; you’d hope they rendered, but you’
 
 Kotlin
 
-```
+```kotlin
 @Preview(showBackground = true)
 @Composable
 fun UserCardPreview() {

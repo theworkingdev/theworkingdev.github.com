@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-22T02:15:19+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">Android Studio Panda: The Release That Gets Out of Your Way</title><link href="http://localhost:4000/android-studio-panda-review" rel="alternate" type="text/html" title="Android Studio Panda: The Release That Gets Out of Your Way" /><published>2026-01-20T00:00:00+08:00</published><updated>2026-01-20T00:00:00+08:00</updated><id>http://localhost:4000/android-studio-panda-review</id><content type="html" xml:base="http://localhost:4000/android-studio-panda-review"><![CDATA[<p>Most Android Studio releases promise <em>features</em>. Panda mostly delivers <strong>less friction</strong>. That’s not marketing fluff—it’s a meaningful shift in how the IDE behaves day to day.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-22T02:19:50+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">The Working Dev</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">Android Studio Panda: The Release That Gets Out of Your Way</title><link href="http://localhost:4000/android-studio-panda-review" rel="alternate" type="text/html" title="Android Studio Panda: The Release That Gets Out of Your Way" /><published>2026-01-20T00:00:00+08:00</published><updated>2026-01-20T00:00:00+08:00</updated><id>http://localhost:4000/android-studio-panda-review</id><content type="html" xml:base="http://localhost:4000/android-studio-panda-review"><![CDATA[<p>Most Android Studio releases promise <em>features</em>. Panda mostly delivers <strong>less friction</strong>. That’s not marketing fluff—it’s a meaningful shift in how the IDE behaves day to day.</p>
 
 <p>This article isn’t a changelog. It’s a field guide: what actually changed, why it matters, and how it shows up in real code.</p>
 
@@ -12,17 +12,15 @@
 
 <p>Before Panda, the IDE was often “polite” but quiet—it might let you launch a coroutine in a scope that would outlive the UI, leading to silent memory leaks. Now, it is more opinionated.</p>
 
-<p>Kotlin</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UserViewModel(private val repo: UserRepository) : ViewModel() {
-    fun loadUser() {
-        // Panda reliably warns if this leaks scope
-        viewModelScope.launch {
-            val user = repo.fetchUser()
-            _state.value = user
-        }
-    }
-} 
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">UserViewModel</span><span class="p">(</span><span class="k">private</span> <span class="kd">val</span> <span class="py">repo</span><span class="p">:</span> <span class="nc">UserRepository</span><span class="p">)</span> <span class="p">:</span> <span class="nc">ViewModel</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">loadUser</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Panda reliably warns if this leaks scope</span>
+        <span class="n">viewModelScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+            <span class="kd">val</span> <span class="py">user</span> <span class="p">=</span> <span class="n">repo</span><span class="p">.</span><span class="nf">fetchUser</span><span class="p">()</span>
+            <span class="n">_state</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="n">user</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
 </code></pre></div></div>
 
 <p><strong>The Panda Difference:</strong> It isn’t just checking syntax; it understands the <strong>context</strong>. If you try to use a global scope where a lifecycle-aware scope is required, the IDE flags it with the same urgency as a compilation error. It’s the difference between finding a leak in production and never shipping it in the first place.</p>
@@ -39,12 +37,12 @@
 
 <p>Kotlin</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fun map(dto: ProfileDto): Profile {
-    return Profile(
-        name = dto.name!!, // Panda points directly here from the crash report
-        age = dto.age ?: 0
-    )
-}
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">map</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">ProfileDto</span><span class="p">):</span> <span class="nc">Profile</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nc">Profile</span><span class="p">(</span>
+        <span class="n">name</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">name</span><span class="o">!!</span><span class="p">,</span> <span class="c1">// Panda points directly here from the crash report</span>
+        <span class="n">age</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">age</span> <span class="o">?:</span> <span class="mi">0</span>
+    <span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>You fix it because the IDE stopped hiding the problem. A simple <code class="language-plaintext highlighter-rouge">dto.name.orEmpty()</code> replaces the bang-bang operator, and you’re done.</p>
@@ -70,11 +68,11 @@
 
 <p>Kotlin</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Preview(showBackground = true)
-@Composable
-fun UserCardPreview() {
-    UserCard(user = User("Ted", 42))
-}
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Preview</span><span class="p">(</span><span class="n">showBackground</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">UserCardPreview</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nc">UserCard</span><span class="p">(</span><span class="n">user</span> <span class="p">=</span> <span class="nc">User</span><span class="p">(</span><span class="s">"Ted"</span><span class="p">,</span> <span class="mi">42</span><span class="p">))</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>In Panda, these previews recompose more reliably when you tweak a padding value or a color hex code. What you see in the IDE is finally close enough to what you ship that you can stay in the “flow state” longer without deploying to hardware.</p>
