@@ -17,6 +17,13 @@ Most Android Studio releases promise *features*. Panda mostly delivers **less fr
 
 This article isn’t a changelog. It’s a field guide: what actually changed, why it matters, and how it shows up in real code.
 
+### TL;DR: The Quick Version
+* **Context-Aware Guardrails:** The IDE has moved beyond simple syntax checking to deeper architectural awareness. It stops you from making common Kotlin mistakes before you even hit 'Build'.
+* **Closed-Loop Debugging:** App Quality Insights now maps Firebase and Play Console data directly to your source. When your app crashes in the wild, Panda points to the exact line of code in your editor.
+* **High-Fidelity Previews:** Jetpack Compose rendering is now more stable and reactive. The visual designer actually works in real-time, reducing the gap between code and UI.
+* **Semantic Error Parsing:** Gradle failures are now interpreted rather than just reported. The error messages tell you what’s broken instead of throwing a wall of technical gibberish at you.
+
+
 ------
 
 ## Kotlin feels like the default now
