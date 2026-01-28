@@ -37,8 +37,8 @@ default_image: /images/gandalf-programmer.jpg
 markdown: kramdown
 
 show_excerpts: true
-google_analytics: UA-123410395-1
-
+# google_analytics: UA-123410395-1
+# this is the old analytics account
 
 defaults:
   layout: post
