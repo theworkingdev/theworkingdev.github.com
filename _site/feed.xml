@@ -1,4 +1,242 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-30T21:38:36+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">WorkingDev.net</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">Jetpack Compose Version Compatibility: Mastering the Triangle of Kotlin, Compiler, and BOM</title><link href="http://localhost:4000/jetpack-compose-version-compatibility-kotlin-compiler-bom" rel="alternate" type="text/html" title="Jetpack Compose Version Compatibility: Mastering the Triangle of Kotlin, Compiler, and BOM" /><published>2026-01-30T00:00:00+08:00</published><updated>2026-01-30T00:00:00+08:00</updated><id>http://localhost:4000/jetpack-compose-version-compatibility-kotlin-compiler-bom</id><content type="html" xml:base="http://localhost:4000/jetpack-compose-version-compatibility-kotlin-compiler-bom"><![CDATA[<h2 id="the-bermuda-triangle-of-android-kotlin-compose-and-the-bom">The Bermuda Triangle of Android: Kotlin, Compose, and the BOM</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-02-02T01:04:02+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">WorkingDev.net</title><subtitle>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</subtitle><author><name>Ted Hagos</name></author><entry><title type="html">Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin</title><link href="http://localhost:4000/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article.html" rel="alternate" type="text/html" title="Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin" /><published>2026-02-02T00:00:00+08:00</published><updated>2026-02-02T00:00:00+08:00</updated><id>http://localhost:4000/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article</id><content type="html" xml:base="http://localhost:4000/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article.html"><![CDATA[<p>Have you ever found yourself managing a mess of boolean flags in your Android app—<code class="language-plaintext highlighter-rouge">isLoading</code>, <code class="language-plaintext highlighter-rouge">hasError</code>, <code class="language-plaintext highlighter-rouge">isEmpty</code>—and wondering if there’s a cleaner way? You’re not alone. Today, I’m going to show you how Kotlin’s sealed classes can transform your chaotic state management into something elegant and compiler-safe.</p>
+
+<h2 id="the-problem-boolean-flag-hell">The Problem: Boolean Flag Hell</h2>
+
+<p>Picture this: You’re building a screen that fetches user data from an API. You start simple:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">isLoading</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">hasError</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">data</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;?</span> <span class="p">=</span> <span class="k">null</span>
+</code></pre></div></div>
+
+<p>Looks reasonable, right? But then reality hits:</p>
+
+<ul>
+  <li>What if <code class="language-plaintext highlighter-rouge">isLoading</code> and <code class="language-plaintext highlighter-rouge">hasError</code> are both <code class="language-plaintext highlighter-rouge">true</code>? Which takes precedence?</li>
+  <li>Is that <code class="language-plaintext highlighter-rouge">data</code> fresh, or leftover from a previous successful fetch?</li>
+  <li>Now you need an empty state. Another boolean? <code class="language-plaintext highlighter-rouge">isEmpty = true</code>?</li>
+  <li>Every new screen state means another flag to juggle.</li>
+</ul>
+
+<p>Before long, your UI logic looks like this:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">isLoading</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">hasError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">showLoadingSpinner</span><span class="p">()</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(!</span><span class="n">isLoading</span> <span class="p">&amp;&amp;</span> <span class="n">hasError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">showError</span><span class="p">()</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(!</span><span class="n">isLoading</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">hasError</span> <span class="p">&amp;&amp;</span> <span class="n">data</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="nf">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nf">showEmptyState</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">showUserList</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is fragile, error-prone, and a nightmare to maintain. There has to be a better way.</p>
+
+<h2 id="the-solution-sealed-classes">The Solution: Sealed Classes</h2>
+
+<p>Enter <strong>sealed classes</strong>—Kotlin’s secret weapon for modeling a closed set of possibilities. Think of them as enums on steroids: they can carry data, enforce exhaustive checking, and make your code bulletproof.</p>
+
+<p>Here’s how we can model our UI state:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sealed</span> <span class="kd">class</span> <span class="nc">UiState</span> <span class="p">{</span>
+    <span class="kd">object</span> <span class="nc">Loading</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Success</span><span class="p">(</span><span class="kd">val</span> <span class="py">users</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Error</span><span class="p">(</span><span class="kd">val</span> <span class="py">message</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let me break this down:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Loading</code></strong> is an <code class="language-plaintext highlighter-rouge">object</code> because it doesn’t need to carry any data—it’s just a state marker.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Success</code></strong> is a <code class="language-plaintext highlighter-rouge">data class</code> that wraps the list of users we fetched.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Error</code></strong> is a <code class="language-plaintext highlighter-rouge">data class</code> that includes an error message to display.</li>
+</ul>
+
+<p>Because all three are nested inside <code class="language-plaintext highlighter-rouge">UiState</code>, the compiler knows this is the <strong>complete set</strong> of possible states. No surprises, no hidden edge cases.</p>
+
+<h2 id="visualizing-the-state-machine">Visualizing the State Machine</h2>
+
+<p>Your UI is essentially a state machine. At any moment, it’s in exactly one state:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ┌─────────┐
+    │ Loading │
+    └────┬────┘
+         │
+    ┌────┴────────────┐
+    │                 │
+    ▼                 ▼
+Success(users)    Error(message)
+</code></pre></div></div>
+
+<ul>
+  <li>Start in <strong>Loading</strong> while fetching data</li>
+  <li>Transition to <strong>Success</strong> or <strong>Error</strong> based on the result</li>
+  <li>Never be in multiple conflicting states at once</li>
+</ul>
+
+<h2 id="putting-it-into-practice-the-viewmodel">Putting It Into Practice: The ViewModel</h2>
+
+<p>Here’s how you’d use this in a typical Android <code class="language-plaintext highlighter-rouge">ViewModel</code>:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">UserViewModel</span> <span class="p">:</span> <span class="nc">ViewModel</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">_uiState</span> <span class="p">=</span> <span class="nc">MutableStateFlow</span><span class="p">&lt;</span><span class="nc">UiState</span><span class="p">&gt;(</span><span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">uiState</span><span class="p">:</span> <span class="nc">StateFlow</span><span class="p">&lt;</span><span class="nc">UiState</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">_uiState</span>
+
+    <span class="k">fun</span> <span class="nf">fetchUsers</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">viewModelScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span>
+                <span class="kd">val</span> <span class="py">users</span> <span class="p">=</span> <span class="n">repository</span><span class="p">.</span><span class="nf">getUsers</span><span class="p">()</span>
+                <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nc">Exception</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span><span class="p">(</span><span class="s">"Failed to load users"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice how clean this is. At every step, <code class="language-plaintext highlighter-rouge">_uiState.value</code> is set to exactly one state. No ambiguity, no flag coordination—just straightforward state transitions.</p>
+
+<h2 id="consuming-the-state-in-your-ui">Consuming the State in Your UI</h2>
+
+<p>Now here’s where the magic really happens. In your <code class="language-plaintext highlighter-rouge">Activity</code> or <code class="language-plaintext highlighter-rouge">Fragment</code>, you collect the state and use a <code class="language-plaintext highlighter-rouge">when</code> expression:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lifecycleScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+    <span class="n">viewModel</span><span class="p">.</span><span class="n">uiState</span><span class="p">.</span><span class="nf">collect</span> <span class="p">{</span> <span class="n">state</span> <span class="p">-&gt;</span>
+        <span class="k">when</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span> <span class="p">-&gt;</span> <span class="nf">showLoadingSpinner</span><span class="p">()</span>
+            <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span> <span class="p">-&gt;</span> <span class="nf">showUserList</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">users</span><span class="p">)</span>
+            <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span> <span class="p">-&gt;</span> <span class="nf">showError</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The compiler <strong>enforces</strong> that you handle all states. If you forget to handle <code class="language-plaintext highlighter-rouge">Error</code>, you’ll get a compilation warning. If you add a new state later (say, <code class="language-plaintext highlighter-rouge">Empty</code>), the compiler will remind you to update every <code class="language-plaintext highlighter-rouge">when</code> block that handles <code class="language-plaintext highlighter-rouge">UiState</code>.</p>
+
+<p>This is type safety at its finest.</p>
+
+<h2 id="why-this-approach-wins">Why This Approach Wins</h2>
+
+<p>Let me count the ways:</p>
+
+<p><strong>1. Type Safety</strong><br />
+The compiler is your co-pilot. It won’t let you forget to handle a state, and it won’t let you create impossible combinations.</p>
+
+<p><strong>2. Single Source of Truth</strong><br />
+Your UI can only be in one state at a time. No more “what if both flags are true?” scenarios.</p>
+
+<p><strong>3. Maintainability</strong><br />
+Adding new states is trivial. Add a new subclass to <code class="language-plaintext highlighter-rouge">UiState</code>, and the compiler tells you everywhere you need to update your code.</p>
+
+<p><strong>4. Readability</strong><br />
+Anyone reading your code instantly understands what states are possible. The structure is self-documenting.</p>
+
+<h2 id="bonus-adding-more-states">Bonus: Adding More States</h2>
+
+<p>Want to add an empty state? Easy:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sealed</span> <span class="kd">class</span> <span class="nc">UiState</span> <span class="p">{</span>
+    <span class="kd">object</span> <span class="nc">Loading</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Success</span><span class="p">(</span><span class="kd">val</span> <span class="py">users</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Error</span><span class="p">(</span><span class="kd">val</span> <span class="py">message</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">object</span> <span class="nc">Empty</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>  <span class="c1">// New state!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now update your ViewModel:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">fetchUsers</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">viewModelScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span>
+            <span class="kd">val</span> <span class="py">users</span> <span class="p">=</span> <span class="n">repository</span><span class="p">.</span><span class="nf">getUsers</span><span class="p">()</span>
+            <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="nf">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+                <span class="nc">UiState</span><span class="p">.</span><span class="nc">Empty</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nc">Exception</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span><span class="p">(</span><span class="s">"Failed to load users"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And your UI:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">when</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span> <span class="p">-&gt;</span> <span class="nf">showLoadingSpinner</span><span class="p">()</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span> <span class="p">-&gt;</span> <span class="nf">showUserList</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">users</span><span class="p">)</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span> <span class="p">-&gt;</span> <span class="nf">showError</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Empty</span> <span class="p">-&gt;</span> <span class="nf">showEmptyState</span><span class="p">()</span>  <span class="c1">// New case!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The compiler won’t let you forget that new <code class="language-plaintext highlighter-rouge">Empty</code> case. That’s the power of exhaustive checking.</p>
+
+<h2 id="quick-comparison-before-and-after">Quick Comparison: Before and After</h2>
+
+<p><strong>Before (with boolean flags):</strong></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">isLoading</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">hasError</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">isEmpty</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">data</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;?</span> <span class="p">=</span> <span class="k">null</span>
+
+<span class="c1">// Complex conditional logic everywhere</span>
+<span class="k">if</span> <span class="p">(!</span><span class="n">isLoading</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">hasError</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isEmpty</span> <span class="p">&amp;&amp;</span> <span class="n">data</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">showUserList</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>After (with sealed classes):</strong></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sealed</span> <span class="kd">class</span> <span class="nc">UiState</span> <span class="p">{</span>
+    <span class="kd">object</span> <span class="nc">Loading</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">object</span> <span class="nc">Empty</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Success</span><span class="p">(</span><span class="kd">val</span> <span class="py">users</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Error</span><span class="p">(</span><span class="kd">val</span> <span class="py">message</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// Clean, exhaustive handling</span>
+<span class="k">when</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span> <span class="p">-&gt;</span> <span class="nf">showLoadingSpinner</span><span class="p">()</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Empty</span> <span class="p">-&gt;</span> <span class="nf">showEmptyState</span><span class="p">()</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span> <span class="p">-&gt;</span> <span class="nf">showUserList</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">users</span><span class="p">)</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span> <span class="p">-&gt;</span> <span class="nf">showError</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="your-turn">Your Turn</h2>
+
+<p>If you’re tired of drowning in boolean flags and fragile conditional logic, give sealed classes a try. Start small—pick one screen in your app and refactor its state management. I promise you’ll never go back.</p>
+
+<p><strong>Pro tip:</strong> Sealed classes aren’t just for UI states. Use them for navigation events, form validation results, network responses—anywhere you have a fixed set of possibilities.</p>
+
+<p><strong>Think of sealed classes as Kotlin’s answer to Java enums, but with superpowers.</strong> While enums can only hold a single value, sealed classes let each state carry its own data—like a list of users in <code class="language-plaintext highlighter-rouge">Success</code> or an error message in <code class="language-plaintext highlighter-rouge">Error</code>. That flexibility is what makes them perfect for real-world scenarios.</p>
+
+<h2 id="whats-next">What’s Next?</h2>
+
+<p>Once you’ve mastered sealed classes for UI states, you can explore more advanced patterns:</p>
+
+<ul>
+  <li>Combining sealed classes with <code class="language-plaintext highlighter-rouge">Flow</code> for reactive state management</li>
+  <li>Nested sealed classes for complex state hierarchies</li>
+  <li>Using sealed classes with Jetpack Compose’s state hoisting</li>
+</ul>
+
+<p>Want to dive deeper? Check out my upcoming book on <a href="https://leanpub.com/55kotlinrecipesforandroidprogramming">Kotlin Recipes</a> (shameless plug!), where I cover this pattern and many more in detail.</p>
+
+<p>Now go forth and banish those boolean flags forever. Your future self will thank you.</p>
+
+<hr />
+
+<p><em>Have you tried sealed classes in your projects? What’s your favorite use case? Drop a comment below—I’d love to hear about your experience!</em></p>]]></content><author><name>Ted Hagos</name></author><category term="Kotlin" /><category term="Android" /><category term="Architecture" /><summary type="html"><![CDATA[Tired of managing isLoading, hasError, and isEmpty flags? Learn how Kotlin's sealed classes transform chaotic state management into elegant, compiler-safe code.]]></summary></entry><entry><title type="html">Jetpack Compose Version Compatibility: Mastering the Triangle of Kotlin, Compiler, and BOM</title><link href="http://localhost:4000/jetpack-compose-version-compatibility-kotlin-compiler-bom" rel="alternate" type="text/html" title="Jetpack Compose Version Compatibility: Mastering the Triangle of Kotlin, Compiler, and BOM" /><published>2026-01-30T00:00:00+08:00</published><updated>2026-01-30T00:00:00+08:00</updated><id>http://localhost:4000/jetpack-compose-version-compatibility-kotlin-compiler-bom</id><content type="html" xml:base="http://localhost:4000/jetpack-compose-version-compatibility-kotlin-compiler-bom"><![CDATA[<h2 id="the-bermuda-triangle-of-android-kotlin-compose-and-the-bom">The Bermuda Triangle of Android: Kotlin, Compose, and the BOM</h2>
 
 <p>In the early days of Android Studio, we spent half our lives chasing “Incompatible Version” errors. We’re a long ways away from that now, but the complexity hasn’t disappeared—it’s just moved into a specific, three-sided relationship.</p>
 
@@ -688,7 +926,156 @@ You use AI where it replaces friction, not judgment.</p>
 
 <p><em>Note: This post was originally published in 2020 and updated in 2026 to reflect newer tools and workflows.</em></p>
 
-<p>I update this list only when a resource proves useful more than once — the real filter that matters.</p>]]></content><author><name>Ted Hagos</name></author><category term="resources" /><category term="programming" /><category term="learning" /><category term="tools" /><category term="developer" /><summary type="html"><![CDATA[A list of programming resources]]></summary></entry><entry><title type="html">Android Studio Time Savers</title><link href="http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers.html" rel="alternate" type="text/html" title="Android Studio Time Savers" /><published>2020-05-01T00:00:00+08:00</published><updated>2020-05-01T00:00:00+08:00</updated><id>http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers</id><content type="html" xml:base="http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers.html"><![CDATA[<p>What we usually mean when talking about productivity is that we want to do what we need to do in the shortest possible time; that means keyboard shortcuts, templates, snippets etc. In this section, we’ll take a peek at some of what Android Studio has to offer give our productivity a little boost. We won’t go into detail; that’s not the goal, but rather just to show you what’s available in Android Studio.</p>
+<p>I update this list only when a resource proves useful more than once — the real filter that matters.</p>]]></content><author><name>Ted Hagos</name></author><category term="resources" /><category term="programming" /><category term="learning" /><category term="tools" /><category term="developer" /><summary type="html"><![CDATA[A list of programming resources]]></summary></entry><entry><title type="html">How to Handle Clicks in Android</title><link href="http://localhost:4000/android/2020/05/01/howto-handle-clicks-android.html" rel="alternate" type="text/html" title="How to Handle Clicks in Android" /><published>2020-05-01T00:00:00+08:00</published><updated>2020-05-01T00:00:00+08:00</updated><id>http://localhost:4000/android/2020/05/01/howto-handle-clicks-android</id><content type="html" xml:base="http://localhost:4000/android/2020/05/01/howto-handle-clicks-android.html"><![CDATA[<p>To follow the tutorial, you’ll need to create a project or <a href="https://bit.ly/3bENu2x">download the project file here</a>. I created this project using Android Studio 4 (Canary version, at the time of writing). Below are the project details;</p>
+
+<ul>
+  <li><strong>Name of project</strong>. My Application</li>
+  <li><strong>MIN SDK</strong>. Android 10, API level 29</li>
+  <li><strong>Form factor</strong>. Phone and Tablet</li>
+  <li><strong>Language</strong>. Java</li>
+</ul>
+
+<p>You can add a Button View object to the layout file either in Design Mode or in Code View. The Code View of <strong>/app/res/activity_main.xml</strong>, with the Button View added, looks like the following</p>
+
+<p><strong>Listing 1. /app/res/activity_main.xml</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;androidx.constraintlayout.widget.ConstraintLayout</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+  <span class="na">xmlns:app=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span>
+  <span class="na">xmlns:tools=</span><span class="s">"http://schemas.android.com/tools"</span>
+  <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+  <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+  <span class="na">tools:context=</span><span class="s">".MainActivity"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;Button</span>
+    <span class="na">android:id=</span><span class="s">"@+id/button"</span>
+    <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+    <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+    <span class="na">android:text=</span><span class="s">"Button"</span>
+    <span class="na">android:textSize=</span><span class="s">"30sp"</span>
+    <span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">"parent"</span>
+    <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">"parent"</span>
+    <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">"parent"</span>
+    <span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">"parent"</span>
+    <span class="na">app:layout_constraintVertical_bias=</span><span class="s">"0.163"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
+</code></pre></div></div>
+
+<p>If you want the Button to do something interesting when it’s clicked, you need to do the following;</p>
+
+<ol>
+  <li>In <strong>MainActivity.java</strong>, get a programmatic reference to the Button View object</li>
+  <li>Still in MainActivity, create a listener object (a ClickListener object)</li>
+  <li>Override the onClick method of the ClickListener object</li>
+  <li>Bind the listener object to the Button object</li>
+</ol>
+
+<p><strong>First step</strong> is to get a reference to the Button object. You can do this with the findViewById() method, like this</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Button btn = (Button) findViewById(R.id.***button\***);
+</code></pre></div></div>
+
+<p>You need to pass the resource <strong>ID</strong> as an argument to this method; the resource ID of the button is R.id.button. The <strong>R.java</strong> file is generated by the Android Runtime during compilation so we can use it to reference the View objects in the layout files.</p>
+
+<p><strong>Second step</strong> is to create a listener object. Since we want the Button to react to click events, we will create an OnClickListener object, like this</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span> <span class="n">listener</span> <span class="o">=</span> <span class="o">**</span><span class="k">new</span><span class="o">**</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="o">**</span><span class="kd">public</span> <span class="kt">void</span><span class="o">**</span> <span class="n">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// statements;</span>
+  <span class="o">}</span>
+<span class="o">};</span>
+</code></pre></div></div>
+
+<p><strong>Third step</strong> it override the onClick method on the OnClickListener object. Whatever you want to happen when the button is clicked, you should put it inside this method.</p>
+
+<p><strong>Fourth step</strong> is to bind the listener object to the Button object, like this</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>btn.setOnClickListener(listener);
+</code></pre></div></div>
+
+<p>Now, you can run the application. Test it either in the emulator (AVD) or a connected device. The app looks like this</p>
+
+<figure>
+  <img style="width: 19rem;" src="/images/android-buttonclick-toast.png" />
+  <figcaption>Fig 1. Toast Message</figcaption>
+</figure>
+
+<p><strong>Listing 2. Full code of MainActivity.java</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">androidx.appcompat.app.AppCompatActivity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.View</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.Button</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.Toast</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">AppCompatActivity</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+    <span class="nc">Button</span> <span class="n">btn</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Button</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">button</span><span class="o">);</span>
+
+    <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span> <span class="n">listener</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Context</span> <span class="n">ctx</span> <span class="o">=</span> <span class="nc">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">;</span>
+        <span class="nc">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">ctx</span><span class="o">,</span> <span class="s">"Hello"</span><span class="o">,</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">};</span>
+    
+    <span class="n">btn</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="n">listener</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Download the source code from here <a href="https://bit.ly/3bENu2x">https://bit.ly/3bENu2x</a></p>
+
+<!-- <p>
+  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562">Learn Android Studio 3</a>
+</p>
+<img src="/images/book_las3.png" alt="Learn Android Studio 3"> -->
+
+<!-- <div class="card" style="width: 22rem;">
+  <img src="/images/book_las4.png" class="card-img-top" alt="Learn Android Studio 4">
+  <div class="card-body">
+    <h5 class="card-title">Learn Android Studio 4</h5>
+    <p class="card-text">Learn more. See more code samples like this</p>
+    <a target="_blank" href="https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562" class="btn btn-primary">
+      Get the book</a>
+  </div>
+</div> -->
+
+<!--
+
+<div class="card" style="width: 22rem;">
+  <img src="/images/book_las4.png" class="card-img-top" alt="Learn Android Studio 4">
+  <div class="card-body">
+    <h5 class="card-title">Learn Android Studio 4</h5>
+    <p class="card-text">Learn more tips like this from the book. Can I notify you when the book comes out?</p>
+
+    <form
+    action="https://buttondown.email/api/emails/embed-subscribe/workingdev"
+    method="post"
+    target="popupwindow"
+    onsubmit="window.open('https://buttondown.email/workingdev', 'popupwindow')"
+    class="embeddable-buttondown-form"
+  >
+    <label for="bd-email">Enter your email</label>
+    <input type="email" name="email" id="bd-email"  />
+    <input type="hidden" value="learnandroidstudio4" name="tag"/>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  </div>
+</div>
+
+-->]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="java" /><category term="androidstudio" /><summary type="html"><![CDATA[The article walks through the details on how to build a click-handler in Android using the Java language. The basics are easy to master once you have broken down the details on how create a listener, bind the Button to the listener and override the onClick method]]></summary></entry><entry><title type="html">Android Studio Time Savers</title><link href="http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers.html" rel="alternate" type="text/html" title="Android Studio Time Savers" /><published>2020-05-01T00:00:00+08:00</published><updated>2020-05-01T00:00:00+08:00</updated><id>http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers</id><content type="html" xml:base="http://localhost:4000/android/androidstudio/2020/05/01/android-studio-timesavers.html"><![CDATA[<p>What we usually mean when talking about productivity is that we want to do what we need to do in the shortest possible time; that means keyboard shortcuts, templates, snippets etc. In this section, we’ll take a peek at some of what Android Studio has to offer give our productivity a little boost. We won’t go into detail; that’s not the goal, but rather just to show you what’s available in Android Studio.</p>
 
 <p><strong>Contents</strong></p>
 <ul id="markdown-toc">
@@ -958,156 +1345,7 @@ You use AI where it replaces friction, not judgment.</p>
     <a target="_blank" href="https://www.apress.com/gp/book/9781484249529" class="btn btn-primary">
       Get the book</a>
   </div>
-</div>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="androidstudio" /><summary type="html"><![CDATA[Android Studio productivity tips. Learn how about automatic code generation, live templates, how to import sample codes and the important keyboard shortcuts you can start using today to boost your productivity]]></summary></entry><entry><title type="html">How to Handle Clicks in Android</title><link href="http://localhost:4000/android/2020/05/01/howto-handle-clicks-android.html" rel="alternate" type="text/html" title="How to Handle Clicks in Android" /><published>2020-05-01T00:00:00+08:00</published><updated>2020-05-01T00:00:00+08:00</updated><id>http://localhost:4000/android/2020/05/01/howto-handle-clicks-android</id><content type="html" xml:base="http://localhost:4000/android/2020/05/01/howto-handle-clicks-android.html"><![CDATA[<p>To follow the tutorial, you’ll need to create a project or <a href="https://bit.ly/3bENu2x">download the project file here</a>. I created this project using Android Studio 4 (Canary version, at the time of writing). Below are the project details;</p>
-
-<ul>
-  <li><strong>Name of project</strong>. My Application</li>
-  <li><strong>MIN SDK</strong>. Android 10, API level 29</li>
-  <li><strong>Form factor</strong>. Phone and Tablet</li>
-  <li><strong>Language</strong>. Java</li>
-</ul>
-
-<p>You can add a Button View object to the layout file either in Design Mode or in Code View. The Code View of <strong>/app/res/activity_main.xml</strong>, with the Button View added, looks like the following</p>
-
-<p><strong>Listing 1. /app/res/activity_main.xml</strong></p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;androidx.constraintlayout.widget.ConstraintLayout</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
-  <span class="na">xmlns:app=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span>
-  <span class="na">xmlns:tools=</span><span class="s">"http://schemas.android.com/tools"</span>
-  <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
-  <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
-  <span class="na">tools:context=</span><span class="s">".MainActivity"</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;Button</span>
-    <span class="na">android:id=</span><span class="s">"@+id/button"</span>
-    <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
-    <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
-    <span class="na">android:text=</span><span class="s">"Button"</span>
-    <span class="na">android:textSize=</span><span class="s">"30sp"</span>
-    <span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">"parent"</span>
-    <span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">"parent"</span>
-    <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">"parent"</span>
-    <span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">"parent"</span>
-    <span class="na">app:layout_constraintVertical_bias=</span><span class="s">"0.163"</span> <span class="nt">/&gt;</span>
-
-<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
-</code></pre></div></div>
-
-<p>If you want the Button to do something interesting when it’s clicked, you need to do the following;</p>
-
-<ol>
-  <li>In <strong>MainActivity.java</strong>, get a programmatic reference to the Button View object</li>
-  <li>Still in MainActivity, create a listener object (a ClickListener object)</li>
-  <li>Override the onClick method of the ClickListener object</li>
-  <li>Bind the listener object to the Button object</li>
-</ol>
-
-<p><strong>First step</strong> is to get a reference to the Button object. You can do this with the findViewById() method, like this</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Button btn = (Button) findViewById(R.id.***button\***);
-</code></pre></div></div>
-
-<p>You need to pass the resource <strong>ID</strong> as an argument to this method; the resource ID of the button is R.id.button. The <strong>R.java</strong> file is generated by the Android Runtime during compilation so we can use it to reference the View objects in the layout files.</p>
-
-<p><strong>Second step</strong> is to create a listener object. Since we want the Button to react to click events, we will create an OnClickListener object, like this</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span> <span class="n">listener</span> <span class="o">=</span> <span class="o">**</span><span class="k">new</span><span class="o">**</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
-  <span class="nd">@Override</span>
-  <span class="o">**</span><span class="kd">public</span> <span class="kt">void</span><span class="o">**</span> <span class="n">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// statements;</span>
-  <span class="o">}</span>
-<span class="o">};</span>
-</code></pre></div></div>
-
-<p><strong>Third step</strong> it override the onClick method on the OnClickListener object. Whatever you want to happen when the button is clicked, you should put it inside this method.</p>
-
-<p><strong>Fourth step</strong> is to bind the listener object to the Button object, like this</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>btn.setOnClickListener(listener);
-</code></pre></div></div>
-
-<p>Now, you can run the application. Test it either in the emulator (AVD) or a connected device. The app looks like this</p>
-
-<figure>
-  <img style="width: 19rem;" src="/images/android-buttonclick-toast.png" />
-  <figcaption>Fig 1. Toast Message</figcaption>
-</figure>
-
-<p><strong>Listing 2. Full code of MainActivity.java</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">androidx.appcompat.app.AppCompatActivity</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.view.View</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.widget.Button</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.widget.Toast</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">AppCompatActivity</span> <span class="o">{</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-    <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
-
-    <span class="nc">Button</span> <span class="n">btn</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Button</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">button</span><span class="o">);</span>
-
-    <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span> <span class="n">listener</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
-      <span class="nd">@Override</span>
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">Context</span> <span class="n">ctx</span> <span class="o">=</span> <span class="nc">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">;</span>
-        <span class="nc">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">ctx</span><span class="o">,</span> <span class="s">"Hello"</span><span class="o">,</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
-      <span class="o">}</span>
-    <span class="o">};</span>
-    
-    <span class="n">btn</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="n">listener</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Download the source code from here <a href="https://bit.ly/3bENu2x">https://bit.ly/3bENu2x</a></p>
-
-<!-- <p>
-  This article is excerpted from the book <a target="" href="https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562">Learn Android Studio 3</a>
-</p>
-<img src="/images/book_las3.png" alt="Learn Android Studio 3"> -->
-
-<!-- <div class="card" style="width: 22rem;">
-  <img src="/images/book_las4.png" class="card-img-top" alt="Learn Android Studio 4">
-  <div class="card-body">
-    <h5 class="card-title">Learn Android Studio 4</h5>
-    <p class="card-text">Learn more. See more code samples like this</p>
-    <a target="_blank" href="https://www.apress.com/gp/book/9781484231555#otherversion=9781484231562" class="btn btn-primary">
-      Get the book</a>
-  </div>
-</div> -->
-
-<!--
-
-<div class="card" style="width: 22rem;">
-  <img src="/images/book_las4.png" class="card-img-top" alt="Learn Android Studio 4">
-  <div class="card-body">
-    <h5 class="card-title">Learn Android Studio 4</h5>
-    <p class="card-text">Learn more tips like this from the book. Can I notify you when the book comes out?</p>
-
-    <form
-    action="https://buttondown.email/api/emails/embed-subscribe/workingdev"
-    method="post"
-    target="popupwindow"
-    onsubmit="window.open('https://buttondown.email/workingdev', 'popupwindow')"
-    class="embeddable-buttondown-form"
-  >
-    <label for="bd-email">Enter your email</label>
-    <input type="email" name="email" id="bd-email"  />
-    <input type="hidden" value="learnandroidstudio4" name="tag"/>
-    <p></p>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  </div>
-</div>
-
--->]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="java" /><category term="androidstudio" /><summary type="html"><![CDATA[The article walks through the details on how to build a click-handler in Android using the Java language. The basics are easy to master once you have broken down the details on how create a listener, bind the Button to the listener and override the onClick method]]></summary></entry><entry><title type="html">Basic Android APIs for the Game Programmer</title><link href="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" rel="alternate" type="text/html" title="Basic Android APIs for the Game Programmer" /><published>2020-04-25T09:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers</id><content type="html" xml:base="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html"><![CDATA[<p>This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android.</p>
+</div>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="androidstudio" /><summary type="html"><![CDATA[Android Studio productivity tips. Learn how about automatic code generation, live templates, how to import sample codes and the important keyboard shortcuts you can start using today to boost your productivity]]></summary></entry><entry><title type="html">Basic Android APIs for the Game Programmer</title><link href="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html" rel="alternate" type="text/html" title="Basic Android APIs for the Game Programmer" /><published>2020-04-25T09:00:00+08:00</published><updated>2026-01-14T00:00:00+08:00</updated><id>http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers</id><content type="html" xml:base="http://localhost:4000/android/java/gameprog/2020/04/25/android-api-for-game-programmers.html"><![CDATA[<p>This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android.</p>
 
 <p>This is <strong>not</strong> a full game engine tutorial. Think of it as a mental map.</p>
 
@@ -1155,36 +1393,4 @@ You use AI where it replaces friction, not judgment.</p>
 
 <p><em>Note: This post was originally a placeholder in 2020 and was updated in 2026 to serve as a concise reference instead of an empty stub.</em></p>
 
-<p>I prefer publishing small, useful reference posts over leaving unfinished outlines lying around.</p>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="java" /><category term="gameprog" /><category term="android" /><category term="game-development" /><category term="java" /><summary type="html"><![CDATA[This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android.]]></summary></entry><entry><title type="html">How to pass command line arguments to a Node app</title><link href="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html" rel="alternate" type="text/html" title="How to pass command line arguments to a Node app" /><published>2020-04-24T00:00:00+08:00</published><updated>2020-04-24T00:00:00+08:00</updated><id>http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node</id><content type="html" xml:base="http://localhost:4000/javascript/node/2020/04/24/how-to-pass-cmd-arguments-node.html"><![CDATA[<p>You can pass an argument to a Node app like this</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe"
-</code></pre></div></div>
-
-<p>Any token (String or number) that’s passed after the name of the program file (myapp.js in this case) is a command line argument. If you want to pass more than one argument, simply separate them by space, like this</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node myapp.js "John Doe" 1 2 3 4
-</code></pre></div></div>
-
-<p>All the command line arguments will be stored in the <strong>process.argv</strong> object; it’s an Array.  The 0th element contains the <em>node</em> executable itself, the 1st element is the name of JavaScript program; the 2nd element is the first command line parameter,  the 3rd element is the 2nd command line parameter, so on and so forth. So, in our example above, here’s what the <strong>process.argv</strong>  contains</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/ted/.nvm/versions/node/v9.5.0/bin/node | process.argv[0]
-/Users/ted/temp/cmdlineparams.js              | process.argv[1]
-"John Doe"                                    | process.argv[2]
-1                                             | process.argv[3]
-2                                             | process.argv[4]
-3                                             | process.argv[5]
-4                                             | process.argv[6]
-</code></pre></div></div>
-
-<p>You can process the command line arguments like this;</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// (1)</span>
-  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">)</span> <span class="p">{</span>      <span class="c1">// (2)</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">argv</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p><img src="/images/1.png" alt="" /> If the length of the array is greater than 2, we know that the user passed command line arguments. Remember that the first two elements of the array contains the node executable and the name of program file; so, the length of the <strong>process.argv</strong> array, is at a minimum, always 2. That’s why we’re checking for a value &gt; 2</p>
-
-<p><img src="/images/2.png" alt="" /> We can use a simple <strong>for in</strong> loop to traverse the array</p>]]></content><author><name>Ted Hagos</name></author><category term="javascript" /><category term="node" /><summary type="html"><![CDATA[You can pass an argument to a Node app like this]]></summary></entry></feed>
+<p>I prefer publishing small, useful reference posts over leaving unfinished outlines lying around.</p>]]></content><author><name>Ted Hagos</name></author><category term="android" /><category term="java" /><category term="gameprog" /><category term="android" /><category term="game-development" /><category term="java" /><summary type="html"><![CDATA[This post was originally meant as a placeholder while I was sketching ideas for a longer write-up on Android game development. Rather than leave it empty, I’m turning it into a concise reference for APIs that game programmers tend to touch first when working on Android.]]></summary></entry></feed>

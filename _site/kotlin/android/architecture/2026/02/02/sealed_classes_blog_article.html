@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin | WorkingDev.net</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin" />
+<meta name="author" content="Ted Hagos" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Tired of managing isLoading, hasError, and isEmpty flags? Learn how Kotlin’s sealed classes transform chaotic state management into elegant, compiler-safe code." />
+<meta property="og:description" content="Tired of managing isLoading, hasError, and isEmpty flags? Learn how Kotlin’s sealed classes transform chaotic state management into elegant, compiler-safe code." />
+<link rel="canonical" href="http://localhost:4000/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article.html" />
+<meta property="og:url" content="http://localhost:4000/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article.html" />
+<meta property="og:site_name" content="WorkingDev.net" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-02T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin" />
+<meta name="twitter:site" content="@lovescaffeine" />
+<meta name="twitter:creator" content="@Ted Hagos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ted Hagos"},"dateModified":"2026-02-02T00:00:00+08:00","datePublished":"2026-02-02T00:00:00+08:00","description":"Tired of managing isLoading, hasError, and isEmpty flags? Learn how Kotlin’s sealed classes transform chaotic state management into elegant, compiler-safe code.","headline":"Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article.html"},"url":"http://localhost:4000/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="WorkingDev.net" /><!-- Twitter cards -->
+    <meta name= "twitter:site"    content = "@" />
+    <meta name= "twitter:creator" content = "@" />
+    <meta name= "twitter:title"   content = "Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin" />
+  
+    
+    <meta name= "twitter:description" content = "Tired of managing isLoading, hasError, and isEmpty flags? Learn how Kotlin's sealed classes transform chaotic state management into elegant, compiler-safe code." />
+    
+  
+    
+    <meta name= "twitter:card"  content = "summary_large_image" />
+    <meta name= "twitter:image" content = "https://workingdev.net/images/gandalf-programmer.jpg" />
+    
+    <!-- end of Twitter cards -->
+
+
+    <script type="application/ld+json">
+      {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ted Hagos",
+      "alternateName": "Teddy Hagos",
+      "url": "https://tedhagos.com",
+      "jobTitle": "Chief Technology Officer",
+      "description": "Technical Author, Software Architect, and CTO specializing in Android, Kotlin, and AI-driven development.",
+      "worksFor": {
+      "@type": "Organization",
+      "name": "AiDevPress"
+      },
+      "sameAs": [
+        "https://orcid.org/0009-0003-1079-000X",
+        "https://www.semanticscholar.org/author/Ted-Hagos/2137870790",
+        "https://www.researchgate.net/profile/Ted-Hagos",
+        "https://scholar.google.com/citations?user=ZmdvwgAAAAJ",
+        "https://independent.academia.edu/TedHagos",
+        "https://www.amazon.com/author/tedhagos",
+        "https://twitter.com/lovescaffeine",
+        "https://www.linkedin.com/in/ted-hagos/",
+        "https://independent.academia.edu/HagosTed"
+        ]
+      }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QNWSMK1FBF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-QNWSMK1FBF');
+    </script>
+    
+</head>
+
+
+<body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">WorkingDev.net</a>
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger">
+        <span class="menu-icon">
+          <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+          </svg>
+        </span>
+      </label>
+
+      <div class="trigger">
+        <a class="page-link" href="/about/">About</a>
+        <a class="page-link" href="/blog/">Blog</a>
+        <a class="page-link" href="https://www.thelogbox.com/">Courses</a>
+        <a class="page-link" href="https://tedhagos.com">TedHagos.com</a>
+      </div>
+    </nav>
+  </div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin",
+  "author": {
+    "@type": "Person",
+    "name": "Ted Hagos",
+    "jobTitle": "CTO and Technical Author",
+    "description": "CTO of RenditionDigital International for 21 years, technical author of 8 Apress books, and software development instructor.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "RenditionDigital International"
+    },
+    "url": "https://tedhagos.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/ted-hagos",
+      "https://www.amazon.com/author/tedhagos",
+      "https://github.com/tedhagos"
+    ]
+  }
+}
+</script>
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Stop Juggling Boolean Flags: A Better Way to Handle UI States in Kotlin</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-02-02T00:00:00+08:00" itemprop="datePublished">Feb 2, 2026
+      </time><!--
+          by: <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ted Hagos</span></span>
+          -->
+
+
+          by: 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">
+              <a href="https://tedhagos.com" rel="author">Ted Hagos</a>
+            </span>
+          </span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Have you ever found yourself managing a mess of boolean flags in your Android app—<code class="language-plaintext highlighter-rouge">isLoading</code>, <code class="language-plaintext highlighter-rouge">hasError</code>, <code class="language-plaintext highlighter-rouge">isEmpty</code>—and wondering if there’s a cleaner way? You’re not alone. Today, I’m going to show you how Kotlin’s sealed classes can transform your chaotic state management into something elegant and compiler-safe.</p>
+
+<h2 id="the-problem-boolean-flag-hell">The Problem: Boolean Flag Hell</h2>
+
+<p>Picture this: You’re building a screen that fetches user data from an API. You start simple:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">isLoading</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">hasError</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">data</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;?</span> <span class="p">=</span> <span class="k">null</span>
+</code></pre></div></div>
+
+<p>Looks reasonable, right? But then reality hits:</p>
+
+<ul>
+  <li>What if <code class="language-plaintext highlighter-rouge">isLoading</code> and <code class="language-plaintext highlighter-rouge">hasError</code> are both <code class="language-plaintext highlighter-rouge">true</code>? Which takes precedence?</li>
+  <li>Is that <code class="language-plaintext highlighter-rouge">data</code> fresh, or leftover from a previous successful fetch?</li>
+  <li>Now you need an empty state. Another boolean? <code class="language-plaintext highlighter-rouge">isEmpty = true</code>?</li>
+  <li>Every new screen state means another flag to juggle.</li>
+</ul>
+
+<p>Before long, your UI logic looks like this:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">isLoading</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">hasError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">showLoadingSpinner</span><span class="p">()</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(!</span><span class="n">isLoading</span> <span class="p">&amp;&amp;</span> <span class="n">hasError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">showError</span><span class="p">()</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(!</span><span class="n">isLoading</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">hasError</span> <span class="p">&amp;&amp;</span> <span class="n">data</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="nf">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nf">showEmptyState</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">showUserList</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is fragile, error-prone, and a nightmare to maintain. There has to be a better way.</p>
+
+<h2 id="the-solution-sealed-classes">The Solution: Sealed Classes</h2>
+
+<p>Enter <strong>sealed classes</strong>—Kotlin’s secret weapon for modeling a closed set of possibilities. Think of them as enums on steroids: they can carry data, enforce exhaustive checking, and make your code bulletproof.</p>
+
+<p>Here’s how we can model our UI state:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sealed</span> <span class="kd">class</span> <span class="nc">UiState</span> <span class="p">{</span>
+    <span class="kd">object</span> <span class="nc">Loading</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Success</span><span class="p">(</span><span class="kd">val</span> <span class="py">users</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Error</span><span class="p">(</span><span class="kd">val</span> <span class="py">message</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let me break this down:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Loading</code></strong> is an <code class="language-plaintext highlighter-rouge">object</code> because it doesn’t need to carry any data—it’s just a state marker.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Success</code></strong> is a <code class="language-plaintext highlighter-rouge">data class</code> that wraps the list of users we fetched.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Error</code></strong> is a <code class="language-plaintext highlighter-rouge">data class</code> that includes an error message to display.</li>
+</ul>
+
+<p>Because all three are nested inside <code class="language-plaintext highlighter-rouge">UiState</code>, the compiler knows this is the <strong>complete set</strong> of possible states. No surprises, no hidden edge cases.</p>
+
+<h2 id="visualizing-the-state-machine">Visualizing the State Machine</h2>
+
+<p>Your UI is essentially a state machine. At any moment, it’s in exactly one state:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ┌─────────┐
+    │ Loading │
+    └────┬────┘
+         │
+    ┌────┴────────────┐
+    │                 │
+    ▼                 ▼
+Success(users)    Error(message)
+</code></pre></div></div>
+
+<ul>
+  <li>Start in <strong>Loading</strong> while fetching data</li>
+  <li>Transition to <strong>Success</strong> or <strong>Error</strong> based on the result</li>
+  <li>Never be in multiple conflicting states at once</li>
+</ul>
+
+<h2 id="putting-it-into-practice-the-viewmodel">Putting It Into Practice: The ViewModel</h2>
+
+<p>Here’s how you’d use this in a typical Android <code class="language-plaintext highlighter-rouge">ViewModel</code>:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">UserViewModel</span> <span class="p">:</span> <span class="nc">ViewModel</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">_uiState</span> <span class="p">=</span> <span class="nc">MutableStateFlow</span><span class="p">&lt;</span><span class="nc">UiState</span><span class="p">&gt;(</span><span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">uiState</span><span class="p">:</span> <span class="nc">StateFlow</span><span class="p">&lt;</span><span class="nc">UiState</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">_uiState</span>
+
+    <span class="k">fun</span> <span class="nf">fetchUsers</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">viewModelScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span>
+                <span class="kd">val</span> <span class="py">users</span> <span class="p">=</span> <span class="n">repository</span><span class="p">.</span><span class="nf">getUsers</span><span class="p">()</span>
+                <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nc">Exception</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span><span class="p">(</span><span class="s">"Failed to load users"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Notice how clean this is. At every step, <code class="language-plaintext highlighter-rouge">_uiState.value</code> is set to exactly one state. No ambiguity, no flag coordination—just straightforward state transitions.</p>
+
+<h2 id="consuming-the-state-in-your-ui">Consuming the State in Your UI</h2>
+
+<p>Now here’s where the magic really happens. In your <code class="language-plaintext highlighter-rouge">Activity</code> or <code class="language-plaintext highlighter-rouge">Fragment</code>, you collect the state and use a <code class="language-plaintext highlighter-rouge">when</code> expression:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lifecycleScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+    <span class="n">viewModel</span><span class="p">.</span><span class="n">uiState</span><span class="p">.</span><span class="nf">collect</span> <span class="p">{</span> <span class="n">state</span> <span class="p">-&gt;</span>
+        <span class="k">when</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span> <span class="p">-&gt;</span> <span class="nf">showLoadingSpinner</span><span class="p">()</span>
+            <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span> <span class="p">-&gt;</span> <span class="nf">showUserList</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">users</span><span class="p">)</span>
+            <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span> <span class="p">-&gt;</span> <span class="nf">showError</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The compiler <strong>enforces</strong> that you handle all states. If you forget to handle <code class="language-plaintext highlighter-rouge">Error</code>, you’ll get a compilation warning. If you add a new state later (say, <code class="language-plaintext highlighter-rouge">Empty</code>), the compiler will remind you to update every <code class="language-plaintext highlighter-rouge">when</code> block that handles <code class="language-plaintext highlighter-rouge">UiState</code>.</p>
+
+<p>This is type safety at its finest.</p>
+
+<h2 id="why-this-approach-wins">Why This Approach Wins</h2>
+
+<p>Let me count the ways:</p>
+
+<p><strong>1. Type Safety</strong><br />
+The compiler is your co-pilot. It won’t let you forget to handle a state, and it won’t let you create impossible combinations.</p>
+
+<p><strong>2. Single Source of Truth</strong><br />
+Your UI can only be in one state at a time. No more “what if both flags are true?” scenarios.</p>
+
+<p><strong>3. Maintainability</strong><br />
+Adding new states is trivial. Add a new subclass to <code class="language-plaintext highlighter-rouge">UiState</code>, and the compiler tells you everywhere you need to update your code.</p>
+
+<p><strong>4. Readability</strong><br />
+Anyone reading your code instantly understands what states are possible. The structure is self-documenting.</p>
+
+<h2 id="bonus-adding-more-states">Bonus: Adding More States</h2>
+
+<p>Want to add an empty state? Easy:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sealed</span> <span class="kd">class</span> <span class="nc">UiState</span> <span class="p">{</span>
+    <span class="kd">object</span> <span class="nc">Loading</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Success</span><span class="p">(</span><span class="kd">val</span> <span class="py">users</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Error</span><span class="p">(</span><span class="kd">val</span> <span class="py">message</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">object</span> <span class="nc">Empty</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>  <span class="c1">// New state!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now update your ViewModel:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">fetchUsers</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">viewModelScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span>
+            <span class="kd">val</span> <span class="py">users</span> <span class="p">=</span> <span class="n">repository</span><span class="p">.</span><span class="nf">getUsers</span><span class="p">()</span>
+            <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="nf">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+                <span class="nc">UiState</span><span class="p">.</span><span class="nc">Empty</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nc">Exception</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">_uiState</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span><span class="p">(</span><span class="s">"Failed to load users"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And your UI:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">when</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span> <span class="p">-&gt;</span> <span class="nf">showLoadingSpinner</span><span class="p">()</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span> <span class="p">-&gt;</span> <span class="nf">showUserList</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">users</span><span class="p">)</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span> <span class="p">-&gt;</span> <span class="nf">showError</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Empty</span> <span class="p">-&gt;</span> <span class="nf">showEmptyState</span><span class="p">()</span>  <span class="c1">// New case!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The compiler won’t let you forget that new <code class="language-plaintext highlighter-rouge">Empty</code> case. That’s the power of exhaustive checking.</p>
+
+<h2 id="quick-comparison-before-and-after">Quick Comparison: Before and After</h2>
+
+<p><strong>Before (with boolean flags):</strong></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="py">isLoading</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">hasError</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">isEmpty</span> <span class="p">=</span> <span class="k">false</span>
+<span class="kd">var</span> <span class="py">data</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;?</span> <span class="p">=</span> <span class="k">null</span>
+
+<span class="c1">// Complex conditional logic everywhere</span>
+<span class="k">if</span> <span class="p">(!</span><span class="n">isLoading</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">hasError</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">isEmpty</span> <span class="p">&amp;&amp;</span> <span class="n">data</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">showUserList</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>After (with sealed classes):</strong></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">sealed</span> <span class="kd">class</span> <span class="nc">UiState</span> <span class="p">{</span>
+    <span class="kd">object</span> <span class="nc">Loading</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">object</span> <span class="nc">Empty</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Success</span><span class="p">(</span><span class="kd">val</span> <span class="py">users</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">User</span><span class="p">&gt;)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+    <span class="kd">data class</span> <span class="nc">Error</span><span class="p">(</span><span class="kd">val</span> <span class="py">message</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">:</span> <span class="nc">UiState</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// Clean, exhaustive handling</span>
+<span class="k">when</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Loading</span> <span class="p">-&gt;</span> <span class="nf">showLoadingSpinner</span><span class="p">()</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Empty</span> <span class="p">-&gt;</span> <span class="nf">showEmptyState</span><span class="p">()</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Success</span> <span class="p">-&gt;</span> <span class="nf">showUserList</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">users</span><span class="p">)</span>
+    <span class="k">is</span> <span class="nc">UiState</span><span class="p">.</span><span class="nc">Error</span> <span class="p">-&gt;</span> <span class="nf">showError</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="your-turn">Your Turn</h2>
+
+<p>If you’re tired of drowning in boolean flags and fragile conditional logic, give sealed classes a try. Start small—pick one screen in your app and refactor its state management. I promise you’ll never go back.</p>
+
+<p><strong>Pro tip:</strong> Sealed classes aren’t just for UI states. Use them for navigation events, form validation results, network responses—anywhere you have a fixed set of possibilities.</p>
+
+<p><strong>Think of sealed classes as Kotlin’s answer to Java enums, but with superpowers.</strong> While enums can only hold a single value, sealed classes let each state carry its own data—like a list of users in <code class="language-plaintext highlighter-rouge">Success</code> or an error message in <code class="language-plaintext highlighter-rouge">Error</code>. That flexibility is what makes them perfect for real-world scenarios.</p>
+
+<h2 id="whats-next">What’s Next?</h2>
+
+<p>Once you’ve mastered sealed classes for UI states, you can explore more advanced patterns:</p>
+
+<ul>
+  <li>Combining sealed classes with <code class="language-plaintext highlighter-rouge">Flow</code> for reactive state management</li>
+  <li>Nested sealed classes for complex state hierarchies</li>
+  <li>Using sealed classes with Jetpack Compose’s state hoisting</li>
+</ul>
+
+<p>Want to dive deeper? Check out my upcoming book on <a href="https://leanpub.com/55kotlinrecipesforandroidprogramming">Kotlin Recipes</a> (shameless plug!), where I cover this pattern and many more in detail.</p>
+
+<p>Now go forth and banish those boolean flags forever. Your future self will thank you.</p>
+
+<hr />
+
+<p><em>Have you tried sealed classes in your projects? What’s your favorite use case? Drop a comment below—I’d love to hear about your experience!</em></p>
+
+  </div>
+
+
+  <!--
+  <hr class="post-divider" />
+
+  <div class="subscribe-cta">
+    <p>
+      If you liked this, I write short essays on software development and programming careers.
+      <a href="https://tedhagos.kit.com/ab4b864482"
+         target="_blank"
+         rel="noopener">
+        Subscribe here →
+      </a>
+    </p>
+  </div>
+  -->
+
+  <div class="card" style="width: 22rem;">
+    <div class="card-body">
+      <h4 class="card-title">Get the Newsletter</h4>
+      <p class="card-text">
+      If you liked this, I write short essays on software development and programming careers.
+    </p>
+      <a target="_blank"href="https://tedhagos.kit.com/ab4b864482" class="btn btn-info">SUBSCRIBE</a>
+    </div>
+  </div>
+
+  
+<!--
+  <div class="discussion">
+    If you find any corrections in the page or article, the best place to log that is in the site's GitHub repo <a href="https://github.com/theworkingdev/theworkingdev.github.com/issues">workingdev.net/issues</a>. To start a discussion with me, the best place to do that is via twitter <a href="http://twitter/lovescaffeine">@lovescaffeine</a>
+  </div>
+-->
+
+  <a class="u-url" href="/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article.html" hidden></a>
+</article>
+
+<p/>
+
+<footer class="author-bio" style="margin-top: 30px; font-size: 0.95em; color: #333;">
+  <p>
+    <strong>Ted Hagos</strong> is the CTO of <a href="https://www.renditiondigital.com/">RenditionDigital International</a>, 
+    where he has led technology strategy for over 21 years. He has authored eight books for 
+    <strong>Apress</strong> on subjects ranging from Android Studio and IntelliJ to Kotlin for Spring. 
+    You can find more of his technical insights at <a href="https://tedhagos.com" class="u-url">tedhagos.com</a>.
+  </p>
+</footer>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+
+  <!--
+  <div class="wrapper">
+
+    <h2 class="footer-heading">WorkingDev.net</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">{&quot;name&quot;=&gt;&quot;Ted Hagos&quot;, &quot;url&quot;=&gt;&quot;https://tedhagos.com&quot;, &quot;twitter&quot;=&gt;&quot;lovescaffeine&quot;, &quot;description&quot;=&gt;&quot;CTO, author of 8 Apress books, and technical educator.&quot;, &quot;links&quot;=&gt;[&quot;https://www.amazon.com/author/tedhagos&quot;, &quot;https://twitter.com/lovescaffeine&quot;]}</li><li><a class="u-email" href="mailto:tedhagos@gmail.com">tedhagos@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tedhagos"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tedhagos</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A coding journal by Ted Hagos. Practical tutorials on Java, Kotlin, and  Android, now expanding into defensive coding and AI-assisted development  workflows. Grounded insights for the pragmatic programmer.</p>
+      </div>
+    </div>
+
+  </div>
+  -->
+
+</footer>
+</body>
+
+</html>

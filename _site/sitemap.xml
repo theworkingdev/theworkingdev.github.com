@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>http://localhost:4000/kotlin/android/architecture/2026/02/02/sealed_classes_blog_article.html</loc>
+      <lastmod>2026-02-02T00:00:00+08:00</lastmod>
+    </url>
+  
+    <url>
       <loc>http://localhost:4000/jetpack-compose-version-compatibility-kotlin-compiler-bom</loc>
       <lastmod>2026-01-30T00:00:00+08:00</lastmod>
     </url>
