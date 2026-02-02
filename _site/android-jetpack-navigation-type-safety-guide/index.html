@@ -349,7 +349,7 @@ NavHost(navController = navController, startDestination = Home) {
 
 <p>Kotlin</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// ❌ The Old Way: Flaky and Slow
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// The Old Way: Flaky and Slow
 onView(withId(R.id.btn_profile)).perform(click())
 onView(withText("User Profile")).check(matches(isDisplayed()))
 </code></pre></div></div>
@@ -360,7 +360,7 @@ onView(withText("User Profile")).check(matches(isDisplayed()))
 
 <p>Kotlin</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// ✅ The 2026 Way: Logic-driven and Instant
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// The 2026 Way: Logic-driven and Instant
 val state = navHost.simulateEvent(UserClick("profile_id"))
 assertThat(state.currentDestination).isInstanceOf(Destinations.Profile::class)
 </code></pre></div></div>

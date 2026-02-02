@@ -214,7 +214,7 @@ Previously, we relied on **UI Testing**. We had to boot up an emulator, render t
 Kotlin
 
 ```
-// ❌ The Old Way: Flaky and Slow
+// The Old Way: Flaky and Slow
 onView(withId(R.id.btn_profile)).perform(click())
 onView(withText("User Profile")).check(matches(isDisplayed()))
 ```
@@ -226,7 +226,7 @@ Today, we test the **Navigation State**. Instead of checking if a button *appear
 Kotlin
 
 ```
-// ✅ The 2026 Way: Logic-driven and Instant
+// The 2026 Way: Logic-driven and Instant
 val state = navHost.simulateEvent(UserClick("profile_id"))
 assertThat(state.currentDestination).isInstanceOf(Destinations.Profile::class)
 ```
